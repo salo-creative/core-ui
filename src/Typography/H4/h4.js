@@ -9,7 +9,7 @@ const StyledH4 = styled.h4`
   text-align: ${ ({ align }) => align };
   margin: ${ ({ margin }) => margin };
   padding: ${ ({ padding }) => padding };
-
+  font-weight: ${ ({ theme }) => theme.headerWeight };
   ${ ({ fontSize, lineHeight, minFont, maxFont, minLine, maxLine }) => {
     if (fontSize === '' && lineHeight === '') {
       return `${ FluidType({ fontSize: [minFont, maxFont], lineHeight: [minLine, maxLine] }) }`;

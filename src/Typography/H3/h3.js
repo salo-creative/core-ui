@@ -9,7 +9,7 @@ const StyledH3 = styled.h3`
   text-align: ${ ({ align }) => align };
   margin: ${ ({ margin }) => margin };
   padding: ${ ({ padding }) => padding };
-
+  font-weight: ${ ({ theme }) => theme.headerWeight };
   ${ ({ fontSize, lineHeight, minFont, maxFont, minLine, maxLine }) => {
     if (fontSize === '' && lineHeight === '') {
       return `${ FluidType({ fontSize: [minFont, maxFont], lineHeight: [minLine, maxLine] }) }`;

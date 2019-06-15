@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.0.5", "commit": "making header font-weight configurable via the theme" },
 { "user": "Rich Comber", "version": "v0.0.4", "commit": "Removing uneeded dependencies" },
 { "user": "Rich Comber", "version": "v0.0.3", "commit": "Updating theme and  colour providers" },
 { "user": "Rich Comber", "version": "v0.0.2", "commit": "Initial release" },

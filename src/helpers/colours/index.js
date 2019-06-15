@@ -32,6 +32,7 @@ export const saloTheme = {
   fontInverse: '#fff',
   bodyFont: '\'Brother\', sans-serif',
   headerFont: '\'Brother\', sans-serif',
+  headerWeight: '700',
   ...colours
 };
 
