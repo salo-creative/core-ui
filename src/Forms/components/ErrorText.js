@@ -7,7 +7,7 @@ const Text = styled.p`
   font-size: ${ ({ size }) => (size === 'L' ? '1.2rem' : '1rem') };
   margin: 0.5rem 0 0;
   padding: 0;
-  color: ${ ({ theme }) => theme.red };
+  color: ${ ({ theme }) => theme.error };
 `;
 
 const HelperText = (props) => {

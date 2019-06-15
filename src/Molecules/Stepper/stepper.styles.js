@@ -38,7 +38,7 @@ export const NavItem = styled.button`
   cursor: pointer;
   position: relative;
   z-index: 2;
-  color: ${ ({ theme }) => theme.black };
+  color: ${ ({ theme }) => theme.font };
   &:before {
     transition: all 0.3s linear;
     content: '';
@@ -59,7 +59,7 @@ export const NavItem = styled.button`
   &.active,
   &.complete {
     &:before {
-      background: ${ ({ theme }) => theme.blue };
+      background: ${ ({ theme }) => theme.primary };
     }
   }
 `;

@@ -15,7 +15,7 @@ export const RangeSliderInnerWrapper = styled.div`
 
 export const ValWrapper = styled.div`
   margin: ${ ({ margin }) => margin };
-  color: ${ ({ theme }) => theme.black };
+  color: ${ ({ theme }) => theme.font };
   display: flex;
   align-items: center;
   width: 4rem;
@@ -25,7 +25,7 @@ const thumbPartial = css`
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
-  background: ${ ({ theme }) => theme.blue };
+  background: ${ ({ theme }) => theme.primary };
   cursor: pointer;
   margin-top: -.8rem;
   z-index: 10000;

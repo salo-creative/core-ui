@@ -18,7 +18,7 @@ const FlyOutButton = (props) => {
       >
         <Title>{ title }</Title>
         <IconWrapper>
-          <Icon fill={ colours.black } icon={ icon } size={ 24 } />
+          <Icon fill={ colours.charcoal } icon={ icon } size={ 24 } />
         </IconWrapper>
       </ItemButton>
     </Item>

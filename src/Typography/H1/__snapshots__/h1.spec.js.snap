@@ -24,7 +24,7 @@ exports[`Render H1 tag with core props 1`] = `
 exports[`Render H1 tag with fluid type props 1`] = `
 .c0 {
   width: 100%;
-  color: #00222b;
+  color: #333333;
   text-align: left;
   margin: 30px 0 10px;
   padding: 0;
@@ -59,7 +59,7 @@ exports[`Render H1 tag with fluid type props 1`] = `
 exports[`Render default H1 tag and styles 1`] = `
 .c0 {
   width: 100%;
-  color: #00222b;
+  color: #333333;
   text-align: left;
   margin: 30px 0 10px;
   padding: 0;

@@ -15,7 +15,7 @@ const animation = ({ time }) => css`
 
 export const AlertWrapper = styled.div`
   width: 100%;
-  background: ${ ({ theme }) => theme.green };
+  background: ${ ({ theme }) => theme.success };
   color: #fff;
   padding: 5px 10px;
   font-size: 12px;
@@ -25,13 +25,13 @@ export const AlertWrapper = styled.div`
   align-items: center;
   position: relative;
   &.error {
-    background: ${ ({ theme }) => theme.red };
+    background: ${ ({ theme }) => theme.error };
   }
   &.warning {
     background: ${ ({ theme }) => theme.yellow };
   }
   &.info {
-    background: ${ ({ theme }) => theme.blue };
+    background: ${ ({ theme }) => theme.primary };
   }
   ${ ({ timer }) => (timer ? `
     &:after {

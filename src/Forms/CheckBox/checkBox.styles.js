@@ -36,8 +36,8 @@ export const HiddenCheckBox = styled.input.attrs({ type: 'checkbox' })`
 export const StyledCheckBox = styled.div`
   width: ${ ({ width }) => width };
   height: ${ ({ width }) => width };
-  background-color: ${ ({ checked, theme }) => (checked ? theme.blue : theme.paleGrey) };
-  border: ${ ({ theme, checked }) => (checked ? `.1rem ${ theme.blue } solid` : `.1rem ${ theme.darkGrey } solid`) };
+  background-color: ${ ({ checked, theme }) => (checked ? theme.primary : theme.paleGrey) };
+  border: ${ ({ theme, checked }) => (checked ? `.1rem ${ theme.primary } solid` : `.1rem ${ theme.darkGrey } solid`) };
   border-radius: ${ ({ borderRadius }) => borderRadius };
   transition: all 150ms;
   margin-right: 1rem;
@@ -67,6 +67,6 @@ export const GroupWrapper = styled.div`
   padding: 1rem;
   background: ${ ({ theme }) => theme.paleGrey };
   border: 0.1rem solid;
-  border-color: ${ ({ theme }) => transparentize(0.5, theme.blue) };
+  border-color: ${ ({ theme }) => transparentize(0.5, theme.primary) };
   border-radius: 0.4rem;
 `;

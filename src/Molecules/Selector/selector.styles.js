@@ -13,14 +13,14 @@ export const Label = styled.button`
   color: ${ ({ color }) => color };
   font-size: ${ ({ size }) => (size === 'L' ? '1.6rem' : '1.4rem') };
   padding: 0 4rem 0 1rem;
-  border: 1px solid ${ ({ theme }) => transparentize(0.5, theme.blue) };
+  border: 1px solid ${ ({ theme }) => transparentize(0.5, theme.primary) };
   margin: 0;
   display: flex;
   align-items: center;
   cursor: pointer;
   &:focus,
   &:active {
-    border: 1px solid ${ ({ theme }) => theme.blue };
+    border: 1px solid ${ ({ theme }) => theme.primary };
   }
   &.noValue {
     color: ${ ({ theme }) => theme.darkGrey };
@@ -44,7 +44,7 @@ export const IconAfter = styled.span`
   top: 5px;
   position: absolute;
   justify-content: center;
-  border-left: 1px solid ${ ({ theme }) => transparentize(0.5, theme.blue) };
+  border-left: 1px solid ${ ({ theme }) => transparentize(0.5, theme.primary) };
   svg {
     fill: ${ ({ theme }) => theme.darkGrey };
   }

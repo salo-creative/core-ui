@@ -34,7 +34,7 @@ export const SwitchContainer = styled.button`
   height: ${ ({ size }) => (size === 'L' ? '2rem' : '1.5rem') };
   position: relative;
   border-radius: 0.4rem;
-  background: ${ ({ active, theme }) => (active ? transparentize(0.7, theme.green) : theme.grey) };
+  background: ${ ({ active, theme }) => (active ? transparentize(0.7, theme.success) : theme.grey) };
   cursor: pointer;
   margin: 0 1rem 0 0;
   border: none;
@@ -50,7 +50,7 @@ export const SwitchHandle = styled.span`
   border-radius: 50%;
   cursor: pointer;
   border: 0.2rem solid #fff;
-  background: ${ ({ active, theme }) => (active ? theme.green : theme.darkGrey) };
+  background: ${ ({ active, theme }) => (active ? theme.success : theme.darkGrey) };
   transition: all 0.3s linear;
   ${ ({ size, active }) => (size === 'L' ? `
     height: 3rem;

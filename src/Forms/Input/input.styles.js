@@ -14,14 +14,14 @@ export const Field = styled.input`
   height: ${ ({ height }) => height };
   background: ${ ({ background }) => background };
   border: 1px solid;
-  border-color: ${ ({ theme }) => transparentize(0.5, theme.blue) };
+  border-color: ${ ({ theme }) => transparentize(0.5, theme.primary) };
   transition: border 0.2s linear;
   width: 100%;
   border-radius: 0.4rem;
   font-size: 1.4rem;
   &:focus,
   &:active {
-    border-color: ${ ({ theme }) => theme.blue }
+    border-color: ${ ({ theme }) => theme.primary }
   }
   &[disabled] {
     cursor:  not-allowed;

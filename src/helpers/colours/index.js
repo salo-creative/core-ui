@@ -7,17 +7,32 @@ import { darken } from 'polished';
  * centralised definition of consts
  */
 export const colours = {
-  white: '#fff',
-  black: '#00222b',
-  blue: '#56c3f0',
-  green: '#78d731',
-  grey: '#e9ecef',
+  blue: '#00ACED',
+  brightBlue: '#00D2FF',
+  charcoal: '#333333',
   darkGrey: '#6c757d',
-  navy: '#00272e',
-  orange: '#f9200',
+  green: '#31D238',
+  grey: '#e9ecef',
+  orange: '#f47a3e',
   paleGrey: '#fafcff',
-  red: '#ff190f',
-  yellow: '#ffcc00'
+  pink: '#EF358A',
+  purple: '#62358A',
+  red: '#f15b60',
+  yellow: '#FFAE00'
+};
+
+export const saloTheme = {
+  primary: colours.blue,
+  secondary: colours.pink,
+  success: colours.green,
+  error: colours.red,
+  warning: colours.yellow,
+  info: colours.grey,
+  font: colours.charcoal,
+  fontInverse: '#fff',
+  bodyFont: '\'Brother\', sans-serif',
+  headerFont: '\'Brother\', sans-serif',
+  ...colours
 };
 
 /**
@@ -42,32 +57,32 @@ export const boxShadow = (size) => {
  *
  * Definition for the button themes from the predefined colours
  */
-export const buttonThemes = {
+export const buttonThemes = ({ primary, secondary, font, fontInverse, success, error }) => ({
   white: {
     border: '#fff',
     background: '#fff',
-    color: colours.black,
+    color: font,
     borderHov: colours.paleGrey,
     backgroundHov: colours.paleGrey,
-    colorHov: colours.black,
+    colorHov: font,
     shadow: true
   },
   clear: {
-    border: colours.black,
+    border: font,
     background: 'transparent',
-    color: colours.black,
-    borderHov: colours.black,
+    color: font,
+    borderHov: font,
     backgroundHov: 'rgba(0,0,0,0.1)',
-    colorHov: colours.black,
+    colorHov: font,
     shadow: false
   },
   clear_inverse: {
-    border: '#fff',
+    border: fontInverse,
     background: 'transparent',
-    color: '#fff',
-    borderHov: darken(0.3, '#fff'),
+    color: fontInverse,
+    borderHov: darken(0.3, fontInverse),
     backgroundHov: 'transparent',
-    colorHov: darken(0.3, '#fff'),
+    colorHov: darken(0.3, fontInverse),
     shadow: false
   },
   text: {
@@ -76,7 +91,7 @@ export const buttonThemes = {
     color: colours.darkGrey,
     borderHov: 'transparent',
     backgroundHov: 'transparent',
-    colorHov: colours.black,
+    colorHov: font,
     shadow: false
   },
   text_inverse: {
@@ -85,50 +100,43 @@ export const buttonThemes = {
     color: colours.paleGrey,
     borderHov: 'transparent',
     backgroundHov: 'transparent',
-    colorHov: '#fff',
+    colorHov: fontInverse,
     shadow: false
   },
   primary: {
-    border: colours.blue,
-    background: colours.blue,
-    color: '#fff',
-    borderHov: darken(0.15, colours.blue),
-    backgroundHov: darken(0.15, colours.blue),
-    colorHov: '#fff',
+    border: primary,
+    background: primary,
+    color: fontInverse,
+    borderHov: darken(0.15, primary),
+    backgroundHov: darken(0.15, primary),
+    colorHov: fontInverse,
     shadow: true
   },
   secondary: {
-    border: colours.navy,
-    background: colours.navy,
-    color: '#fff',
-    borderHov: darken(0.15, colours.navy),
-    backgroundHov: darken(0.15, colours.navy),
-    colorHov: '#fff',
+    border: secondary,
+    background: secondary,
+    color: fontInverse,
+    borderHov: darken(0.15, secondary),
+    backgroundHov: darken(0.15, secondary),
+    colorHov: fontInverse,
     shadow: true
   },
   error: {
-    border: colours.red,
-    background: colours.red,
-    color: '#fff',
-    borderHov: darken(0.15, colours.red),
-    backgroundHov: darken(0.15, colours.red),
-    colorHov: '#fff',
+    border: error,
+    background: error,
+    color: fontInverse,
+    borderHov: darken(0.15, error),
+    backgroundHov: darken(0.15, error),
+    colorHov: fontInverse,
     shadow: true
   },
   success: {
-    border: colours.green,
-    background: colours.green,
-    color: '#fff',
-    borderHov: darken(0.15, colours.green),
-    backgroundHov: darken(0.15, colours.green),
-    colorHov: '#fff',
+    border: success,
+    background: success,
+    color: fontInverse,
+    borderHov: darken(0.15, success),
+    backgroundHov: darken(0.15, success),
+    colorHov: fontInverse,
     shadow: true
   }
-};
-
-export const avatarThemes = {
-  purple: {
-    background: '#582A72',
-    color: colours.white
-  }
-};
+});

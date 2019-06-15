@@ -20,7 +20,7 @@ All the colours are mapped to the centralised theme object which is passed into 
 
 ```javascript
 const StyledComponent = styled.p`
-  color: ${ ({ theme }) => theme.navy };
+  color: ${ ({ theme }) => theme.secondary };
 `;
 ```
 

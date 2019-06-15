@@ -20,7 +20,7 @@ const FlyOutLink = (props) => {
       >
         <Title>{ title }</Title>
         <IconWrapper>
-          <Icon fill={ colours.black } icon={ icon } size={ 18 } />
+          <Icon fill={ colours.charcoal } icon={ icon } size={ 18 } />
         </IconWrapper>
       </ItemButton>
     </Item>

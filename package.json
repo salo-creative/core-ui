@@ -1,6 +1,6 @@
 {
   "name": "@salo/core-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Core Salo React UI library",
   "main": "./index.js",
   "sideEffects": false,
@@ -122,6 +122,7 @@
     "styled-components": "^4.2.0"
   },
   "dependencies": {
+    "@multiplay/ui": "^1.2.10",
     "@salo/icons": "^1.0.0",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",

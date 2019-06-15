@@ -21,10 +21,10 @@ export const Selector = styled.select`
   width: 100%;
   height: ${ ({ height }) => height };
   background: transparent;
-  color: ${ ({ theme }) => theme.black };
+  color: ${ ({ theme }) => theme.font };
   font-size: inherit;
   padding: 0 4rem 0 1rem;
-  border: 1px solid ${ ({ theme }) => transparentize(0.5, theme.blue) };
+  border: 1px solid ${ ({ theme }) => transparentize(0.5, theme.primary) };
   margin: 0;
   border-radius: 0;
   text-overflow: '';
@@ -37,7 +37,7 @@ export const Selector = styled.select`
   z-index: 2;
   &:focus,
   &:active {
-    border-color: ${ ({ theme }) => theme.blue };
+    border-color: ${ ({ theme }) => theme.primary };
   }
   &[disabled] {
     cursor: not-allowed;
@@ -58,7 +58,7 @@ export const IconAfter = styled.span`
   top: 0.75rem;
   position: absolute;
   justify-content: center;
-  border-left: 1px solid ${ ({ theme }) => transparentize(0.5, theme.blue) };
+  border-left: 1px solid ${ ({ theme }) => transparentize(0.5, theme.primary) };
   z-index: 1;
 `;
 

@@ -10,7 +10,7 @@ export const PillWrapper = styled.div`
     align-items: center;
     padding: 0 1.5rem;
     height: 4rem;
-    background-color: ${ ({ theme, background }) => (theme[background] ? theme[background] : theme.blue) };
+    background-color: ${ ({ theme, background }) => (theme[background] ? theme[background] : theme.primary) };
     color: ${ ({ theme, color, loading, background }) => (loading ? theme[background] : theme[color]) };
     font-size: 1.6rem;
     margin: ${ ({ margin }) => (margin || '0 0.5rem 0 0') };

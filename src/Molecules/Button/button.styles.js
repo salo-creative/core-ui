@@ -5,7 +5,8 @@ import { get } from 'lodash';
 import { buttonThemes, boxShadow } from '../../helpers/colours';
 
 const getColour = ({ props, property }) => {
-  return get(buttonThemes, `${ props.appearance }.${ property }`);
+  console.log(props.theme);
+  return get(buttonThemes(props.theme), `${ props.appearance }.${ property }`);
 };
 
 export const ButtonWrapper = styled.button`

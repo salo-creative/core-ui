@@ -21,10 +21,10 @@ export const ItemWrapper = styled.span`
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: ${ ({ theme }) => darken(0.2, theme.blue) };
+    color: ${ ({ theme }) => darken(0.2, theme.primary) };
     transition: color 0.3s linear;
     &:hover {
-      color: ${ ({ theme }) => theme.blue };
+      color: ${ ({ theme }) => theme.primary };
     }
   }
 `;

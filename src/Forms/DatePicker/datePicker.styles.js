@@ -13,12 +13,12 @@ export const DatePickerWrapper = styled.div`
   */
 
   .PresetDateRangePicker_button {
-    border: 3px solid ${ ({ theme }) => theme.blue };
-    color: ${ ({ theme }) => theme.blue };
+    border: 3px solid ${ ({ theme }) => theme.primary };
+    color: ${ ({ theme }) => theme.primary };
   }
   .PresetDateRangePicker_button__selected {
     color: ${ ({ theme }) => theme.paleGrey };
-    background: ${ ({ theme }) => theme.blue };
+    background: ${ ({ theme }) => theme.primary };
   }
   .SingleDatePickerInput {
     width: 100%;
@@ -27,7 +27,7 @@ export const DatePickerWrapper = styled.div`
   }
   .SingleDatePickerInput__withBorder {
     border-radius: 3px;
-    border: 1px solid ${ ({ theme }) => transparentize(0.50, theme.blue) };
+    border: 1px solid ${ ({ theme }) => transparentize(0.50, theme.primary) };
   }
   .SingleDatePickerInput__disabled {
     background-color: ${ ({ theme }) => theme.paleGrey };
@@ -57,25 +57,25 @@ export const DatePickerWrapper = styled.div`
     fill: ${ ({ theme }) => theme.darkGrey };
   }
   .DayPickerKeyboardShortcuts_show__bottomRight::before {
-    border-right: 33px solid ${ ({ theme }) => theme.blue };
+    border-right: 33px solid ${ ({ theme }) => theme.primary };
   }
   .DayPickerKeyboardShortcuts_show__bottomRight:hover::before {
-    border-right: 33px solid ${ ({ theme }) => theme.blue };
+    border-right: 33px solid ${ ({ theme }) => theme.primary };
   }
   .DayPickerKeyboardShortcuts_show__topRight::before {
     border-bottom: 26px solid transparent;
-    border-right: 33px solid ${ ({ theme }) => theme.blue };
+    border-right: 33px solid ${ ({ theme }) => theme.primary };
     top: 0;
     right: 0;
   }
   .DayPickerKeyboardShortcuts_show__topRight:hover::before {
-    border-right: 33px solid ${ ({ theme }) => theme.blue };
+    border-right: 33px solid ${ ({ theme }) => theme.primary };
   }
   .DayPickerKeyboardShortcuts_show__topLeft::before {
-    border-left: 33px solid ${ ({ theme }) => theme.blue };
+    border-left: 33px solid ${ ({ theme }) => theme.primary };
   }
   .DayPickerKeyboardShortcuts_show__topLeft:hover::before {
-    border-left: 33px solid ${ ({ theme }) => theme.blue };
+    border-left: 33px solid ${ ({ theme }) => theme.primary };
   }
   .DayPickerKeyboardShortcuts_showSpan {
     color: ${ ({ theme }) => theme.paleGrey };
@@ -94,16 +94,16 @@ export const DatePickerWrapper = styled.div`
   }
   .CalendarDay__default {
     border: 1px solid ${ ({ theme }) => theme.paleGrey };
-    color: ${ ({ theme }) => theme.black };
+    color: ${ ({ theme }) => theme.font };
     background: ${ ({ theme }) => theme.paleGrey };
   }
   .CalendarDay__default:hover {
-    background: ${ ({ theme }) => darken(0.2, theme.blue) };
+    background: ${ ({ theme }) => darken(0.2, theme.primary) };
   }
   .CalendarDay__outside {
     border: 0;
     background: ${ ({ theme }) => theme.paleGrey };
-    color: ${ ({ theme }) => theme.black };
+    color: ${ ({ theme }) => theme.font };
   }
   .CalendarDay__blocked_minimum_nights {
     background: ${ ({ theme }) => theme.paleGrey };
@@ -116,31 +116,31 @@ export const DatePickerWrapper = styled.div`
   }
   .CalendarDay__highlighted_calendar {
     background: #ffe8bc;
-    color: ${ ({ theme }) => theme.black };
+    color: ${ ({ theme }) => theme.font };
   }
   .CalendarDay__highlighted_calendar:active,
   .CalendarDay__highlighted_calendar:hover {
     background: #ffce71;
-    color: ${ ({ theme }) => theme.black };
+    color: ${ ({ theme }) => theme.font };
   }
   .CalendarDay__selected_span {
     color: ${ ({ theme }) => theme.paleGrey };
   }
   .CalendarDay__selected_span:active,
   .CalendarDay__selected_span:hover {
-    background: ${ ({ theme }) => theme.blue };
+    background: ${ ({ theme }) => theme.primary };
     color: ${ ({ theme }) => theme.paleGrey };
   }
   .CalendarDay__selected,
   .CalendarDay__selected:active,
   .CalendarDay__selected:hover {
-    background: ${ ({ theme }) => theme.blue };
+    background: ${ ({ theme }) => theme.primary };
     color: ${ ({ theme }) => theme.paleGrey };
   }
   .CalendarDay__blocked_calendar,
   .CalendarDay__blocked_calendar:active,
   .CalendarDay__blocked_calendar:hover {
-    background: ${ ({ theme }) => darken(0.2, theme.blue) };
+    background: ${ ({ theme }) => darken(0.2, theme.primary) };
     color: ${ ({ theme }) => theme.darkGrey };
   }
   .CalendarDay__blocked_out_of_range,
@@ -161,7 +161,7 @@ export const DatePickerWrapper = styled.div`
     background: ${ ({ theme }) => theme.paleGrey };
   }
   .CalendarMonth_caption {
-    color: ${ ({ theme }) => theme.black };
+    color: ${ ({ theme }) => theme.font };
     font-size: 18px;
     text-align: center;
     padding-top: 18px;
@@ -172,14 +172,14 @@ export const DatePickerWrapper = styled.div`
       height: 33px;
       border-radius: 3px;
       background: #fff;
-      color: ${ ({ theme }) => theme.black };
+      color: ${ ({ theme }) => theme.font };
       font-size: inherit;
       padding: 0 1rem 0 1rem;
       margin: 0 .5rem 0 .5rem;
-      border: 1px solid ${ ({ theme }) => transparentize(0.5, theme.blue) };
+      border: 1px solid ${ ({ theme }) => transparentize(0.5, theme.primary) };
       appearance: none;
       & :hover {
-        border: 1px solid ${ ({ theme }) => darken(0.2, theme.blue) };
+        border: 1px solid ${ ({ theme }) => darken(0.2, theme.primary) };
       }
     }
   }
@@ -187,13 +187,13 @@ export const DatePickerWrapper = styled.div`
     background: ${ ({ theme }) => theme.paleGrey };
   }
   .DayPickerNavigation_button__default {
-    border: 1px solid ${ ({ theme }) => transparentize(0.5, theme.blue) };
+    border: 1px solid ${ ({ theme }) => transparentize(0.5, theme.primary) };
     background-color: #fff;
     color: #757575;
   }
   .DayPickerNavigation_button__default:focus,
   .DayPickerNavigation_button__default:hover {
-    border: 1px solid ${ ({ theme }) => darken(0.2, theme.blue) };
+    border: 1px solid ${ ({ theme }) => darken(0.2, theme.primary) };
   }
   .DayPickerNavigation_button__default:active {
     background: ${ ({ theme }) => theme.paleGrey };
@@ -204,7 +204,7 @@ export const DatePickerWrapper = styled.div`
   }
   .DayPickerNavigation_button__disabled:focus,
   .DayPickerNavigation_button__disabled:hover {
-    border: 1px solid ${ ({ theme }) => darken(0.2, theme.blue) };
+    border: 1px solid ${ ({ theme }) => darken(0.2, theme.primary) };
   }
   .DayPickerNavigation_button__verticalDefault {
     background: ${ ({ theme }) => theme.paleGrey };
@@ -213,7 +213,7 @@ export const DatePickerWrapper = styled.div`
     fill: ${ ({ theme }) => theme.darkGrey };
   }
   .DayPickerNavigation_svg__vertical {
-    fill: ${ ({ theme }) => theme.black };
+    fill: ${ ({ theme }) => theme.font };
   }
   .DayPickerNavigation_svg__disabled {
     fill: ${ ({ theme }) => theme.paleGrey };
@@ -251,7 +251,7 @@ export const DatePickerWrapper = styled.div`
     font-weight: 200;
     font-size: 1.4rem;
     height: ${ ({ height }) => height };
-    color: ${ ({ theme }) => theme.black };
+    color: ${ ({ theme }) => theme.font };
     background-color: ${ ({ theme }) => theme.paleGrey };
     width: 100%;
     padding: 0 1rem;
@@ -268,7 +268,7 @@ export const DatePickerWrapper = styled.div`
     border: 0;
     border-top: 0;
     border-right: 0;
-    border-bottom: 3px solid ${ ({ theme }) => theme.blue };
+    border-bottom: 3px solid ${ ({ theme }) => theme.primary };
     border-left: 0;
   }
   .DateInput_input__disabled {
@@ -296,11 +296,11 @@ export const DatePickerWrapper = styled.div`
   .DateRangePickerInput_arrow {
     display: inline-block;
     vertical-align: middle;
-    color: ${ ({ theme }) => theme.black };
+    color: ${ ({ theme }) => theme.font };
   }
   .DateRangePickerInput_arrow_svg {
     vertical-align: middle;
-    fill: ${ ({ theme }) => theme.black };
+    fill: ${ ({ theme }) => theme.font };
   }
   .DateRangePickerInput_clearDates_default:focus,
   .DateRangePickerInput_clearDates_default:hover {

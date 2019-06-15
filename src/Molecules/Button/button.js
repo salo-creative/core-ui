@@ -8,9 +8,6 @@ import Icon from '@salo/icons';
 import { ButtonWrapper } from './button.styles';
 import Loader from '../Loader';
 
-// HELPERS
-import { buttonThemes } from '../../helpers/colours';
-
 const Button = (props) => {
   const {
     children,
@@ -92,7 +89,7 @@ Button.defaultProps = {
 
 Button.propTypes = {
   align: PropTypes.oneOf(['center', 'start', 'flex-end', 'space-between']),
-  appearance: PropTypes.oneOf(Object.keys(buttonThemes)),
+  appearance: PropTypes.string,
   children: PropTypes.any,
   disabled: PropTypes.bool,
   fullWidth: PropTypes.bool,

@@ -42,9 +42,9 @@ export const AddButton = styled.button`
     transition: all 0.3s linear;
   }
   &:hover {
-    color: ${ ({ theme }) => theme.blue };
+    color: ${ ({ theme }) => theme.primary };
   path {
-    fill: ${ ({ theme }) => theme.blue };
+    fill: ${ ({ theme }) => theme.primary };
   }
   }
 `;

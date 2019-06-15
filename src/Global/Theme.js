@@ -3,24 +3,22 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 
 // HELPERS
-import { colours } from '../helpers/colours';
-
-const theme = {
-  ...colours,
-  // Typography
-  bodyFont: '\'Open Sans\', sans-serif',
-  headerFont: '\'sofia-pro\', sans-serif'
-};
+import { saloTheme } from '../helpers/colours';
 
 const Theme = (props) => {
-  const { children } = props;
+  const { children, theme } = props;
   return (
-    <ThemeProvider theme={ theme }>
+    <ThemeProvider theme={ { ...saloTheme, ...theme } }>
       { children }
     </ThemeProvider>
   );
 };
 
-Theme.propTypes = { children: PropTypes.any.isRequired };
+Theme.defaultProps = { theme: {} };
+
+Theme.propTypes = {
+  children: PropTypes.any.isRequired,
+  theme: PropTypes.object
+};
 
 export default Theme;

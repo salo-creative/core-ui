@@ -7,7 +7,7 @@ const StyledLabel = styled.label`
   font-size: ${ ({ size }) => (size === 'L' ? '1.6rem' : '1.4rem') };
   margin: 0 0 0.5rem;
   padding: 0;
-  color: ${ ({ error, theme }) => (error ? theme.red : 'inherit') };
+  color: ${ ({ error, theme }) => (error ? theme.error : 'inherit') };
   word-break: break-word;
 `;
 

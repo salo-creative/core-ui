@@ -25,7 +25,7 @@ stories.add(
     // KNOBS
     const image = text('Image URL', 'http://i.stack.imgur.com/Dj7eP.jpg');
     const size = number('Size', 100);
-    const fallbackText = text('Fallback Text', 'Peter');
+    const fallbackText = text('Fallback Text', 'Salo');
     const colour = text('Fallback Colour', colours.blue);
 
     return (

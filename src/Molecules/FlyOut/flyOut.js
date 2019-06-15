@@ -71,7 +71,7 @@ class FlyOut extends Component {
           </Actions>
           <Toggle onClick={ () => { this.toggleInlineMenu(); } }>
             <Ink />
-            <Icon fill={ inverse ? colours.black : '#fff' } icon='dots_vertical' size={ 24 } />
+            <Icon fill={ inverse ? colours.charcoal : '#fff' } icon='dots_vertical' size={ 24 } />
           </Toggle>
         </Wrapper>
       </Container>

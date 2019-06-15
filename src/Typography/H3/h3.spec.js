@@ -22,7 +22,7 @@ test('Render default H3 tag and styles', async () => {
   const fontSizes = fluidTypeVals({ minLH, maxLH, maxFS, minFS });
   // Assert
   expect(el).toHaveTextContent('A tasty treat');
-  expect(el).toHaveStyleRule('color', colours.black);
+  expect(el).toHaveStyleRule('color', colours.charcoal);
   expect(el).toHaveStyleRule('padding', '0');
   expect(el).toHaveStyleRule('margin', '30px 0 10px');
   expect(el).toHaveStyleRule('font-size', `${ minFS }px`);

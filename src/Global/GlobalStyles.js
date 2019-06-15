@@ -6,7 +6,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    color: ${ ({ theme }) => theme.black };
+    color: ${ ({ theme }) => theme.font };
     font-family: ${ ({ theme }) => theme.bodyFont };
   }
 
@@ -15,11 +15,11 @@ const GlobalStyles = createGlobalStyle`
   }
 
   a {
-    color: ${ ({ theme }) => theme.blue };
+    color: ${ ({ theme }) => theme.primary };
   }
 
   a:hover {
-    color: ${ ({ theme }) => theme.blue };
+    color: ${ ({ theme }) => theme.primary };
   }
 
   button {

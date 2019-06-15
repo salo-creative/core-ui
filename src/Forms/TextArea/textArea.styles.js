@@ -13,14 +13,14 @@ export const Field = styled.textarea`
   padding: 1rem;
   background: ${ ({ theme }) => theme.paleGrey };
   border: 1px solid;
-  border-color: ${ ({ theme }) => transparentize(0.5, theme.blue) };
+  border-color: ${ ({ theme }) => transparentize(0.5, theme.primary) };
   transition: border 0.2s linear;
   width: 100%;
   border-radius: 0.4rem;
   font-size: 1.4rem;
   &:focus,
   &:active {
-    border-color: ${ ({ theme }) => theme.blue }
+    border-color: ${ ({ theme }) => theme.primary }
   }
   &[disabled] {
     cursor:  not-allowed;

@@ -5,7 +5,7 @@ import FluidType from '../../helpers/fluidType';
 
 const StyledH3 = styled.h3`
   width: 100%;
-  color: ${ ({ color, theme }) => color || theme.black };
+  color: ${ ({ color, theme }) => color || theme.font };
   text-align: ${ ({ align }) => align };
   margin: ${ ({ margin }) => margin };
   padding: ${ ({ padding }) => padding };

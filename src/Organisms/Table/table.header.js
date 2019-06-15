@@ -39,7 +39,7 @@ const Header = (props) => {
             { label }
             { sortable && (
               <HeaderSorting onClick={ () => onSort({ dataKey }) }>
-                <Icon size={ 24 } fill={ icon === 'chevron_up_down' ? colours.grey : colours.black } icon={ icon } />
+                <Icon size={ 24 } fill={ icon === 'chevron_up_down' ? colours.grey : colours.charcoal } icon={ icon } />
               </HeaderSorting>
             ) }
           </HeaderCell>

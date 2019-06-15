@@ -106,7 +106,7 @@ export const Toggle = styled.button`
   display: flex;
   outline: none;
   border-radius: 50%;
-  background: ${ ({ theme }) => theme.black };
+  background: ${ ({ theme }) => theme.font };
   height: 4rem;
   width: 4rem;
   overflow: hidden;
@@ -170,7 +170,7 @@ export const ItemButton = styled.button`
   background: transparent;
   margin: 0;
   padding: 1rem;
-  color: ${ ({ theme }) => theme.black };
+  color: ${ ({ theme }) => theme.font };
   &:focus,
   &:active {
     outline: none;
@@ -186,7 +186,7 @@ export const Title = styled.span`
   font-weight: 500;
   letter-spacing: 1px;
   white-space: nowrap;
-  color: ${ ({ theme }) => theme.black };
+  color: ${ ({ theme }) => theme.font };
 `;
 
 export const IconWrapper = styled.div`
@@ -199,12 +199,12 @@ export const IconWrapper = styled.div`
   background: #fff;
   height: 4rem;
   width: 4rem;
-  border: 0.1rem solid ${ ({ theme }) => theme.black };
+  border: 0.1rem solid ${ ({ theme }) => theme.font };
   display: flex;
   margin-left: 1rem;
   box-sizing: border-box;
   svg path {
-    fill: ${ ({ theme }) => theme.black };
+    fill: ${ ({ theme }) => theme.font };
   }
   &:after {
     content: '';

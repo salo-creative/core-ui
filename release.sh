@@ -33,7 +33,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
 
   read -r -p "Publish package? [y/N] " response
   if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
-    cp -rf .npmignore package.json .npmrc ./dist
+    cp -rf .npmignore package.json ./dist
     cd ./dist && npm publish
   fi
 

@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 
 export const Path = styled.path`
   fill: none;
-  stroke: ${ ({ theme }) => theme.green };
+  stroke: ${ ({ theme }) => theme.success };
   stroke-width: 3;
   stroke-linejoin: round;
   stroke-miterlimit: 10;
@@ -25,7 +25,7 @@ export const Path = styled.path`
 
 export const PolyLine = styled.polyline`
   fill: none;
-  stroke: ${ ({ theme }) => theme.green };
+  stroke: ${ ({ theme }) => theme.success };
   stroke-width: 3;
   stroke-linejoin: round;
   stroke-miterlimit: 10;

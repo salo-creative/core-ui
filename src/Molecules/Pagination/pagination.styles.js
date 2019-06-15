@@ -11,7 +11,7 @@ export const Item = styled.button`
   border: none;
   background: none;
   outline: none;
-  color: ${ ({ theme }) => theme.black };
+  color: ${ ({ theme }) => theme.font };
   transition: all 0.3s linear;
   display: flex;
   border-radius: 50%;
@@ -25,7 +25,7 @@ export const Item = styled.button`
   margin: 0 0.25rem 0;
   &.active {
     color: #fff;
-    background: ${ ({ theme }) => theme.blue };
+    background: ${ ({ theme }) => theme.primary };
   }
   &:hover {
     &:not(.active):not([disabled]) {
