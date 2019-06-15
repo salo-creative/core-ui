@@ -1,9 +1,9 @@
 import React from 'react';
-import { render } from 'react-testing-library';
 import 'jest-styled-components';
 
 // HELPERS
-import { fluidTypeVals } from '../../../test';
+import { fluidTypeVals, renderWithTheme } from '../../../test';
+import { colours } from '../../helpers/colours';
 
 // COMPONENT
 import P from './index';
@@ -15,14 +15,14 @@ test('Render default P tag and styles', async () => {
   const minLH = 17;
   const maxLH = 29;
   // Render
-  const { getByTestId, container } = render(
+  const { getByTestId, container } = renderWithTheme(
     <P data-testid='test-text'>A tasty treat</P>
   );
   const el = getByTestId('test-text');
   const fontSizes = fluidTypeVals({ minLH, maxLH, maxFS, minFS });
   // Assert
   expect(el).toHaveTextContent('A tasty treat');
-  expect(el).toHaveStyleRule('color', '#262729');
+  expect(el).toHaveStyleRule('color', colours.charcoal);
   expect(el).toHaveStyleRule('margin', '0 0 20px');
   expect(el).toHaveStyleRule('padding', '0');
   expect(el).toHaveStyleRule('font-size', `${ minFS }px`);
@@ -36,7 +36,7 @@ test('Render default P tag and styles', async () => {
 
 test('Render P tag with core props', async () => {
   // Render
-  const { getByTestId, container } = render(
+  const { getByTestId, container } = renderWithTheme(
     <P
       data-testid='test-text'
       fontSize='30px'
@@ -67,7 +67,7 @@ test('Render P tag with fluid type props', async () => {
   const minLH = 18;
   const maxLH = 26;
   // Render
-  const { getByTestId, container } = render(
+  const { getByTestId, container } = renderWithTheme(
     <P
       data-testid='test-text'
       minFont={ minFS }

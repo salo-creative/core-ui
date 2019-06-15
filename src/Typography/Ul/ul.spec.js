@@ -1,9 +1,9 @@
 import React from 'react';
-import { render } from 'react-testing-library';
 import 'jest-styled-components';
 
 // HELPERS
-import { fluidTypeVals } from '../../../test';
+import { fluidTypeVals, renderWithTheme } from '../../../test';
+import { colours } from '../../helpers/colours';
 
 // COMPONENT
 import Ul from './index';
@@ -15,7 +15,7 @@ test('Render default Ul tag and styles', async () => {
   const minLH = 17;
   const maxLH = 29;
   // Render
-  const { getByTestId, container } = render(
+  const { getByTestId, container } = renderWithTheme(
     <Ul data-testid='test-list'>
       <li>1 - Lorem ipsum</li>
       <li>2 - Lorem ipsum</li>
@@ -25,7 +25,7 @@ test('Render default Ul tag and styles', async () => {
   const el = getByTestId('test-list');
   const fontSizes = fluidTypeVals({ minLH, maxLH, maxFS, minFS });
   // Assert
-  expect(el).toHaveStyleRule('color', '#262729');
+  expect(el).toHaveStyleRule('color', colours.charcoal);
   expect(el).toHaveStyleRule('margin', '0 0 20px');
   expect(el).toHaveStyleRule('padding', '0 0 0 25px');
   expect(el).toHaveStyleRule('font-size', `${ minFS }px`);
@@ -39,7 +39,7 @@ test('Render default Ul tag and styles', async () => {
 
 test('Render Ul tag with core props', async () => {
   // Render
-  const { getByTestId, container } = render(
+  const { getByTestId, container } = renderWithTheme(
     <Ul
       data-testid='test-list'
       padding='10px'
@@ -70,7 +70,7 @@ test('Render Ul tag with fluid type props', async () => {
   const minLH = 18;
   const maxLH = 26;
   // Render
-  const { getByTestId, container } = render(
+  const { getByTestId, container } = renderWithTheme(
     <Ul
       data-testid='test-list'
       minFont={ minFS }

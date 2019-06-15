@@ -6,7 +6,7 @@ import FluidType from '../../helpers/fluidType';
 const StyledP = styled.p`
   font-weight: 400;
   width: 100%;
-  color: ${ ({ color }) => color };
+  color: ${ ({ color, theme }) => color || theme.font };
   text-align: ${ ({ align }) => align };
   margin: ${ ({ margin }) => margin };
   padding: ${ ({ padding }) => padding };
@@ -82,7 +82,7 @@ P.propTypes = {
 };
 
 P.defaultProps = {
-  color: '#262729',
+  color: '',
   align: 'left',
   fontSize: '',
   lineHeight: '',

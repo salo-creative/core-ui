@@ -71,7 +71,7 @@ exports[`Render P tag with fluid type props 1`] = `
 .c0 {
   font-weight: 400;
   width: 100%;
-  color: #262729;
+  color: #333333;
   text-align: left;
   margin: 0 0 20px;
   padding: 0;
@@ -140,7 +140,7 @@ exports[`Render P tag with fluid type props 1`] = `
 
 <p
   class="c0"
-  color="#262729"
+  color=""
   data-testid="test-text"
   font-size=""
 >
@@ -152,7 +152,7 @@ exports[`Render default P tag and styles 1`] = `
 .c0 {
   font-weight: 400;
   width: 100%;
-  color: #262729;
+  color: #333333;
   text-align: left;
   margin: 0 0 20px;
   padding: 0;
@@ -221,7 +221,7 @@ exports[`Render default P tag and styles 1`] = `
 
 <p
   class="c0"
-  color="#262729"
+  color=""
   data-testid="test-text"
   font-size=""
 >

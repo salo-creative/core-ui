@@ -6,7 +6,7 @@ import FluidType from '../../helpers/fluidType';
 const StyledUl = styled.ul`
   font-weight: 400;
   width: 100%;
-  color: ${ ({ color }) => color };
+  color: ${ ({ color, theme }) => color || theme.font };
   margin: ${ ({ margin }) => margin };
   padding: ${ ({ padding }) => padding };
 
@@ -41,7 +41,7 @@ Ul.propTypes = {
 };
 
 Ul.defaultProps = {
-  color: '#262729',
+  color: '',
   fontSize: '',
   lineHeight: '',
   margin: '0 0 20px',

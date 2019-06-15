@@ -37,7 +37,7 @@ exports[`Render Ul tag with fluid type props 1`] = `
 .c0 {
   font-weight: 400;
   width: 100%;
-  color: #262729;
+  color: #333333;
   margin: 0 0 20px;
   padding: 0 0 0 25px;
   font-size: 10px;
@@ -64,7 +64,7 @@ exports[`Render Ul tag with fluid type props 1`] = `
 
 <ul
   class="c0"
-  color="#262729"
+  color=""
   data-testid="test-list"
   font-size=""
 >
@@ -84,7 +84,7 @@ exports[`Render default Ul tag and styles 1`] = `
 .c0 {
   font-weight: 400;
   width: 100%;
-  color: #262729;
+  color: #333333;
   margin: 0 0 20px;
   padding: 0 0 0 25px;
   font-size: 14px;
@@ -111,7 +111,7 @@ exports[`Render default Ul tag and styles 1`] = `
 
 <ul
   class="c0"
-  color="#262729"
+  color=""
   data-testid="test-list"
   font-size=""
 >
