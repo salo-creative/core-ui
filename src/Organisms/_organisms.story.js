@@ -1,0 +1,1 @@
+import table from './Table/_table.story.js';

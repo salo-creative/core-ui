@@ -1,0 +1,47 @@
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+
+// load tests
+import { withTests } from '@storybook/addon-jest';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import results from '../../../.storybook/jest-test-results.json';
+
+// FEATURED COMPONENTS //
+import { Modal } from '../../index';
+
+// README //
+import README from './README.md';
+
+// Start of story logic
+const stories = storiesOf('Molecules | Modal', module);
+stories.addDecorator(withKnobs);
+stories.addDecorator(withTests({ results }));
+stories.addParameters({ jest: ['modal'] });
+
+stories.add(
+  'Basic',
+  (() => {
+    // KNOBS
+    const open = boolean('Open', true);
+    const closeOnBackdrop = boolean('closeOnBackdrop', true);
+    const closeOnEsc = boolean('closeOnEsc', true);
+    const hideClose = boolean('hideClose', false);
+    const hideHeader = boolean('hideHeader', false);
+    const title = text('Modal title', 'Modal title');
+    return (
+      <Modal
+        hideClose={ hideClose }
+        hideHeader={ hideHeader }
+        closeOnEsc={ closeOnEsc }
+        closeOnBackdrop={ closeOnBackdrop }
+        title={ title }
+        open={ open }
+        onClose={ () => alert('Close modal function called') }
+      />
+    );
+  }),
+  {
+    info: { propTablesExclude: [] },
+    notes: README
+  }
+);

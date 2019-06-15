@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render H3 tag with core props 1`] = `
+.c0 {
+  width: 100%;
+  color: #333;
+  text-align: right;
+  margin: 10px 0 10px;
+  padding: 10px 20px;
+  font-size: 30px;
+  line-height: 40px;
+}
+
+<h3
+  class="c0"
+  color="#333"
+  data-testid="test-text"
+  font-size="30px"
+>
+  A tasty treat
+</h3>
+`;
+
+exports[`Render H3 tag with fluid type props 1`] = `
+.c0 {
+  width: 100%;
+  color: #00222b;
+  text-align: left;
+  margin: 30px 0 10px;
+  padding: 0;
+  font-size: 60px;
+  line-height: 70px;
+}
+
+@media screen and (min-width:400px) {
+  .c0 {
+    font-size: calc(60px + (100 - 60) * (100vw - 400px) / (1200 - 400));
+    line-height: calc(70px + (110 - 70) * (100vw - 400px) / (1200 - 400));
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .c0 {
+    font-size: 100px;
+    line-height: 110px;
+  }
+}
+
+<h3
+  class="c0"
+  color=""
+  data-testid="test-text"
+  font-size=""
+>
+  A tasty treat
+</h3>
+`;
+
+exports[`Render default H3 tag and styles 1`] = `
+.c0 {
+  width: 100%;
+  color: #00222b;
+  text-align: left;
+  margin: 30px 0 10px;
+  padding: 0;
+  font-size: 17px;
+  line-height: 27px;
+}
+
+@media screen and (min-width:400px) {
+  .c0 {
+    font-size: calc(17px + (27 - 17) * (100vw - 400px) / (1200 - 400));
+    line-height: calc(27px + (34 - 27) * (100vw - 400px) / (1200 - 400));
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .c0 {
+    font-size: 27px;
+    line-height: 34px;
+  }
+}
+
+<h3
+  class="c0"
+  color=""
+  data-testid="test-text"
+  font-size=""
+>
+  A tasty treat
+</h3>
+`;

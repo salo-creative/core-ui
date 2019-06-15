@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Column and styles with core props 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -webkit-flex-shrink: 1;
+  -ms-flex-negative: 1;
+  flex-shrink: 1;
+  -webkit-flex-basis: 10%;
+  -ms-flex-preferred-size: 10%;
+  flex-basis: 10%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 20px;
+  width: 83.33333333333334%;
+  -webkit-flex-basis: 83.33333333333334%;
+  -ms-flex-preferred-size: 83.33333333333334%;
+  flex-basis: 83.33333333333334%;
+  max-width: 83.33333333333334%;
+}
+
+@media only screen and (min-width:480px) {
+  .c0 {
+    width: 50%;
+    -webkit-flex-basis: 50%;
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+
+@media only screen and (min-width:620px) {
+  .c0 {
+    width: 58.333333333333336%;
+    -webkit-flex-basis: 58.333333333333336%;
+    -ms-flex-preferred-size: 58.333333333333336%;
+    flex-basis: 58.333333333333336%;
+    max-width: 58.333333333333336%;
+  }
+}
+
+@media only screen and (min-width:780px) {
+  .c0 {
+    width: 66.66666666666666%;
+    -webkit-flex-basis: 66.66666666666666%;
+    -ms-flex-preferred-size: 66.66666666666666%;
+    flex-basis: 66.66666666666666%;
+    max-width: 66.66666666666666%;
+  }
+}
+
+@media only screen and (min-width:860px) {
+  .c0 {
+    width: 75%;
+    -webkit-flex-basis: 75%;
+    -ms-flex-preferred-size: 75%;
+    flex-basis: 75%;
+    max-width: 75%;
+  }
+}
+
+@media only screen and (min-width:1000px) {
+  .c0 {
+    width: 83.33333333333334%;
+    -webkit-flex-basis: 83.33333333333334%;
+    -ms-flex-preferred-size: 83.33333333333334%;
+    flex-basis: 83.33333333333334%;
+    max-width: 83.33333333333334%;
+  }
+}
+
+<div
+  class="c0"
+  data-testid="test-column"
+  default=""
+>
+  A tasty treat
+</div>
+`;
+
+exports[`Render default Column and styles 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-flex-basis: 0%;
+  -ms-flex-preferred-size: 0%;
+  flex-basis: 0%;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  padding: 10px;
+  width: 100%;
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  max-width: 100%;
+}
+
+<div
+  class="c0"
+  data-testid="test-column"
+  default=""
+>
+  A tasty treat
+</div>
+`;

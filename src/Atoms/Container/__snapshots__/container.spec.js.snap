@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Container and styles with core props 1`] = `
+.c0 {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  max-width: 200px;
+  padding: 20px;
+}
+
+<div
+  class="c0"
+  data-testid="test-container"
+  width="200px"
+>
+  A tasty treat
+</div>
+`;
+
+exports[`Render default Container and styles 1`] = `
+.c0 {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  max-width: 1280px;
+  padding: 10px;
+}
+
+<div
+  class="c0"
+  data-testid="test-container"
+  width="1280px"
+>
+  A tasty treat
+</div>
+`;
