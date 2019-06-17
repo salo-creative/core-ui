@@ -31,6 +31,7 @@ class CheckBox extends React.Component {
         >
           <HiddenCheckBox defaultChecked={ checked } name={ name } />
           <StyledCheckBox
+            className={ `styled-checkbox ${ checked ? 'checked' : '' }` }
             checked={ checked }
             borderRadius={ radio ? '50%' : '3px' }
             width={ size === 'L' ? '2.5rem' : '2rem' }
