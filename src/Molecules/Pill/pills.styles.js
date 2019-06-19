@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { transparentize } from 'polished';
 
 // HELPERS
 import { boxShadow } from '../../helpers/colours';
@@ -8,8 +7,8 @@ export const PillWrapper = styled.div`
     border-radius: 5rem;
     display: inline-flex;
     align-items: center;
-    padding: 0 1.5rem;
-    height: 4rem;
+    padding: 0 ${ ({ padding }) => padding };
+    height: ${ ({ height }) => height };
     background-color: ${ ({ theme, background }) => (theme[background] ? theme[background] : theme.primary) };
     color: ${ ({ theme, color, loading, background }) => (loading ? theme[background] : theme[color]) };
     font-size: 1.6rem;
@@ -31,7 +30,7 @@ export const HiddenCloseButton = styled.button`
     display: inline-flex;
     margin: 0;
     border: 0;
-    padding: 0 0 0 1.5rem;
+    padding: 0 0 0 ${ ({ padding }) => padding };
     height: 4rem;
     opacity: 0.6;
     transition: opacity 0.3s linear;

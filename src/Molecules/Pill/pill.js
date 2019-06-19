@@ -5,16 +5,17 @@ import Loader from '../Loader';
 
 // COMPONENTS & STYLES
 import { PillWrapper, HiddenCloseButton } from './pills.styles';
-import { colours } from '../../helpers/colours';
 
 const Pill = (props) => {
   const {
     background,
     color,
+    height,
     label,
     loading,
     margin,
     onRemove,
+    padding,
     value
   } = props;
  
@@ -22,8 +23,10 @@ const Pill = (props) => {
     <PillWrapper
       color={ color }
       background={ background }
+      height={ height }
       margin={ margin }
       loading={ loading }
+      padding={ padding }
     >
       { loading && (
         <Loader
@@ -38,6 +41,7 @@ const Pill = (props) => {
         onClick={ () => onRemove(value) }
         disabled={ loading }
         loading={ loading }
+        padding={ padding }
       >
         <Icon
           size={ 20 }
@@ -53,20 +57,24 @@ const Pill = (props) => {
 Pill.defaultProps = {
   background: 'grey',
   color: 'black',
+  height: '4rem',
   label: '',
   loading: false,
   margin: '',
   onRemove: null,
+  padding: '1.5rem',
   value: ''
 };
 
 Pill.propTypes = {
   background: PropTypes.string,
   color: PropTypes.string,
+  height: PropTypes.string,
   label: PropTypes.string,
   loading: PropTypes.bool,
   margin: PropTypes.string,
   onRemove: PropTypes.func,
+  padding: PropTypes.string,
   value: PropTypes.string
 };
 
