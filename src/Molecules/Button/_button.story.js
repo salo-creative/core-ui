@@ -49,16 +49,19 @@ stories.add(
       'Space between': 'space-between'
     }, 'center');
     const iconBefore = text('Icon before', 'dashboard');
+    const buttonText = text('Button text', 'Button text');
     const iconAfter = text('Icon after', '');
     const fullWidth = boolean('Display full width', false);
     const loading = boolean('Show loading state', false);
+    const circle = boolean('Show circle state', false);
     const disabled = boolean('Show disabled state', false);
     const radius = boolean('Show radius', true);
-    const size = select('size', ['L', 'M'], 'M');
+    const height = text('height', '4rem');
     return (
       <React.Fragment>
         <Button
           appearance={ appearance }
+          circle={ circle }
           fullWidth={ fullWidth }
           loading={ loading }
           disabled={ disabled }
@@ -66,11 +69,11 @@ stories.add(
           iconAfter={ iconAfter }
           radius={ radius }
           align={ align }
-          size={ size }
+          height={ height }
           type={ type }
           to='/'
         >
-          Button text
+          { buttonText }
         </Button>
       </React.Fragment>
     );

@@ -21,11 +21,19 @@ export const ButtonWrapper = styled.button`
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-radius: ${ ({ radius }) => (radius === 'true' ? '0.4rem' : '0') };
+  border-radius: ${ ({ radius, circle }) => {
+    if (circle === 'true') return '50%';
+    if (radius === 'true') return '0.4rem';
+    return 0;
+  } };
   font-size: 1.4rem;
-  height: ${ ({ size }) => (size === 'L' ? '4.5rem' : '4rem') };
-  padding: 0 1.5rem;
-  width: ${ ({ fullwidth }) => (fullwidth === 'true' ? '100%' : 'auto') };
+  height: ${ ({ height }) => height };
+  padding: ${ ({ padding }) => padding };
+  width: ${ ({ fullwidth, circle, height }) => {
+    if (circle === 'true') return height;
+    if (fullwidth === 'true') return '100%';
+    return 'auto';
+  } };
   box-shadow: ${ props => (getColour({ property: 'shadow', props }) ? boxShadow() : 'none') };
   path {
     transition: fill 0.3s linear;
