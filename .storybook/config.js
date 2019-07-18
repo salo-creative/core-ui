@@ -5,7 +5,7 @@ import { withOptions } from '@storybook/addon-options';
 import { BrowserRouter } from 'react-router-dom';
 
 // COMPONENTS
-import { GlobalStyles, Normalise, Theme, AlertProvider, AlertConsumer } from '../src/index';
+import { AuthProvider, GlobalStyles, Normalise, Theme, AlertProvider, AlertConsumer, getSessionCookies } from '../src/index';
 import './storybook.scss';
 import 'react-dates/lib/css/_datepicker.css';
 
@@ -45,20 +45,23 @@ addDecorator(withInfo({
 }))
 
 addDecorator(story => {
+  const tokens = getSessionCookies();
   return (
-    <BrowserRouter>
-      <Theme>
-        <AlertProvider>
-          <AlertConsumer
-            topOffset={ 0 }
-          />
-          <Normalise />
-          <GlobalStyles />
-          { story() }
-        </AlertProvider>
-      </Theme>
-    </BrowserRouter>
-  )
+    <AuthProvider tokens={ tokens }>
+      <BrowserRouter>
+        <Theme>
+          <AlertProvider>
+            <AlertConsumer
+              topOffset={ 0 }
+            />
+            <Normalise />
+            <GlobalStyles />
+            { story() }
+          </AlertProvider>
+        </Theme>
+      </BrowserRouter>
+    </AuthProvider>
+  );
 } );
 
 
@@ -69,6 +72,7 @@ function loadStories() {
   require('../src/Molecules/_molecules.story');
   require('../src/Forms/_forms.story');
   require('../src/Organisms/_organisms.story');
+  require('../src/Auth/_auth.story');
   require('../src/helpers/_helpers.story');
 }
 

@@ -77,8 +77,10 @@ export { default as Table } from './Organisms/Table';
 export { default as GlobalStyles } from './Global/GlobalStyles';
 export { default as Normalise } from './Global/Normalise';
 export { default as Theme } from './Global/Theme';
+export { getSessionCookies, tokenExpired, getJwt } from './helpers/auth';
 export { getBreakpoint } from './helpers/breakpoints';
 export { colours, boxShadow } from './helpers/colours';
+export { ENV, isBrowser } from './helpers/environments';
 export { dateRangeValidation, phoneRegExp, emailRegExp } from './helpers/form';
 
 /**
@@ -97,5 +99,23 @@ export { default as withAlerts } from './Alerts/withAlerts';
  *
  * Functionality and components related to the use of Apollo client on the front end
  */
-export { GraphQLUrl, isError, isLoading, getRequestStatus, parseApolloError  } from './Apollo/helpers';
+export {
+  GraphQLUrl,
+  isError,
+  isLoading,
+  getRequestStatus,
+  parseApolloError
+} from './Apollo/helpers';
 export { default as ApolloError } from './Apollo/Error';
+
+/**
+ * AUTH
+ *
+ * A set of components, helpers and providers for managing authentication across
+ * all of the front end applications
+ */
+export { default as AuthProvider } from './Auth/AuthProvider';
+export { default as AuthRoute } from './Auth/AuthRoute';
+export { default as AuthWrapper } from './Auth/AuthWrapper';
+export { Consumer as AuthConsumer } from './Auth/auth.context';
+export { default as withAuth } from './Auth/withAuth';
