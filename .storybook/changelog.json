@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.1.1", "commit": "Re-running failed release" },
 { "user": "Rich Comber", "version": "v0.1.0", "commit": "Adding intial auth work" },
 { "user": "Rich Comber", "version": "v0.0.9", "commit": "Making pill more configurable" },
 { "user": "Rich Comber", "version": "v0.0.8", "commit": "Updating button styles for more flexibility" },
