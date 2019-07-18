@@ -77,7 +77,7 @@ export { default as Table } from './Organisms/Table';
 export { default as GlobalStyles } from './Global/GlobalStyles';
 export { default as Normalise } from './Global/Normalise';
 export { default as Theme } from './Global/Theme';
-export { getSessionCookies, tokenExpired, getJwt } from './helpers/auth';
+export { getTokensServer, getTokensClient, tokenExpired } from './helpers/auth';
 export { getBreakpoint } from './helpers/breakpoints';
 export { colours, boxShadow } from './helpers/colours';
 export { ENV, isBrowser } from './helpers/environments';

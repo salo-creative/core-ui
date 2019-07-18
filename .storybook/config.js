@@ -3,9 +3,20 @@ import { configure, addDecorator, setAddon } from '@storybook/react';
 import infoAddon, { withInfo } from '@storybook/addon-info';
 import { withOptions } from '@storybook/addon-options';
 import { BrowserRouter } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 // COMPONENTS
-import { AuthProvider, GlobalStyles, Normalise, Theme, AlertProvider, AlertConsumer, getSessionCookies } from '../src/index';
+import {
+  AuthProvider, 
+  GlobalStyles,
+  Normalise, 
+  Theme,
+  AlertProvider,
+  AlertConsumer,
+  getTokensClient 
+} from '../src/index';
 import './storybook.scss';
 import 'react-dates/lib/css/_datepicker.css';
 
@@ -45,7 +56,7 @@ addDecorator(withInfo({
 }))
 
 addDecorator(story => {
-  const tokens = getSessionCookies();
+  const tokens = getTokensClient(cookies);
   return (
     <AuthProvider tokens={ tokens }>
       <BrowserRouter>

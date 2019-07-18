@@ -15,17 +15,33 @@ yarn add @salo/core-ui
 Include
 
 ```javascript
-import { getSessionCookies, tokenExpired, getJwt } from '@salo/core-ui/helpers/auth';
+import { getTokensServer, getTokensClient, tokenExpired } from '@salo/core-ui/helpers/auth';
 ```
 
-## getSessionCookies
+## getTokensClient & getTokensServer
 
-This function is primarily used to get the users cookies relating to the 4c platform authentication and pass them to the AuthProvider. Any information contained in them should then be accessed from the provider as opposed to the cookies directly. However if for some reason you do need to access the cookies then this function can be used as follows: 
+This function is primarily used to get the users cookies relating to the SC platform authentication and pass them to the AuthProvider. Any information contained in them should then be accessed from the provider as opposed to the cookies directly. However if for some reason you do need to access the cookies then this function can be used as follows: 
+
+### Client
 
 ```javascript
-import { getSessionCookies } from '@salo/core-ui/helpers/auth';
+import { getTokensClient } from '@salo/core-ui/helpers/auth';
+import Cookies from 'universal-cookie';
 
-const sessionCookies = getSessionCookies();
+const cookies = new Cookies();
+
+const sessionCookies = getTokensClient(cookies);
+```
+
+### Server
+
+```javascript
+import { getTokensServer } from '@salo/core-ui/helpers/auth';
+import Cookies from 'universal-cookie';
+
+const { cookies } = new Cookies(req.headers.cookie);
+
+const sessionCookies = getTokensServer(cookies);
 ```
 
 this will return an object containing the jwt and user cookies or null if they are not found. for full details of what these cookies contain see the auth section of storybook
@@ -49,19 +65,3 @@ const hasExpired = tokenExpired(jwt.ts); // pass ts value to function to check i
 ```
 
 The function will return a boolean where a true value means the token has expired and false means it is still valid.
-
-## getJwt
-
-As with the other functions this is unlikely to be needed as the token is already in the auth provider. However if you need to access the jwt directly then you can use this function as follows: 
-
-```javascript
-import { getJwt } from '@salo/core-ui/helpers/auth';
-
-const jwt = getJwt();
-```
-
-if a valid cookie is found this will return the JWT component as a string e.g. 
-
-```javscript
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-```
