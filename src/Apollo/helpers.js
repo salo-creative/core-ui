@@ -1,6 +1,14 @@
 import { get, hasIn, forEach, isEmpty, find } from 'lodash';
 
-// HELPERS & CONSTANTS
+import { ENV } from '../helpers/environments';
+
+export const GraphQLUrl = (local = false) => {
+  if (local && ENV === 'development') {
+    return 'http://localhost:7000/graphql';
+  }
+  return webpackVars.GRAPHLQL_URL;
+};
+
 export const isLoading = ({ networkStatus, skip = false }) => !skip && (
   // Initial load
   (networkStatus === 1)
