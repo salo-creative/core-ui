@@ -8,21 +8,27 @@ export const InputWrapper = styled.div`
   margin: ${ ({ margin }) => margin };
 `;
 
+export const FieldWrapper = styled.div`
+  position: relative;
+`;
+
 export const Field = styled.input`
   margin: 0;
-  padding: 0 1rem;
+  padding: ${ ({ padding }) => padding };
   height: ${ ({ height }) => height };
-  background: ${ ({ background }) => background };
-  border: 1px solid;
-  border-color: ${ ({ theme }) => transparentize(0.5, theme.primary) };
+  background-color: ${ ({ background, error, theme }) => (error ? transparentize(0.7, theme.red) : background) };
+  border: ${ ({ border }) => border };
+  border-color: ${ ({ theme, error }) => (error ? transparentize(0.3, theme.red) : transparentize(0.5, theme.blue)) };
   transition: border 0.2s linear;
   width: 100%;
-  border-radius: 0.4rem;
-  font-size: 1.4rem;
+  border-radius: ${ ({ borderRadius }) => borderRadius };
+  font-size: ${ ({ fontSize }) => fontSize };
+
   &:focus,
   &:active {
     border-color: ${ ({ theme }) => theme.primary }
   }
+
   &[disabled] {
     cursor:  not-allowed;
     opacity: 0.75;
