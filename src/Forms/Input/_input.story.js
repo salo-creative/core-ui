@@ -28,6 +28,10 @@ stories.add(
     const label = text('Label', 'Input label');
     const helperText = text('Helper text', 'Helper text');
     const icon = text('Icon', 'pencil');
+    const padding = text('Padding', '0 1rem');
+    const border = text('Border', '1px solid');
+    const borderRadius = text('Border radius', '0.4rem');
+    const fontSize = text('Font size', '1.4rem');
     const error = boolean('Show error state', false);
     const required = boolean('Required field', false);
     const disabled = boolean('Show disabled state', false);
@@ -40,6 +44,7 @@ stories.add(
           name='story'
           disabled={ disabled }
           error={ error }
+          fontSize={ fontSize }
           label={ label }
           required={ required }
           helperText={ helperText }
@@ -47,6 +52,9 @@ stories.add(
           size={ size }
           type={ type }
           icon={ icon }
+          padding={ padding }
+          border={ border }
+          borderRadius={ borderRadius }
           value={ store.value }
           onChange={ ({ value }) => store.set({ value }) }
         />

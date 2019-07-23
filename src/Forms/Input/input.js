@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // COMPONENTS
-import { InputWrapper, Field } from './input.styles';
+import { InputWrapper, Field, FieldWrapper } from './input.styles';
 import Label from '../components/Label';
 import ErrorText from '../components/ErrorText';
 import HelperText from '../components/HelperText';
@@ -18,20 +18,23 @@ const Input = (props) => {
     disabled,
     error,
     errorMessage,
+    fontSize,
     helperText,
-    iconBefore,
     label,
     margin,
     name,
     onBlur,
     onChange,
     onKeyUp,
+    padding,
     placeholder,
     required,
     showStrength,
     size,
     type,
-    value
+    value,
+    border,
+    borderRadius
   } = props;
 
   const height = () => {
@@ -45,58 +48,72 @@ const Input = (props) => {
   };
 
   return (
-    <InputWrapper margin={ margin }>
+    <InputWrapper margin={ margin } className='salo-input'>
       <Label
         error={ error }
         label={ label }
         name={ name }
         required={ required }
         size={ size }
+        className='salo-input__label'
       />
-      <Field
-        aria-required={ required.toString() }
-        aria-invalid={ error.toString() }
-        background={ background }
-        disabled={ disabled }
-        height={ height() }
-        id={ name }
-        name={ name }
-        onBlur={ (e) => onBlur({ e, value: sanitize(e.target.value) }) }
-        onChange={ (e) => onChange({ e, value: sanitize(e.target.value) }) }
-        onKeyUp={ (e) => onKeyUp({ e, value: sanitize(e.target.value) }) }
-        placeholder={ placeholder }
-        type={ type }
-        value={ value }
-      />
-
+      <FieldWrapper className='salo-input__wrapper'>
+        <Field
+          aria-required={ required.toString() }
+          aria-invalid={ error.toString() }
+          background={ background }
+          border={ border }
+          borderRadius={ borderRadius }
+          className='salo-input__field'
+          disabled={ disabled }
+          error={ error }
+          fontSize={ fontSize }
+          height={ height() }
+          id={ name }
+          name={ name }
+          onBlur={ (e) => onBlur({ e, value: sanitize(e.target.value) }) }
+          onChange={ (e) => onChange({ e, value: sanitize(e.target.value) }) }
+          onKeyUp={ (e) => onKeyUp({ e, value: sanitize(e.target.value) }) }
+          padding={ padding }
+          placeholder={ placeholder }
+          type={ type }
+          value={ value }
+        />
+      </FieldWrapper>
       <ErrorText
+        className='salo-input__error'
         disabled={ disabled }
         error={ error }
         errorMessage={ errorMessage }
         size={ size }
       />
       <HelperText
+        className='salo-input__helper'
         disabled={ disabled }
         error={ error }
         helperText={ helperText }
         size={ size }
       />
-      { type === 'password' && showStrength && (<Strength value={ value } />) }
+      { type === 'password' && showStrength && (<Strength value={ value } className='salo-input__strength' />) }
     </InputWrapper>
   );
 };
 
 Input.defaultProps = {
-  background: colours.grey,
+  background: colours.paleGrey,
+  border: '1px solid',
+  borderRadius: '0.4rem',
   disabled: false,
   error: false,
   errorMessage: 'Field invalid',
+  fontSize: '1.4rem',
   helperText: '',
   label: '',
   margin: '0 0 2rem',
   onBlur: () => null,
   onChange: () => null,
   onKeyUp: () => null,
+  padding: '0 1rem',
   placeholder: '',
   required: false,
   showStrength: false,
@@ -110,6 +127,7 @@ Input.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
+  fontSize: PropTypes.string,
   helperText: PropTypes.string,
   label: PropTypes.string,
   margin: PropTypes.string,
@@ -117,11 +135,14 @@ Input.propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onKeyUp: PropTypes.func,
+  padding: PropTypes.string,
   placeholder: PropTypes.string,
+  border: PropTypes.string,
+  borderRadius: PropTypes.string,
   required: PropTypes.bool,
   showStrength: PropTypes.bool,
   size: PropTypes.oneOf(['L', 'M']),
-  type: PropTypes.oneOf(['text', 'email', 'tel', 'number', 'password']),
+  type: PropTypes.oneOf(['text', 'email', 'tel', 'number', 'password', 'chat']),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
