@@ -15,6 +15,7 @@ import { colours } from '../../helpers/colours';
 const Input = (props) => {
   const {
     background,
+    className,
     disabled,
     error,
     errorMessage,
@@ -48,7 +49,7 @@ const Input = (props) => {
   };
 
   return (
-    <InputWrapper margin={ margin } className='salo-input'>
+    <InputWrapper margin={ margin } className={ `salo-input ${ className }` }>
       <Label
         error={ error }
         label={ label }
@@ -103,6 +104,7 @@ Input.defaultProps = {
   background: colours.paleGrey,
   border: '1px solid',
   borderRadius: '0.4rem',
+  className: '',
   disabled: false,
   error: false,
   errorMessage: 'Field invalid',
@@ -124,6 +126,7 @@ Input.defaultProps = {
 
 Input.propTypes = {
   background: PropTypes.string,
+  className: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
