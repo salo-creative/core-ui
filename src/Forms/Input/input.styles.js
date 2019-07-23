@@ -18,7 +18,7 @@ export const Field = styled.input`
   height: ${ ({ height }) => height };
   background-color: ${ ({ background, error, theme }) => (error ? transparentize(0.7, theme.error) : background) };
   border: ${ ({ border }) => border };
-  border-color: ${ ({ theme, error }) => (error ? transparentize(0.3, theme.error) : transparentize(0.5, theme.blue)) };
+  border-color: ${ ({ theme, error }) => (error ? transparentize(0.3, theme.error) : transparentize(0.5, theme.primary)) };
   transition: border 0.2s linear;
   width: 100%;
   border-radius: ${ ({ borderRadius }) => borderRadius };
