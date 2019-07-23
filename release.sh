@@ -36,5 +36,9 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
     cp -rf .npmignore package.json ./dist
     cd ./dist && npm publish
   fi
+fi
 
+read -r -p "Run storybook release? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
+  npm run deploy-storybook
 fi
