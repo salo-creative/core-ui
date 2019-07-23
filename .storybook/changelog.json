@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.3.0", "commit": "Making input more themeable" },
 { "user": "Rich Comber", "version": "v0.2.1", "commit": "Centralising token handling" },
 { "user": "Rich Comber", "version": "v0.2.0", "commit": "Adding apollo client and url helper" },
 { "user": "Rich Comber", "version": "v0.1.2", "commit": "Adding assets folder" },
