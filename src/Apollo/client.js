@@ -4,19 +4,24 @@ import { ApolloClient } from 'apollo-client';
 import { BatchHttpLink } from 'apollo-link-batch-http';
 import { setContext } from 'apollo-link-context';
 import { createUploadLink } from 'apollo-upload-client';
+import fetch from 'isomorphic-fetch';
 
-const authLink = setContext(async (_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const JWT = null; // TODO: Replace when have an actual token to pass
-  
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      Authorization: JWT ? `Bearer ${ JWT }` : ''
-    }
-  };
-});
+const createAuthLink = ({ tokens = {}, server }) => {
+  return setContext(async (_, { headers }) => {
+    // get the authentication token from local storage if it exists
+    const { jwt, clientKeyServer, clientKey } = tokens;
+    
+    // return the headers to the context so httpLink can read them
+    return {
+      headers: {
+        ...headers,
+        ...(jwt ? { 'Authorization': `Bearer ${ jwt }` } : {}),
+        ...(server ? { 'X-Server-Key': clientKeyServer } : {}),
+        'X-Client-Key': clientKey
+      }
+    };
+  });
+};
 
 /**
  * Apollo Terminating link
@@ -24,22 +29,23 @@ const authLink = setContext(async (_, { headers }) => {
  * operation's context contains hasUpload: true.
  */
 
-const OPTS = (GraphQLUrl) => {
+const OPTS = (uri) => {
   return {
-    uri: GraphQLUrl,
+    uri,
     batchInterval: 50,
     fetch
   };
 };
 
 // SETUP APOLLO CLIENT
-const apollo = (GraphQLUrl) => new ApolloClient({
-  link: authLink.concat(ApolloLink.split(
+const apollo = ({ uri, tokens, server = false }) => new ApolloClient({
+  ssrMode: server,
+  link: createAuthLink({ tokens, server }).concat(ApolloLink.split(
     operation => operation.getContext().hasUpload,
-    createUploadLink(OPTS(GraphQLUrl)),
-    new BatchHttpLink(OPTS(GraphQLUrl))
+    createUploadLink(OPTS(uri)),
+    new BatchHttpLink(OPTS(uri))
   )),
-  cache: new InMemoryCache().restore(window.__APOLLO_STATE__) // eslint-disable-line no-underscore-dangle
+  cache: server ? new InMemoryCache() : new InMemoryCache().restore(window.__APOLLO_STATE__) // eslint-disable-line no-underscore-dangle
 });
 
 export default apollo;
