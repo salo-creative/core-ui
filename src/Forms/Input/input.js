@@ -145,7 +145,7 @@ Input.propTypes = {
   required: PropTypes.bool,
   showStrength: PropTypes.bool,
   size: PropTypes.oneOf(['L', 'M']),
-  type: PropTypes.oneOf(['text', 'email', 'tel', 'number', 'password', 'chat']),
+  type: PropTypes.oneOf(['text', 'email', 'tel', 'number', 'password', 'chat', 'url']),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
