@@ -149,7 +149,7 @@ const Upload = (props) => {
 
 Upload.defaultProps = {
   accept: '*',
-  capture: '',
+  capture: null,
   className: '',
   children: null,
   disabled: false,
