@@ -35,7 +35,11 @@ const Input = (props) => {
     type,
     value,
     border,
-    borderRadius
+    borderRadius,
+    accept,
+    capture,
+    files,
+    multiple
   } = props;
 
   const height = () => {
@@ -79,6 +83,12 @@ const Input = (props) => {
           placeholder={ placeholder }
           type={ type }
           value={ value }
+
+          // File specific props
+          { ...(type === 'file' ? { accept } : {}) }
+          { ...(type === 'file' ? { capture } : {}) }
+          { ...(type === 'file' ? { files } : {}) }
+          { ...(type === 'file' ? { multiple } : {}) }
         />
       </FieldWrapper>
       <ErrorText
