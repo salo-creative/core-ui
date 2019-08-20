@@ -1,7 +1,6 @@
 const reducer = (state, action) => {
   switch (action.type) {
     case 'UPDATE_FIELD':
-      console.log({ action });
       return {
         ...state,
         [action.key]: {

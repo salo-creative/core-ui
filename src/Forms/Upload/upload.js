@@ -12,15 +12,21 @@ import Label from '../components/Label';
 // HELPERS
 import Button from '../../Molecules/Button';
 
+export const mimeTypes = {
+  documents: ['application/pdf', '.doc', '.docx', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+  images: ['image/png', 'image/jpeg', 'image/jpg'],
+  data: ['text/csv']
+};
+
 function getAcceptedTypes(accept) {
   if (isArray(accept)) {
     return accept.reduce((accum, type) => {
       if (type === 'documents') {
-        return accum += ',application/pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+        return accum += `,${ mimeTypes.documents.join() }`;
       } if (type === 'images') {
-        return accum += ',image/png,image/jpeg';
+        return accum += `,${ mimeTypes.images.join() }`;
       } if (type === 'data') {
-        return accum += ',text/csv';
+        return accum += `,${ mimeTypes.data.join() }`;
       }
       return accum;
     }, '');
@@ -44,30 +50,35 @@ const Upload = (props) => {
     margin,
     multiple,
     name,
-    onBlur,
     onChange,
     placeholder,
+    placeholderSelected,
     required,
     size,
     showLabel
   } = props;
 
   const inputRef = React.useRef(null);
+  const [selectedFiles, setSelectedFiles] = React.useState(null);
   const accepted = getAcceptedTypes(accept);
 
   const renderTrigger = () => {
     if (typeof children === 'function') {
       return children({
         ...props,
-        inputRef
+        inputRef,
+        selectedFiles
       });
-    } if (children) {
+    }
+    
+    if (children) {
       return (
         <label htmlFor={ name }>
           { children }
         </label>
       );
     }
+    
     return (
       <Button
         type='label'
@@ -81,7 +92,7 @@ const Upload = (props) => {
         size={ size }
         className='salo-upload__label'
       >
-        { placeholder }
+        { !selectedFiles ? placeholder : placeholderSelected.replace('{{amount}}', selectedFiles.length) }
       </Button>
     );
   };
@@ -113,8 +124,10 @@ const Upload = (props) => {
         id={ name }
         multiple={ multiple }
         name={ name }
-        onBlur={ (e) => onBlur({ e, value: multiple ? e.target.files : e.target.files[0] }) }
-        onChange={ (e) => onChange({ e, value: multiple ? e.target.files : e.target.files[0] }) }
+        onChange={ (e) => {
+          setSelectedFiles(e.target.files);
+          onChange({ e, value: multiple ? e.target.files : e.target.files[0] });
+        } }
       />
       <ErrorText
         className='salo-upload__error'
@@ -148,16 +161,16 @@ Upload.defaultProps = {
   label: '',
   margin: '0 0 2rem',
   multiple: false,
-  onBlur: () => null,
   onChange: () => null,
   placeholder: 'Choose file',
+  placeholderSelected: 'Chosen {{amount}} file(s)',
   required: false,
   showLabel: true,
   size: 'M'
 };
 
 Upload.propTypes = {
-  accept: PropTypes.oneOf([PropTypes.string, PropTypes.array]),
+  accept: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   capture: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.any,
@@ -171,9 +184,9 @@ Upload.propTypes = {
   margin: PropTypes.string,
   multiple: PropTypes.bool,
   name: PropTypes.string.isRequired,
-  onBlur: PropTypes.func,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
+  placeholderSelected: PropTypes.string,
   required: PropTypes.bool,
   showLabel: PropTypes.bool,
   size: PropTypes.oneOf(['L', 'M'])

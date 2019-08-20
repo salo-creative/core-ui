@@ -1,3 +1,4 @@
-import Upload from './upload';
+import Upload, { mimeTypes } from './upload';
 
+export { mimeTypes };
 export default Upload;

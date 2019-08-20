@@ -77,8 +77,6 @@ const useForm = ({ model, initialErrors = false, name = uuid(), currentData }) =
 
   // Handle blur events in form
   const handleBlur = (key, value) => {
-    console.log('handleBlur UPDATE_FIELD', key, value);
-
     reach(schema, key).isValid(value).then(valid => {
       dispatch({
         type: 'UPDATE_FIELD',
@@ -91,8 +89,6 @@ const useForm = ({ model, initialErrors = false, name = uuid(), currentData }) =
 
   // Handle change events in form
   const handleChange = (key, value) => {
-    console.log('handleChange UPDATE_VALUE', key, value);
-
     dispatch({
       type: 'UPDATE_VALUE',
       key,
