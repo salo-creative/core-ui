@@ -1,4 +1,4 @@
-# Select
+# Upload
 
 This is an Upload component that can be used as a `<input type='file'>` html element. It works well with `useForm`.
 
