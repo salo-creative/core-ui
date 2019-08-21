@@ -1,5 +1,5 @@
 {
-  "extends": "eslint-config-airbnb",
+  "extends": ["airbnb", "airbnb/hooks"],
   "parser": "babel-eslint",
   "settings": {
     "ecmascript": 9
@@ -21,13 +21,17 @@
     "jest": true
   },
   "rules": {
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/label-has-associated-control": 1,
     "jsx-a11y/img-has-alt": "off",
     "max-len": 0,
     "arrow-body-style": 0,
     "arrow-parens": 0,
     "class-methods-use-this": 0,
     "func-names": 0,
-    "indent": 2,
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "react/jsx-indent": ["error", 2],
+    "react/jsx-indent-props": ["error", 2],
     "new-cap": 0,
     "no-plusplus": 0,
     "no-return-assign": 0,
@@ -55,6 +59,7 @@
       "error",
       "never"
     ],
+    "react/jsx-fragments": [1, "element"],
     "react/forbid-prop-types": 0,
     "react/jsx-curly-spacing": [
       2,

@@ -32,6 +32,8 @@ const Button = (props) => {
         return Link;
       case 'a':
         return 'a';
+      case 'label':
+        return 'label';
       case 'button':
       case 'submit':
       default:
@@ -52,6 +54,7 @@ const Button = (props) => {
   return (
     <ButtonWrapper
       { ...rest }
+      className={ disabled ? 'disabled' : '' }
       circle={ circle.toString() }
       disabled={ disable }
       fullwidth={ fullWidth.toString() }
@@ -65,7 +68,7 @@ const Button = (props) => {
       { loading && (
         <Loader
           display={ true }
-          loaderProps={ { size: 40, position: 'absolute' } }
+          loaderProps={ { size: 40, position: 'absolute'} }
           appearance='light'
         />
       ) }

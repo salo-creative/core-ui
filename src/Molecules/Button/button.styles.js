@@ -39,6 +39,7 @@ export const ButtonWrapper = styled.button`
     transition: fill 0.3s linear;
     fill: ${ props => (props.loading === 'true' ? getColour({ property: 'background', props }) : getColour({ property: 'color', props })) } !important;
   }
+  &.disabled,
   &:disabled {
     background-color: ${ props => getColour({ property: 'background', props }) } !important;
     border: 1px solid ${ props => getColour({ property: 'border', props }) };
