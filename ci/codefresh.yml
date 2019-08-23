@@ -12,10 +12,30 @@ steps:
     revision: "${{CF_BRANCH}}"
     stage: "clone"
     git: salocreative
-  run_unit_tests:
+  test:
     image: node:10
     working_directory: ${{main_clone}}
     stage: "test"
     commands:
       - yarn
       - yarn test
+  build:
+    image: node:10
+    working_directory: ${{main_clone}}
+    stage: "build"
+    commands:
+      - yarn
+      - yarn bundle
+      - yarn bundle
+      - cp -rf .npmignore package.json .npmrc ./dist
+      - cd ./dist
+      - npm publish
+
+  publish:
+    image: node:10
+    working_directory: ${{main_clone}}
+    stage: "publish"
+    commands:
+      - cp -rf .npmignore package.json .npmrc ./dist
+      - cd ./dist
+      - npm publish
