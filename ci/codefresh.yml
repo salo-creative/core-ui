@@ -26,18 +26,14 @@ steps:
     commands:
       - yarn
       - yarn bundle
-  # publish:
-  #   image: node:10
-  #   working_directory: ${{main_clone}}
-  #   stage: "publish"
-  #   commands:
-  #     - sed -i "s/{{NPM_TOKEN}}/${{NPM_TOKEN}}/g" .npmrc
-  #     - cat .npmrc
-  #     - cp -rf .npmignore package.json .npmrc ./dist
-  #     - cd ./dist
-  #     - npm publish
-  deploy_to_npm:
-    type: npm-publish
+  publish:
+    image: node:10
+    working_directory: ${{main_clone}}
     stage: "publish"
-    arguments:
-      NPM_TOKEN: '${{NPM_TOKEN}}'
+    commands:
+      - sed -i "s/{{NPM_TOKEN}}/${{NPM_TOKEN}}/g" .npmrc
+      - cat .npmrc
+      - cp -rf .npmignore package.json .npmrc ./dist
+      - cd ./dist
+      - ls
+      - npm publish

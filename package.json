@@ -106,7 +106,6 @@
     "jest-styled-components": "^6.3.1",
     "node-sass": "^4.9.2",
     "prop-types": "^15.5.10",
-    "publish-for-npm": "^1.0.7",
     "raw-loader": "^0.5.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
