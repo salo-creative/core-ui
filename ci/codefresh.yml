@@ -31,10 +31,7 @@ steps:
     working_directory: ${{main_clone}}
     stage: "publish"
     commands:
-      - sed -i "s/{{NPM_TOKEN}}/${{NPM_TOKEN}}/g" .npmrc
-      - cat .npmrc
+      - npm-cli-login -u "${{NPM_USER}}" -p "${{NPM_PASSWORD}}" -e "${{NPM_EMAIL}}"
       - cp -rf .npmignore package.json .npmrc ./dist
       - cd ./dist
-      - ls -lah
-      - cat .npmrc
       - npm publish
