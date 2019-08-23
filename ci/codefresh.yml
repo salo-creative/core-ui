@@ -32,6 +32,7 @@ steps:
     stage: "publish"
     commands:
       - sed -i "s/{{NPM_TOKEN}}/${{NPM_TOKEN}}/g" .npmrc
+      - cat .npmrc
       - cp -rf .npmignore package.json .npmrc ./dist
       - cd ./dist
       - npm publish
