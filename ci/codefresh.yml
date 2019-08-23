@@ -32,7 +32,6 @@ steps:
     stage: "publish"
     commands:
       - npm install -g npm-cli-login
-      - echo "${{NPM_USER}}"
       - npm-cli-login -u "${{NPM_USER}}" -p "${{NPM_PASSWORD}}" -e "${{NPM_EMAIL}}"
       - cp -rf .npmignore package.json .npmrc ./dist
       - cd ./dist
