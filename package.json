@@ -16,6 +16,7 @@
     "test:cover": "jest --coverage --maxWorkers=10",
     "old-release": "jest -b --maxWorkers=10 && chmod +x release.sh && ./release.sh",
     "release": "chmod +x ./ci/release.sh && ./ci/release.sh",
+    "npm-publish": "npm-publish ./dist",
     "build-storybook": "build-storybook -s ./public -o .out",
     "deploy-storybook": "storybook-to-ghpages",
     "test:output": "jest -u --json --outputFile=.storybook/jest-test-results.json"
@@ -105,6 +106,7 @@
     "jest-styled-components": "^6.3.1",
     "node-sass": "^4.9.2",
     "prop-types": "^15.5.10",
+    "publish-for-npm": "^1.0.7",
     "raw-loader": "^0.5.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
