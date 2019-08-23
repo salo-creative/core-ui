@@ -1,0 +1,21 @@
+version: "1.0"
+stages:
+  - "clone"
+  - "test"
+  - "build"
+  - "publish"
+steps:
+  main_clone:
+    type: "git-clone"
+    description: "Cloning main repository..."
+    repo: "salo-creative/core-ui"
+    revision: "${{CF_BRANCH}}"
+    stage: "clone"
+    git: salocreative
+  run_unit_tests:
+    image: node:10
+    working_directory: ${{main_clone}}
+    stage: "test"
+    commands:
+      - yarn
+      - yarn test
