@@ -36,4 +36,5 @@ steps:
       - cp -rf .npmignore package.json .npmrc ./dist
       - cd ./dist
       - ls -lah
+      - cat .npmrc
       - npm publish
