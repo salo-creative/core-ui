@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.5.3", "commit": "Making sure only one api key is sent" },
 { "user": "Rich Comber", "version": "v0.5.2", "commit": "Working on ci" },
 { "user": "fetimo", "version": "v0.5.1", "commit": "Fix botched build" },
 { "user": "fetimo", "version": "v0.5.0", "commit": "Added Upload component" },

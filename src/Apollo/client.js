@@ -16,8 +16,7 @@ const createAuthLink = ({ tokens = {}, server }) => {
       headers: {
         ...headers,
         ...(jwt ? { 'Authorization': `Bearer ${ jwt }` } : {}),
-        ...(server ? { 'X-Server-Key': clientKeyServer } : {}),
-        'X-Client-Key': clientKey
+        ...(server ? { 'X-Server-Key': clientKeyServer } : { 'X-Client-Key': clientKey }),
       }
     };
   });
