@@ -1,1 +1,2 @@
-import table from './Table/_table.story.js';
+import './Table/_table.story';
+import './SaloForm/_saloForm.story';

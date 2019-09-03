@@ -58,6 +58,7 @@ export { default as TextArea } from './Forms/TextArea';
 export { default as TypeAhead } from './Forms/TypeAhead';
 export { default as Upload } from './Forms/Upload';
 export { default as useForm } from './Forms/useForm';
+export { default as useFormBuilder } from './Forms/useFormBuilder';
 
 /**
  * ORGANISMS
@@ -69,6 +70,7 @@ export { default as useForm } from './Forms/useForm';
  * formed of multiple re-usable and independently updatable atoms and molecules
  */
 export { default as Table } from './Organisms/Table';
+export { default as SaloForm } from './Organisms/SaloForm';
 
 /**
  * HELPERS & GLOBALS
