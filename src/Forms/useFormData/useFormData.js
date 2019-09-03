@@ -5,10 +5,7 @@ import { buildYup } from 'json-schema-to-yup';
 import { reach } from 'yup';
 
 import { GET_FORM, SUBMIT_FORM } from './queries';
-
-// HELPERS & CONSTANTS
-import mapComponents from './mapComponents';
-import reducer from './useFormBuilder.reducer';
+import reducer from './reducer';
 
 function getInitialValues(fields) {
   return fields.reduce((accum, field) => {
@@ -37,27 +34,39 @@ function buildErrorMessages(fields) {
   }, {});
 }
 
-/**
- * useFormBuilder
+function buildSchema(data) {
+  const schema = JSON.parse(data.form_show.validation);
+  const config = { errMessages: buildErrorMessages(data.form_show.fields) };
+  const builtSchema = buildYup(schema, config);
+  const initial = getInitialValues(get(data, 'form_show.fields', []));
 
- * @param {string} name
- * @param {object} components
- * @returns
- */
-const useFormBuilder = ({ name, components, initialErrors = false }) => {
+  return {
+    builtSchema,
+    initial
+  };
+}
+
+const useFormData = ({ name, initialErrors = false }) => {
   const model = React.useRef({});
-  const { data } = useQuery(GET_FORM, { variables: { name } });
-  const [submitForm, { data: submitData, loading: isSubmitting, error: submitError }] = useMutation(SUBMIT_FORM);
+  const {
+    data,
+    loading,
+    error
+  } = useQuery(GET_FORM, { variables: { name } });
+
+  const [submitForm, {
+    data: submitData,
+    loading: isSubmitting,
+    error: submitError
+  }] = useMutation(SUBMIT_FORM);
+  
   const [state, dispatch] = React.useReducer(reducer, { showErrors: initialErrors });
   const { showErrors, ...values } = state;
 
   React.useEffect(() => {
     if (get(data, 'form_show.validation')) {
-      const schema = JSON.parse(data.form_show.validation);
-      const config = { errMessages: buildErrorMessages(data.form_show.fields) };
-      model.current = buildYup(schema, config);
-
-      const initial = getInitialValues(get(data, 'form_show.fields', []));
+      const { initial, builtSchema } = buildSchema(data);
+      model.current = builtSchema;
 
       dispatch({
         type: 'UPDATE_FIELDS',
@@ -68,7 +77,6 @@ const useFormBuilder = ({ name, components, initialErrors = false }) => {
   
   // Handle blur events in form
   const handleBlur = (key, value) => {
-    console.log('blur', { key, value });
     reach(model.current, key).isValid(value).then(valid => {
       dispatch({
         type: 'UPDATE_FIELD',
@@ -94,8 +102,17 @@ const useFormBuilder = ({ name, components, initialErrors = false }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('submit');
-
-    await model.current.isValid(values);
+    const valid = await model.current.isValid(values);
+    if (valid) {
+      submitForm({
+        variables: {
+          id: data.form_show.id,
+          body: JSON.stringify(values)
+        }
+      });
+    } else {
+      dispatch({ type: 'SHOW_ERRORS', value: true });
+    }
   };
 
   const reset = () => {
@@ -108,32 +125,23 @@ const useFormBuilder = ({ name, components, initialErrors = false }) => {
 
   console.log({ values });
 
-  const fields = mapComponents({
-    fields: values.fields,
-    components,
-    actions: {
-      handleBlur,
-      handleChange
-    }
-  });
-
-  console.log(fields);
-
   return {
-    fields,
+    error,
+    fields: get(data, 'form_show.fields', []),
     handleBlur,
     handleChange,
     handleSubmit,
+    loading,
     reset,
-    // showErrors,
-    toggleErrors,
+    steps: get(data, 'form_show.steps', null),
     submit: {
       data: submitData,
       error: submitError,
-      isSubmitting,
-      submitForm
-    }
+      isSubmitting
+    },
+    toggleErrors,
+    values
   };
 };
 
-export default useFormBuilder;
+export default useFormData;
