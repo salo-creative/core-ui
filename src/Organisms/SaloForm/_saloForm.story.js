@@ -26,21 +26,32 @@ const client = ApolloClient({
   tokens: { clientKey: 'mhbt06bY+s/9vgI6z3q8OKJTgHCUHX710tjENG+3dfY=' }
 });
 
-const Form = ({ name }) => {
+const Form = ({ name, fieldName, fieldValue }) => {
   const data = useFormData({ name });
   console.log('exposed data API', data);
-  return <pre>{ JSON.stringify(data, null, 2) }</pre>;
+
+  return (
+    <React.Fragment>
+      <button type='button' onClick={ () => data.handleBlur(fieldName, fieldValue) }>handleBlur</button>
+      <button type='button' onClick={ () => data.handleChange(fieldName, fieldValue) }>handleChange</button>
+      <pre>{ JSON.stringify(data, null, 2) }</pre>
+    </React.Fragment>
+  );
 };
 
 stories.add(
   'Data',
   (() => {
     const name = text('name', 'test');
+    const fieldName = text('fieldName', 'firstName');
+    const fieldValue = text('fieldValue', 'test');
 
     return (
       <ApolloProvider client={ client }>
         <Form
           name={ name }
+          fieldName={ fieldName }
+          fieldValue={ fieldValue }
         />
       </ApolloProvider>
     );

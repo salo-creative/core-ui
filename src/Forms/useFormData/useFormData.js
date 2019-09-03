@@ -7,13 +7,15 @@ import { reach } from 'yup';
 import { GET_FORM, SUBMIT_FORM } from './queries';
 import reducer from './reducer';
 
-function getInitialValues(fields) {
+function getInitialValues(fields, schema) {
+  // TODO: Allow values to be passed in.
   return fields.reduce((accum, field) => {
+    const valid = reach(schema, field.name).isValidSync(field.value);
     return {
       ...accum,
       [field.name]: {
         ...field,
-        error: true
+        error: valid
       }
     };
   }, {});
@@ -38,7 +40,7 @@ function buildSchema(data) {
   const schema = JSON.parse(data.form_show.validation);
   const config = { errMessages: buildErrorMessages(data.form_show.fields) };
   const builtSchema = buildYup(schema, config);
-  const initial = getInitialValues(get(data, 'form_show.fields', []));
+  const initial = getInitialValues(get(data, 'form_show.fields', []), builtSchema);
 
   return {
     builtSchema,
