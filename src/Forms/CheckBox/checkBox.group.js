@@ -34,7 +34,17 @@ class CheckBoxGroup extends React.Component {
 
   render() {
     const {
-      disabled, fields, error, errorMessage, helperText, label, name, margin, required, singleSelect, size
+      disabled,
+      fields,
+      error,
+      errorMessage,
+      helperText,
+      label,
+      name,
+      margin,
+      required,
+      singleSelect,
+      size
     } = this.props;
     return (
       <Group margin={ margin }>

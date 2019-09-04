@@ -17,7 +17,17 @@ class CheckBox extends React.Component {
 
   render() {
     const {
-      checked, disabled, error, errorMessage, helperText, label, margin, name, required, radio, size
+      checked, 
+      disabled, 
+      error, 
+      errorMessage, 
+      helperText, 
+      label, 
+      margin,
+      name, 
+      required,
+      radio, 
+      size
     } = this.props;
     
     return (
