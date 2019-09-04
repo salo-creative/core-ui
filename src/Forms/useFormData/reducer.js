@@ -4,6 +4,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         [action.key]: {
+          ...state[action.key],
           error: action.error,
           value: action.value
         }
@@ -12,7 +13,7 @@ const reducer = (state, action) => {
     case 'UPDATE_FIELDS':
       return {
         ...state,
-        fields: action.value
+        ...action.value
       };
 
     case 'UPDATE_VALUE':
