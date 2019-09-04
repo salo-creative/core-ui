@@ -10,12 +10,17 @@ import reducer from './reducer';
 function getInitialValues(fields, schema) {
   // TODO: Allow values to be passed in.
   return fields.reduce((accum, field) => {
-    const valid = reach(schema, field.name).isValidSync(field.value);
+    let invalid = false;
+    try {
+      schema.validateSyncAt(field.name);
+    } catch (error) {
+      invalid = error.message;
+    }
     return {
       ...accum,
       [field.name]: {
         ...field,
-        error: !valid
+        error: invalid
       }
     };
   }, {});
