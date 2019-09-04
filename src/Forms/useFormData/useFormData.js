@@ -11,14 +11,14 @@ function getInitialValues(fields, schema) {
   return fields.reduce((accum, field) => {
     let invalid = false;
     try {
-      schema.validateSyncAt(field.name);
+      schema.validateSyncAt(field.name, { [field.name]: field.value || '' });
     } catch (error) {
       invalid = error.message;
     }
     return {
       ...accum,
       [field.name]: {
-        value: field.value,
+        value: field.value || '',
         error: invalid
       }
     };
@@ -34,6 +34,8 @@ function buildErrorMessages(fields) {
       ...accum,
       [field.name]: {
         format,
+        regex: format,
+        pattern: format,
         required
       }
     };
@@ -82,7 +84,7 @@ const useFormData = ({ name, initialErrors = false }) => {
   }, [data]);
   
   // Handle blur events in form
-  const handleBlur = (key, value) => {
+  const handleBlur = ({ key, value }) => {
     // Run the validation
     let invalid = false;
     try {
@@ -101,9 +103,7 @@ const useFormData = ({ name, initialErrors = false }) => {
   };
 
   // Handle change events in form
-  const handleChange = (key, value) => {
-    console.log('change', { key, value });
-
+  const handleChange = ({ key, value }) => {
     dispatch({
       type: 'UPDATE_VALUE',
       key,
@@ -114,7 +114,6 @@ const useFormData = ({ name, initialErrors = false }) => {
   // Handle submit event
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('submit');
     const valid = await model.current.isValid(values);
     if (valid) {
       submitForm({
@@ -144,6 +143,7 @@ const useFormData = ({ name, initialErrors = false }) => {
     handleSubmit,
     loading,
     reset,
+    showErrors,
     steps: get(data, 'form_show.steps', null),
     submit: {
       data: submitData,
