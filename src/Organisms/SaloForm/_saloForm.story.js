@@ -22,13 +22,11 @@ stories.addDecorator(withTests({ results }));
 
 const Form = ({ name, fieldName, fieldValue }) => {
   const data = useFormData({ name });
-  console.log('exposed data API', data);
-
   return (
     <React.Fragment>
       <button type='button' onClick={ () => data.handleBlur(fieldName, fieldValue) }>handleBlur</button>
       <button type='button' onClick={ () => data.handleChange(fieldName, fieldValue) }>handleChange</button>
-      <pre>{ JSON.stringify(data, null, 2) }</pre>
+      <pre>{ JSON.stringify(data.values, null, 2) }</pre>
     </React.Fragment>
   );
 };

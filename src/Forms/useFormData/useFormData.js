@@ -2,7 +2,6 @@ import React from 'react';
 import { get } from 'lodash';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { buildYup } from 'json-schema-to-yup';
-import { reach } from 'yup';
 
 import { GET_FORM, SUBMIT_FORM } from './queries';
 import reducer from './reducer';
@@ -84,13 +83,20 @@ const useFormData = ({ name, initialErrors = false }) => {
   
   // Handle blur events in form
   const handleBlur = (key, value) => {
-    reach(model.current, key).isValid(value).then(valid => {
-      dispatch({
-        type: 'UPDATE_FIELD',
-        key,
-        error: !valid,
-        value
-      });
+    // Run the validation
+    let invalid = false;
+    try {
+      model.current.validateSyncAt(key, { [key]: value });
+    } catch (err) {
+      invalid = err.message;
+    }
+
+    // Dispatch update to state
+    dispatch({
+      type: 'UPDATE_FIELD',
+      key,
+      error: invalid,
+      value
     });
   };
 
