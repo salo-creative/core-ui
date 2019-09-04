@@ -4,6 +4,14 @@ import infoAddon, { withInfo } from '@storybook/addon-info';
 import { withOptions } from '@storybook/addon-options';
 import { BrowserRouter } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import { ApolloProvider } from 'react-apollo';
+
+import ApolloClient from '../src/Apollo/client';
+
+const client = ApolloClient({
+  uri: 'http://localhost:7000/graphql',
+  tokens: { clientKey: 'mhbt06bY+s/9vgI6z3q8OKJTgHCUHX710tjENG+3dfY=' }
+});
 
 const cookies = new Cookies();
 
@@ -59,18 +67,20 @@ addDecorator(story => {
   const tokens = getTokensClient(cookies);
   return (
     <AuthProvider tokens={ tokens }>
-      <BrowserRouter>
-        <Theme>
-          <AlertProvider>
-            <AlertConsumer
-              topOffset={ 0 }
-            />
-            <Normalise />
-            <GlobalStyles />
-            { story() }
-          </AlertProvider>
-        </Theme>
-      </BrowserRouter>
+      <ApolloProvider client={ client }>
+        <BrowserRouter>
+          <Theme>
+            <AlertProvider>
+              <AlertConsumer
+                topOffset={ 0 }
+              />
+              <Normalise />
+              <GlobalStyles />
+                { story() }
+            </AlertProvider>
+          </Theme>
+        </BrowserRouter>
+      </ApolloProvider>
     </AuthProvider>
   );
 } );

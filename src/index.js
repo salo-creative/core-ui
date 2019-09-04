@@ -58,7 +58,6 @@ export { default as TextArea } from './Forms/TextArea';
 export { default as TypeAhead } from './Forms/TypeAhead';
 export { default as Upload } from './Forms/Upload';
 export { default as useForm } from './Forms/useForm';
-export { default as useFormBuilder } from './Forms/useFormBuilder';
 
 /**
  * ORGANISMS
