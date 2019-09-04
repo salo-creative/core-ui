@@ -69,7 +69,7 @@ export { default as useForm } from './Forms/useForm';
  * formed of multiple re-usable and independently updatable atoms and molecules
  */
 export { default as Table } from './Organisms/Table';
-export { default as SaloForm } from './Organisms/SaloForm';
+export { default as Form } from './Organisms/Form';
 
 /**
  * HELPERS & GLOBALS

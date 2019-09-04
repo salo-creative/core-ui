@@ -1,2 +1,2 @@
-import './SaloForm/_saloForm.story';
+import './Form/_form.story';
 import './Table/_table.story';
