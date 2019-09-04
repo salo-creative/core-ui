@@ -111,15 +111,26 @@ const useFormData = ({ name, initialErrors = false }) => {
     });
   };
 
+  // Flatten data held in state
+  const extractDataFromState = () => {
+    // Generate a simple key value object from the data in state
+    const formattedDate = {};
+    Object.entries(values).forEach(([key, value]) => {
+      formattedDate[key] = value.value;
+    });
+    return formattedDate;
+  };
+
   // Handle submit event
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const valid = await model.current.isValid(values);
+    const formattedData = extractDataFromState();
+    const valid = await model.current.isValid(formattedData);
     if (valid) {
       submitForm({
         variables: {
           id: data.form_show.id,
-          body: JSON.stringify(values)
+          body: JSON.stringify(formattedData)
         }
       });
     } else {

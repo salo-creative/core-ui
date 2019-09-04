@@ -23,7 +23,7 @@ const RenderFields = (props) => {
     } = field;
 
     const { value, error } = get(values, field.name, { value: '', error: true });
-    const hasError = !!error;
+    const hasError = !!error && showErrors;
     const errorMessage = typeof error === 'string' ? error : 'Field invalid';
 
     switch (field.type) {

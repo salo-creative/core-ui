@@ -18,7 +18,7 @@ stories.addDecorator(withKnobs);
 stories.addDecorator(withTests({ results }));
 
 stories.add(
-  'UI',
+  'Basic',
   (() => {
     const name = text('name', 'test');
     

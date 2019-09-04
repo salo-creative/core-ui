@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 
 // COMPONENTS & STYLES
 import RenderFields from './form.renderFields';
+import Button from '../../Molecules/Button';
 
 // HELPERS & CONSTANTS
 import useFormData from '../../Forms/useFormData';
@@ -12,11 +14,19 @@ const Form = ({ name }) => {
     fields,
     handleBlur,
     handleChange,
+    handleSubmit,
     showErrors,
+    submit,
+    textStrings,
     values
   } = useFormData({ name });
+
   return (
-    <React.Fragment>
+    <form
+      noValidate
+      autoComplete='off'
+      onSubmit={ handleSubmit }
+    >
       <RenderFields
         fields={ fields }
         handleBlur={ handleBlur }
@@ -24,11 +34,22 @@ const Form = ({ name }) => {
         showErrors={ showErrors }
         values={ values }
       />
-    </React.Fragment>
+      <Button
+        loading={ submit.isSubmitting }
+        type='submit'
+      >
+        { get(textStrings, 'submit', 'Submit') }
+      </Button>
+    </form>
     
   );
 };
 
-Form.propTypes = { name: PropTypes.string.isRequired };
+Form.defaultProps = { textStrings: {} };
+
+Form.propTypes = {
+  name: PropTypes.string.isRequired,
+  textStrings: PropTypes.object
+};
 
 export default Form;
