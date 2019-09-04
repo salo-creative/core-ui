@@ -18,7 +18,7 @@ function getInitialValues(fields, schema) {
     return {
       ...accum,
       [field.name]: {
-        ...field,
+        value: field.value,
         error: invalid
       }
     };

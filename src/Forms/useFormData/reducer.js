@@ -4,7 +4,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         [action.key]: {
-          ...state[action.key],
           error: action.error,
           value: action.value
         }
