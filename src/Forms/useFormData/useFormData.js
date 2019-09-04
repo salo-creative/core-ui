@@ -125,8 +125,6 @@ const useFormData = ({ name, initialErrors = false }) => {
     dispatch({ type: 'SHOW_ERRORS', value: !!value });
   };
 
-  console.log({ values });
-
   return {
     error,
     fields: get(data, 'form_show.fields', []),
