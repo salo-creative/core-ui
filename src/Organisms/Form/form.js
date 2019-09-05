@@ -83,6 +83,7 @@ Form.defaultProps = {
 };
 
 Form.propTypes = {
+  // Standard props
   height: PropTypes.string,
   name: PropTypes.string.isRequired,
   textStrings: PropTypes.object
