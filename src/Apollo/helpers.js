@@ -59,7 +59,14 @@ export const parseApolloError = ({ error, propName = 'APOLLO_ERROR' }) => {
     const serverErrorsMessages = get(customError, 'extensions.errors');
     if (!isEmpty(serverErrorsMessages)) {
       forEach(serverErrorsMessages, errMessage => {
-        if (typeof errMessage === 'string') errors.push(errMessage);
+        if (typeof errMessage === 'string') {
+          errors.push(errMessage);
+        } else if (get(errMessage, 'message')) { // handle new nested errors
+          errors.push(get(errMessage, 'message')
+          // Format default Mongoose errors for failed fields
+            .replace('Path `', 'The field `') // Required & general errors
+            .replace('Validator failed for path `', 'Validation failed for `')); // Custom validators
+        }
       });
     }
   }
