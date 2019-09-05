@@ -14,6 +14,15 @@ const Stepper = (props) => {
     children
   } = props;
 
+  const [visited, setVisited] = React.useState([activeItem]);
+
+  React.useEffect(() => {
+    // Set new active id to state
+    if (!visited.includes(activeItem)) {
+      setVisited([...visited, activeItem]);
+    }
+  }, [activeItem, visited]);
+
   if (isEmpty(children)) {
     return (
       <P>No steps defined</P>
@@ -39,7 +48,8 @@ const Stepper = (props) => {
           title: item.title,
           id: item.id,
           complete: item.complete,
-          disabled: item.disabled
+          disabled: item.disabled,
+          visited: visited.includes(item.id)
         })) }
       />
       { returnContent() }
