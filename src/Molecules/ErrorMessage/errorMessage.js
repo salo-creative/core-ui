@@ -28,7 +28,12 @@ const ErrorMessage = (props) => {
           { retryAction && typeof retryAction === 'function' && (
             <React.Fragment>
               <P align='center'>You can retry the last action by pressing the button below.</P>
-              <Button onClick={ retryAction } iconBefore='sync' />
+              <Button
+                appearance='clear'
+                onClick={ retryAction }
+                iconBefore='sync'
+              >Retry
+              </Button>
             </React.Fragment>
           ) }
         </ErrorContainer>
