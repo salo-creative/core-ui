@@ -1,56 +1,11 @@
 import React from 'react';
 import { get } from 'lodash';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { buildYup } from 'json-schema-to-yup';
 
-import { GET_FORM, SUBMIT_FORM } from './queries';
-import reducer from './reducer';
-
-function getInitialValues(fields, schema) {
-  // TODO: Allow values to be passed in.
-  return fields.reduce((accum, field) => {
-    let invalid = false;
-    try {
-      schema.validateSyncAt(field.name);
-    } catch (error) {
-      invalid = error.message;
-    }
-    return {
-      ...accum,
-      [field.name]: {
-        ...field,
-        error: invalid
-      }
-    };
-  }, {});
-}
-
-function buildErrorMessages(fields) {
-  return fields.reduce((accum, field) => {
-    const format = get(field, 'messages.format') || `Please enter ${ field.label } in the correct format`;
-    const required = get(field, 'messages.required') || `${ field.label } is required`;
-    
-    return {
-      ...accum,
-      [field.name]: {
-        format,
-        required
-      }
-    };
-  }, {});
-}
-
-function buildSchema(data) {
-  const schema = JSON.parse(data.form_show.validation);
-  const config = { errMessages: buildErrorMessages(data.form_show.fields) };
-  const builtSchema = buildYup(schema, config);
-  const initial = getInitialValues(get(data, 'form_show.fields', []), builtSchema);
-
-  return {
-    builtSchema,
-    initial
-  };
-}
+// HELPERS & CONSTANTS
+import { GET_FORM, SUBMIT_FORM } from './useFormData.queries';
+import { buildSchema } from './useFormData.helpers';
+import reducer from './useFormData.reducer';
 
 const useFormData = ({ name, initialErrors = false }) => {
   const model = React.useRef({});
@@ -82,7 +37,7 @@ const useFormData = ({ name, initialErrors = false }) => {
   }, [data]);
   
   // Handle blur events in form
-  const handleBlur = (key, value) => {
+  const handleBlur = ({ key, value }) => {
     // Run the validation
     let invalid = false;
     try {
@@ -101,9 +56,7 @@ const useFormData = ({ name, initialErrors = false }) => {
   };
 
   // Handle change events in form
-  const handleChange = (key, value) => {
-    console.log('change', { key, value });
-
+  const handleChange = ({ key, value }) => {
     dispatch({
       type: 'UPDATE_VALUE',
       key,
@@ -111,16 +64,26 @@ const useFormData = ({ name, initialErrors = false }) => {
     });
   };
 
+  // Flatten data held in state
+  const extractDataFromState = () => {
+    // Generate a simple key value object from the data in state
+    const formattedDate = {};
+    Object.entries(values).forEach(([key, value]) => {
+      formattedDate[key] = value.value;
+    });
+    return formattedDate;
+  };
+
   // Handle submit event
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('submit');
-    const valid = await model.current.isValid(values);
+    const formattedData = extractDataFromState();
+    const valid = await model.current.isValid(formattedData);
     if (valid) {
       submitForm({
         variables: {
           id: data.form_show.id,
-          body: JSON.stringify(values)
+          body: JSON.stringify(formattedData)
         }
       });
     } else {
@@ -128,9 +91,9 @@ const useFormData = ({ name, initialErrors = false }) => {
     }
   };
 
-  const reset = () => {
-    console.log('reset');
-  };
+  // const reset = () => {
+  //   console.log('reset');
+  // };
 
   const toggleErrors = (value) => {
     dispatch({ type: 'SHOW_ERRORS', value: !!value });
@@ -143,7 +106,8 @@ const useFormData = ({ name, initialErrors = false }) => {
     handleChange,
     handleSubmit,
     loading,
-    reset,
+    // reset,
+    showErrors,
     steps: get(data, 'form_show.steps', null),
     submit: {
       data: submitData,
