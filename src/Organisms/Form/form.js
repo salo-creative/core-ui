@@ -7,8 +7,8 @@ import RenderFields from './form.renderFields';
 import Button from '../../Molecules/Button';
 import Loader from '../../Molecules/Loader';
 import H3 from '../../Typography/H3';
-import P from '../../Typography/P';
 import ErrorMessage from '../../Molecules/ErrorMessage';
+import ApolloError from '../../Apollo/Error';
 import { FormWrapper } from './form.styles';
 
 
@@ -40,6 +40,7 @@ const Form = (props) => {
       className={ !loading && !error && !submitted ? 'expanded' : 'collapsed' }
       height={ height }
     >
+      { submit.error && <ApolloError error={ submit.error } /> }
       { /* Handle form loading */ }
       { loading && <Loader display /> }
 

@@ -59,7 +59,11 @@ export const parseApolloError = ({ error, propName = 'APOLLO_ERROR' }) => {
     const serverErrorsMessages = get(customError, 'extensions.errors');
     if (!isEmpty(serverErrorsMessages)) {
       forEach(serverErrorsMessages, errMessage => {
-        if (typeof errMessage === 'string') errors.push(errMessage);
+        if (typeof errMessage === 'string') {
+          errors.push(errMessage);
+        } else if (get(errMessage, 'message')) { // handle new nested errors
+          errors.push(get(errMessage, 'message').replace('Path `', 'The field `')); // Format default Mongoose errors
+        }
       });
     }
   }
