@@ -33,15 +33,11 @@ const Form = (props) => {
     ...fieldProps
   } = useFormData({ name });
 
-  if (loading) {
-    return (
-      <Loader display />
-    );
-  }
+  const submitted = get(submit, 'data.form_submit');
 
   return (
     <FormWrapper
-      className={ loading ? 'loading' : '' }
+      className={ !loading && !error && !submitted ? 'expanded' : 'collapsed' }
       height={ height }
     >
       { /* Handle form loading */ }
@@ -55,8 +51,13 @@ const Form = (props) => {
         />
       ) }
 
+      { /* Handle case when form has been submitted */ }
+      { submitted && (
+        <H3 align='center' margin='1rem 0'>{ submitted }</H3>
+      ) }
+
       { /* Render the form */ }
-      { !loading && !error && (
+      { !loading && !error && !submitted && (
         <form
           noValidate
           autoComplete='off'
