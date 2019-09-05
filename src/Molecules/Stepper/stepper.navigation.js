@@ -30,6 +30,7 @@ const Navigation = (props) => {
         const active = activeItem === step.id;
         return (
           <NavItem
+            type='button'
             key={ step.id }
             className={ evaluateClassName({ ...step, active }) }
             onClick={ () => changeStep(step.id) }
