@@ -3,24 +3,30 @@ const reducer = (state, action) => {
     case 'UPDATE_FIELD':
       return {
         ...state,
-        [action.key]: {
-          error: action.error,
-          value: action.value
+        values: {
+          ...state.values,
+          [action.key]: {
+            error: action.error,
+            value: action.value
+          }
         }
       };
 
     case 'UPDATE_FIELDS':
       return {
         ...state,
-        ...action.value
+        values: { ...action.value }
       };
 
     case 'UPDATE_VALUE':
       return {
         ...state,
-        [action.key]: {
-          ...state[action.key],
-          value: action.value
+        values: {
+          ...state.values,
+          [action.key]: {
+            ...state[action.key],
+            value: action.value
+          }
         }
       };
 
@@ -32,6 +38,12 @@ const reducer = (state, action) => {
 
     case 'RESET':
       return action.state;
+
+    case 'CHANGE_STEP':
+      return {
+        ...state,
+        activeStep: action.id
+      };
 
     default:
       return state;

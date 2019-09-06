@@ -21,8 +21,16 @@ const useFormData = ({ name, initialErrors = false }) => {
     error: submitError
   }] = useMutation(SUBMIT_FORM);
   
-  const [state, dispatch] = React.useReducer(reducer, { showErrors: initialErrors });
-  const { showErrors, ...values } = state;
+  const [state, dispatch] = React.useReducer(reducer, {
+    showErrors: initialErrors,
+    activeStep: null
+  });
+  
+  const {
+    activeStep,
+    showErrors,
+    values
+  } = state;
 
   React.useEffect(() => {
     if (get(data, 'form_show.validation')) {
@@ -91,6 +99,29 @@ const useFormData = ({ name, initialErrors = false }) => {
     }
   };
 
+  // Handle submit event for stepper
+  const handleSubmitStepper = async (e) => {
+    e.preventDefault();
+    console.log('stepper');
+    // const formattedData = extractDataFromState();
+    // const valid = await model.current.isValid(formattedData);
+    // if (valid) {
+    //   submitForm({
+    //     variables: {
+    //       id: data.form_show.id,
+    //       body: JSON.stringify(formattedData)
+    //     }
+    //   });
+    // } else {
+    //   dispatch({ type: 'SHOW_ERRORS', value: true });
+    // }
+  };
+
+  // Handle step change
+  const changeStep = (id) => {
+    dispatch({ type: 'CHANGE_STEP', id });
+  };
+
   // const reset = () => {
   //   console.log('reset');
   // };
@@ -100,11 +131,14 @@ const useFormData = ({ name, initialErrors = false }) => {
   };
 
   return {
+    activeStep,
+    changeStep,
     error,
     fields: get(data, 'form_show.fields', []),
     handleBlur,
     handleChange,
     handleSubmit,
+    handleSubmitStepper,
     loading,
     // reset,
     showErrors,
