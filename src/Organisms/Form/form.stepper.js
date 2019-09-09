@@ -19,6 +19,7 @@ const FormStepper = (props) => {
       <Stepper
         activeItem={ activeStep }
         changeStep={ changeStep }
+        className='form__stepper'
       >
         { steps.map((step, i) => {
           return {
