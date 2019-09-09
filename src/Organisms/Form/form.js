@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
+import { get, isEmpty } from 'lodash';
 
 // COMPONENTS & STYLES
-import RenderFields from './form.renderFields';
 import Button from '../../Molecules/Button';
 import Loader from '../../Molecules/Loader';
 import H3 from '../../Typography/H3';
 import ErrorMessage from '../../Molecules/ErrorMessage';
 import ApolloError from '../../Apollo/Error';
+import FormStepper from './form.stepper';
+import RenderFields from './form.renderFields';
 import { FormWrapper } from './form.styles';
 
 
@@ -19,21 +20,31 @@ const Form = (props) => {
   const {
     height,
     name,
+    renderSteps,
     textStrings
   } = props;
 
   const {
+    activeStep,
+    changeStep,
     error,
     handleSubmit,
+    handleSubmitStepper,
     loading,
     refetch,
     reset,
+    steps,
     submit,
     toggleErrors,
     ...fieldProps
   } = useFormData({ name });
 
   const submitted = get(submit, 'data.form_submit');
+
+  // form should render
+  const formShouldRender = !loading && !error && !submitted;
+  // check if form is stepped
+  const isStepper = renderSteps && !isEmpty(steps);
 
   return (
     <FormWrapper
@@ -56,30 +67,41 @@ const Form = (props) => {
       { submitted && (
         <H3 align='center' margin='1rem 0'>{ submitted }</H3>
       ) }
+      <form
+        noValidate
+        autoComplete='off'
+        onSubmit={ (e) => (isStepper ? handleSubmitStepper(e) : handleSubmit(e)) }
+      >
+        { /* Render the basic form */ }
+        { formShouldRender && !isStepper && (
+          <React.Fragment>
+            <RenderFields { ...fieldProps } /> { /* eslint-disable-line react/jsx-props-no-spreading */ }
+            <Button
+              loading={ submit.isSubmitting }
+              type='submit'
+            >
+              { get(textStrings, 'submit', 'Submit') }
+            </Button>
+          </React.Fragment>
+        ) }
 
-      { /* Render the form */ }
-      { !loading && !error && !submitted && (
-        <form
-          noValidate
-          autoComplete='off'
-          onSubmit={ handleSubmit }
-        >
-          <RenderFields { ...fieldProps } /> { /* eslint-disable-line react/jsx-props-no-spreading */ }
-          <Button
-            loading={ submit.isSubmitting }
-            type='submit'
-          >
-            { get(textStrings, 'submit', 'Submit') }
-          </Button>
-        </form>
-      ) }
+        { /* Render the stepper */ }
+        { formShouldRender && isStepper && (
+          <FormStepper
+            { ...fieldProps } // eslint-disable-line react/jsx-props-no-spreading
+            activeStep={ activeStep }
+            changeStep={ changeStep }
+            steps={ steps }
+          />
+        ) }
+      </form>
     </FormWrapper>
-    
   );
 };
 
 Form.defaultProps = {
   height: 'auto',
+  renderSteps: true,
   textStrings: {}
 };
 
@@ -87,6 +109,7 @@ Form.propTypes = {
   // Standard props
   height: PropTypes.string,
   name: PropTypes.string.isRequired,
+  renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
   textStrings: PropTypes.object
 };
 

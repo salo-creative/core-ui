@@ -14,6 +14,7 @@ const RenderFields = (props) => {
     showErrors,
     values
   } = props;
+
   return fields.map(field => {
     const {
       label,
@@ -41,6 +42,12 @@ const RenderFields = (props) => {
             label={ label }
             name={ name }
             onBlur={ ({ value: val }) => handleBlur({ key: name, value: val }) }
+            onKeyUp={ ({ e, value: val }) => {
+              // This is needed to trigger field validation when return is pressed to submit
+              if (e.keyCode === 13) {
+                handleBlur({ key: name, value: val });
+              }
+            } }
             onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
             placeholder={ placeholder }
             required={ required }
@@ -55,14 +62,17 @@ const RenderFields = (props) => {
   });
 };
 
-RenderFields.defaultProps = { disabled: false };
+RenderFields.defaultProps = {
+  disabled: false,
+  values: {}
+};
 
 RenderFields.propTypes = {
   disabled: PropTypes.bool,
   fields: PropTypes.array.isRequired,
   handleBlur: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
-  values: PropTypes.object.isRequired
+  values: PropTypes.object
 };
 
 export default RenderFields;

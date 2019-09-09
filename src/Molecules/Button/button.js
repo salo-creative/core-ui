@@ -50,10 +50,14 @@ const Button = (props) => {
     if (!iconAfter) return null;
     return <Icon margin={ children ? '0 0 0 1rem' : '0' } icon={ iconAfter } />;
   };
+
+  // Add type for buttons and submits
+  const buttonType = type === 'submit' || type === 'button' ? { type } : '';
   
   return (
     <ButtonWrapper
-      { ...rest }
+      { ...rest } // eslint-disable-line react/jsx-props-no-spreading
+      { ...buttonType } // eslint-disable-line react/jsx-props-no-spreading
       className={ disabled ? 'disabled' : '' }
       circle={ circle.toString() }
       disabled={ disable }
@@ -68,7 +72,7 @@ const Button = (props) => {
       { loading && (
         <Loader
           display={ true }
-          loaderProps={ { size: 40, position: 'absolute'} }
+          loaderProps={ { size: 40, position: 'absolute' } }
           appearance='light'
         />
       ) }

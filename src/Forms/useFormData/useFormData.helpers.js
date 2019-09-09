@@ -60,3 +60,37 @@ export const buildSchema = (data) => {
     initial
   };
 };
+
+/**
+ * VALIDATE A SINGLE STEP
+ * Validate a step in the form
+ */
+export const validateStep = ({ step, values }) => {
+  const fieldsWithError = get(step, 'fields', []).map(field => {
+    // Check for error
+    return !!get(values, `${ field.name }.error`, 'hasError');
+  })
+  // Get rid of false values i.e. field is valid
+    .filter(i => i);
+  return !(fieldsWithError.length && fieldsWithError.length > 0);
+};
+
+/**
+ * FORMAT STEPS
+ * Format the steps data for the stepper component
+ */
+export const formatSteps = ({ steps, values }) => {
+  return steps.reduce((acc, step) => {
+    // Evaluate if previous step is complete or not
+    const previousStepComplete = acc.length ? get(acc, `[${ acc.length - 1 }].complete`, false) : true;
+    const previousStepDisabled = acc.length ? get(acc, `[${ acc.length - 1 }].disabled`, true) : false;
+    return [
+      ...acc,
+      {
+        ...step,
+        complete: validateStep({ step, values }),
+        disabled: !previousStepComplete && !previousStepDisabled
+      }
+    ];
+  }, []);
+};
