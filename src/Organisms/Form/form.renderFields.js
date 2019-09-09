@@ -4,6 +4,7 @@ import { get } from 'lodash';
 
 // COMPONENTS & STYLES
 import Input from '../../Forms/Input';
+import Select from '../../Forms/Select';
 
 const RenderFields = (props) => {
   const {
@@ -14,7 +15,8 @@ const RenderFields = (props) => {
     showErrors,
     values,
     // Custom components
-    CustomInput
+    CustomInput,
+    CustomSelect
   } = props;
 
   return fields.map(field => {
@@ -55,7 +57,38 @@ const RenderFields = (props) => {
           type: field.type,
           value
         };
+
+        // Return component
         return CustomInput ? <CustomInput { ...inputProps } /> : <Input { ...inputProps } />; // eslint-disable-line react/jsx-props-no-spreading
+      }
+      case 'select': {
+        // Evaluate the component to use
+        const FormSelect = CustomSelect || Select;
+
+        // Return component
+        return (
+          <FormSelect
+            error={ hasError }
+            errorMessage={ errorMessage }
+            disabled={ disabled }
+            key={ name }
+            label={ label }
+            name={ name }
+            onChange={ ({ value: val }) => handleBlur({ key: name, value: val }) }
+            placeholder={ placeholder }
+            required={ required }
+            value={ value }
+          >
+            <option value=''>Please select…</option>
+            { field.options.map(option => (
+              <option
+                key={ option.value }
+                value={ option.value }
+              >{ option.label }
+              </option>
+            )) }
+          </FormSelect>
+        ); // eslint-disable-line react/jsx-props-no-spreading
       }
       default:
         return <p>The supplied field type is invalid</p>;

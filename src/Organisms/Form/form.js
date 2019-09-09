@@ -24,7 +24,8 @@ const Form = (props) => {
     textStrings,
     // Custom components
     Button: CustomButton,
-    Input: CustomInput
+    Input: CustomInput,
+    Select: CustomSelect
   } = props;
 
   const {
@@ -45,7 +46,8 @@ const Form = (props) => {
   // Assign custom components to an object so we can pass them down easily
   const customComponents = {
     CustomButton,
-    CustomInput
+    CustomInput,
+    CustomSelect
   };
 
   const submitted = get(submit, 'data.form_submit');
@@ -115,7 +117,8 @@ Form.defaultProps = {
   textStrings: {},
   // Custom components
   Button: null,
-  Input: null
+  Input: null,
+  Select: null
 };
 
 Form.propTypes = {
@@ -126,7 +129,8 @@ Form.propTypes = {
   textStrings: PropTypes.object,
   // Custom components
   Button: PropTypes.func,
-  Input: PropTypes.func
+  Input: PropTypes.func,
+  Select: PropTypes.func
 };
 
 export default Form;
