@@ -14,7 +14,7 @@ const RenderFields = (props) => {
     showErrors,
     values,
     // Custom components
-    Input: CustomInput
+    CustomInput
   } = props;
 
   return fields.map(field => {

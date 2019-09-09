@@ -13,8 +13,12 @@ const FormStep = (props) => {
     fields,
     step,
     total,
+    CustomButton, // eslint-disable-line react/prop-types
     ...fieldProps
   } = props;
+
+  // Check if we have a custom button
+  const FormButton = CustomButton || Button;
 
   return (
     <React.Fragment>
@@ -28,15 +32,15 @@ const FormStep = (props) => {
       <div>
         { /* If last page render submit */ }
         { step === total && (
-          <Button type='submit'>Submit</Button>
+          <FormButton type='submit'>Submit</FormButton>
         ) }
         { /* If not last page render next */ }
         { step < total && (
-          <Button type='submit'>Next</Button>
+          <FormButton type='submit'>Next</FormButton>
         ) }
         { /* If not first page render previous */ }
         { step > 1 && (
-          <Button onClick={ changeStep } type='button'>Previous</Button>
+          <FormButton onClick={ changeStep } type='button'>Previous</FormButton>
         ) }
       </div>
     </React.Fragment>

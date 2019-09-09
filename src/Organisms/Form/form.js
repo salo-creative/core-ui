@@ -22,7 +22,9 @@ const Form = (props) => {
     name,
     renderSteps,
     textStrings,
-    Input
+    // Custom components
+    Button: CustomButton,
+    Input: CustomInput
   } = props;
 
   const {
@@ -40,7 +42,11 @@ const Form = (props) => {
     ...fieldProps
   } = useFormData({ name });
 
-  const customComponents = { Input };
+  // Assign custom components to an object so we can pass them down easily
+  const customComponents = {
+    CustomButton,
+    CustomInput
+  };
 
   const submitted = get(submit, 'data.form_submit');
 
@@ -108,6 +114,7 @@ Form.defaultProps = {
   renderSteps: true,
   textStrings: {},
   // Custom components
+  Button: null,
   Input: null
 };
 
@@ -118,6 +125,7 @@ Form.propTypes = {
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
   textStrings: PropTypes.object,
   // Custom components
+  Button: PropTypes.func,
   Input: PropTypes.func
 };
 
