@@ -45,8 +45,7 @@ FormStepper.defaultProps = { activeStep: '' };
 FormStepper.propTypes = {
   activeStep: PropTypes.string,
   changeStep: PropTypes.func.isRequired,
-  steps: PropTypes.array.isRequired,
-  values: PropTypes.object.isRequired
+  steps: PropTypes.array.isRequired
 };
 
 export default FormStepper;

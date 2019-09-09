@@ -15,7 +15,9 @@ const reducer = (state, action) => {
     case 'UPDATE_FIELDS':
       return {
         ...state,
-        values: { ...action.value }
+        activeStep: action.activeStep,
+        values: action.values,
+        steps: action.steps
       };
 
     case 'UPDATE_VALUE':
@@ -42,6 +44,7 @@ const reducer = (state, action) => {
     case 'CHANGE_STEP':
       return {
         ...state,
+        showErrors: false,
         activeStep: action.id
       };
 

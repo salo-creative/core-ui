@@ -1,10 +1,10 @@
 import React from 'react';
-import { get } from 'lodash';
+import { get, isEmpty } from 'lodash';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 // HELPERS & CONSTANTS
 import { GET_FORM, SUBMIT_FORM } from './useFormData.queries';
-import { buildSchema } from './useFormData.helpers';
+import { buildSchema, formatSteps } from './useFormData.helpers';
 import reducer from './useFormData.reducer';
 
 const useFormData = ({ name, initialErrors = false }) => {
@@ -29,17 +29,29 @@ const useFormData = ({ name, initialErrors = false }) => {
   const {
     activeStep,
     showErrors,
+    steps,
     values
   } = state;
 
   React.useEffect(() => {
     if (get(data, 'form_show.validation')) {
+      // Build the main schema
       const { initial, builtSchema } = buildSchema(data);
       model.current = builtSchema;
 
+      let processedSteps;
+      // Now process steps if they exist
+      const stepsData = get(data, 'form_show.steps');
+      if (!isEmpty(stepsData)) {
+        // Map over steps and validate
+        processedSteps = formatSteps({ steps: stepsData, values: initial });
+      }
+
       dispatch({
         type: 'UPDATE_FIELDS',
-        value: initial
+        values: initial,
+        activeStep: get(data, 'form_show.steps[0].id', null),
+        steps: processedSteps
       });
     }
   }, [data]);
@@ -54,13 +66,37 @@ const useFormData = ({ name, initialErrors = false }) => {
       invalid = err.message;
     }
 
-    // Dispatch update to state
-    dispatch({
-      type: 'UPDATE_FIELD',
-      key,
-      error: invalid,
-      value
-    });
+    // If we are using a stepper process the steps
+    if (activeStep) {
+      // New values object for step validation
+      const newValues = {
+        ...values,
+        [key]: {
+          error: invalid,
+          value
+        }
+      };
+
+      const processedSteps = formatSteps({
+        steps: get(data, 'form_show.steps'),
+        values: newValues
+      });
+      // Dispatch update to state
+      dispatch({
+        type: 'UPDATE_FIELDS',
+        values: newValues,
+        activeStep,
+        steps: processedSteps
+      });
+    } else {
+      // Otherwise just update as normal
+      dispatch({
+        type: 'UPDATE_FIELD',
+        key,
+        error: invalid,
+        value
+      });
+    }
   };
 
   // Handle change events in form
@@ -142,7 +178,7 @@ const useFormData = ({ name, initialErrors = false }) => {
     loading,
     // reset,
     showErrors,
-    steps: get(data, 'form_show.steps', null),
+    steps,
     submit: {
       data: submitData,
       error: submitError,

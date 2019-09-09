@@ -14,6 +14,7 @@ const RenderFields = (props) => {
     showErrors,
     values
   } = props;
+
   return fields.map(field => {
     const {
       label,
@@ -55,14 +56,17 @@ const RenderFields = (props) => {
   });
 };
 
-RenderFields.defaultProps = { disabled: false };
+RenderFields.defaultProps = {
+  disabled: false,
+  values: {}
+};
 
 RenderFields.propTypes = {
   disabled: PropTypes.bool,
   fields: PropTypes.array.isRequired,
   handleBlur: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
-  values: PropTypes.object.isRequired
+  values: PropTypes.object
 };
 
 export default RenderFields;
