@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 // load tests
 import { withTests } from '@storybook/addon-jest';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import results from '../../../.storybook/jest-test-results.json';
 
 // FEATURED COMPONENT
@@ -21,10 +21,46 @@ stories.add(
   'Basic',
   (() => {
     const name = text('name', 'test');
+    const renderSteps = boolean('Use stepper', true);
     
     return (
       <Form
         name={ name }
+        renderSteps={ renderSteps }
+      />
+    );
+  }), { info: { propTablesExclude: [] }, notes: README }
+);
+
+stories.add(
+  'Custom components',
+  (() => {
+    const name = text('name', 'test');
+    const renderSteps = boolean('Use stepper', true);
+
+    return (
+      <Form
+        name={ name }
+        renderSteps={ renderSteps }
+        Input={ ({
+          error,
+          errorMessage,
+          label,
+          onBlur,
+          onChange,
+          ...props
+        }) => (
+          <React.Fragment>
+            <label>{ label }</label>
+            <input
+              { ...props }
+              onBlur={ (e) => onBlur({ e, value: e.target.value }) }
+              onChange={ (e) => onChange({ e, value: e.target.value }) }
+              onKeyUp={ _ => _ }
+            />
+            <span>{ error ? errorMessage : '' }</span>
+          </React.Fragment>
+        ) }
       />
     );
   }), { info: { propTablesExclude: [] }, notes: README }

@@ -12,7 +12,9 @@ const RenderFields = (props) => {
     handleBlur,
     handleChange,
     showErrors,
-    values
+    values,
+    // Custom components
+    Input: CustomInput
   } = props;
 
   return fields.map(field => {
@@ -33,28 +35,27 @@ const RenderFields = (props) => {
       case 'email':
       case 'tel':
       case 'number': {
-        return (
-          <Input
-            error={ hasError }
-            errorMessage={ errorMessage }
-            disabled={ disabled }
-            key={ name }
-            label={ label }
-            name={ name }
-            onBlur={ ({ value: val }) => handleBlur({ key: name, value: val }) }
-            onKeyUp={ ({ e, value: val }) => {
-              // This is needed to trigger field validation when return is pressed to submit
-              if (e.keyCode === 13) {
-                handleBlur({ key: name, value: val });
-              }
-            } }
-            onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
-            placeholder={ placeholder }
-            required={ required }
-            type={ field.type }
-            value={ value }
-          />
-        );
+        const inputProps = {
+          error: hasError,
+          errorMessage,
+          disabled,
+          key: name,
+          label,
+          name,
+          onBlur: ({ value: val }) => handleBlur({ key: name, value: val }),
+          onKeyUp: ({ e, value: val }) => {
+          // This is needed to trigger field validation when return is pressed to submit
+            if (e.keyCode === 13) {
+              handleBlur({ key: name, value: val });
+            }
+          },
+          onChange: ({ value: val }) => handleChange({ key: name, value: val }),
+          placeholder,
+          required,
+          type: field.type,
+          value
+        };
+        return CustomInput ? <CustomInput { ...inputProps } /> : <Input { ...inputProps } />; // eslint-disable-line react/jsx-props-no-spreading
       }
       default:
         return <p>The supplied field type is invalid</p>;
