@@ -37,35 +37,36 @@ const RenderFields = (props) => {
       case 'email':
       case 'tel':
       case 'number': {
-        const inputProps = {
-          error: hasError,
-          errorMessage,
-          disabled,
-          key: name,
-          label,
-          name,
-          onBlur: ({ value: val }) => handleBlur({ key: name, value: val }),
-          onKeyUp: ({ e, value: val }) => {
-          // This is needed to trigger field validation when return is pressed to submit
-            if (e.keyCode === 13) {
-              handleBlur({ key: name, value: val });
-            }
-          },
-          onChange: ({ value: val }) => handleChange({ key: name, value: val }),
-          placeholder,
-          required,
-          type: field.type,
-          value
-        };
+        // Evaluate the component to use
+        const FormInput = CustomInput || Input;
 
-        // Return component
-        return CustomInput ? <CustomInput { ...inputProps } /> : <Input { ...inputProps } />; // eslint-disable-line react/jsx-props-no-spreading
+        return (
+          <FormInput
+            error={ hasError }
+            errorMessage={ errorMessage }
+            disabled={ disabled }
+            key={ name }
+            label={ label }
+            name={ name }
+            onBlur={ ({ value: val }) => handleBlur({ key: name, value: val }) }
+            onKeyUp={ ({ e, value: val }) => {
+              // This is needed to trigger field validation when return is pressed to submit
+              if (e.keyCode === 13) {
+                handleBlur({ key: name, value: val });
+              }
+            } }
+            onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
+            placeholder={ placeholder }
+            required={ required }
+            type={ field.type }
+            value={ value }
+          />
+        );
       }
       case 'select': {
         // Evaluate the component to use
         const FormSelect = CustomSelect || Select;
 
-        // Return component
         return (
           <FormSelect
             error={ hasError }
@@ -88,7 +89,7 @@ const RenderFields = (props) => {
               </option>
             )) }
           </FormSelect>
-        ); // eslint-disable-line react/jsx-props-no-spreading
+        );
       }
       default:
         return <p>The supplied field type is invalid</p>;
