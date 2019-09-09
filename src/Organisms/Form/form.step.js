@@ -9,19 +9,22 @@ import Button from '../../Molecules/Button';
 
 const FormStep = (props) => {
   const {
+    changeStep,
     fields,
     step,
     total,
     ...fieldProps
   } = props;
 
-  if (isEmpty(fields)) return <P>No fields found for this step</P>;
   return (
     <React.Fragment>
-      <RenderFields
-        { ...fieldProps } // eslint-disable-line react/jsx-props-no-spreading
-        fields={ fields }
-      />
+      { isEmpty(fields) && <P>No fields found for this step</P> }
+      { !isEmpty(fields) && (
+        <RenderFields
+          { ...fieldProps } // eslint-disable-line react/jsx-props-no-spreading
+          fields={ fields }
+        />
+      ) }
       <div>
         { /* If last page render submit */ }
         { step === total && (
@@ -33,7 +36,7 @@ const FormStep = (props) => {
         ) }
         { /* If not first page render previous */ }
         { step > 1 && (
-          <Button type='button'>Previous</Button>
+          <Button onClick={ changeStep } type='button'>Previous</Button>
         ) }
       </div>
     </React.Fragment>
@@ -41,6 +44,7 @@ const FormStep = (props) => {
 };
 
 FormStep.propTypes = {
+  changeStep: PropTypes.func.isRequired,
   fields: PropTypes.array.isRequired,
   step: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired

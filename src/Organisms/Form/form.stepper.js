@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 
 // COMPONENTS & STYLES
 import Stepper from '../../Molecules/Stepper';
@@ -28,6 +29,7 @@ const FormStepper = (props) => {
             content: (
               <FormStep
                 { ...fieldProps } // eslint-disable-line react/jsx-props-no-spreading
+                changeStep={ () => changeStep(get(steps, `[${ i - 1 }].id`)) }
                 fields={ step.fields }
                 step={ i + 1 } // pass the step number down
                 total={ steps.length } // pass down the total number of steps
