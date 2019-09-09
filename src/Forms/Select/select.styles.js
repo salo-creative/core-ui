@@ -7,7 +7,7 @@ export const SelectWrapper = styled.div`
   vertical-align: middle;
   margin: 0;
   width: 100%;
-  background: ${ ({ background }) => background };
+  background: ${ ({ background, error, theme }) => (error ? transparentize(0.7, theme.error) : background) };
 `;
 
 export const OuterSelectWrapper = styled.div`
@@ -24,7 +24,8 @@ export const Selector = styled.select`
   color: ${ ({ theme }) => theme.font };
   font-size: inherit;
   padding: 0 4rem 0 1rem;
-  border: 1px solid ${ ({ theme }) => transparentize(0.5, theme.primary) };
+  border: 1px solid;
+  border-color: ${ ({ theme, error }) => (error ? transparentize(0.3, theme.error) : transparentize(0.5, theme.primary)) };
   margin: 0;
   border-radius: 0;
   text-overflow: '';
@@ -58,7 +59,8 @@ export const IconAfter = styled.span`
   top: 0.75rem;
   position: absolute;
   justify-content: center;
-  border-left: 1px solid ${ ({ theme }) => transparentize(0.5, theme.primary) };
+  border-left: 1px solid;
+  border-color: ${ ({ theme, error }) => (error ? transparentize(0.3, theme.error) : transparentize(0.5, theme.primary)) };
   z-index: 1;
 `;
 
