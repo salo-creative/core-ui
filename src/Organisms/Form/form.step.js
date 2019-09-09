@@ -29,7 +29,7 @@ const FormStep = (props) => {
           fields={ fields }
         />
       ) }
-      <div className='form__step'>
+      <div className='form__stepper-buttons'>
         { /* If last page render submit */ }
         { step === total && (
           <FormButton type='submit'>Submit</FormButton>
