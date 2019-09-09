@@ -42,6 +42,12 @@ const RenderFields = (props) => {
             label={ label }
             name={ name }
             onBlur={ ({ value: val }) => handleBlur({ key: name, value: val }) }
+            onKeyUp={ ({ e, value: val }) => {
+              // This is needed to trigger field validation when return is pressed to submit
+              if (e.keyCode === 13) {
+                handleBlur({ key: name, value: val });
+              }
+            } }
             onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
             placeholder={ placeholder }
             required={ required }

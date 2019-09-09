@@ -1,5 +1,5 @@
 import React from 'react';
-import { get, isEmpty } from 'lodash';
+import { get, isEmpty, find, findIndex } from 'lodash';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 // HELPERS & CONSTANTS
@@ -138,19 +138,21 @@ const useFormData = ({ name, initialErrors = false }) => {
   // Handle submit event for stepper
   const handleSubmitStepper = async (e) => {
     e.preventDefault();
-    console.log('stepper');
-    // const formattedData = extractDataFromState();
-    // const valid = await model.current.isValid(formattedData);
-    // if (valid) {
-    //   submitForm({
-    //     variables: {
-    //       id: data.form_show.id,
-    //       body: JSON.stringify(formattedData)
-    //     }
-    //   });
-    // } else {
-    //   dispatch({ type: 'SHOW_ERRORS', value: true });
-    // }
+    // First check whether we are on the final step and should submit
+    const index = findIndex(steps, { id: activeStep });
+    if (index + 1 === steps.length) {
+      handleSubmit(e);
+    } else {
+      // we just need to validate the current step and change the page
+      const currentStep = find(steps, { id: activeStep });
+      if (currentStep.complete) {
+      // If step is valid go to the next one
+        dispatch({ type: 'CHANGE_STEP', id: get(steps, `[${ index + 1 }].id`) });
+      } else {
+        // Otherwise throw up the errors
+        dispatch({ type: 'SHOW_ERRORS', value: true });
+      }
+    }
   };
 
   // Handle step change
