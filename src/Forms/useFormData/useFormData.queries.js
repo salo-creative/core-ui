@@ -10,7 +10,6 @@ const fieldPartial = `
   name
   options {
       label
-      name
       value
   }
   placeholder

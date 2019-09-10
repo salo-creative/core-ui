@@ -49,12 +49,16 @@ const Select = (props) => {
         required={ required }
         size={ size }
       />
-      <SelectWrapper background={ background }>
+      <SelectWrapper
+        background={ background }
+        error={ error }
+      >
         <Selector
           aria-required={ required.toString() }
           aria-invalid={ error.toString() }
           border={ border.toString() }
           disabled={ disabled }
+          error={ error }
           height={ height() }
           id={ name }
           name={ name }
@@ -65,7 +69,7 @@ const Select = (props) => {
           { children }
         </Selector>
         { iconAfter && (
-          <IconAfter>
+          <IconAfter error={ error }>
             <svg style={ { width: '24px', height: '24px' } } viewBox='0 0 24 24'>
               <path fill={ colours.darkGrey } d='M7,10L12,15L17,10H7Z' />
             </svg>
@@ -97,7 +101,7 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
-  background: colours.grey,
+  background: colours.paleGrey,
   border: true,
   children: null,
   disabled: false,

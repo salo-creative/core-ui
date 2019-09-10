@@ -21,7 +21,11 @@ const Form = (props) => {
     height,
     name,
     renderSteps,
-    textStrings
+    textStrings,
+    // Custom components
+    Button: CustomButton,
+    Input: CustomInput,
+    Select: CustomSelect
   } = props;
 
   const {
@@ -38,6 +42,13 @@ const Form = (props) => {
     toggleErrors,
     ...fieldProps
   } = useFormData({ name });
+
+  // Assign custom components to an object so we can pass them down easily
+  const customComponents = {
+    CustomButton,
+    CustomInput,
+    CustomSelect
+  };
 
   const submitted = get(submit, 'data.form_submit');
 
@@ -75,7 +86,7 @@ const Form = (props) => {
         { /* Render the basic form */ }
         { formShouldRender && !isStepper && (
           <React.Fragment>
-            <RenderFields { ...fieldProps } /> { /* eslint-disable-line react/jsx-props-no-spreading */ }
+            <RenderFields { ...fieldProps } { ...customComponents } /> { /* eslint-disable-line react/jsx-props-no-spreading */ }
             <Button
               loading={ submit.isSubmitting }
               type='submit'
@@ -89,6 +100,7 @@ const Form = (props) => {
         { formShouldRender && isStepper && (
           <FormStepper
             { ...fieldProps } // eslint-disable-line react/jsx-props-no-spreading
+            { ...customComponents } // eslint-disable-line react/jsx-props-no-spreading
             activeStep={ activeStep }
             changeStep={ changeStep }
             steps={ steps }
@@ -102,7 +114,11 @@ const Form = (props) => {
 Form.defaultProps = {
   height: 'auto',
   renderSteps: true,
-  textStrings: {}
+  textStrings: {},
+  // Custom components
+  Button: null,
+  Input: null,
+  Select: null
 };
 
 Form.propTypes = {
@@ -110,7 +126,11 @@ Form.propTypes = {
   height: PropTypes.string,
   name: PropTypes.string.isRequired,
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
-  textStrings: PropTypes.object
+  textStrings: PropTypes.object,
+  // Custom components
+  Button: PropTypes.func,
+  Input: PropTypes.func,
+  Select: PropTypes.func
 };
 
 export default Form;

@@ -5,6 +5,7 @@ import { get } from 'lodash';
 // COMPONENTS & STYLES
 import Input from '../../Forms/Input';
 import Upload from '../../Forms/Upload';
+import Select from '../../Forms/Select';
 
 const RenderFields = (props) => {
   const {
@@ -13,7 +14,10 @@ const RenderFields = (props) => {
     handleBlur,
     handleChange,
     showErrors,
-    values
+    values,
+    // Custom components
+    CustomInput,
+    CustomSelect
   } = props;
 
   return fields.map(field => {
@@ -53,8 +57,11 @@ const RenderFields = (props) => {
       case 'email':
       case 'tel':
       case 'number': {
+        // Evaluate the component to use
+        const FormInput = CustomInput || Input;
+
         return (
-          <Input
+          <FormInput
             error={ hasError }
             errorMessage={ errorMessage }
             disabled={ disabled }
@@ -74,6 +81,34 @@ const RenderFields = (props) => {
             type={ field.type }
             value={ value }
           />
+        );
+      }
+      case 'select': {
+        // Evaluate the component to use
+        const FormSelect = CustomSelect || Select;
+
+        return (
+          <FormSelect
+            error={ hasError }
+            errorMessage={ errorMessage }
+            disabled={ disabled }
+            key={ name }
+            label={ label }
+            name={ name }
+            onChange={ ({ value: val }) => handleBlur({ key: name, value: val }) }
+            placeholder={ placeholder }
+            required={ required }
+            value={ value }
+          >
+            <option value=''>Please select…</option>
+            { field.options.map(option => (
+              <option
+                key={ option.value }
+                value={ option.value }
+              >{ option.label }
+              </option>
+            )) }
+          </FormSelect>
         );
       }
       default:
