@@ -24,7 +24,6 @@ const RenderFields = (props) => {
   return fields.map(field => {
     const {
       label,
-      meta = {},
       name,
       placeholder,
       required

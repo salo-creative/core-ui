@@ -2,20 +2,24 @@ import gql from 'graphql-tag';
 
 const fieldPartial = `
   label
-  messages {
-    format
-    required
-  }
   meta
   name
   options {
-      label
-      value
+    label
+    value
   }
   placeholder
   required
   type
   value
+  validation {
+    type
+    max
+    min
+    required
+    enum
+    regex
+  }
 `;
 
 export const GET_FORM = gql`
