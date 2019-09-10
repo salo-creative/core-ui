@@ -4,6 +4,7 @@ import { get } from 'lodash';
 
 // COMPONENTS & STYLES
 import Input from '../../Forms/Input';
+import Upload from '../../Forms/Upload';
 import Select from '../../Forms/Select';
 
 const RenderFields = (props) => {
@@ -16,22 +17,41 @@ const RenderFields = (props) => {
     values,
     // Custom components
     CustomInput,
-    CustomSelect
+    CustomSelect,
+    CustomUpload
   } = props;
 
   return fields.map(field => {
     const {
       label,
+      meta = {},
       name,
       placeholder,
       required
     } = field;
-
+    
     const { value, error } = get(values, field.name, { value: '', error: true });
     const hasError = !!error && showErrors;
     const errorMessage = typeof error === 'string' ? error : 'Field invalid';
 
     switch (field.type) {
+      case 'file': {
+        // Evaluate the component to use
+        const FormUpload = CustomUpload || Upload;
+        return (
+          <FormUpload
+            error={ hasError }
+            errorMessage={ errorMessage }
+            key={ name }
+            label={ label }
+            name={ name }
+            onChange={ ({ value: val }) => {
+              handleBlur({ key: name, value: val });
+            } }
+            type='file'
+          />
+        );
+      }
       case 'text':
       case 'url':
       case 'email':

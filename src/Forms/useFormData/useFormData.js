@@ -111,23 +111,33 @@ const useFormData = ({ name, initialErrors = false }) => {
   // Flatten data held in state
   const extractDataFromState = () => {
     // Generate a simple key value object from the data in state
-    const formattedDate = {};
+    const formattedData = {};
+    const files = [];
     Object.entries(values).forEach(([key, value]) => {
-      formattedDate[key] = value.value;
+      if (value.value instanceof File) {
+        files.push({
+          name: key,
+          file: value.value
+        });
+      } else {
+        formattedData[key] = value.value;
+      }
     });
-    return formattedDate;
+    return { formattedData, files };
   };
-
+ 
   // Handle submit event
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formattedData = extractDataFromState();
+    const { formattedData, files } = extractDataFromState();
     const valid = await model.current.isValid(formattedData);
     if (valid) {
       submitForm({
+        context: { hasUpload: true }, // activate Upload link
         variables: {
           id: data.form_show.id,
-          body: JSON.stringify(formattedData)
+          body: JSON.stringify(formattedData),
+          attachments: files
         }
       });
     } else {
