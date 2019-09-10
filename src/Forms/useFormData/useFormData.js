@@ -119,7 +119,6 @@ const useFormData = ({ name, initialErrors = false }) => {
           name: key,
           file: value.value
         });
-        delete formattedData[key];
       } else {
         formattedData[key] = value.value;
       }
