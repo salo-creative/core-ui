@@ -17,7 +17,8 @@ const RenderFields = (props) => {
     values,
     // Custom components
     CustomInput,
-    CustomSelect
+    CustomSelect,
+    CustomUpload
   } = props;
 
   return fields.map(field => {
@@ -35,9 +36,11 @@ const RenderFields = (props) => {
     const metadata = JSON.parse(meta);
 
     switch (field.type) {
-      case 'file':
+      case 'file': {
+        // Evaluate the component to use
+        const FormUpload = CustomUpload || Upload;
         return (
-          <Upload
+          <FormUpload
             accept={ metadata.accept }
             error={ hasError }
             errorMessage={ errorMessage }
@@ -52,6 +55,7 @@ const RenderFields = (props) => {
             type='file'
           />
         );
+      }
       case 'text':
       case 'url':
       case 'email':
