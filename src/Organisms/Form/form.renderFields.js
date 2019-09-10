@@ -4,6 +4,7 @@ import { get } from 'lodash';
 
 // COMPONENTS & STYLES
 import Input from '../../Forms/Input';
+import Upload from '../../Forms/Upload';
 
 const RenderFields = (props) => {
   const {
@@ -18,16 +19,35 @@ const RenderFields = (props) => {
   return fields.map(field => {
     const {
       label,
+      meta = {},
       name,
       placeholder,
       required
     } = field;
-
+    
     const { value, error } = get(values, field.name, { value: '', error: true });
     const hasError = !!error && showErrors;
     const errorMessage = typeof error === 'string' ? error : 'Field invalid';
+    const metadata = JSON.parse(meta);
 
     switch (field.type) {
+      case 'file':
+        return (
+          <Upload
+            accept={ metadata.accept }
+            error={ hasError }
+            errorMessage={ errorMessage }
+            key={ name }
+            label={ label }
+            maxSize={ metadata.maxSize }
+            multiple={ metadata.multiple }
+            name={ name }
+            onChange={ ({ value: val }) => {
+              handleBlur({ key: name, value: val });
+            } }
+            type='file'
+          />
+        );
       case 'text':
       case 'url':
       case 'email':

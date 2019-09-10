@@ -125,9 +125,11 @@ const useFormData = ({ name, initialErrors = false }) => {
     const valid = await model.current.isValid(formattedData);
     if (valid) {
       submitForm({
+        context: { hasUpload: true }, // activate Upload link
         variables: {
           id: data.form_show.id,
-          body: JSON.stringify(formattedData)
+          body: JSON.stringify(formattedData),
+          attachments: [formattedData.file]
         }
       });
     } else {
