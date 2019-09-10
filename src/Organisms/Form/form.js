@@ -25,7 +25,8 @@ const Form = (props) => {
     // Custom components
     Button: CustomButton,
     Input: CustomInput,
-    Select: CustomSelect
+    Select: CustomSelect,
+    Upload: CustomUpload
   } = props;
 
   const {
@@ -47,7 +48,8 @@ const Form = (props) => {
   const customComponents = {
     CustomButton,
     CustomInput,
-    CustomSelect
+    CustomSelect,
+    CustomUpload
   };
 
   const submitted = get(submit, 'data.form_submit');
@@ -118,7 +120,8 @@ Form.defaultProps = {
   // Custom components
   Button: null,
   Input: null,
-  Select: null
+  Select: null,
+  Upload: null
 };
 
 Form.propTypes = {
@@ -130,7 +133,8 @@ Form.propTypes = {
   // Custom components
   Button: PropTypes.func,
   Input: PropTypes.func,
-  Select: PropTypes.func
+  Select: PropTypes.func,
+  Upload: PropTypes.func
 };
 
 export default Form;

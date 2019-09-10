@@ -72,6 +72,7 @@ stories.add(
         renderSteps={ renderSteps }
         Input={ CustomInput }
         Button={ CustomButton }
+        Upload={ CustomInput }
       />
     );
   }), { info: { propTablesExclude: [] }, notes: README }
