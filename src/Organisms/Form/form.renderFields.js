@@ -33,7 +33,6 @@ const RenderFields = (props) => {
     const { value, error } = get(values, field.name, { value: '', error: true });
     const hasError = !!error && showErrors;
     const errorMessage = typeof error === 'string' ? error : 'Field invalid';
-    const metadata = JSON.parse(meta);
 
     switch (field.type) {
       case 'file': {
@@ -41,13 +40,10 @@ const RenderFields = (props) => {
         const FormUpload = CustomUpload || Upload;
         return (
           <FormUpload
-            accept={ metadata.accept }
             error={ hasError }
             errorMessage={ errorMessage }
             key={ name }
             label={ label }
-            maxSize={ metadata.maxSize }
-            multiple={ metadata.multiple }
             name={ name }
             onChange={ ({ value: val }) => {
               handleBlur({ key: name, value: val });
