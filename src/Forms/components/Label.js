@@ -20,7 +20,7 @@ const Label = (props) => {
       htmlFor={ name }
       size={ size }
     >
-      { label }{ required && <sup data-testid='required'>*</sup> } :
+      { label }{ required && <sup data-testid='required'>*</sup> }
     </StyledLabel>
   );
 };
