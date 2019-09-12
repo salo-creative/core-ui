@@ -13,6 +13,7 @@ import { colours } from '../../helpers/colours';
 const TextArea = props => {
   const {
     background,
+    className,
     countTo,
     disabled,
     error,
@@ -34,8 +35,9 @@ const TextArea = props => {
   } = props;
 
   return (
-    <TextAreaWrapper margin={ margin }>
+    <TextAreaWrapper margin={ margin } className={ `salo-textarea ${ className }` }>
       <Label
+        className='salo-textarea__label'
         error={ error }
         label={ label }
         name={ name }
@@ -46,6 +48,7 @@ const TextArea = props => {
         aria-required={ required.toString() }
         aria-invalid={ error.toString() }
         background={ background }
+        className='salo-textarea__field'
         disabled={ disabled }
         id={ name }
         maxLength={ max }
@@ -64,12 +67,14 @@ const TextArea = props => {
         />
       ) }
       <ErrorText
+        className='salo-textarea__error'
         disabled={ disabled }
         error={ error }
         errorMessage={ errorMessage }
         size={ size }
       />
       <HelperText
+        className='salo-textarea__helper'
         disabled={ disabled }
         error={ error }
         helperText={ helperText }
@@ -81,6 +86,7 @@ const TextArea = props => {
 
 TextArea.defaultProps = {
   background: colours.grey,
+  className: '',
   countTo: null,
   disabled: false,
   error: false,
@@ -102,6 +108,7 @@ TextArea.defaultProps = {
 
 TextArea.propTypes = {
   background: PropTypes.string,
+  className: PropTypes.string,
   countTo: PropTypes.number,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
