@@ -5,6 +5,7 @@ import { TextAreaWrapper, Field } from './textArea.styles';
 import Label from '../components/Label';
 import ErrorText from '../components/ErrorText';
 import HelperText from '../components/HelperText';
+import Counter from './textArea.counter';
 
 // HELPERS & CONSTANTS
 import { colours } from '../../helpers/colours';
@@ -12,21 +13,24 @@ import { colours } from '../../helpers/colours';
 const TextArea = props => {
   const {
     background,
+    countTo,
     disabled,
     error,
     errorMessage,
     helperText,
     label,
     margin,
+    max,
+    min,
     name,
     onBlur,
     onChange,
     onFocus,
     placeholder,
     required,
-    value,
     rows,
-    size
+    size,
+    value
   } = props;
 
   return (
@@ -44,6 +48,8 @@ const TextArea = props => {
         background={ background }
         disabled={ disabled }
         id={ name }
+        maxLength={ max }
+        minLength={ min }
         onBlur={ e => onBlur({ e, value: e.target.value }) }
         onChange={ e => onChange({ e, value: e.target.value }) }
         onFocus={ e => onFocus({ e, value: e.target.value }) }
@@ -51,6 +57,12 @@ const TextArea = props => {
         rows={ rows }
         value={ value }
       />
+      { countTo && (
+        <Counter
+          countTo={ countTo }
+          value={ value }
+        />
+      ) }
       <ErrorText
         disabled={ disabled }
         error={ error }
@@ -69,39 +81,45 @@ const TextArea = props => {
 
 TextArea.defaultProps = {
   background: colours.grey,
+  countTo: null,
   disabled: false,
   error: false,
   errorMessage: 'Field invalid',
   helperText: '',
   label: '',
   margin: '0 0 2rem',
+  max: null,
+  min: null,
   onBlur: () => null,
   onChange: () => null,
   onFocus: () => null,
   placeholder: '',
   required: false,
-  value: '',
   rows: 3,
-  size: 'M'
+  size: 'M',
+  value: ''
 };
 
 TextArea.propTypes = {
   background: PropTypes.string,
+  countTo: PropTypes.number,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   helperText: PropTypes.string,
   label: PropTypes.string,
   margin: PropTypes.string,
+  max: PropTypes.number,
+  min: PropTypes.number,
   name: PropTypes.string.isRequired,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  value: PropTypes.string,
   rows: PropTypes.number,
-  size: PropTypes.oneOf(['L', 'M'])
+  size: PropTypes.oneOf(['L', 'M']),
+  value: PropTypes.string
 };
 
 export default TextArea;
