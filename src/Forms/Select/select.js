@@ -44,19 +44,19 @@ const Select = (props) => {
   return (
     <OuterSelectWrapper margin={ margin } className={ `salo-select ${ className }` }>
       <Label
-        className='salo-input__label'
+        className='salo-select__label'
         error={ error }
         label={ label }
         name={ name }
         required={ required }
         size={ size }
       />
-      <SelectWrapper background={ background } className='salo-input__wrapper'>
+      <SelectWrapper background={ background } className='salo-select__wrapper'>
         <Selector
           aria-required={ required.toString() }
           aria-invalid={ error.toString() }
           border={ border.toString() }
-          className='salo-input__field'
+          className='salo-select__field'
           disabled={ disabled }
           height={ height() }
           id={ name }
@@ -76,14 +76,14 @@ const Select = (props) => {
         ) }
       </SelectWrapper>
       <ErrorText
-        className='salo-input__error'
+        className='salo-select__error'
         disabled={ disabled }
         error={ error }
         errorMessage={ errorMessage }
         size={ size }
       />
       <HelperText
-        className='salo-input__helper'
+        className='salo-select__helper'
         disabled={ disabled }
         error={ error }
         helperText={ helperText }
