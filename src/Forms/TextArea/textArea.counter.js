@@ -6,7 +6,7 @@ const Counter = ({ countTo, value }) => {
   const count = countTo - get(value, 'length') || 0;
   
   return (
-    <p className='salo-textarea-counter'>
+    <p className='salo-textarea__counter'>
       { count } <span className='salo-textarea-counter-text'>characters</span>
     </p>
   );
