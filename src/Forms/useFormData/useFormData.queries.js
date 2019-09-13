@@ -9,7 +9,6 @@ const fieldPartial = `
     value
   }
   placeholder
-  required
   type
   value
   validation {

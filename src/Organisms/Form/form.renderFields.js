@@ -26,7 +26,7 @@ const RenderFields = (props) => {
       label,
       name,
       placeholder,
-      required
+      validation: { required }
     } = field;
     
     const { value, error } = get(values, field.name, { value: '', error: true });
