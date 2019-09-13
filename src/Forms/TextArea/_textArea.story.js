@@ -55,3 +55,43 @@ stories.add(
     notes: README
   }
 );
+
+stories.add(
+  'Counter',
+  (() => {
+    // Initialize store.
+    const store = new Store({ value: 'Some text would sure look nice here.' });
+
+    // Knobs.
+    const label = text('Label', 'TextArea Label');
+    const error = boolean('Show error state', false);
+    const required = boolean('Required field', false);
+    const disabled = boolean('Show disabled state', false);
+    const rows = number('Rows', 3);
+    const maxSize = number('Max characters', 200);
+    const helperText = text('Helper text', 'Helper text');
+    const size = select('size', ['L', 'M'], 'M');
+    return (
+      <RenderWithProps store={ store }>
+        <TextArea
+          countTo={ maxSize }
+          disabled={ disabled }
+          error={ error }
+          helperText={ helperText }
+          label={ label }
+          max={ maxSize }
+          name='story'
+          onChange={ ({ value }) => store.set({ value }) }
+          required={ required }
+          rows={ rows }
+          size={ size }
+          value={ store.value }
+        />
+      </RenderWithProps>
+    );
+  }),
+  {
+    info: { propTablesExclude: [RenderWithProps] },
+    notes: README
+  }
+);

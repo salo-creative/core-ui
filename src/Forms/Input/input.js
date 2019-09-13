@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -14,15 +15,21 @@ import { colours } from '../../helpers/colours';
 
 const Input = (props) => {
   const {
+    accept,
     background,
+    border,
+    borderRadius,
+    capture,
     className,
     disabled,
     error,
     errorMessage,
+    files,
     fontSize,
     helperText,
     label,
     margin,
+    multiple,
     name,
     onBlur,
     onChange,
@@ -33,13 +40,7 @@ const Input = (props) => {
     showStrength,
     size,
     type,
-    value,
-    border,
-    borderRadius,
-    accept,
-    capture,
-    files,
-    multiple
+    value
   } = props;
 
   const height = () => {
@@ -111,17 +112,21 @@ const Input = (props) => {
 };
 
 Input.defaultProps = {
+  accept: null,
   background: colours.paleGrey,
   border: '1px solid',
   borderRadius: '0.4rem',
+  capture: null,
   className: '',
   disabled: false,
   error: false,
   errorMessage: 'Field invalid',
+  files: null,
   fontSize: '1.4rem',
   helperText: '',
   label: '',
   margin: '0 0 2rem',
+  multiple: null,
   onBlur: () => null,
   onChange: () => null,
   onKeyUp: () => null,
@@ -135,23 +140,27 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
+  accept: PropTypes.string,
   background: PropTypes.string,
+  border: PropTypes.string,
+  borderRadius: PropTypes.string,
+  capture: PropTypes.string,
   className: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
+  files: PropTypes.string,
   fontSize: PropTypes.string,
   helperText: PropTypes.string,
   label: PropTypes.string,
   margin: PropTypes.string,
+  multiple: PropTypes.string,
   name: PropTypes.string.isRequired,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onKeyUp: PropTypes.func,
   padding: PropTypes.string,
   placeholder: PropTypes.string,
-  border: PropTypes.string,
-  borderRadius: PropTypes.string,
   required: PropTypes.bool,
   showStrength: PropTypes.bool,
   size: PropTypes.oneOf(['L', 'M']),
