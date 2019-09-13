@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 // COMPONENTS & STYLES
+import CheckBox from '../../Forms/CheckBox';
 import Input from '../../Forms/Input';
 import Upload from '../../Forms/Upload';
 import Select from '../../Forms/Select';
@@ -16,6 +17,7 @@ const RenderFields = (props) => {
     showErrors,
     values,
     // Custom components
+    CustomCheckBox,
     CustomInput,
     CustomSelect,
     CustomUpload
@@ -110,8 +112,25 @@ const RenderFields = (props) => {
           </FormSelect>
         );
       }
+      case 'checkbox': {
+        // Evaluate the component to use
+        const FormCheckbox = CustomCheckBox || CheckBox;
+        return (
+          <FormCheckbox
+            checked={ value }
+            error={ hasError }
+            errorMessage={ errorMessage }
+            disabled={ disabled }
+            key={ name }
+            label={ label }
+            name={ name }
+            onChange={ ({ checked }) => handleBlur({ key: name, value: checked }) }
+            required={ required }
+          />
+        );
+      }
       default:
-        return <p>The supplied field type is invalid</p>;
+        return <p key={ name }>The supplied field type is invalid</p>;
     }
   });
 };
