@@ -56,10 +56,19 @@ export const NavItem = styled.button`
       background: ${ ({ theme }) => transparentize(0.25, theme.grey) };
     }
   }
-  &.active,
+  &.active {
+    &:before {
+      background: ${ ({ theme }) => theme.darkGrey };
+    }
+  }
   &.complete {
     &:before {
-      background: ${ ({ theme }) => theme.primary };
+      background: ${ ({ theme }) => theme.success };
+    }
+  }
+  &.error {
+    &:before {
+      background: ${ ({ theme }) => theme.error };
     }
   }
 `;

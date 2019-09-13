@@ -35,6 +35,7 @@ export { default as Breadcrumb } from './Molecules/Breadcrumb';
 export { default as Button } from './Molecules/Button';
 export { default as Card } from './Molecules/Card';
 export { default as Drop } from './Molecules/Drop';
+export { default as ErrorMessage } from './Molecules/ErrorMessage';
 export { default as FlyOut, FlyOutButton, FlyOutLink } from './Molecules/FlyOut';
 export { default as Loader } from './Molecules/Loader';
 export { default as Modal } from './Molecules/Modal';
@@ -69,6 +70,7 @@ export { default as useForm } from './Forms/useForm';
  * formed of multiple re-usable and independently updatable atoms and molecules
  */
 export { default as Table } from './Organisms/Table';
+export { default as Form } from './Organisms/Form';
 
 /**
  * HELPERS & GLOBALS

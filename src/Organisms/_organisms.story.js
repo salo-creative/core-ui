@@ -1,1 +1,2 @@
-import table from './Table/_table.story.js';
+import './Form/_form.story';
+import './Table/_table.story';

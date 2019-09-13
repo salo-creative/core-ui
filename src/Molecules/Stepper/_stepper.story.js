@@ -44,7 +44,17 @@ stories.add(
               },
               {
                 id: 'step_2',
-                title: 'Second step',
+                title: 'First step',
+                complete: true,
+                content: (
+                  <React.Fragment>
+                    <P> Some lovely step content</P>
+                  </React.Fragment>
+                )
+              },
+              {
+                id: 'step_3',
+                title: 'Third step',
                 complete: false,
                 content: (
                   <React.Fragment>
@@ -53,8 +63,8 @@ stories.add(
                 )
               },
               {
-                id: 'step_3',
-                title: 'Third step',
+                id: 'step_4',
+                title: 'Fourth step',
                 disabled: true,
                 complete: false,
                 content: (
