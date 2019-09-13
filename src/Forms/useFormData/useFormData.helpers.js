@@ -1,5 +1,7 @@
 import { get } from 'lodash';
-import { buildYup } from 'json-schema-to-yup';
+
+// HELPERS & CONSTANTS
+import { buildYup } from '../../helpers/form';
 
 /**
  * GET INITIAL VALUES
@@ -25,34 +27,11 @@ const getInitialValues = (fields, schema) => {
 };
 
 /**
- * BUILD ERROR MESSAGES
- * Build the error message objects for use in the YUP validation
- */
-const buildErrorMessages = (fields) => {
-  return fields.reduce((accum, field) => {
-    const format = get(field, 'messages.format') || `Please enter ${ field.label } in the correct format`;
-    const required = get(field, 'messages.required') || `${ field.label } is required`;
-    
-    return {
-      ...accum,
-      [field.name]: {
-        format,
-        regex: format,
-        pattern: format,
-        required
-      }
-    };
-  }, {});
-};
-
-/**
  * BUILD SCHEMA
  * Build the YUP schema from the provided validations
  */
 export const buildSchema = (data) => {
-  const schema = JSON.parse(data.form_show.validation);
-  const config = { errMessages: buildErrorMessages(data.form_show.fields) };
-  const builtSchema = buildYup(schema, config);
+  const builtSchema = buildYup({ fields: data.form_show.fields });
   const initial = getInitialValues(get(data, 'form_show.fields', []), builtSchema);
 
   return {

@@ -24,10 +24,9 @@ const RenderFields = (props) => {
   return fields.map(field => {
     const {
       label,
-      meta = {},
       name,
       placeholder,
-      required
+      validation: { required }
     } = field;
     
     const { value, error } = get(values, field.name, { value: '', error: true });

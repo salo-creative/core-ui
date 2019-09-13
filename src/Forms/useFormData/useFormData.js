@@ -34,7 +34,7 @@ const useFormData = ({ name, initialErrors = false }) => {
   } = state;
 
   React.useEffect(() => {
-    if (get(data, 'form_show.validation')) {
+    if (get(data, 'form_show.fields')) {
       // Build the main schema
       const { initial, builtSchema } = buildSchema(data);
       model.current = builtSchema;
