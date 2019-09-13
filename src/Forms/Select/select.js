@@ -15,6 +15,7 @@ const Select = (props) => {
     background,
     border,
     children,
+    className,
     disabled,
     error,
     errorMessage,
@@ -41,19 +42,21 @@ const Select = (props) => {
   };
 
   return (
-    <OuterSelectWrapper margin={ margin }>
+    <OuterSelectWrapper margin={ margin } className={ `salo-select ${ className }` }>
       <Label
+        className='salo-select__label'
         error={ error }
         label={ label }
         name={ name }
         required={ required }
         size={ size }
       />
-      <SelectWrapper background={ background }>
+      <SelectWrapper background={ background } className='salo-select__wrapper'>
         <Selector
           aria-required={ required.toString() }
           aria-invalid={ error.toString() }
           border={ border.toString() }
+          className='salo-select__field'
           disabled={ disabled }
           height={ height() }
           id={ name }
@@ -73,12 +76,14 @@ const Select = (props) => {
         ) }
       </SelectWrapper>
       <ErrorText
+        className='salo-select__error'
         disabled={ disabled }
         error={ error }
         errorMessage={ errorMessage }
         size={ size }
       />
       <HelperText
+        className='salo-select__helper'
         disabled={ disabled }
         error={ error }
         helperText={ helperText }
@@ -100,27 +105,31 @@ Select.defaultProps = {
   background: colours.grey,
   border: true,
   children: null,
+  className: '',
   disabled: false,
-  value: '',
-  onChange: null,
-  iconAfter: true,
   error: false,
   errorMessage: 'Field invalid',
   helperText: '',
+  iconAfter: true,
   label: '',
   margin: '0 0 2rem',
   onBlur: () => null,
+  onChange: null,
   required: false,
-  size: 'M'
+  size: 'M',
+  value: ''
 };
 
 Select.propTypes = {
   background: PropTypes.string,
   border: PropTypes.bool,
+  children: PropTypes.array,
+  className: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   helperText: PropTypes.string,
+  iconAfter: PropTypes.bool,
   label: PropTypes.string,
   margin: PropTypes.string,
   name: PropTypes.string.isRequired,
@@ -128,9 +137,7 @@ Select.propTypes = {
   onChange: PropTypes.func,
   required: PropTypes.bool,
   size: PropTypes.oneOf(['L', 'M']),
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  children: PropTypes.array,
-  iconAfter: PropTypes.bool
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 export default Select;
