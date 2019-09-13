@@ -119,6 +119,9 @@ export const buildYup = ({ fields }) => {
       }
       case 'boolean': {
         vRule = boolean();
+        if (required) {
+          vRule = vRule.oneOf([true], 'Field must be checked');
+        }
         break;
       }
       case 'array':
