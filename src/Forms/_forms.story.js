@@ -2,6 +2,7 @@ import './CheckBox/_checkBox.story';
 import './DatePicker/_datePicker.story';
 import './Input/_input.story';
 import './Numbers/_numbers.story';
+import './Radio/_radio.story';
 import './Range/_range.story';
 import './ReadOnly/_readOnly.story';
 import './Select/_select.story';

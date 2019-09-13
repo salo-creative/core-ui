@@ -6,6 +6,7 @@ import { get } from 'lodash';
 import CheckBox from '../../Forms/CheckBox';
 import Input from '../../Forms/Input';
 import Upload from '../../Forms/Upload';
+import Radio from '../../Forms/Radio';
 import Select from '../../Forms/Select';
 
 const RenderFields = (props) => {
@@ -19,6 +20,7 @@ const RenderFields = (props) => {
     // Custom components
     CustomCheckBox,
     CustomInput,
+    CustomRadio,
     CustomSelect,
     CustomUpload
   } = props;
@@ -27,6 +29,7 @@ const RenderFields = (props) => {
     const {
       label,
       name,
+      options,
       placeholder,
       validation: { required }
     } = field;
@@ -102,7 +105,7 @@ const RenderFields = (props) => {
             value={ value }
           >
             <option value=''>Please select…</option>
-            { field.options.map(option => (
+            { options.map(option => (
               <option
                 key={ option.value }
                 value={ option.value }
@@ -126,6 +129,24 @@ const RenderFields = (props) => {
             name={ name }
             onChange={ ({ checked }) => handleBlur({ key: name, value: checked }) }
             required={ required }
+          />
+        );
+      }
+      case 'radio': {
+        // Evaluate the component to use
+        const FormRadio = CustomRadio || Radio;
+        return (
+          <FormRadio
+            error={ hasError }
+            errorMessage={ errorMessage }
+            disabled={ disabled }
+            key={ name }
+            label={ label }
+            name={ name }
+            onChange={ (val) => handleBlur({ key: name, value: val }) }
+            options={ options }
+            required={ required }
+            value={ value }
           />
         );
       }
