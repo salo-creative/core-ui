@@ -38,7 +38,6 @@ export const GET_FORM = gql`
         }
       }
       title
-      validation
     }
   }
 `;
