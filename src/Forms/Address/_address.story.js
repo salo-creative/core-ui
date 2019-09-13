@@ -25,9 +25,6 @@ stories.add(
     // STORE
     const store = new Store({ value: {} });
     // KNOBS
-    const label = text('Label', 'Address label');
-    const helperText = text('Helper text', 'Helper text');
-    const icon = text('Icon', 'pencil');
     const padding = text('Padding', '0 1rem');
     const border = text('Border', '1px solid');
     const borderRadius = text('Border radius', '0.4rem');
@@ -43,11 +40,8 @@ stories.add(
           disabled={ disabled }
           error={ error }
           fontSize={ fontSize }
-          label={ label }
           required={ required }
-          helperText={ helperText }
           size={ size }
-          icon={ icon }
           padding={ padding }
           border={ border }
           borderRadius={ borderRadius }

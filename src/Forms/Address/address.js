@@ -11,9 +11,16 @@ const allowedFields = ['line1', 'line2', 'city', 'county', 'postcode', 'country'
 
 const Address = (props) => {
   const {
+    background,
+    border,
+    borderRadius,
+    className,
+    disabled,
     fields,
     name,
+    padding,
     required,
+    size,
     value
   } = props;
 
@@ -41,34 +48,98 @@ const Address = (props) => {
   };
 
   return (
-    <div className='address__wrapper'>
+    <div className={ `address__wrapper ${ className }` }>
       { fields.includes('line1') && (
         <Input
+          background={ background }
+          border={ border }
+          borderRadius={ borderRadius }
+          disabled={ disabled }
           key={ `line1_${ name }` }
           label='Address line 1'
           name={ `line1_${ name }` }
+          padding={ padding }
           required={ required }
+          size={ size }
           value={ state.line1 }
           onChange={ ({ value: val }) => handleChange({ key: 'line1', val }) }
         />
       ) }
       { fields.includes('line2') && (
         <Input
+          background={ background }
+          border={ border }
+          borderRadius={ borderRadius }
+          disabled={ disabled }
           key={ `line2_${ name }` }
           label='Address line 2'
           name={ `line2_${ name }` }
+          padding={ padding }
+          size={ size }
           value={ state.line1 }
           onChange={ ({ value: val }) => handleChange({ key: 'line2', val }) }
         />
       ) }
       { fields.includes('city') && (
         <Input
+          background={ background }
+          border={ border }
+          borderRadius={ borderRadius }
+          disabled={ disabled }
           key={ `city_${ name }` }
           label='City'
           name={ `city_${ name }` }
+          padding={ padding }
           required={ required }
+          size={ size }
           value={ state.line1 }
           onChange={ ({ value: val }) => handleChange({ key: 'city', val }) }
+        />
+      ) }
+      { fields.includes('county') && (
+        <Input
+          background={ background }
+          border={ border }
+          borderRadius={ borderRadius }
+          disabled={ disabled }
+          key={ `county_${ name }` }
+          label='County'
+          name={ `county_${ name }` }
+          padding={ padding }
+          size={ size }
+          value={ state.line1 }
+          onChange={ ({ value: val }) => handleChange({ key: 'county', val }) }
+        />
+      ) }
+      { fields.includes('postcode') && (
+        <Input
+          background={ background }
+          border={ border }
+          borderRadius={ borderRadius }
+          disabled={ disabled }
+          key={ `postcode_${ name }` }
+          label='Postcode'
+          name={ `postcode_${ name }` }
+          padding={ padding }
+          required={ required }
+          size={ size }
+          value={ state.line1 }
+          onChange={ ({ value: val }) => handleChange({ key: 'postcode', val }) }
+        />
+      ) }
+      { fields.includes('country') && (
+        <Input
+          background={ background }
+          border={ border }
+          borderRadius={ borderRadius }
+          disabled={ disabled }
+          key={ `country_${ name }` }
+          label='Country'
+          name={ `country_${ name }` }
+          padding={ padding }
+          size={ size }
+          value={ state.line1 }
+          onChange={ ({ value: val }) => handleChange({ key: 'country', val }) }
         />
       ) }
     </div>
@@ -76,7 +147,6 @@ const Address = (props) => {
 };
 
 Address.defaultProps = {
-  accept: null,
   background: colours.paleGrey,
   border: '1px solid',
   borderRadius: '0.4rem',
@@ -86,8 +156,6 @@ Address.defaultProps = {
   errorMessage: 'Field invalid',
   fields: allowedFields,
   fontSize: '1.4rem',
-  helperText: '',
-  label: '',
   margin: '0 0 2rem',
   onChange: () => null,
   padding: '0 1rem',
@@ -100,20 +168,16 @@ Address.propTypes = {
   background: PropTypes.string,
   border: PropTypes.string,
   borderRadius: PropTypes.string,
-  capture: PropTypes.string,
   className: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   fields: PropTypes.arrayOf(PropTypes.oneOf(allowedFields)),
   fontSize: PropTypes.string,
-  helperText: PropTypes.string,
-  label: PropTypes.string,
   margin: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   padding: PropTypes.string,
-  placeholder: PropTypes.string,
   required: PropTypes.bool,
   size: PropTypes.oneOf(['L', 'M']),
   value: PropTypes.object
