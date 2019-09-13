@@ -86,7 +86,7 @@ export const sanitize = (value) => {
 
 /**
  * BUILD YUP SCHEMA
- * For building yup validation schema from stadardised salo form fields
+ * For building yup validation schema from standardised salo form fields
  */
 export const buildYup = ({ fields }) => {
   const yupSchema = {};
@@ -128,6 +128,19 @@ export const buildYup = ({ fields }) => {
         break;
       }
       case 'date': {
+        vRule = date();
+        if (min || max) {
+          vRule.test(
+            'date-in-range', 'The supplied date is not valid',
+            (value) => {
+              return dateRangeValidation({
+                value,
+                max: max ? moment(max) : null,
+                min: min ? moment(min) : null
+              });
+            }
+          );
+        }
         break;
       }
       case 'id': {
@@ -135,6 +148,14 @@ export const buildYup = ({ fields }) => {
         break;
       }
       case 'address': {
+        vRule = object().shape({
+          line1: string().required(),
+          line2: string(),
+          city: string().required(),
+          county: string(),
+          country: string(),
+          postcode: string().required()
+        });
         break;
       }
       case 'email': {
