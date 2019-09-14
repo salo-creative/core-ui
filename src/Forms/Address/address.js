@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { string } from 'yup';
 
 // COMPONENTS & STYLES
 import Input from '../Input';
@@ -63,6 +64,8 @@ const Address = (props) => {
           border={ border }
           borderRadius={ borderRadius }
           disabled={ disabled }
+          error={ error && !string().required().isValidSync(state.line1) }
+          errorMessage='The first line of address is required'
           key={ `line1_${ name }` }
           label='Address line 1'
           name={ `line1_${ name }` }
@@ -81,6 +84,7 @@ const Address = (props) => {
           border={ border }
           borderRadius={ borderRadius }
           disabled={ disabled }
+          error={ error && !string().isValidSync(state.line2) }
           key={ `line2_${ name }` }
           label='Address line 2'
           name={ `line2_${ name }` }
@@ -98,13 +102,15 @@ const Address = (props) => {
           border={ border }
           borderRadius={ borderRadius }
           disabled={ disabled }
+          error={ error && !string().required().isValidSync(state.city) }
+          errorMessage='A city is required'
           key={ `city_${ name }` }
           label='City'
           name={ `city_${ name }` }
           padding={ padding }
           required={ required }
           size={ size }
-          value={ state.line1 }
+          value={ state.city }
           onChange={ ({ value: val }) => handleChange({ key: 'city', val }) }
           onBlur={ handleBlur }
           onKeyUp={ handleKeyUp }
@@ -116,12 +122,13 @@ const Address = (props) => {
           border={ border }
           borderRadius={ borderRadius }
           disabled={ disabled }
+          error={ error && !string().isValidSync(state.county) }
           key={ `county_${ name }` }
           label='County'
           name={ `county_${ name }` }
           padding={ padding }
           size={ size }
-          value={ state.line1 }
+          value={ state.county }
           onChange={ ({ value: val }) => handleChange({ key: 'county', val }) }
           onBlur={ handleBlur }
           onKeyUp={ handleKeyUp }
@@ -133,13 +140,15 @@ const Address = (props) => {
           border={ border }
           borderRadius={ borderRadius }
           disabled={ disabled }
+          error={ error && !string().required().isValidSync(state.postcode) }
+          errorMessage='A valid postcode is required'
           key={ `postcode_${ name }` }
           label='Postcode'
           name={ `postcode_${ name }` }
           padding={ padding }
           required={ required }
           size={ size }
-          value={ state.line1 }
+          value={ state.postcode }
           onChange={ ({ value: val }) => handleChange({ key: 'postcode', val }) }
           onBlur={ handleBlur }
           onKeyUp={ handleKeyUp }
@@ -151,12 +160,13 @@ const Address = (props) => {
           border={ border }
           borderRadius={ borderRadius }
           disabled={ disabled }
+          error={ error && !string().isValidSync(state.country) }
           key={ `country_${ name }` }
           label='Country'
           name={ `country_${ name }` }
           padding={ padding }
           size={ size }
-          value={ state.line1 }
+          value={ state.country }
           onChange={ ({ value: val }) => handleChange({ key: 'country', val }) }
           onBlur={ handleBlur }
           onKeyUp={ handleKeyUp }
