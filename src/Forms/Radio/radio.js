@@ -31,6 +31,7 @@ class Radio extends React.Component {
           label={ label }
           name={ name }
           required={ required }
+          size={ size }
         />
         <GroupWrapper>
           { options.map((field, i) => {

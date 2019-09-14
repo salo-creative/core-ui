@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 // COMPONENTS & STYLES
+import Address from '../../Forms/Address';
 import CheckBox from '../../Forms/CheckBox';
 import Input from '../../Forms/Input';
 import Upload from '../../Forms/Upload';
 import Radio from '../../Forms/Radio';
 import Select from '../../Forms/Select';
+
+// HELPERS & CONSTANTS
+import { evaluateValue } from '../../Forms/useFormData/useFormData.helpers';
 
 const RenderFields = (props) => {
   const {
@@ -18,6 +22,7 @@ const RenderFields = (props) => {
     showErrors,
     values,
     // Custom components
+    CustomAddress,
     CustomCheckBox,
     CustomInput,
     CustomRadio,
@@ -30,15 +35,20 @@ const RenderFields = (props) => {
       label,
       name,
       options,
+      meta,
       placeholder,
+      type,
       validation: { required }
     } = field;
     
-    const { value, error } = get(values, field.name, { value: '', error: true });
+    const { value, error } = get(values, field.name, { value: evaluateValue(field), error: true });
+    // Grab any errors
     const hasError = !!error && showErrors;
     const errorMessage = typeof error === 'string' ? error : 'Field invalid';
+    // Grab the meta info from the form
+    const metaData = meta && typeof meta === 'string' ? JSON.parse(meta) : {};
 
-    switch (field.type) {
+    switch (type) {
       case 'file': {
         // Evaluate the component to use
         const FormUpload = CustomUpload || Upload;
@@ -82,7 +92,7 @@ const RenderFields = (props) => {
             onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
             placeholder={ placeholder }
             required={ required }
-            type={ field.type }
+            type={ type }
             value={ value }
           />
         );
@@ -145,6 +155,22 @@ const RenderFields = (props) => {
             name={ name }
             onChange={ (val) => handleBlur({ key: name, value: val }) }
             options={ options }
+            required={ required }
+            value={ value }
+          />
+        );
+      }
+      case 'address': {
+        // Evaluate the component to use
+        const FormAddress = CustomAddress || Address;
+        return (
+          <FormAddress
+            error={ hasError }
+            disabled={ disabled }
+            fields={ get(metaData, 'fields', ['line2', 'county']) }
+            key={ name }
+            name={ name }
+            onChange={ (val) => handleBlur({ key: name, value: val }) }
             required={ required }
             value={ value }
           />
