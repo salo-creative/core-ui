@@ -62,6 +62,7 @@ const TypeAhead = (props) => {
   React.useEffect(() => {
     window.addEventListener('keydown', navigate);
     return () => window.removeEventListener('keydown', navigate);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   const openDrop = (e) => {
@@ -108,6 +109,7 @@ const TypeAhead = (props) => {
         onChange={ handleChange }
         value={ state.userInput }
         name={ `${ name }-input` }
+        // eslint-disable-next-line react/jsx-props-no-spreading
         { ...inputProps }
       />
       <SuggestionsList

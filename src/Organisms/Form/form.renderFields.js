@@ -4,8 +4,10 @@ import { get } from 'lodash';
 
 // COMPONENTS & STYLES
 import Input from '../../Forms/Input';
-import Upload from '../../Forms/Upload';
 import Select from '../../Forms/Select';
+import TextArea from '../../Forms/TextArea';
+import TypeAhead from '../../Forms/TypeAhead';
+import Upload from '../../Forms/Upload';
 
 const RenderFields = (props) => {
   const {
@@ -14,10 +16,13 @@ const RenderFields = (props) => {
     handleBlur,
     handleChange,
     showErrors,
+    typeaheads,
     values,
     // Custom components
     CustomInput,
     CustomSelect,
+    CustomTextArea,
+    CustomTypeAhead,
     CustomUpload
   } = props;
 
@@ -48,6 +53,53 @@ const RenderFields = (props) => {
               handleBlur({ key: name, value: val });
             } }
             type='file'
+          />
+        );
+      }
+      case 'typeahead': {
+        const FormTypeAhead = CustomTypeAhead || TypeAhead;
+        return (
+          <FormTypeAhead
+            disabled={ disabled }
+            error={ error }
+            errorMessage={ errorMessage }
+            key={ name }
+            label={ label }
+            name={ name }
+            onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
+            onSelect={ (val) => handleBlur({ key: name, value: val }) }
+            retryAction={ typeaheads[name].retryAction }
+            required={ required }
+            suggestions={ typeaheads[name].suggestions }
+          />
+        );
+      }
+      case 'textarea': {
+        const FormTextArea = CustomTextArea || TextArea;
+        const meta = typeof field.meta === 'string' ? JSON.parse(field.meta) : {};
+        return (
+          <FormTextArea
+            countTo={ meta.countTo }
+            error={ hasError }
+            errorMessage={ errorMessage }
+            disabled={ disabled }
+            key={ name }
+            label={ label }
+            max={ field.validation.max }
+            min={ field.validation.min }
+            name={ name }
+            onBlur={ ({ value: val }) => handleBlur({ key: name, value: val }) }
+            onKeyUp={ ({ e, value: val }) => {
+            // This is needed to trigger field validation when return is pressed to submit
+              if (e.keyCode === 13) {
+                handleBlur({ key: name, value: val });
+              }
+            } }
+            onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
+            placeholder={ placeholder }
+            required={ required }
+            type={ field.type }
+            value={ value }
           />
         );
       }
@@ -118,6 +170,7 @@ const RenderFields = (props) => {
 
 RenderFields.defaultProps = {
   disabled: false,
+  typeaheads: null,
   values: {}
 };
 
@@ -126,6 +179,7 @@ RenderFields.propTypes = {
   fields: PropTypes.array.isRequired,
   handleBlur: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+  typeaheads: PropTypes.object,
   values: PropTypes.object
 };
 
