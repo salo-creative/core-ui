@@ -16,6 +16,7 @@ const Address = (props) => {
     borderRadius,
     className,
     disabled,
+    error,
     fields,
     name,
     padding,
@@ -38,6 +39,13 @@ const Address = (props) => {
   // On field blur we emit these back on the on change function to the parent
   const handleBlur = () => {
     console.log(state);
+  };
+
+  // This is needed to trigger field validation when return is pressed to submit
+  const handleKeyUp = ({ e }) => {
+    if (e.keyCode === 13) {
+      handleBlur();
+    }
   };
 
   const handleChange = ({ key, val }) => {
@@ -63,6 +71,8 @@ const Address = (props) => {
           size={ size }
           value={ state.line1 }
           onChange={ ({ value: val }) => handleChange({ key: 'line1', val }) }
+          onBlur={ handleBlur }
+          onKeyUp={ handleKeyUp }
         />
       ) }
       { fields.includes('line2') && (
@@ -78,6 +88,8 @@ const Address = (props) => {
           size={ size }
           value={ state.line1 }
           onChange={ ({ value: val }) => handleChange({ key: 'line2', val }) }
+          onBlur={ handleBlur }
+          onKeyUp={ handleKeyUp }
         />
       ) }
       { fields.includes('city') && (
@@ -94,6 +106,8 @@ const Address = (props) => {
           size={ size }
           value={ state.line1 }
           onChange={ ({ value: val }) => handleChange({ key: 'city', val }) }
+          onBlur={ handleBlur }
+          onKeyUp={ handleKeyUp }
         />
       ) }
       { fields.includes('county') && (
@@ -109,6 +123,8 @@ const Address = (props) => {
           size={ size }
           value={ state.line1 }
           onChange={ ({ value: val }) => handleChange({ key: 'county', val }) }
+          onBlur={ handleBlur }
+          onKeyUp={ handleKeyUp }
         />
       ) }
       { fields.includes('postcode') && (
@@ -125,6 +141,8 @@ const Address = (props) => {
           size={ size }
           value={ state.line1 }
           onChange={ ({ value: val }) => handleChange({ key: 'postcode', val }) }
+          onBlur={ handleBlur }
+          onKeyUp={ handleKeyUp }
         />
       ) }
       { fields.includes('country') && (
@@ -140,6 +158,8 @@ const Address = (props) => {
           size={ size }
           value={ state.line1 }
           onChange={ ({ value: val }) => handleChange({ key: 'country', val }) }
+          onBlur={ handleBlur }
+          onKeyUp={ handleKeyUp }
         />
       ) }
     </div>
