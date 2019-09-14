@@ -46,7 +46,7 @@ stories.add(
           border={ border }
           borderRadius={ borderRadius }
           value={ store.value }
-          onChange={ ({ value }) => store.set({ value }) }
+          onChange={ (address) => console.log(address) }
         />
       </RenderWithProps>
     );
