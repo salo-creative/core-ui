@@ -111,6 +111,7 @@ const Form = (props) => {
             activeStep={ activeStep }
             changeStep={ changeStep }
             steps={ steps }
+            typeaheads={ typeaheads }
           />
         ) }
       </form>

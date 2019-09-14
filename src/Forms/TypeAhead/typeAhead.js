@@ -42,7 +42,7 @@ const TypeAhead = (props) => {
         ...state,
         activeSuggestion: 0,
         showSuggestions: false,
-        userInput: suggestions[state.activeSuggestion].label
+        userInput: suggestions[state.activeSuggestion].name
       });
       onSelect(suggestions[state.activeSuggestion]);
     }
@@ -97,7 +97,7 @@ const TypeAhead = (props) => {
     setState({
       activeSuggestion: 0,
       showSuggestions: false,
-      userInput: suggestion.label
+      userInput: suggestion.name
     });
     onSelect(suggestion);
   };

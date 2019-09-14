@@ -73,19 +73,26 @@ const RenderFields = (props) => {
       }
       case 'typeahead': {
         const FormTypeAhead = CustomTypeAhead || TypeAhead;
+        const typeahead = typeaheads[name];
         return (
           <FormTypeAhead
+            debounced
             disabled={ disabled }
             error={ error }
             errorMessage={ errorMessage }
             key={ name }
             label={ label }
             name={ name }
-            onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
+            onChange={ ({ value: val }) => {
+              handleChange({ key: name, value: val });
+              if (typeof typeahead.callback === 'function') {
+                typeahead.callback({ key: name, value: val });
+              }
+            } }
             onSelect={ (val) => handleBlur({ key: name, value: val }) }
-            retryAction={ typeaheads[name].retryAction }
+            retryAction={ typeahead.retryAction }
             required={ required }
-            suggestions={ typeaheads[name].suggestions }
+            suggestions={ typeahead.suggestions }
           />
         );
       }
@@ -93,7 +100,7 @@ const RenderFields = (props) => {
         const FormTextArea = CustomTextArea || TextArea;
         return (
           <FormTextArea
-            countTo={ meta.countTo }
+            countTo={ metaData.countTo }
             error={ hasError }
             errorMessage={ errorMessage }
             disabled={ disabled }
