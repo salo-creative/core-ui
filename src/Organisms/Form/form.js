@@ -27,6 +27,8 @@ const Form = (props) => {
     Button: CustomButton,
     Input: CustomInput,
     Select: CustomSelect,
+    TextArea: CustomTextArea,
+    TypeAhead: CustomTypeAhead,
     Upload: CustomUpload
   } = props;
 
@@ -50,6 +52,8 @@ const Form = (props) => {
     CustomButton,
     CustomInput,
     CustomSelect,
+    CustomTextArea,
+    CustomTypeAhead,
     CustomUpload
   };
 
@@ -123,6 +127,8 @@ Form.defaultProps = {
   Button: null,
   Input: null,
   Select: null,
+  TextArea: null,
+  TypeAhead: null,
   Upload: null
 };
 
@@ -137,6 +143,8 @@ Form.propTypes = {
   Button: PropTypes.func,
   Input: PropTypes.func,
   Select: PropTypes.func,
+  TextArea: PropTypes.func,
+  TypeAhead: PropTypes.func,
   Upload: PropTypes.func
 };
 
