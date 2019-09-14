@@ -4,22 +4,46 @@ import { get } from 'lodash';
 import { buildYup } from '../../helpers/form';
 
 /**
+ * EVALUATE FIELD VALUE
+ * Evaluate the default value for a field and fallback to correct type if not available
+ */
+export const evaluateValue = ({ value, type }) => {
+  let startVal = value;
+  // If not defined grab the default
+  if (!startVal) {
+    switch (type) {
+      case 'address':
+        startVal = {};
+        break;
+      case 'checkbox':
+        startVal = false;
+        break;
+      default:
+        startVal = '';
+        break;
+    }
+  }
+  return startVal;
+};
+
+/**
  * GET INITIAL VALUES
  * Build the initial values from the provided fields and schema
  */
 const getInitialValues = (fields, schema) => {
   // TODO: Allow values to be passed in.
   return fields.reduce((accum, field) => {
+    const value = evaluateValue(field);
     let invalid = false;
     try {
-      schema.validateSyncAt(field.name, { [field.name]: field.value || '' });
+      schema.validateSyncAt(field.name, { [field.name]: value });
     } catch (error) {
       invalid = error.message;
     }
     return {
       ...accum,
       [field.name]: {
-        value: field.value || '',
+        value: field.value || value,
         error: invalid
       }
     };

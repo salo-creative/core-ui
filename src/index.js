@@ -49,9 +49,11 @@ export { default as Switch } from './Molecules/Switch';
  *
  * Any components or molecules that make up from input methods
  */
+export { default as Address } from './Forms/Address';
 export { default as CheckBox, CheckBoxGroup } from './Forms/CheckBox';
 export { default as DatePicker } from './Forms/DatePicker';
 export { default as Input } from './Forms/Input';
+export { default as Radio } from './Forms/Radio';
 export { default as Range } from './Forms/Range';
 export { default as ReadOnly } from './Forms/ReadOnly';
 export { default as Select } from './Forms/Select';

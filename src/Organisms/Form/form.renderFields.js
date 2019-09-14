@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 // COMPONENTS & STYLES
+import Address from '../../Forms/Address';
+import CheckBox from '../../Forms/CheckBox';
 import Input from '../../Forms/Input';
+import Radio from '../../Forms/Radio';
 import Select from '../../Forms/Select';
 import TextArea from '../../Forms/TextArea';
 import TypeAhead from '../../Forms/TypeAhead';
 import Upload from '../../Forms/Upload';
+
+// HELPERS & CONSTANTS
+import { evaluateValue } from '../../Forms/useFormData/useFormData.helpers';
 
 const RenderFields = (props) => {
   const {
@@ -19,7 +25,10 @@ const RenderFields = (props) => {
     typeaheads,
     values,
     // Custom components
+    CustomAddress,
+    CustomCheckBox,
     CustomInput,
+    CustomRadio,
     CustomSelect,
     CustomTextArea,
     CustomTypeAhead,
@@ -30,15 +39,21 @@ const RenderFields = (props) => {
     const {
       label,
       name,
+      options,
+      meta,
       placeholder,
+      type,
       validation: { required }
     } = field;
     
-    const { value, error } = get(values, field.name, { value: '', error: true });
+    const { value, error } = get(values, field.name, { value: evaluateValue(field), error: true });
+    // Grab any errors
     const hasError = !!error && showErrors;
     const errorMessage = typeof error === 'string' ? error : 'Field invalid';
+    // Grab the meta info from the form
+    const metaData = meta && typeof meta === 'string' ? JSON.parse(meta) : {};
 
-    switch (field.type) {
+    switch (type) {
       case 'file': {
         // Evaluate the component to use
         const FormUpload = CustomUpload || Upload;
@@ -76,7 +91,6 @@ const RenderFields = (props) => {
       }
       case 'textarea': {
         const FormTextArea = CustomTextArea || TextArea;
-        const meta = typeof field.meta === 'string' ? JSON.parse(field.meta) : {};
         return (
           <FormTextArea
             countTo={ meta.countTo }
@@ -129,7 +143,7 @@ const RenderFields = (props) => {
             onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
             placeholder={ placeholder }
             required={ required }
-            type={ field.type }
+            type={ type }
             value={ value }
           />
         );
@@ -152,7 +166,7 @@ const RenderFields = (props) => {
             value={ value }
           >
             <option value=''>Please select…</option>
-            { field.options.map(option => (
+            { options.map(option => (
               <option
                 key={ option.value }
                 value={ option.value }
@@ -162,8 +176,59 @@ const RenderFields = (props) => {
           </FormSelect>
         );
       }
+      case 'checkbox': {
+        // Evaluate the component to use
+        const FormCheckbox = CustomCheckBox || CheckBox;
+        return (
+          <FormCheckbox
+            checked={ value }
+            error={ hasError }
+            errorMessage={ errorMessage }
+            disabled={ disabled }
+            key={ name }
+            label={ label }
+            name={ name }
+            onChange={ ({ checked }) => handleBlur({ key: name, value: checked }) }
+            required={ required }
+          />
+        );
+      }
+      case 'radio': {
+        // Evaluate the component to use
+        const FormRadio = CustomRadio || Radio;
+        return (
+          <FormRadio
+            error={ hasError }
+            errorMessage={ errorMessage }
+            disabled={ disabled }
+            key={ name }
+            label={ label }
+            name={ name }
+            onChange={ (val) => handleBlur({ key: name, value: val }) }
+            options={ options }
+            required={ required }
+            value={ value }
+          />
+        );
+      }
+      case 'address': {
+        // Evaluate the component to use
+        const FormAddress = CustomAddress || Address;
+        return (
+          <FormAddress
+            error={ hasError }
+            disabled={ disabled }
+            fields={ get(metaData, 'fields', ['line2', 'county']) }
+            key={ name }
+            name={ name }
+            onChange={ (val) => handleBlur({ key: name, value: val }) }
+            required={ required }
+            value={ value }
+          />
+        );
+      }
       default:
-        return <p>The supplied field type is invalid</p>;
+        return <p key={ name }>The supplied field type is invalid</p>;
     }
   });
 };

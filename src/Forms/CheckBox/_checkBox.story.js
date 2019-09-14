@@ -71,7 +71,6 @@ stories.add(
     const error = boolean('Show error state', false);
     const required = boolean('Required field', false);
     const disabled = boolean('Show disabled state', false);
-    const singleSelect = boolean('Single select', false);
     const size = select('size', ['L', 'M'], 'M');
     return (
       <RenderWithProps store={ store }>
@@ -84,7 +83,6 @@ stories.add(
           name='story'
           onChange={ fields => store.set({ fields }) }
           required={ required }
-          singleSelect={ singleSelect }
           size={ size }
         />
       </RenderWithProps>
