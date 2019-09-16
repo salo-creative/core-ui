@@ -11,6 +11,7 @@ import { Group, GroupWrapper } from './radio.styles';
 class Radio extends React.Component {
   render() {
     const {
+      className,
       disabled,
       options,
       error,
@@ -25,7 +26,10 @@ class Radio extends React.Component {
       value
     } = this.props;
     return (
-      <Group margin={ margin }>
+      <Group
+        className={ className }
+        margin={ margin }
+      >
         <Label
           error={ error }
           label={ label }
@@ -70,6 +74,7 @@ class Radio extends React.Component {
 }
 
 Radio.defaultProps = {
+  className: '',
   disabled: false,
   error: false,
   errorMessage: 'Field invalid',
@@ -84,6 +89,7 @@ Radio.defaultProps = {
 };
 
 Radio.propTypes = {
+  className: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,

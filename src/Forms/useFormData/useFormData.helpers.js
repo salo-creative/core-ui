@@ -8,22 +8,18 @@ import { buildYup } from '../../helpers/form';
  * Evaluate the default value for a field and fallback to correct type if not available
  */
 export const evaluateValue = ({ value, type }) => {
-  let startVal = value;
   // If not defined grab the default
-  if (!startVal) {
+  if (!value) {
     switch (type) {
       case 'address':
-        startVal = {};
-        break;
+        return {};
       case 'checkbox':
-        startVal = false;
-        break;
+        return false;
       default:
-        startVal = '';
-        break;
+        return '';
     }
   }
-  return startVal;
+  return value;
 };
 
 /**

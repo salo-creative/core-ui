@@ -13,7 +13,7 @@ yarn add @salo/core-ui
 Include
 
 ```javascript
-import { Radio } from '@salo/core-ui/Forms/Radio';
+import Radio from '@salo/core-ui/Forms/Radio';
 ```
 
 Implement as follows

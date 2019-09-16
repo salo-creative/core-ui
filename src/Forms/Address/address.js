@@ -59,126 +59,85 @@ const Address = (props) => {
     });
   };
 
+  const standardProps = {
+    background,
+    border,
+    borderRadius,
+    disabled,
+    fontSize,
+    margin,
+    padding,
+    size,
+    onBlur: handleBlur,
+    onKeyUp: handleKeyUp
+  };
+
   return (
     <div className={ `address__wrapper ${ className }` }>
       <Input
-        background={ background }
-        border={ border }
-        borderRadius={ borderRadius }
-        disabled={ disabled }
+        { ...standardProps } // eslint-disable-line react/jsx-props-no-spreading
         error={ error && !string().required().isValidSync(state.line1) }
         errorMessage='The first line of address is required'
-        fontSize={ fontSize }
         key={ `line1_${ name }` }
         label='Address line 1'
-        margin={ margin }
         name={ `line1_${ name }` }
-        padding={ padding }
         required={ required }
-        size={ size }
         value={ state.line1 }
         onChange={ ({ value: val }) => handleChange({ key: 'line1', val }) }
-        onBlur={ handleBlur }
-        onKeyUp={ handleKeyUp }
       />
       { fields.includes('line2') && (
         <Input
-          background={ background }
-          border={ border }
-          borderRadius={ borderRadius }
-          disabled={ disabled }
+          { ...standardProps } // eslint-disable-line react/jsx-props-no-spreading
           error={ error && !string().isValidSync(state.line2) }
-          fontSize={ fontSize }
           key={ `line2_${ name }` }
           label='Address line 2'
-          margin={ margin }
           name={ `line2_${ name }` }
-          padding={ padding }
-          size={ size }
           value={ state.line2 }
           onChange={ ({ value: val }) => handleChange({ key: 'line2', val }) }
-          onBlur={ handleBlur }
-          onKeyUp={ handleKeyUp }
         />
       ) }
       <Input
-        background={ background }
-        border={ border }
-        borderRadius={ borderRadius }
-        disabled={ disabled }
+        { ...standardProps } // eslint-disable-line react/jsx-props-no-spreading
         error={ error && !string().required().isValidSync(state.city) }
         errorMessage='A city is required'
-        fontSize={ fontSize }
         key={ `city_${ name }` }
         label='City'
-        margin={ margin }
         name={ `city_${ name }` }
-        padding={ padding }
         required={ required }
-        size={ size }
         value={ state.city }
         onChange={ ({ value: val }) => handleChange({ key: 'city', val }) }
-        onBlur={ handleBlur }
-        onKeyUp={ handleKeyUp }
       />
       { fields.includes('county') && (
         <Input
-          background={ background }
-          border={ border }
-          borderRadius={ borderRadius }
-          disabled={ disabled }
+          { ...standardProps } // eslint-disable-line react/jsx-props-no-spreading
           error={ error && !string().isValidSync(state.county) }
-          fontSize={ fontSize }
           key={ `county_${ name }` }
           label='County'
-          margin={ margin }
           name={ `county_${ name }` }
-          padding={ padding }
-          size={ size }
           value={ state.county }
           onChange={ ({ value: val }) => handleChange({ key: 'county', val }) }
-          onBlur={ handleBlur }
-          onKeyUp={ handleKeyUp }
         />
       ) }
       <Input
-        background={ background }
-        border={ border }
-        borderRadius={ borderRadius }
-        disabled={ disabled }
+        { ...standardProps } // eslint-disable-line react/jsx-props-no-spreading
         error={ error && !string().required().isValidSync(state.postcode) }
         errorMessage='A valid postcode is required'
-        fontSize={ fontSize }
         key={ `postcode_${ name }` }
         label='Postcode'
-        margin={ margin }
         name={ `postcode_${ name }` }
-        padding={ padding }
         required={ required }
-        size={ size }
         value={ state.postcode }
         onChange={ ({ value: val }) => handleChange({ key: 'postcode', val }) }
-        onBlur={ handleBlur }
-        onKeyUp={ handleKeyUp }
       />
       { fields.includes('country') && (
         <Input
-          background={ background }
-          border={ border }
-          borderRadius={ borderRadius }
-          disabled={ disabled }
+          { ...standardProps } // eslint-disable-line react/jsx-props-no-spreading
           error={ error && !string().isValidSync(state.country) }
-          fontSize={ fontSize }
           key={ `country_${ name }` }
           label='Country'
-          margin={ margin }
           name={ `country_${ name }` }
-          padding={ padding }
-          size={ size }
           value={ state.country }
           onChange={ ({ value: val }) => handleChange({ key: 'country', val }) }
-          onBlur={ handleBlur }
-          onKeyUp={ handleKeyUp }
         />
       ) }
     </div>
