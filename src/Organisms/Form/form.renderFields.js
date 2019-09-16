@@ -74,13 +74,12 @@ const RenderFields = (props) => {
       case 'typeahead': {
         const FormTypeAhead = CustomTypeAhead || TypeAhead;
         const typeahead = typeaheads[name];
-        console.log({ error, errorMessage });
         return (
           <FormTypeAhead
             add={ typeahead.add }
             debounced
             disabled={ disabled }
-            error={ error }
+            error={ !!error }
             errorMessage={ errorMessage }
             key={ name }
             label={ label }

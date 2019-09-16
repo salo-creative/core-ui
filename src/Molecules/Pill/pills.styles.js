@@ -26,7 +26,7 @@ export const PillWrapper = styled.div`
 
 export const HiddenButton = styled.button`
     background-color: transparent;
-    visibility: ${ ({ loading }) => (loading ? 'hidden' : 'visible') };
+    visibility: ${ ({ isLoading }) => (isLoading ? 'hidden' : 'visible') };
     cursor: pointer;
     display: inline-flex;
     margin: 0;

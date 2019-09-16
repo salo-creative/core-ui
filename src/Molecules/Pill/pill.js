@@ -28,7 +28,7 @@ const Pill = (props) => {
       border={ border }
       color={ color }
       height={ height }
-      loading={ loading }
+      isLoading={ loading }
       margin={ margin }
       padding={ padding }
       shadow={ shadow }
@@ -45,7 +45,7 @@ const Pill = (props) => {
         <HiddenButton
           onClick={ () => onAdd(value) }
           disabled={ loading }
-          loading={ loading }
+          isLoading={ loading }
           padding={ padding }
         >
           <Icon
@@ -58,7 +58,7 @@ const Pill = (props) => {
         <HiddenButton
           onClick={ () => onRemove(value) }
           disabled={ loading }
-          loading={ loading }
+          isLoading={ loading }
           padding={ padding }
         >
           <Icon
