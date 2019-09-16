@@ -42,7 +42,7 @@ const TypeAhead = (props) => {
         ...state,
         activeSuggestion: 0,
         showSuggestions: false,
-        userInput: suggestions[state.activeSuggestion].label
+        userInput: suggestions[state.activeSuggestion].name
       });
       onSelect(suggestions[state.activeSuggestion]);
     }
@@ -62,6 +62,7 @@ const TypeAhead = (props) => {
   React.useEffect(() => {
     window.addEventListener('keydown', navigate);
     return () => window.removeEventListener('keydown', navigate);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   const openDrop = (e) => {
@@ -96,7 +97,7 @@ const TypeAhead = (props) => {
     setState({
       activeSuggestion: 0,
       showSuggestions: false,
-      userInput: suggestion.label
+      userInput: suggestion.name
     });
     onSelect(suggestion);
   };
@@ -108,6 +109,7 @@ const TypeAhead = (props) => {
         onChange={ handleChange }
         value={ state.userInput }
         name={ `${ name }-input` }
+        // eslint-disable-next-line react/jsx-props-no-spreading
         { ...inputProps }
       />
       <SuggestionsList

@@ -4,28 +4,29 @@ import styled from 'styled-components';
 import { boxShadow } from '../../helpers/colours';
 
 export const PillWrapper = styled.div`
-    border-radius: 5rem;
-    display: inline-flex;
     align-items: center;
-    padding: 0 ${ ({ padding }) => padding };
-    height: ${ ({ height }) => height };
     background-color: ${ ({ theme, background }) => (theme[background] ? theme[background] : theme.primary) };
+    border: ${ ({ border }) => border };
+    border-radius: 5rem;
+    box-shadow: ${ ({ shadow }) => shadow || boxShadow() };
     color: ${ ({ theme, color, loading, background }) => (loading ? theme[background] : theme[color]) };
+    display: inline-flex;
     font-size: 1.6rem;
+    height: ${ ({ height }) => height };
     margin: ${ ({ margin }) => (margin || '0 0.5rem 0 0') };
-    align-items: center;
-    transition: all 0.3s linear;
+    padding: 0 ${ ({ padding }) => padding };
     position: relative;
-    box-shadow: ${ boxShadow() };
+    transition: all 0.3s linear;
+    
     path {
-        transition: fill 0.3s linear;
         fill: ${ ({ loading, color, background, theme }) => (loading ? theme[background] : theme[color]) };
+        transition: fill 0.3s linear;
     }
 `;
 
-export const HiddenCloseButton = styled.button`
+export const HiddenButton = styled.button`
     background-color: transparent;
-    visibility: ${ ({ loading }) => (loading ? 'hidden' : 'visible') };
+    visibility: ${ ({ isLoading }) => (isLoading ? 'hidden' : 'visible') };
     cursor: pointer;
     display: inline-flex;
     margin: 0;

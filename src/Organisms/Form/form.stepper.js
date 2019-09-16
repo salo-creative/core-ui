@@ -11,6 +11,7 @@ const FormStepper = (props) => {
     activeStep,
     changeStep,
     steps,
+    typeaheads,
     ...fieldProps
   } = props;
 
@@ -34,6 +35,7 @@ const FormStepper = (props) => {
                 fields={ step.fields }
                 step={ i + 1 } // pass the step number down
                 total={ steps.length } // pass down the total number of steps
+                typeaheads={ typeaheads }
               />
             )
           };
@@ -43,12 +45,16 @@ const FormStepper = (props) => {
   );
 };
 
-FormStepper.defaultProps = { activeStep: '' };
+FormStepper.defaultProps = { 
+  activeStep: '',
+  typeaheads: null
+};
 
 FormStepper.propTypes = {
   activeStep: PropTypes.string,
   changeStep: PropTypes.func.isRequired,
-  steps: PropTypes.array.isRequired
+  steps: PropTypes.array.isRequired,
+  typeaheads: PropTypes.object
 };
 
 export default FormStepper;
