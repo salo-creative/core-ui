@@ -120,7 +120,8 @@ const useFormData = ({ name, initialErrors = false }) => {
           file: value.value
         });
       } else {
-        formattedData[key] = value.value;
+        // cast booleans to string to prevent issue with form submission (mongoose will cast them back)
+        formattedData[key] =  typeof value.value === 'boolean' ? value.value.toString() : value.value;
       }
     });
     return { formattedData, files };
