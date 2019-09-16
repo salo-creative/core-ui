@@ -91,6 +91,7 @@ const RenderFields = (props) => {
               }
             } }
             onSelect={ (val) => handleBlur({ key: name, value: val.map((v) => v.id) }) }
+            parent={ typeahead.parent }
             retryAction={ typeahead.retryAction }
             required={ required }
             suggestions={ typeahead.suggestions }
