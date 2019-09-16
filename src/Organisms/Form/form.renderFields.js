@@ -74,8 +74,10 @@ const RenderFields = (props) => {
       case 'typeahead': {
         const FormTypeAhead = CustomTypeAhead || TypeAhead;
         const typeahead = typeaheads[name];
+        console.log({ error, errorMessage });
         return (
           <FormTypeAhead
+            add={ typeahead.add }
             debounced
             disabled={ disabled }
             error={ error }
@@ -89,7 +91,7 @@ const RenderFields = (props) => {
                 typeahead.callback({ key: name, value: val });
               }
             } }
-            onSelect={ (val) => handleBlur({ key: name, value: val }) }
+            onSelect={ (val) => handleBlur({ key: name, value: val.map((v) => v.id) }) }
             retryAction={ typeahead.retryAction }
             required={ required }
             suggestions={ typeahead.suggestions }

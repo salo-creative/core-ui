@@ -10,7 +10,6 @@ class Drop extends React.Component {
     const { open } = this.props;
     return (
       <Transition
-        // in={ open && isBrowser }
         in={ open }
         timeout={ 200 }
         unmountOnExit
@@ -21,8 +20,6 @@ class Drop extends React.Component {
   }
 }
 
-Drop.propTypes = {
-  open: PropTypes.bool.isRequired
-};
+Drop.propTypes = { open: PropTypes.bool.isRequired };
 
 export default Drop;
