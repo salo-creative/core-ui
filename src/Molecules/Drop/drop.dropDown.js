@@ -64,21 +64,24 @@ class Drop extends React.Component {
 
   render() {
     const {
+      arrow,
+      background,
+      border,
+      borderRadius,
+      borderTop,
       children,
+      disableOverflow,
       element,
       fixed,
-      width,
-      unit,
-      transparent,
-      spacing,
-      disableOverflow,
-      transition,
-      zIndex,
-      background,
       padding,
-      border,
-      borderTop,
-      shadow
+      shadow,
+      showScrollbar,
+      spacing,
+      transition,
+      transparent,
+      unit,
+      width,
+      zIndex,
     } = this.props;
 
     // element that was clicked on
@@ -121,29 +124,32 @@ class Drop extends React.Component {
       [
         <Wrapper key='drop' transition={ transition }>
           <DropElement
-            zIndex={ zIndex + 1 }
+            arrow={ arrow }
             background={ background }
-            padding={ padding }
-            element={ element }
             border={ border }
+            borderRadius={ borderRadius }
             borderTop={ borderTop }
-            shadow={ shadow !== 'none' ? boxShadow(shadow) : 'none' }
+            element={ element }
             ref={ (e) => {
               this.drop = e;
             } }
+            padding={ padding }
+            shadow={ shadow !== 'none' ? boxShadow(shadow) : 'none' }
+            zIndex={ zIndex + 1 }
             { ...calculatedStyle }
           >
             <DropContent
               disableOverflow={ disableOverflow }
               maxHeight={ calculatedStyle.maxHeight }
+              showScrollbar={ showScrollbar }
             >
               { children }
             </DropContent>
           </DropElement>
           <DropBackdrop
-            zIndex={ zIndex }
-            transparent={ transparent ? 1 : 0 }
             onClick={ e => this.handleClose(e) }
+            transparent={ transparent ? 1 : 0 }
+            zIndex={ zIndex }
           />
         </Wrapper>
       ],
@@ -153,46 +159,53 @@ class Drop extends React.Component {
 }
 
 Drop.defaultProps = {
-  width: '200',
-  shadow: 'default',
-  unit: 'px',
-  fixed: false,
-  transparent: true,
-  spacing: 20,
-  offsetTop: 0,
-  offsetLeft: 0,
-  disableOverflow: false,
-  top: 0,
+  arrow: null,
   background: '#fff',
-  zIndex: 5,
   border: 'none',
+  borderRadius: null,
   borderTop: false,
-  padding: '0'
+  disableOverflow: false,
+  fixed: false,
+  offsetLeft: 0,
+  offsetTop: 0,
+  onClose: null,
+  padding: '0',
+  shadow: 'default',
+  showScrollbar: true,
+  spacing: 20,
+  top: 0,
+  transparent: true,
+  unit: 'px',
+  width: '200',
+  zIndex: 5,
 };
 
 Drop.propTypes = {
-  children: PropTypes.any.isRequired,
-  element: PropTypes.object.isRequired,
-  onClose: PropTypes.func.isRequired,
-  width: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
-  shadow: PropTypes.oneOf(['small', 'default', 'large', 'none']),
-  top: PropTypes.number,
-  unit: PropTypes.string,
-  fixed: PropTypes.bool,
-  transparent: PropTypes.bool,
-  spacing: PropTypes.number,
-  disableOverflow: PropTypes.bool,
-  transition: PropTypes.string.isRequired,
+  arrow: PropTypes.shape({ offsetLeft: PropTypes.string }),
   background: PropTypes.string,
-  offsetTop: PropTypes.number,
-  offsetLeft: PropTypes.number,
-  zIndex: PropTypes.number,
   border: PropTypes.string,
+  borderRadius: PropTypes.string,
   borderTop: PropTypes.bool,
-  padding: PropTypes.string
+  children: PropTypes.any.isRequired,
+  disableOverflow: PropTypes.bool,
+  element: PropTypes.object.isRequired,
+  fixed: PropTypes.bool,
+  offsetLeft: PropTypes.number,
+  offsetTop: PropTypes.number,
+  onClose: PropTypes.func,
+  padding: PropTypes.string,
+  shadow: PropTypes.oneOf(['small', 'default', 'large', 'none']),
+  showScrollbar: PropTypes.bool,
+  spacing: PropTypes.number,
+  top: PropTypes.number,
+  transition: PropTypes.string.isRequired,
+  transparent: PropTypes.bool,
+  unit: PropTypes.string,
+  width: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  zIndex: PropTypes.number,
 };
 
 export default onClickOutside(Drop);

@@ -22,10 +22,13 @@ const Form = (props) => {
     name,
     renderSteps,
     textStrings,
+    typeaheads,
     // Custom components
     Button: CustomButton,
     Input: CustomInput,
     Select: CustomSelect,
+    TextArea: CustomTextArea,
+    TypeAhead: CustomTypeAhead,
     Upload: CustomUpload
   } = props;
 
@@ -49,6 +52,8 @@ const Form = (props) => {
     CustomButton,
     CustomInput,
     CustomSelect,
+    CustomTextArea,
+    CustomTypeAhead,
     CustomUpload
   };
 
@@ -88,7 +93,7 @@ const Form = (props) => {
         { /* Render the basic form */ }
         { formShouldRender && !isStepper && (
           <React.Fragment>
-            <RenderFields { ...fieldProps } { ...customComponents } /> { /* eslint-disable-line react/jsx-props-no-spreading */ }
+            <RenderFields { ...fieldProps } { ...customComponents } typeaheads={ typeaheads } /> { /* eslint-disable-line react/jsx-props-no-spreading */ }
             <Button
               loading={ submit.isSubmitting }
               type='submit'
@@ -106,6 +111,7 @@ const Form = (props) => {
             activeStep={ activeStep }
             changeStep={ changeStep }
             steps={ steps }
+            typeaheads={ typeaheads }
           />
         ) }
       </form>
@@ -117,10 +123,13 @@ Form.defaultProps = {
   height: 'auto',
   renderSteps: true,
   textStrings: {},
+  typeaheads: null,
   // Custom components
   Button: null,
   Input: null,
   Select: null,
+  TextArea: null,
+  TypeAhead: null,
   Upload: null
 };
 
@@ -130,10 +139,13 @@ Form.propTypes = {
   name: PropTypes.string.isRequired,
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
   textStrings: PropTypes.object,
+  typeaheads: PropTypes.object,
   // Custom components
   Button: PropTypes.func,
   Input: PropTypes.func,
   Select: PropTypes.func,
+  TextArea: PropTypes.func,
+  TypeAhead: PropTypes.func,
   Upload: PropTypes.func
 };
 
