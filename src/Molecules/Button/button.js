@@ -114,7 +114,7 @@ Button.propTypes = {
   padding: PropTypes.string,
   radius: PropTypes.bool,
   shadow: PropTypes.oneOf(['small', 'default', 'large', 'none']),
-  type: PropTypes.oneOf(['button', 'Link', 'submit', 'a'])
+  type: PropTypes.oneOf(['button', 'Link', 'submit', 'a', 'label'])
 };
 
 export default Button;
