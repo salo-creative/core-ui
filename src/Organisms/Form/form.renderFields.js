@@ -162,10 +162,12 @@ const RenderFields = (props) => {
       }
       case 'password': {
         // Evaluate the component to use
-        const FormPassword = CustomPassword || Input;
-
+        const FormPassword = CustomPassword || CustomInput || Input;
         return (
           <FormPassword
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            // { ...(!metaData.match ? { autocomplete: 'new-password' } : {}) }
+            autocomplete='new-password'
             error={ hasError }
             errorMessage={ errorMessage }
             disabled={ disabled }
@@ -221,6 +223,7 @@ const RenderFields = (props) => {
         return (
           <FormCheckbox
             checked={ value }
+            customLabel={ metaData }
             error={ hasError }
             errorMessage={ errorMessage }
             disabled={ disabled }
