@@ -28,6 +28,7 @@ const Form = (props) => {
     width,
     // Custom components
     Button: CustomButton,
+    Checkbox: CustomCheckBox,
     Heading: CustomHeading,
     Input: CustomInput,
     Password: CustomPassword,
@@ -56,6 +57,7 @@ const Form = (props) => {
   // Assign custom components to an object so we can pass them down easily
   const customComponents = {
     CustomButton,
+    CustomCheckBox,
     CustomHeading,
     CustomInput,
     CustomPassword,
@@ -142,6 +144,7 @@ Form.defaultProps = {
   width: 'auto',
   // Custom components
   Button: null,
+  Checkbox: null,
   Heading: null,
   Input: null,
   Password: null,
@@ -164,6 +167,7 @@ Form.propTypes = {
   width: PropTypes.string,
   // Custom components
   Button: PropTypes.func,
+  Checkbox: PropTypes.func,
   Heading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   Input: PropTypes.func,
   Password: PropTypes.func,
