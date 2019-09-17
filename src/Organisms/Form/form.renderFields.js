@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get, isEmpty } from 'lodash';
+import { get, isEmpty, forEach, map } from 'lodash';
+import styled from 'styled-components';
 
 // COMPONENTS & STYLES
 import Address from '../../Forms/Address';
@@ -15,6 +16,15 @@ import P from '../../Typography/P';
 
 // HELPERS & CONSTANTS
 import { evaluateValue } from '../../Forms/useFormData/useFormData.helpers';
+
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  > *:not(:first-child) {
+    margin-left: 2rem;
+  }
+`;
 
 const RenderFields = (props) => {
   const {
@@ -39,7 +49,9 @@ const RenderFields = (props) => {
     CustomUpload
   } = props;
 
-  return fields.map(field => {
+  const groups = {};
+
+  const hydratedFields = fields.map((field, index) => {
     const {
       label,
       name,
@@ -50,12 +62,20 @@ const RenderFields = (props) => {
       validation: { required, max }
     } = field;
     
-    const { value, error } = get(values, field.name, { value: evaluateValue(field), error: true });
+    const { value, error } = get(values, field.name, {
+      value: evaluateValue(field),
+      error: true
+    });
     // Grab any errors
     const hasError = !!error && showErrors;
     const errorMessage = typeof error === 'string' ? error : 'Field invalid';
     // Grab the meta info from the form
     const metaData = meta && typeof meta === 'string' ? JSON.parse(meta) : {};
+    
+    if (metaData.group) {
+      // If this field has a grouping then add it to the hash.
+      groups[metaData.group] = groups[metaData.group] ? [...groups[metaData.group], index] : [index];
+    }
 
     switch (type) {
       case 'file': {
@@ -283,7 +303,7 @@ const RenderFields = (props) => {
         }
 
         return (
-          <div className={ `salo-form__copy salo-form__copy--${ name }` }>
+          <div className={ `salo-form__copy salo-form__copy--${ name }` } key={ name }>
             {
               metaData.copy.map((item) => {
                 if (item.type === 'link') {
@@ -306,6 +326,40 @@ const RenderFields = (props) => {
         return <p key={ name }>The supplied field type `{ type }` is invalid</p>;
     }
   });
+
+  // We now have a 1:1 list of fields and components which is great unless we need to do additional layout.
+  // We check here so we can easily bail out of this extra work.
+  if (Object.keys(groups).length) {
+    // 1. Find which component has a group.
+    // 2. Add a Row around all the components in a group
+    // 3. Splice old components out of hydratedFields
+    // 4. Insert back into array
+
+    // Create a copy so we don't mutate the actual array and lose indexes.
+    let newFields = hydratedFields.slice(0);
+    forEach(groups, (value, key) => {
+      // Get a reference to all of the components.
+      // NB. this could be bypassed if we rejigged the above to not return
+      // but I want to keep this bit encapsulated for now.
+      const components = map(value, (v) => hydratedFields[v]);
+
+      // Group it in a row.
+      const groupedFields = (
+        <Row key={ key }>{ components }</Row>
+      );
+
+      // Add the row back to the array in the correct place.
+      // NB. groups must be contiguous.
+      newFields = [
+        ...newFields.slice(0, value[0]),
+        groupedFields,
+        ...newFields.slice(value[value.length - 1])
+      ];
+    });
+    return newFields;
+  }
+
+  return hydratedFields;
 };
 
 RenderFields.defaultProps = {
