@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
+import { get, isEmpty } from 'lodash';
 
 // COMPONENTS & STYLES
 import Address from '../../Forms/Address';
@@ -11,6 +11,7 @@ import Select from '../../Forms/Select';
 import TextArea from '../../Forms/TextArea';
 import TypeAhead from '../../Forms/TypeAhead';
 import Upload from '../../Forms/Upload';
+import P from '../../Typography/P';
 
 // HELPERS & CONSTANTS
 import { evaluateValue } from '../../Forms/useFormData/useFormData.helpers';
@@ -27,7 +28,9 @@ const RenderFields = (props) => {
     // Custom components
     CustomAddress,
     CustomCheckBox,
+    CustomCopy,
     CustomInput,
+    Link,
     CustomPassword,
     CustomRadio,
     CustomSelect,
@@ -269,6 +272,34 @@ const RenderFields = (props) => {
             // Custom components
             Input={ CustomInput || Input }
           />
+        );
+      }
+      case 'copy': {
+        // Evaluate the component to use
+        const FormCopy = CustomCopy || P;
+
+        if (isEmpty(metaData.copy)) {
+          return null;
+        }
+
+        return (
+          <div className={ `salo-form__copy salo-form__copy--${ name }` }>
+            {
+              metaData.copy.map((item) => {
+                if (item.type === 'link') {
+                  return (
+                    <FormCopy>
+                      <Link to={ item.link }>
+                        { item.text }
+                      </Link>
+                    </FormCopy>
+                  );
+                }
+
+                return <FormCopy>{ item.text }</FormCopy>;
+              })
+            }
+          </div>
         );
       }
       default:

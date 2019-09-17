@@ -29,8 +29,10 @@ const Form = (props) => {
     // Custom components
     Button: CustomButton,
     Checkbox: CustomCheckBox,
+    Copy: CustomCopy,
     Heading: CustomHeading,
     Input: CustomInput,
+    Link,
     Password: CustomPassword,
     Select: CustomSelect,
     TextArea: CustomTextArea,
@@ -58,13 +60,15 @@ const Form = (props) => {
   const customComponents = {
     CustomButton,
     CustomCheckBox,
+    CustomCopy,
     CustomHeading,
     CustomInput,
     CustomPassword,
     CustomSelect,
     CustomTextArea,
     CustomTypeAhead,
-    CustomUpload
+    CustomUpload,
+    Link
   };
 
   const submitted = get(submit, 'data.form_submit');
@@ -145,8 +149,10 @@ Form.defaultProps = {
   // Custom components
   Button: null,
   Checkbox: null,
+  Copy: null,
   Heading: null,
   Input: null,
+  Link: null,
   Password: null,
   Select: null,
   TextArea: null,
@@ -168,8 +174,10 @@ Form.propTypes = {
   // Custom components
   Button: PropTypes.func,
   Checkbox: PropTypes.func,
+  Copy: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   Heading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   Input: PropTypes.func,
+  Link: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   Password: PropTypes.func,
   Select: PropTypes.func,
   TextArea: PropTypes.func,
