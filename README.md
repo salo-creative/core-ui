@@ -19,3 +19,7 @@ yarn demo
 ## Publishing
 
 // add this when finalised
+1. Merge feature changes into develop branch
+2. Make sure you have the latest develop and master branches locally
+3. Merge  develop into master locally and then run `npm run release`
+4. Follow instructions from script. If successful the package should be tested and released automatically via CI pipeline
