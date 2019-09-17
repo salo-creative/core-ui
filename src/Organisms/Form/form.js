@@ -12,20 +12,25 @@ import FormStepper from './form.stepper';
 import RenderFields from './form.renderFields';
 import { FormWrapper } from './form.styles';
 
-
 // HELPERS & CONSTANTS
 import useFormData from '../../Forms/useFormData';
 
 const Form = (props) => {
   const {
+    className,
     height,
+    margin,
     name,
     renderSteps,
+    showNavigation,
     textStrings,
     typeaheads,
+    width,
     // Custom components
     Button: CustomButton,
+    Heading: CustomHeading,
     Input: CustomInput,
+    Password: CustomPassword,
     Select: CustomSelect,
     TextArea: CustomTextArea,
     TypeAhead: CustomTypeAhead,
@@ -42,6 +47,7 @@ const Form = (props) => {
     refetch,
     reset,
     steps,
+    strings,
     submit,
     toggleErrors,
     ...fieldProps
@@ -50,7 +56,9 @@ const Form = (props) => {
   // Assign custom components to an object so we can pass them down easily
   const customComponents = {
     CustomButton,
+    CustomHeading,
     CustomInput,
+    CustomPassword,
     CustomSelect,
     CustomTextArea,
     CustomTypeAhead,
@@ -66,8 +74,10 @@ const Form = (props) => {
 
   return (
     <FormWrapper
-      className={ !loading && !error && !submitted ? 'expanded' : 'collapsed' }
+      className={ `${ className } ${ !loading && !error && !submitted ? 'expanded' : 'collapsed' }` }
       height={ height }
+      margin={ margin }
+      width={ width }
     >
       { submit.error && <ApolloError error={ submit.error } /> }
       { /* Handle form loading */ }
@@ -110,7 +120,9 @@ const Form = (props) => {
             { ...customComponents } // eslint-disable-line react/jsx-props-no-spreading
             activeStep={ activeStep }
             changeStep={ changeStep }
+            showNavigation={ showNavigation }
             steps={ steps }
+            strings={ strings }
             typeaheads={ typeaheads }
           />
         ) }
@@ -120,13 +132,19 @@ const Form = (props) => {
 };
 
 Form.defaultProps = {
+  className: null,
   height: 'auto',
+  margin: '0',
   renderSteps: true,
+  showNavigation: true,
   textStrings: {},
   typeaheads: null,
+  width: 'auto',
   // Custom components
   Button: null,
+  Heading: null,
   Input: null,
+  Password: null,
   Select: null,
   TextArea: null,
   TypeAhead: null,
@@ -135,14 +153,20 @@ Form.defaultProps = {
 
 Form.propTypes = {
   // Standard props
+  className: PropTypes.string,
   height: PropTypes.string,
+  margin: PropTypes.string,
   name: PropTypes.string.isRequired,
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
+  showNavigation: PropTypes.bool,
   textStrings: PropTypes.object,
   typeaheads: PropTypes.object,
+  width: PropTypes.string,
   // Custom components
   Button: PropTypes.func,
+  Heading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   Input: PropTypes.func,
+  Password: PropTypes.func,
   Select: PropTypes.func,
   TextArea: PropTypes.func,
   TypeAhead: PropTypes.func,

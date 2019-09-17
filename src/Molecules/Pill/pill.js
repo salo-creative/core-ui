@@ -11,6 +11,7 @@ const Pill = (props) => {
     background,
     border,
     color,
+    fontSize,
     height,
     label,
     loading,
@@ -27,6 +28,7 @@ const Pill = (props) => {
       background={ background }
       border={ border }
       color={ color }
+      fontSize={ fontSize }
       height={ height }
       isLoading={ loading }
       margin={ margin }
@@ -76,6 +78,7 @@ Pill.defaultProps = {
   background: 'grey',
   border: 'none',
   color: 'black',
+  fontSize: '1.6rem',
   height: '4rem',
   label: '',
   loading: false,
@@ -91,6 +94,7 @@ Pill.propTypes = {
   background: PropTypes.string,
   border: PropTypes.string,
   color: PropTypes.string,
+  fontSize: PropTypes.string,
   height: PropTypes.string,
   label: PropTypes.string,
   loading: PropTypes.bool,

@@ -12,7 +12,8 @@ const Stepper = (props) => {
     activeItem,
     changeStep,
     children,
-    className
+    className,
+    showNavigation
   } = props;
 
   const [visited, setVisited] = React.useState([activeItem]);
@@ -42,17 +43,19 @@ const Stepper = (props) => {
 
   return (
     <Container className={ className }>
-      <Navigation
-        activeItem={ activeStep } // use passed in active item or first step
-        changeStep={ changeStep }
-        steps={ children.map(item => ({
-          title: item.title,
-          id: item.id,
-          complete: item.complete,
-          disabled: item.disabled,
-          visited: visited.includes(item.id)
-        })) }
-      />
+      { showNavigation && (
+        <Navigation
+          activeItem={ activeStep } // use passed in active item or first step
+          changeStep={ changeStep }
+          steps={ children.map(item => ({
+            title: item.title,
+            id: item.id,
+            complete: item.complete,
+            disabled: item.disabled,
+            visited: visited.includes(item.id)
+          })) }
+        />
+      ) }
       { returnContent() }
     </Container>
   );
@@ -61,7 +64,8 @@ const Stepper = (props) => {
 Stepper.defaultProps = {
   activeItem: null,
   children: [],
-  className: 'stepper'
+  className: 'stepper',
+  showNavigation: true
 };
 
 Stepper.propTypes = {
@@ -74,7 +78,8 @@ Stepper.propTypes = {
     id: PropTypes.string.isRequired,
     content: PropTypes.any.isRequired
   })),
-  className: PropTypes.string
+  className: PropTypes.string,
+  showNavigation: PropTypes.bool
 };
 
 export default Stepper;

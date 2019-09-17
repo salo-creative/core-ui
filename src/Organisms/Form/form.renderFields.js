@@ -28,6 +28,7 @@ const RenderFields = (props) => {
     CustomAddress,
     CustomCheckBox,
     CustomInput,
+    CustomPassword,
     CustomRadio,
     CustomSelect,
     CustomTextArea,
@@ -95,6 +96,7 @@ const RenderFields = (props) => {
             parent={ typeahead.parent }
             required={ required }
             retryAction={ typeahead.retryAction }
+            strings={ typeahead.strings }
             suggestions={ typeahead.suggestions }
           />
         );
@@ -154,6 +156,33 @@ const RenderFields = (props) => {
             placeholder={ placeholder }
             required={ required }
             type={ type }
+            value={ value }
+          />
+        );
+      }
+      case 'password': {
+        // Evaluate the component to use
+        const FormPassword = CustomPassword || Input;
+
+        return (
+          <FormPassword
+            error={ hasError }
+            errorMessage={ errorMessage }
+            disabled={ disabled }
+            key={ name }
+            label={ label }
+            name={ name }
+            onBlur={ ({ value: val }) => handleBlur({ key: name, value: val }) }
+            onKeyUp={ ({ e, value: val }) => {
+              // This is needed to trigger field validation when return is pressed to submit
+              if (e.keyCode === 13) {
+                handleBlur({ key: name, value: val });
+              }
+            } }
+            onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
+            placeholder={ placeholder }
+            required={ required }
+            type='password'
             value={ value }
           />
         );
@@ -234,11 +263,13 @@ const RenderFields = (props) => {
             onChange={ (val) => handleBlur({ key: name, value: val }) }
             required={ required }
             value={ value }
+            // Custom components
+            Input={ CustomInput || Input }
           />
         );
       }
       default:
-        return <p key={ name }>The supplied field type is invalid</p>;
+        return <p key={ name }>The supplied field type `{ type }` is invalid</p>;
     }
   });
 };

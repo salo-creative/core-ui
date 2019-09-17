@@ -171,10 +171,6 @@ const useFormData = ({ name, initialErrors = false }) => {
     dispatch({ type: 'CHANGE_STEP', id });
   };
 
-  // const reset = () => {
-  //   console.log('reset');
-  // };
-
   const toggleErrors = (value) => {
     dispatch({ type: 'SHOW_ERRORS', value: !!value });
   };
@@ -189,9 +185,9 @@ const useFormData = ({ name, initialErrors = false }) => {
     handleSubmit,
     handleSubmitStepper,
     loading,
-    // reset,
     showErrors,
     steps,
+    strings: get(data, 'form_show.strings', {}),
     submit: {
       data: submitData,
       error: submitError,
