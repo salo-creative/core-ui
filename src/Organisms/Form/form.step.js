@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty } from 'lodash';
+import { get, isEmpty } from 'lodash';
 
 // COMPONENTS & STYLES
 import P from '../../Typography/P';
@@ -49,11 +49,11 @@ const FormStep = (props) => {
         ) }
         { /* If last page render submit */ }
         { step === total && (
-          <FormButton type='submit'>{ strings.submit || 'Submit' }</FormButton>
+          <FormButton type='submit'>{ get(strings, 'submit', 'Submit') }</FormButton>
         ) }
         { /* If not last page render next */ }
         { step < total && (
-          <FormButton type='submit'>{ strings.next || 'Next' }</FormButton>
+          <FormButton type='submit'>{ get(strings, 'next', 'Next') }</FormButton>
         ) }
         
       </div>

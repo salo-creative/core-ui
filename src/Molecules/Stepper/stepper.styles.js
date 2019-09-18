@@ -9,12 +9,13 @@ export const Container = styled.div`
 
 export const NavWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${ ({ stepperType }) => (stepperType === 'full' ? 'space-between' : 'start') };
+  margin: ${ ({ stepperType }) => (stepperType === 'full' ? '0 0 3rem' : '3rem 0 0') };
   position: relative;
   width: 100%;
-  margin: 0 0rem 3rem;
+
   &:before {
-    content: '';
+    content: ${ ({ stepperType }) => (stepperType === 'full' ? '""' : null) };
     height: 1px;
     left: 0;
     top: 50%;
@@ -27,27 +28,27 @@ export const NavWrapper = styled.div`
 `;
 
 export const NavItem = styled.button`
-  transition: all 0.3s linear;
-  display: flex;
-  border: none;
-  background: none;
   align-items: center;
+  background: #fff;
+  background: none;
+  border: none;
+  color: ${ ({ theme }) => theme.font };
+  cursor: pointer;
+  display: flex;
   font-size: 1.2rem;
   padding: 0.5rem 1rem;
-  background: #fff;
-  cursor: pointer;
   position: relative;
+  transition: all 0.3s linear;
   z-index: 2;
-  color: ${ ({ theme }) => theme.font };
   &:before {
-    transition: all 0.3s linear;
+    background: ${ ({ theme }) => theme.grey };
+    border-radius: 50%;
     content: '';
     display: flex;
-    width: 2.5rem;
     height: 2.5rem;
     margin-right: 0.5rem;
-    border-radius: 50%;
-    background: ${ ({ theme }) => theme.grey };
+    transition: all 0.3s linear;
+    width: 2.5rem;
   }
   &[disabled] {
     color: ${ ({ theme }) => transparentize(0.25, theme.grey) };
@@ -58,12 +59,12 @@ export const NavItem = styled.button`
   }
   &.active {
     &:before {
-      background: ${ ({ theme }) => theme.darkGrey };
+      background: ${ ({ theme }) => theme.primary };
     }
   }
   &.complete {
     &:before {
-      background: ${ ({ theme }) => theme.success };
+      background: ${ ({ theme }) => theme.darkGrey };
     }
   }
   &.error {

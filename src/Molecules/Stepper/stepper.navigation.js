@@ -8,7 +8,8 @@ const Navigation = (props) => {
   const {
     activeItem,
     changeStep,
-    steps
+    steps,
+    type
   } = props;
 
   const evaluateClassName = ({ active, complete, visited }) => {
@@ -25,7 +26,7 @@ const Navigation = (props) => {
   };
 
   return (
-    <NavWrapper>
+    <NavWrapper stepperType={ type }>
       { steps.map(step => {
         const active = activeItem === step.id;
         return (
@@ -35,8 +36,9 @@ const Navigation = (props) => {
             className={ evaluateClassName({ ...step, active }) }
             onClick={ () => changeStep(step.id) }
             disabled={ step.disabled }
+            stepperType={ type }
           >
-            { step.title }
+            { type === 'full' && step.title }
           </NavItem>
         );
       }) }
@@ -55,7 +57,8 @@ Navigation.propTypes = {
     complete: PropTypes.bool,
     visited: PropTypes.bool,
     disabled: PropTypes.bool
-  })).isRequired
+  })).isRequired,
+  type: PropTypes.oneOf(['condensed', 'full']).isRequired
 };
 
 export default Navigation;
