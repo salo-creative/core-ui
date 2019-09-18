@@ -5,8 +5,7 @@ export const FormWrapper = styled.div`
   flex-direction: column;
   height: ${ ({ height }) => height || 'auto' };
   margin: ${ ({ margin }) => margin };
-  transition: max-height 0.3s linear;
-  width: ${ ({ width }) => width };
+  max-width: ${ ({ width }) => width };
   &.collapsed {
     justify-content: center;
     max-height: 10rem;
