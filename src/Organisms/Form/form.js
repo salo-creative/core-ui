@@ -35,6 +35,7 @@ const Form = (props) => {
     Link,
     Password: CustomPassword,
     Select: CustomSelect,
+    Submit: CustomSubmit,
     TextArea: CustomTextArea,
     TypeAhead: CustomTypeAhead,
     Upload: CustomUpload
@@ -78,6 +79,17 @@ const Form = (props) => {
   // check if form is stepped
   const isStepper = renderSteps && !isEmpty(steps);
 
+  const renderFormSubmission = () => {
+    // Works out if we should pass submitted data to a custom component or not.
+    if (!submit.error && submitted) {
+      if (CustomSubmit) {
+        return <CustomSubmit data={ submitted } />;
+      }
+      return <H3 align='center' margin='1rem 0'>{ submitted }</H3>;
+    }
+    return null;
+  };
+
   return (
     <FormWrapper
       className={ `${ className } ${ !loading && !error && !submitted ? 'expanded' : 'collapsed' }` }
@@ -85,7 +97,7 @@ const Form = (props) => {
       margin={ margin }
       width={ width }
     >
-      { submit.error && <ApolloError error={ submit.error } /> }
+      { submit.error && <ApolloError addAlert error={ submit.error } /> }
       { /* Handle form loading */ }
       { loading && <Loader display /> }
 
@@ -96,11 +108,8 @@ const Form = (props) => {
           error={ error }
         />
       ) }
-
       { /* Handle case when form has been submitted */ }
-      { submitted && (
-        <H3 align='center' margin='1rem 0'>{ submitted }</H3>
-      ) }
+      { renderFormSubmission() }
       <form
         noValidate
         autoComplete='off'
@@ -155,6 +164,7 @@ Form.defaultProps = {
   Link: null,
   Password: null,
   Select: null,
+  Submit: null,
   TextArea: null,
   TypeAhead: null,
   Upload: null
@@ -180,6 +190,7 @@ Form.propTypes = {
   Link: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   Password: PropTypes.func,
   Select: PropTypes.func,
+  Submit: PropTypes.func,
   TextArea: PropTypes.func,
   TypeAhead: PropTypes.func,
   Upload: PropTypes.func
