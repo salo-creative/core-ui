@@ -45,10 +45,10 @@ export const NavItem = styled.button`
     border-radius: 50%;
     content: '';
     display: flex;
-    height: 2.5rem;
+    height: 1.5rem;
     margin-right: 0.5rem;
     transition: all 0.3s linear;
-    width: 2.5rem;
+    width: 1.5rem;
   }
   &[disabled] {
     color: ${ ({ theme }) => transparentize(0.25, theme.grey) };
@@ -60,6 +60,8 @@ export const NavItem = styled.button`
   &.active {
     &:before {
       background: ${ ({ theme }) => theme.primary };
+      height: 2.5rem;
+      width: 2.5rem;
     }
   }
   &.complete {
