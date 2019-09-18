@@ -357,7 +357,7 @@ const RenderFields = (props) => {
       newFields = [
         ...newFields.slice(0, value[0]),
         groupedFields,
-        ...newFields.slice(value[value.length - 1])
+        ...newFields.slice(value[value.length - 1] + 1)
       ];
     });
     return newFields;
