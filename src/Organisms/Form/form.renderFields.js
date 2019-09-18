@@ -43,7 +43,7 @@ const RenderFields = (props) => {
       meta,
       placeholder,
       type,
-      validation: { required }
+      validation: { required, max }
     } = field;
     
     const { value, error } = get(values, field.name, { value: evaluateValue(field), error: true });
@@ -83,6 +83,7 @@ const RenderFields = (props) => {
             errorMessage={ errorMessage }
             key={ name }
             label={ label }
+            max={ max }
             name={ name }
             onChange={ ({ value: val }) => {
               handleChange({ key: name, value: val });
@@ -92,8 +93,8 @@ const RenderFields = (props) => {
             } }
             onSelect={ (val) => handleBlur({ key: name, value: val.map((v) => v.id) }) }
             parent={ typeahead.parent }
-            retryAction={ typeahead.retryAction }
             required={ required }
+            retryAction={ typeahead.retryAction }
             suggestions={ typeahead.suggestions }
           />
         );
