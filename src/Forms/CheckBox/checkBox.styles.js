@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { get } from 'lodash';
 import { transparentize } from 'polished';
 
 // Container
@@ -8,21 +9,22 @@ export const Wrapper = styled.div`
 
 // Label
 export const CheckBoxLabel = styled.label`
-  display: flex;
   align-items: center;
-  height: ${ ({ size }) => (size === 'L' ? '2.6rem' : '2.1rem') };
+  color: ${ ({ theme }) => theme.primary };
+  cursor: ${ ({ disabled }) => (disabled ? 'not-allowed' : 'pointer') };
+  display: flex;
   font-size: ${ ({ size }) => (size === 'L' ? '1.6rem' : '1.4rem') };
-  width: fit-content;
+  height: ${ ({ size }) => (size === 'L' ? '2.6rem' : '2.1rem') };
   margin: ${ ({ margin }) => margin };
   opacity: ${ ({ disabled }) => (disabled ? 0.75 : 1) };
-  cursor: ${ ({ disabled }) => (disabled ? 'not-allowed' : 'pointer') };
+  width: fit-content;
 `;
 
 // Hidden true input field for accessibility
 export const HiddenCheckBox = styled.input.attrs({ type: 'checkbox' })`
   border: 0;
+  clip-path: inset(50%);
   clip: rect(0 0 0 0);
-  clippath: inset(50%);
   height: 1px;
   margin: -1px;
   overflow: hidden;
@@ -34,16 +36,33 @@ export const HiddenCheckBox = styled.input.attrs({ type: 'checkbox' })`
 
 // Styled check mark
 export const StyledCheckBox = styled.div`
-  width: ${ ({ width }) => width };
-  height: ${ ({ width }) => width };
-  background-color: ${ ({ checked, theme }) => (checked ? theme.primary : theme.paleGrey) };
-  border: ${ ({ theme, checked }) => (checked ? `.1rem ${ theme.primary } solid` : `.1rem ${ theme.darkGrey } solid`) };
+  background-color: ${ ({ colours, checked, theme }) => {
+    if (get(colours, 'checked.background')) {
+      return checked ? colours.checked.background : colours.unchecked.background;
+    }
+    return checked ? theme.primary : theme.paleGrey;
+  } };
   border-radius: ${ ({ borderRadius }) => borderRadius };
-  transition: all 150ms;
+  border: ${ ({ colours, theme, checked }) => {
+    if (get(colours, 'checked.border')) {
+      return `.1rem solid ${ checked ? colours.checked.border : colours.unchecked.border }`;
+    }
+    return (checked ? `.1rem ${ theme.primary } solid` : `.1rem ${ theme.darkGrey } solid`);
+  } };
+  height: ${ ({ width }) => width };
   margin-right: 1rem;
+  transition: all 150ms;
+  box-shadow: ${ ({ shadow }) => shadow };
+  width: ${ ({ width }) => width };
+
   svg {
     fill: none;
-    stroke: white;
+    stroke: ${ ({ colours, checked }) => {
+    if (get(colours, 'checked.check')) {
+      return checked ? colours.checked.check : colours.unchecked.check;
+    }
+    return '#fff';
+  } };
     stroke-width: 2px;
     visibility: ${ ({ checked }) => (checked ? 'visible' : 'hidden') }
   }

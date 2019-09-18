@@ -11,7 +11,7 @@ export const PillWrapper = styled.div`
     box-shadow: ${ ({ shadow }) => shadow || boxShadow() };
     color: ${ ({ theme, color, loading, background }) => (loading ? theme[background] : theme[color]) };
     display: inline-flex;
-    font-size: 1.6rem;
+    font-size: ${ ({ fontSize }) => fontSize };
     height: ${ ({ height }) => height };
     margin: ${ ({ margin }) => (margin || '0 0.5rem 0 0') };
     padding: 0 ${ ({ padding }) => padding };

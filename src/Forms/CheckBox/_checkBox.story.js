@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text, select, object } from '@storybook/addon-knobs';
 import { RenderWithProps, Store } from '@jamesbliss/storybook-state';
 
 // Tests.
@@ -91,5 +91,54 @@ stories.add(
   {
     info: { propTablesExclude: [RenderWithProps] },
     notes: README_GROUP
+  }
+);
+
+stories.add(
+  'Custom colours',
+  (() => {
+    // Store.
+    const store = new Store({ checked: false });
+    // Knobs.
+    const label = text('Label', 'Checkbox label');
+    const helperText = text('Helper text', 'Helper text');
+    const colours = object('Colours', {
+      'checked': {
+        'background': 'goldenrod',
+        'border': 'hotpink',
+        'check': 'red'
+      },
+      'unchecked': {
+        'background': 'white',
+        'border': 'rebeccapurple',
+        'check': 'blue'
+      }
+    });
+    const shadow = text('shadow', '0 2px 10px 0 rgba(0,0,132,0.1)');
+    const error = boolean('Show error state', false);
+    const required = boolean('Required field', false);
+    const disabled = boolean('Show disabled state', false);
+    const size = select('size', ['L', 'M'], 'M');
+    return (
+      <RenderWithProps store={ store }>
+        <CheckBox
+          checked={ store.checked }
+          colours={ colours }
+          disabled={ disabled }
+          error={ error }
+          helperText={ helperText }
+          label={ label }
+          name='story'
+          onChange={ e => store.set({ checked: e.checked }) }
+          required={ required }
+          size={ size }
+          shadow={ shadow }
+        />
+      </RenderWithProps>
+    );
+  }),
+  {
+    info: { propTablesExclude: [RenderWithProps] },
+    notes: README
   }
 );

@@ -5,13 +5,14 @@ import {
   isEmpty
 } from 'lodash';
 import {
-  string,
-  object,
-  number,
-  mixed,
-  date,
+  array,
   boolean,
-  array
+  date,
+  mixed,
+  number,
+  object,
+  ref,
+  string
 } from 'yup';
 
 // HELPERS & CONSTANTS
@@ -90,7 +91,7 @@ export const sanitize = (value) => {
  */
 export const buildYup = ({ fields }) => {
   const yupSchema = {};
-  forEach(fields, ({ validation, name }) => {
+  forEach(fields, ({ validation, name, meta }) => {
     const {
       type,
       max,
@@ -99,6 +100,8 @@ export const buildYup = ({ fields }) => {
       enum: oneOf,
       regex
     } = validation;
+
+    const metadata = JSON.parse(meta);
 
     // Rule to build on
     let vRule = mixed();
@@ -201,8 +204,17 @@ export const buildYup = ({ fields }) => {
     if (!isEmpty(oneOf)) {
       vRule = vRule.oneOf(oneOf);
     }
+    // MATCHES
+    if (metadata && metadata.match) {
+      vRule = string().oneOf([ref(metadata.match), null], `Field must match ${ metadata.match }`);
+    }
+
     // assign rules to schema
     yupSchema[name] = vRule;
+
+    console.log(yupSchema[name]);
   });
-  return object().shape(yupSchema);
+  const x = object().shape(yupSchema);
+  console.log('schema', x);
+  return x;
 };

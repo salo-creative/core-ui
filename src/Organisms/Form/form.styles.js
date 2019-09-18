@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const FormWrapper = styled.div`
   display: flex;
-  height: ${ ({ height }) => height || 'auto' };
   flex-direction: column;
-  transition: max-height 0.3s linear;
-  max-height: 100rem;
+  height: ${ ({ height }) => height || 'auto' };
+  margin: ${ ({ margin }) => margin };
+  max-width: ${ ({ width }) => width };
   &.collapsed {
+    justify-content: center;
     max-height: 10rem;
     overflow: hidden;
-    justify-content: center;
   }
 `;
