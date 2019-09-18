@@ -10,7 +10,9 @@ const FormStepper = (props) => {
   const {
     activeStep,
     changeStep,
+    showNavigation,
     steps,
+    strings,
     typeaheads,
     ...fieldProps
   } = props;
@@ -21,6 +23,7 @@ const FormStepper = (props) => {
         activeItem={ activeStep }
         changeStep={ changeStep }
         className='form__stepper'
+        showNavigation={ showNavigation }
       >
         { steps.map((step, i) => {
           return {
@@ -33,7 +36,10 @@ const FormStepper = (props) => {
                 { ...fieldProps } // eslint-disable-line react/jsx-props-no-spreading
                 changeStep={ () => changeStep(get(steps, `[${ i - 1 }].id`)) }
                 fields={ step.fields }
+                showTitle={ !showNavigation } // show individual titles if not using navigation
                 step={ i + 1 } // pass the step number down
+                strings={ strings }
+                title={ step.title }
                 total={ steps.length } // pass down the total number of steps
                 typeaheads={ typeaheads }
               />
@@ -53,6 +59,7 @@ FormStepper.defaultProps = {
 FormStepper.propTypes = {
   activeStep: PropTypes.string,
   changeStep: PropTypes.func.isRequired,
+  showNavigation: PropTypes.bool.isRequired,
   steps: PropTypes.array.isRequired,
   typeaheads: PropTypes.object
 };

@@ -36,6 +36,11 @@ export const GET_FORM = gql`
           ${ fieldPartial }
         }
       }
+      strings {
+        next
+        previous
+        submit
+      }
       title
     }
   }

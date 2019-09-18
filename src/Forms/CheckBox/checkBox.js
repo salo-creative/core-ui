@@ -17,17 +17,19 @@ class CheckBox extends React.Component {
 
   render() {
     const {
-      checked, 
-      disabled, 
-      error, 
-      errorMessage, 
-      helperText, 
-      label, 
+      checked,
+      colours,
+      disabled,
+      error,
+      errorMessage,
+      helperText,
+      label,
       margin,
-      name, 
+      name,
       required,
-      radio, 
-      size
+      radio,
+      size,
+      shadow
     } = this.props;
     
     return (
@@ -41,13 +43,17 @@ class CheckBox extends React.Component {
         >
           <HiddenCheckBox defaultChecked={ checked } name={ name } />
           <StyledCheckBox
+            borderRadius={ radio ? '50%' : '3px' }
             className={ `styled-checkbox ${ checked ? 'checked' : '' }` }
             checked={ checked }
-            borderRadius={ radio ? '50%' : '3px' }
+            colours={ colours }
+            shadow={ shadow }
             width={ size === 'L' ? '2.5rem' : '2rem' }
           >
             <svg viewBox='0 0 24 24'>
-              { radio ? <circle cx='50%' cy='50%' r='4' fill='white' /> : <polyline points='20 6 9 17 4 12' /> }
+              { radio
+                ? <circle cx='50%' cy='50%' r='4' fill='white' />
+                : <polyline points='20 6 9 17 4 12' /> }
             </svg>
           </StyledCheckBox>
           { label }{ required && <sup>*</sup> }
@@ -70,6 +76,7 @@ class CheckBox extends React.Component {
 }
 
 CheckBox.defaultProps = {
+  colours: null,
   disabled: false,
   error: false,
   errorMessage: 'Field invalid',
@@ -78,11 +85,24 @@ CheckBox.defaultProps = {
   onChange: () => null,
   radio: false,
   required: false,
-  size: 'M'
+  size: 'M',
+  shadow: 'none'
 };
 
 CheckBox.propTypes = {
   checked: PropTypes.bool.isRequired,
+  colours: PropTypes.shape({
+    checked: {
+      background: PropTypes.string,
+      border: PropTypes.string,
+      check: PropTypes.string
+    },
+    unchecked: {
+      background: PropTypes.string,
+      border: PropTypes.string,
+      check: PropTypes.string
+    }
+  }),
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
@@ -93,6 +113,7 @@ CheckBox.propTypes = {
   onChange: PropTypes.func,
   radio: PropTypes.bool,
   required: PropTypes.bool,
+  shadow: PropTypes.string,
   size: PropTypes.oneOf(['L', 'M'])
 };
 

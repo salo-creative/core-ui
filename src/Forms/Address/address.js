@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { string } from 'yup';
 
-// COMPONENTS & STYLES
-import Input from '../Input';
-
 // HELPERS & CONSTANTS
 import { colours } from '../../helpers/colours';
 
@@ -26,7 +23,8 @@ const Address = (props) => {
     padding,
     required,
     size,
-    value
+    value,
+    Input
   } = props;
 
   // Hold state of individual inputs within component
@@ -81,6 +79,7 @@ const Address = (props) => {
         key={ `line1_${ name }` }
         label='Address line 1'
         name={ `line1_${ name }` }
+        placeholder='Enter address line 1'
         required={ required }
         value={ state.line1 }
         onChange={ ({ value: val }) => handleChange({ key: 'line1', val }) }
@@ -92,6 +91,7 @@ const Address = (props) => {
           key={ `line2_${ name }` }
           label='Address line 2'
           name={ `line2_${ name }` }
+          placeholder='Enter address line 2'
           value={ state.line2 }
           onChange={ ({ value: val }) => handleChange({ key: 'line2', val }) }
         />
@@ -103,6 +103,7 @@ const Address = (props) => {
         key={ `city_${ name }` }
         label='City'
         name={ `city_${ name }` }
+        placeholder='Enter a city'
         required={ required }
         value={ state.city }
         onChange={ ({ value: val }) => handleChange({ key: 'city', val }) }
@@ -114,6 +115,7 @@ const Address = (props) => {
           key={ `county_${ name }` }
           label='County'
           name={ `county_${ name }` }
+          placeholder='Enter a county'
           value={ state.county }
           onChange={ ({ value: val }) => handleChange({ key: 'county', val }) }
         />
@@ -125,6 +127,7 @@ const Address = (props) => {
         key={ `postcode_${ name }` }
         label='Postcode'
         name={ `postcode_${ name }` }
+        placeholder='Enter a postcode'
         required={ required }
         value={ state.postcode }
         onChange={ ({ value: val }) => handleChange({ key: 'postcode', val }) }
@@ -136,6 +139,7 @@ const Address = (props) => {
           key={ `country_${ name }` }
           label='Country'
           name={ `country_${ name }` }
+          placeholder='Enter a country'
           value={ state.country }
           onChange={ ({ value: val }) => handleChange({ key: 'country', val }) }
         />
@@ -153,6 +157,7 @@ Address.defaultProps = {
   error: false,
   fields: allowedFields,
   fontSize: '1.4rem',
+  Input: null,
   margin: '0 0 2rem',
   onChange: () => null,
   padding: '0 1rem',
@@ -170,6 +175,7 @@ Address.propTypes = {
   error: PropTypes.bool,
   fields: PropTypes.arrayOf(PropTypes.oneOf(allowedFields)),
   fontSize: PropTypes.string,
+  Input: PropTypes.func,
   margin: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
