@@ -22,7 +22,8 @@ const Form = (props) => {
     margin,
     name,
     renderSteps,
-    showNavigation,
+    showTitles,
+    stepper,
     textStrings,
     typeaheads,
     width,
@@ -135,7 +136,8 @@ const Form = (props) => {
             { ...customComponents } // eslint-disable-line react/jsx-props-no-spreading
             activeStep={ activeStep }
             changeStep={ changeStep }
-            showNavigation={ showNavigation }
+            showTitles={ showTitles }
+            stepper={ stepper }
             steps={ steps }
             strings={ strings }
             typeaheads={ typeaheads }
@@ -151,7 +153,8 @@ Form.defaultProps = {
   height: 'auto',
   margin: '0',
   renderSteps: true,
-  showNavigation: true,
+  showTitles: true,
+  stepper: 'full',
   textStrings: {},
   typeaheads: null,
   width: 'auto',
@@ -177,7 +180,8 @@ Form.propTypes = {
   margin: PropTypes.string,
   name: PropTypes.string.isRequired,
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
-  showNavigation: PropTypes.bool,
+  showTitles: PropTypes.bool,
+  stepper: PropTypes.oneOf(['condensed', 'full']),
   textStrings: PropTypes.object,
   typeaheads: PropTypes.object,
   width: PropTypes.string,

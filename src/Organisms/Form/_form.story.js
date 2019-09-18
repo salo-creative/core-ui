@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 // load tests
 import { withTests } from '@storybook/addon-jest';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
 import results from '../../../.storybook/jest-test-results.json';
 
 // FEATURED COMPONENT
@@ -22,11 +22,19 @@ stories.add(
   (() => {
     const name = text('name', 'test');
     const renderSteps = boolean('Use stepper', true);
+    const showTitles = boolean('Use titles', true);
+    const stepper = select('Stepper', {
+      'Full': 'full',
+      'Condensed': 'condensed'
+    }, 'condensed');
     
     return (
       <Form
         name={ name }
         renderSteps={ renderSteps }
+        showTitles={ showTitles }
+        stepper={ stepper }
+        strings={ {} }
       />
     );
   }), { info: { propTablesExclude: [] }, notes: README }
