@@ -37,7 +37,7 @@ const FormStepper = (props) => {
                 { ...fieldProps } // eslint-disable-line react/jsx-props-no-spreading
                 changeStep={ () => changeStep(get(steps, `[${ i - 1 }].id`)) }
                 fields={ step.fields }
-                showTitle={ showTitles } // show individual titles if not using navigation
+                showTitle={ showTitles } // show individual titles
                 step={ i + 1 } // pass the step number down
                 strings={ strings }
                 title={ step.title }
