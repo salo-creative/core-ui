@@ -92,16 +92,16 @@ CheckBox.defaultProps = {
 CheckBox.propTypes = {
   checked: PropTypes.bool.isRequired,
   colours: PropTypes.shape({
-    checked: {
+    checked: PropTypes.shape({
       background: PropTypes.string,
       border: PropTypes.string,
       check: PropTypes.string
-    },
-    unchecked: {
+    }),
+    unchecked: PropTypes.shape({
       background: PropTypes.string,
       border: PropTypes.string,
       check: PropTypes.string
-    }
+    })
   }),
   disabled: PropTypes.bool,
   error: PropTypes.bool,

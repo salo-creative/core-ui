@@ -317,7 +317,7 @@ const RenderFields = (props) => {
               metaData.copy.map((item) => {
                 if (item.type === 'link') {
                   return (
-                    <FormCopy>
+                    <FormCopy key={ item.text.slice(0, 10) }>
                       <Link to={ item.link }>
                         { item.text }
                       </Link>
@@ -325,7 +325,7 @@ const RenderFields = (props) => {
                   );
                 }
 
-                return <FormCopy>{ item.text }</FormCopy>;
+                return <FormCopy key={ item.text.slice(0, 10) }>{ item.text }</FormCopy>;
               })
             }
           </div>
