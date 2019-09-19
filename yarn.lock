@@ -1453,9 +1453,9 @@
     warning "^3.0.0"
 
 "@salo/icons@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@salo/icons/-/icons-1.0.0.tgz#33969a36c6e0fad0442e6f3610cdcdd1b9c39e47"
-  integrity sha512-4A6i2eBi0oJP/fHTWKBds5RgZDbw6jHqGZBmIafE8sHmHUsuOLtCsGUovA+5Ry7n8y5IgFUtvGTdTWdl0RbXlw==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@salo/icons/-/icons-1.0.1.tgz#027d875ab9dc4729f5ead31a3617ab45f6df7d87"
+  integrity sha512-1xI/SQMgfUNHEf9U0CrMt25fGA1bwn1lYPcA1X3R/F5Jca3s5DUFJYjgPdlHF0us1hL63YS1il/KBGsUCMzNVg==
   dependencies:
     lodash "^4.17.11"
 
