@@ -52,7 +52,7 @@ const Pill = (props) => {
         >
           <Icon
             size={ 20 }
-            icon='plus'
+            icon={ loading ? 'sync' : 'plus' }
           />
         </HiddenButton>
       ) }
@@ -65,7 +65,7 @@ const Pill = (props) => {
         >
           <Icon
             size={ 20 }
-            icon='close'
+            icon={ loading ? 'sync' : 'close' }
           />
         </HiddenButton>
       ) }

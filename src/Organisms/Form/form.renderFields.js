@@ -107,12 +107,14 @@ const RenderFields = (props) => {
             add={ typeahead.add }
             debounced
             disabled={ disabled }
-            error={ !!error }
+            error={ hasError }
+            errors={ typeahead.errors }
             errorMessage={ errorMessage }
             key={ name }
             label={ label }
             max={ max }
             name={ name }
+            namespace={ typeahead.namespace }
             onChange={ ({ value: val }) => {
               handleChange({ key: name, value: val });
               if (typeof typeahead.callback === 'function') {
