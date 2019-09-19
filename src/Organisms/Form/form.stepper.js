@@ -60,7 +60,6 @@ FormStepper.defaultProps = {
 FormStepper.propTypes = {
   activeStep: PropTypes.string,
   changeStep: PropTypes.func.isRequired,
-  showNavigation: PropTypes.bool.isRequired,
   steps: PropTypes.array.isRequired,
   stepper: PropTypes.string.isRequired,
   typeaheads: PropTypes.object
