@@ -1,7 +1,17 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 // HELPERS
 import { boxShadow } from '../../helpers/colours';
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 export const PillWrapper = styled.div`
     align-items: center;
@@ -9,7 +19,7 @@ export const PillWrapper = styled.div`
     border: ${ ({ border }) => border };
     border-radius: 5rem;
     box-shadow: ${ ({ shadow }) => shadow || boxShadow() };
-    color: ${ ({ theme, color, loading, background }) => (loading ? theme[background] : theme[color]) };
+    color: ${ ({ theme, color, loading, background, inlineLoader }) => (!inlineLoader && loading ? theme[background] : theme[color]) };
     display: inline-flex;
     font-size: ${ ({ fontSize }) => fontSize };
     height: ${ ({ height }) => height };
@@ -17,16 +27,16 @@ export const PillWrapper = styled.div`
     padding: 0 ${ ({ padding }) => padding };
     position: relative;
     transition: all 0.3s linear;
-    
+
     path {
-        fill: ${ ({ loading, color, background, theme }) => (loading ? theme[background] : theme[color]) };
+        fill: ${ ({ loading, color, background, theme, inlineLoader }) => (!inlineLoader && loading ? theme[background] : theme[color]) };
         transition: fill 0.3s linear;
     }
 `;
 
 export const HiddenButton = styled.button`
     background-color: transparent;
-    visibility: ${ ({ isLoading }) => (isLoading ? 'hidden' : 'visible') };
+    visibility: ${ ({ isLoading, inlineLoader }) => (!inlineLoader && isLoading ? 'hidden' : 'visible') };
     cursor: pointer;
     display: inline-flex;
     margin: 0;
@@ -35,7 +45,13 @@ export const HiddenButton = styled.button`
     height: 4rem;
     opacity: 0.6;
     transition: opacity 0.3s linear;
+
     &:hover {
         opacity: 1;
+    }
+
+    svg {
+        transform-origin: center center;
+        ${ ({ isLoading }) => (isLoading ? css`animation: ${ rotate } 2s linear infinite;` : '') }
     }
 `;

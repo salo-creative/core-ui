@@ -110,6 +110,7 @@ const RenderFields = (props) => {
             error={ hasError }
             errors={ typeahead.errors }
             errorMessage={ errorMessage }
+            isSubmitting={ typeahead.isSubmitting }
             key={ name }
             label={ label }
             max={ max }
