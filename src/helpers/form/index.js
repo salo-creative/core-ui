@@ -211,10 +211,6 @@ export const buildYup = ({ fields }) => {
 
     // assign rules to schema
     yupSchema[name] = vRule;
-
-    console.log(yupSchema[name]);
   });
-  const x = object().shape(yupSchema);
-  console.log('schema', x);
-  return x;
+  return object().shape(yupSchema);
 };
