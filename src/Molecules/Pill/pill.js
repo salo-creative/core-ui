@@ -13,6 +13,7 @@ const Pill = (props) => {
     color,
     fontSize,
     height,
+    inlineLoader,
     label,
     loading,
     margin,
@@ -22,7 +23,7 @@ const Pill = (props) => {
     shadow,
     value
   } = props;
- 
+
   return (
     <PillWrapper
       background={ background }
@@ -30,12 +31,13 @@ const Pill = (props) => {
       color={ color }
       fontSize={ fontSize }
       height={ height }
+      inlineLoader={ inlineLoader }
       isLoading={ loading }
       margin={ margin }
       padding={ padding }
       shadow={ shadow }
     >
-      { loading && (
+      { loading && !inlineLoader && (
         <Loader
           display={ true }
           loaderProps={ { size: 40, position: 'absolute' } }
@@ -47,12 +49,13 @@ const Pill = (props) => {
         <HiddenButton
           onClick={ () => onAdd(value) }
           disabled={ loading }
+          inlineLoader={ inlineLoader }
           isLoading={ loading }
           padding={ padding }
         >
           <Icon
             size={ 20 }
-            icon='plus'
+            icon={ loading ? 'sync' : 'plus' }
           />
         </HiddenButton>
       ) }
@@ -60,12 +63,13 @@ const Pill = (props) => {
         <HiddenButton
           onClick={ () => onRemove(value) }
           disabled={ loading }
+          inlineLoader={ inlineLoader }
           isLoading={ loading }
           padding={ padding }
         >
           <Icon
             size={ 20 }
-            icon='close'
+            icon={ loading ? 'sync' : 'close' }
           />
         </HiddenButton>
       ) }
@@ -80,6 +84,7 @@ Pill.defaultProps = {
   color: 'black',
   fontSize: '1.6rem',
   height: '4rem',
+  inlineLoader: false,
   label: '',
   loading: false,
   margin: '',
@@ -96,6 +101,7 @@ Pill.propTypes = {
   color: PropTypes.string,
   fontSize: PropTypes.string,
   height: PropTypes.string,
+  inlineLoader: PropTypes.bool,
   label: PropTypes.string,
   loading: PropTypes.bool,
   margin: PropTypes.string,

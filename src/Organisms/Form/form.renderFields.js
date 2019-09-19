@@ -107,12 +107,16 @@ const RenderFields = (props) => {
             add={ typeahead.add }
             debounced
             disabled={ disabled }
-            error={ !!error }
+            error={ hasError }
+            errors={ typeahead.errors }
             errorMessage={ errorMessage }
+            hydrateQuery={ typeahead.hydrateQuery }
+            isSubmitting={ typeahead.isSubmitting }
             key={ name }
             label={ label }
             max={ max }
             name={ name }
+            namespace={ typeahead.namespace }
             onChange={ ({ value: val }) => {
               handleChange({ key: name, value: val });
               if (typeof typeahead.callback === 'function') {
@@ -125,6 +129,7 @@ const RenderFields = (props) => {
             retryAction={ typeahead.retryAction }
             strings={ typeahead.strings }
             suggestions={ typeahead.suggestions }
+            value={ values[name] }
           />
         );
       }
@@ -312,7 +317,7 @@ const RenderFields = (props) => {
               metaData.copy.map((item) => {
                 if (item.type === 'link') {
                   return (
-                    <FormCopy>
+                    <FormCopy key={ item.text.slice(0, 10) }>
                       <Link to={ item.link }>
                         { item.text }
                       </Link>
@@ -320,7 +325,7 @@ const RenderFields = (props) => {
                   );
                 }
 
-                return <FormCopy>{ item.text }</FormCopy>;
+                return <FormCopy key={ item.text.slice(0, 10) }>{ item.text }</FormCopy>;
               })
             }
           </div>

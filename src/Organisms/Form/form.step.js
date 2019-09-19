@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty, get } from 'lodash';
+import { get, isEmpty } from 'lodash';
 
 // COMPONENTS & STYLES
 import P from '../../Typography/P';

@@ -22,7 +22,8 @@ const Form = (props) => {
     margin,
     name,
     renderSteps,
-    showNavigation,
+    showTitles,
+    stepper,
     textStrings,
     typeaheads,
     width,
@@ -35,6 +36,7 @@ const Form = (props) => {
     Link,
     Password: CustomPassword,
     Select: CustomSelect,
+    Submit: CustomSubmit,
     TextArea: CustomTextArea,
     TypeAhead: CustomTypeAhead,
     Upload: CustomUpload
@@ -78,6 +80,17 @@ const Form = (props) => {
   // check if form is stepped
   const isStepper = renderSteps && !isEmpty(steps);
 
+  const renderFormSubmission = () => {
+    // Works out if we should pass submitted data to a custom component or not.
+    if (!submit.error && submitted) {
+      if (CustomSubmit) {
+        return <CustomSubmit data={ submitted } />;
+      }
+      return <H3 align='center' margin='1rem 0'>{ submitted }</H3>;
+    }
+    return null;
+  };
+
   return (
     <FormWrapper
       className={ `${ className } ${ !loading && !error && !submitted ? 'expanded' : 'collapsed' }` }
@@ -85,7 +98,7 @@ const Form = (props) => {
       margin={ margin }
       width={ width }
     >
-      { submit.error && <ApolloError error={ submit.error } /> }
+      { submit.error && <ApolloError addAlert error={ submit.error } /> }
       { /* Handle form loading */ }
       { loading && <Loader display /> }
 
@@ -96,11 +109,8 @@ const Form = (props) => {
           error={ error }
         />
       ) }
-
       { /* Handle case when form has been submitted */ }
-      { submitted && (
-        <H3 align='center' margin='1rem 0'>{ submitted }</H3>
-      ) }
+      { renderFormSubmission() }
       <form
         noValidate
         autoComplete='off'
@@ -126,7 +136,8 @@ const Form = (props) => {
             { ...customComponents } // eslint-disable-line react/jsx-props-no-spreading
             activeStep={ activeStep }
             changeStep={ changeStep }
-            showNavigation={ showNavigation }
+            showTitles={ showTitles }
+            stepper={ stepper }
             steps={ steps }
             strings={ strings }
             typeaheads={ typeaheads }
@@ -142,7 +153,8 @@ Form.defaultProps = {
   height: 'auto',
   margin: '0',
   renderSteps: true,
-  showNavigation: true,
+  showTitles: true,
+  stepper: 'full',
   textStrings: {},
   typeaheads: null,
   width: 'auto',
@@ -155,6 +167,7 @@ Form.defaultProps = {
   Link: null,
   Password: null,
   Select: null,
+  Submit: null,
   TextArea: null,
   TypeAhead: null,
   Upload: null
@@ -167,7 +180,8 @@ Form.propTypes = {
   margin: PropTypes.string,
   name: PropTypes.string.isRequired,
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
-  showNavigation: PropTypes.bool,
+  showTitles: PropTypes.bool,
+  stepper: PropTypes.oneOf(['condensed', 'full']),
   textStrings: PropTypes.object,
   typeaheads: PropTypes.object,
   width: PropTypes.string,
@@ -180,6 +194,7 @@ Form.propTypes = {
   Link: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   Password: PropTypes.func,
   Select: PropTypes.func,
+  Submit: PropTypes.func,
   TextArea: PropTypes.func,
   TypeAhead: PropTypes.func,
   Upload: PropTypes.func
