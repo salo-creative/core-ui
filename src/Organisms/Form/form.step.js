@@ -45,7 +45,7 @@ const FormStep = (props) => {
       <div className='form__stepper-buttons'>
         { /* If not first page render previous */ }
         { step > 1 && (
-          <FormButton onClick={ changeStep } type='button'>{ strings.previous || 'Previous' }</FormButton>
+          <FormButton onClick={ changeStep } type='button'>{ get(strings, 'previous', 'Previous') }</FormButton>
         ) }
         { /* If last page render submit */ }
         { step === total && (
