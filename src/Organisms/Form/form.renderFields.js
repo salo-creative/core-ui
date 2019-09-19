@@ -110,6 +110,7 @@ const RenderFields = (props) => {
             error={ hasError }
             errors={ typeahead.errors }
             errorMessage={ errorMessage }
+            hydrateQuery={ typeahead.hydrateQuery }
             isSubmitting={ typeahead.isSubmitting }
             key={ name }
             label={ label }
@@ -128,6 +129,7 @@ const RenderFields = (props) => {
             retryAction={ typeahead.retryAction }
             strings={ typeahead.strings }
             suggestions={ typeahead.suggestions }
+            value={ values[name] }
           />
         );
       }
