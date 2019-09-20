@@ -32,6 +32,7 @@
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "react/jsx-indent": ["error", 2],
     "react/jsx-indent-props": ["error", 2],
+    "react/jsx-props-no-spreading": 0,
     "new-cap": 0,
     "no-plusplus": 0,
     "no-return-assign": 0,

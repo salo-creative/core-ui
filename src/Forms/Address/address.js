@@ -73,7 +73,7 @@ const Address = (props) => {
   return (
     <div className={ `address__wrapper ${ className }` }>
       <Input
-        { ...standardProps } // eslint-disable-line react/jsx-props-no-spreading
+        { ...standardProps }
         error={ error && !string().required().isValidSync(state.line1) }
         errorMessage='The first line of address is required'
         key={ `line1_${ name }` }
@@ -86,7 +86,7 @@ const Address = (props) => {
       />
       { fields.includes('line2') && (
         <Input
-          { ...standardProps } // eslint-disable-line react/jsx-props-no-spreading
+          { ...standardProps }
           error={ error && !string().isValidSync(state.line2) }
           key={ `line2_${ name }` }
           label='Address line 2'
@@ -97,7 +97,7 @@ const Address = (props) => {
         />
       ) }
       <Input
-        { ...standardProps } // eslint-disable-line react/jsx-props-no-spreading
+        { ...standardProps }
         error={ error && !string().required().isValidSync(state.city) }
         errorMessage='A city is required'
         key={ `city_${ name }` }
@@ -110,7 +110,7 @@ const Address = (props) => {
       />
       { fields.includes('county') && (
         <Input
-          { ...standardProps } // eslint-disable-line react/jsx-props-no-spreading
+          { ...standardProps }
           error={ error && !string().isValidSync(state.county) }
           key={ `county_${ name }` }
           label='County'
@@ -121,7 +121,7 @@ const Address = (props) => {
         />
       ) }
       <Input
-        { ...standardProps } // eslint-disable-line react/jsx-props-no-spreading
+        { ...standardProps }
         error={ error && !string().required().isValidSync(state.postcode) }
         errorMessage='A valid postcode is required'
         key={ `postcode_${ name }` }
@@ -134,7 +134,7 @@ const Address = (props) => {
       />
       { fields.includes('country') && (
         <Input
-          { ...standardProps } // eslint-disable-line react/jsx-props-no-spreading
+          { ...standardProps }
           error={ error && !string().isValidSync(state.country) }
           key={ `country_${ name }` }
           label='Country'

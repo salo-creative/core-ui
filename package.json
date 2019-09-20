@@ -1,6 +1,6 @@
 {
   "name": "@salo/core-ui",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "description": "Core Salo React UI library",
   "main": "./index.js",
   "sideEffects": false,
@@ -14,7 +14,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage --maxWorkers=10",
-    "old-release": "jest -b --maxWorkers=10 && chmod +x release.sh && ./release.sh",
     "release": "chmod +x ./ci/release.sh && ./ci/release.sh",
     "npm-publish": "npm-publish ./dist",
     "build-storybook": "build-storybook -s ./public -o .out",
@@ -127,7 +126,7 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
-    "@salo/icons": "^1.0.0",
+    "@salo/icons": "^1.0.3",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-client": "^2.6.4",
     "apollo-link": "^1.2.12",

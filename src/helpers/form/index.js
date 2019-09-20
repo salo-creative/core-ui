@@ -72,6 +72,11 @@ export const dateRangeValidation = ({ value, max, min }) => {
 export const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/;
 
 /**
+ * PASSWORD REGEX
+ */
+export const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&£#])[A-Za-z\d@$!%*?&£#]{8,}$/;
+
+/**
  * POSTCODE REGEX
  */
 // https://stackoverflow.com/questions/164979/regex-for-matching-uk-postcodes
@@ -113,6 +118,12 @@ export const buildYup = ({ fields }) => {
         if (regex) {
           vRule = vRule.matches(new RegExp(regex));
         }
+        break;
+      }
+      case 'password': {
+        vRule = string();
+        vRule = minMaxInt({ min, max, vRule });
+        vRule = vRule.matches(new RegExp(passwordRegex));
         break;
       }
       case 'number': {
