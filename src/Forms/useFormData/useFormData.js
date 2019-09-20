@@ -175,6 +175,16 @@ const useFormData = ({ name, initialErrors = false }) => {
     dispatch({ type: 'SHOW_ERRORS', value: !!value });
   };
 
+  // Handle form reset
+  const reset = (value) => {
+    dispatch({ type: 'RESET', state: {
+      activeStep: 1,
+      showErrors: false,
+      steps: [],
+      values: []
+    } });
+  };
+
   return {
     activeStep,
     changeStep,
@@ -185,6 +195,7 @@ const useFormData = ({ name, initialErrors = false }) => {
     handleSubmit,
     handleSubmitStepper,
     loading,
+    reset,
     showErrors,
     steps,
     strings: get(data, 'form_show.strings', {}),
