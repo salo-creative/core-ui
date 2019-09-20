@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import Address from '../../Forms/Address';
 import CheckBox from '../../Forms/CheckBox';
 import Input from '../../Forms/Input';
+import Password from '../../Forms/Password';
 import Radio from '../../Forms/Radio';
 import Select from '../../Forms/Select';
 import TextArea from '../../Forms/TextArea';
@@ -194,30 +195,18 @@ const RenderFields = (props) => {
       }
       case 'password': {
         // Evaluate the component to use
-        const FormPassword = CustomPassword || CustomInput || Input;
+        const FormPassword = CustomPassword || Password;
         return (
           <FormPassword
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            // { ...(!metaData.match ? { autocomplete: 'new-password' } : {}) }
-            autocomplete='new-password'
             error={ hasError }
-            errorMessage={ errorMessage }
             disabled={ disabled }
             key={ name }
-            label={ label }
             name={ name }
-            onBlur={ ({ value: val }) => handleBlur({ key: name, value: val }) }
-            onKeyUp={ ({ e, value: val }) => {
-              // This is needed to trigger field validation when return is pressed to submit
-              if (e.keyCode === 13) {
-                handleBlur({ key: name, value: val });
-              }
-            } }
-            onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
-            placeholder={ placeholder }
+            onChange={ (val) => handleBlur({ key: name, value: val }) }
             required={ required }
-            type='password'
             value={ value }
+            // Custom components
+            Input={ CustomInput || Input }
           />
         );
       }

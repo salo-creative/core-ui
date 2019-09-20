@@ -41,14 +41,12 @@ const Password = (props) => {
   // On field blur we emit these back on the on change function to the
   // parent if fields match or not using the confirm functionality
   const handleBlur = () => {
-    if (state.matches || !confirm) {
-      onChange(state.password);
-    }
+    onChange(state.matches || !confirm ? state.password : '');
   };
 
   // This is needed to trigger field validation when return is pressed to submit
   const handleKeyUp = ({ e }) => {
-    if (e.keyCode === 13 && (state.matches || !confirm)) {
+    if (e.keyCode === 13) {
       handleBlur();
     }
   };

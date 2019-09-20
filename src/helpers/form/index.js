@@ -123,9 +123,7 @@ export const buildYup = ({ fields }) => {
       case 'password': {
         vRule = string();
         vRule = minMaxInt({ min, max, vRule });
-        if (regex) {
-          vRule = vRule.matches(new RegExp(passwordRegex));
-        }
+        vRule = vRule.matches(new RegExp(passwordRegex));
         break;
       }
       case 'number': {
