@@ -34,6 +34,13 @@ const Pill = (props) => {
       inlineLoader={ inlineLoader }
       isLoading={ loading }
       margin={ margin }
+      onClick={ () => {
+        if (typeof onAdd === 'function') {
+          onAdd(value);
+        } else if (typeof onRemove === 'function') {
+          onRemove(value);
+        }
+      } }
       padding={ padding }
       shadow={ shadow }
     >
@@ -47,11 +54,11 @@ const Pill = (props) => {
       { label }
       { onAdd && (
         <HiddenButton
-          onClick={ () => onAdd(value) }
           disabled={ loading }
           inlineLoader={ inlineLoader }
           isLoading={ loading }
           padding={ padding }
+          tabIndex={ 0 }
         >
           <Icon
             size={ 20 }
@@ -66,6 +73,7 @@ const Pill = (props) => {
           inlineLoader={ inlineLoader }
           isLoading={ loading }
           padding={ padding }
+          tabIndex={ 0 }
         >
           <Icon
             size={ 20 }

@@ -20,6 +20,7 @@ export const PillWrapper = styled.div`
     border-radius: 5rem;
     box-shadow: ${ ({ shadow }) => shadow || boxShadow() };
     color: ${ ({ theme, color, loading, background, inlineLoader }) => (!inlineLoader && loading ? theme[background] : theme[color]) };
+    cursor: pointer;
     display: inline-flex;
     font-size: ${ ({ fontSize }) => fontSize };
     height: ${ ({ height }) => height };
