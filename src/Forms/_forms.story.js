@@ -3,6 +3,7 @@ import './CheckBox/_checkBox.story';
 import './DatePicker/_datePicker.story';
 import './Input/_input.story';
 import './Numbers/_numbers.story';
+import './Password/_password.story';
 import './Radio/_radio.story';
 import './Range/_range.story';
 import './ReadOnly/_readOnly.story';

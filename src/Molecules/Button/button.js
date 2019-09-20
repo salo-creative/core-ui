@@ -56,8 +56,8 @@ const Button = (props) => {
   
   return (
     <ButtonWrapper
-      { ...rest } // eslint-disable-line react/jsx-props-no-spreading
-      { ...buttonType } // eslint-disable-line react/jsx-props-no-spreading
+      { ...rest }
+      { ...buttonType }
       className={ disabled ? 'disabled' : '' }
       circle={ circle.toString() }
       disabled={ disable }

@@ -53,6 +53,7 @@ export { default as Address } from './Forms/Address';
 export { default as CheckBox, CheckBoxGroup } from './Forms/CheckBox';
 export { default as DatePicker } from './Forms/DatePicker';
 export { default as Input } from './Forms/Input';
+export { default as Password } from './Forms/Password';
 export { default as Radio } from './Forms/Radio';
 export { default as Range } from './Forms/Range';
 export { default as ReadOnly } from './Forms/ReadOnly';
@@ -86,7 +87,7 @@ export { getTokensServer, getTokensClient, tokenExpired } from './helpers/auth';
 export { getBreakpoint } from './helpers/breakpoints';
 export { colours, boxShadow } from './helpers/colours';
 export { ENV, isBrowser } from './helpers/environments';
-export { dateRangeValidation, phoneRegExp, emailRegExp } from './helpers/form';
+export { dateRangeValidation, phoneRegExp, passwordRegex } from './helpers/form';
 
 /**
  * ALERT
