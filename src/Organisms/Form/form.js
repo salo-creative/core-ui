@@ -22,6 +22,7 @@ const Form = (props) => {
     margin,
     name,
     renderSteps,
+    resetForm,
     showTitles,
     stepper,
     textStrings,
@@ -72,6 +73,27 @@ const Form = (props) => {
     CustomUpload,
     Link
   };
+  
+  // If something external has told form to reset then reset it.
+  // External usage:
+  // const [reset, setReset] = React.useState(false);
+  // const resetForm = () => {
+  //   if (!reset) {
+  //     return false;
+  //   }
+  //   return () => {
+  //     setReset(false);
+  //   };
+  // };
+  const shouldResetForm = typeof resetForm === 'function' ? resetForm() : false;
+  React.useEffect(() => {
+    if (shouldResetForm) {
+      // Call data handler
+      reset();
+      // Call callback
+      shouldResetForm();
+    }
+  }, [reset, resetForm, shouldResetForm]);
 
   const submitted = get(submit, 'data.form_submit');
 
@@ -153,6 +175,7 @@ Form.defaultProps = {
   height: 'auto',
   margin: '0',
   renderSteps: true,
+  resetForm: null,
   showTitles: true,
   stepper: 'full',
   textStrings: {},
@@ -180,6 +203,7 @@ Form.propTypes = {
   margin: PropTypes.string,
   name: PropTypes.string.isRequired,
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
+  resetForm: PropTypes.func,
   showTitles: PropTypes.bool,
   stepper: PropTypes.oneOf(['condensed', 'full']),
   textStrings: PropTypes.object,
