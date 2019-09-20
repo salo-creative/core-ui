@@ -73,7 +73,7 @@ const RenderFields = (props) => {
     });
     // Grab any errors
     const hasError = !!error && showErrors;
-    const errorMessage = typeof error === 'string' ? error : 'Field invalid';
+    const errorMessage = typeof error === 'string' ? error.replace(name, label || name) : 'Field invalid';
     // Grab the meta info from the form
     const metaData = meta && typeof meta === 'string' ? JSON.parse(meta) : {};
     
