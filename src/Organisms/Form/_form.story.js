@@ -52,7 +52,7 @@ const CustomInput = ({
   <React.Fragment>
     <label>{ label }</label>
     <input
-      { ...props } // eslint-disable-line react/jsx-props-no-spreading
+      { ...props } 
       onBlur={ (e) => onBlur({ e, value: e.target.value }) }
       onChange={ (e) => onChange({ e, value: e.target.value }) }
       onKeyUp={ _ => _ }
@@ -65,7 +65,7 @@ const CustomButton = ({
   children,
   ...props
 }) => {
-  return <button { ...props }>{ children }</button>; // eslint-disable-line react/jsx-props-no-spreading
+  return <button { ...props }>{ children }</button>; 
 };
 
 stories.add(

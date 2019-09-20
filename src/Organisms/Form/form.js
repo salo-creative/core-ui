@@ -132,8 +132,8 @@ const Form = (props) => {
         { /* Render the stepper */ }
         { formShouldRender && isStepper && (
           <FormStepper
-            { ...fieldProps } // eslint-disable-line react/jsx-props-no-spreading
-            { ...customComponents } // eslint-disable-line react/jsx-props-no-spreading
+            { ...fieldProps } 
+            { ...customComponents } 
             activeStep={ activeStep }
             changeStep={ changeStep }
             showTitles={ showTitles }

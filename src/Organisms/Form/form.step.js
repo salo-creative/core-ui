@@ -37,7 +37,7 @@ const FormStep = (props) => {
       { isEmpty(fields) && <P>No fields found for this step</P> }
       { !isEmpty(fields) && (
         <RenderFields
-          { ...fieldProps } // eslint-disable-line react/jsx-props-no-spreading
+          { ...fieldProps }
           fields={ fields }
           typeaheads={ typeaheads }
         />
