@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.8.2", "commit": "Adding forward ref to inputs" },
 { "user": "Rich Comber", "version": "v0.8.1", "commit": "Adding validation error message fix" },
 { "user": "Rich Comber", "version": "v0.8.0", "commit": "Adding form reset functionality, password field and updates to form organism" },
 { "user": "Rich Comber", "version": "v0.7.6", "commit": "LAtest updates" },
