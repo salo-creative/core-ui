@@ -11,6 +11,7 @@ export const AlertWrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  border-bottom: 1px solid #fff;
   &.error {
     background: ${ ({ theme }) => theme.error };
   }
