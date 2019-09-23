@@ -13,7 +13,7 @@ import Strength from '../components/Strength';
 import { sanitize } from '../../helpers/form';
 import { colours } from '../../helpers/colours';
 
-const Input = (props) => {
+const Input = React.forwardRef((props, ref) => {
   const {
     accept,
     background,
@@ -82,6 +82,7 @@ const Input = (props) => {
           onKeyUp={ (e) => onKeyUp({ e, value: sanitize(e.target.value) }) }
           padding={ padding }
           placeholder={ placeholder }
+          ref={ ref }
           type={ type }
           value={ value }
 
@@ -109,7 +110,7 @@ const Input = (props) => {
       { type === 'password' && showStrength && (<Strength value={ value } className='salo-input__strength' />) }
     </InputWrapper>
   );
-};
+});
 
 Input.defaultProps = {
   accept: null,
