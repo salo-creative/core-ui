@@ -154,8 +154,8 @@ const Form = (props) => {
         { /* Render the stepper */ }
         { formShouldRender && isStepper && (
           <FormStepper
-            { ...fieldProps } 
-            { ...customComponents } 
+            { ...fieldProps }
+            { ...customComponents }
             activeStep={ activeStep }
             changeStep={ changeStep }
             showTitles={ showTitles }
@@ -210,18 +210,18 @@ Form.propTypes = {
   typeaheads: PropTypes.object,
   width: PropTypes.string,
   // Custom components
-  Button: PropTypes.func,
-  Checkbox: PropTypes.func,
+  Button: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  Checkbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   Copy: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   Heading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  Input: PropTypes.func,
+  Input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   Link: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  Password: PropTypes.func,
-  Select: PropTypes.func,
-  Submit: PropTypes.func,
-  TextArea: PropTypes.func,
-  TypeAhead: PropTypes.func,
-  Upload: PropTypes.func
+  Password: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  Select: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  Submit: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  TextArea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  TypeAhead: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  Upload: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };
 
 export default Form;

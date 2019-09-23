@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { PropTypes } from 'prop-types';
+import { get } from 'lodash';
 import onClickOutside from 'react-onclickoutside';
 
 // COMPONENTS
@@ -34,7 +35,8 @@ class Drop extends React.Component {
     if (fixed && forceTop) {
       return `${ forceTop }px`;
     }
-    return `${ (fixed ? top : (top + window.scrollY)) + clientHeight + offsetTop }px`;
+    const y = get(window, 'scrollY', get(window, 'pageYOffset', 0)); // Fallback for IE
+    return `${ (fixed ? top : (top + y)) + clientHeight + offsetTop }px`;
   };
 
   evaluateLeft = ({ left, clientWidth }) => {

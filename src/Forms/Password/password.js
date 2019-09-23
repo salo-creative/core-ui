@@ -145,7 +145,7 @@ Password.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   fontSize: PropTypes.string,
-  Input: PropTypes.func,
+  Input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   margin: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
