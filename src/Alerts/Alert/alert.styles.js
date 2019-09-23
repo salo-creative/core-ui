@@ -1,26 +1,13 @@
-import styled, { keyframes, css } from 'styled-components';
-
-const loadSwipe = keyframes`
-  from {
-    width: 0
-  }
-  to {
-    width: 100%
-  }
-`;
-
-const animation = ({ time }) => css`
-  ${ loadSwipe } ${ time }s linear infinite;
-`;
+import styled from 'styled-components';
 
 export const AlertWrapper = styled.div`
   width: 100%;
   background: ${ ({ theme }) => theme.success };
   color: #fff;
-  padding: 5px 10px;
-  font-size: 12px;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
   text-align: left;
-  min-height: 40px;
+  min-height: 5rem;
   display: flex;
   align-items: center;
   position: relative;
@@ -33,20 +20,6 @@ export const AlertWrapper = styled.div`
   &.info {
     background: ${ ({ theme }) => theme.primary };
   }
-  ${ ({ timer }) => (timer ? `
-    &:after {
-      display: block;
-      content: "";
-      width: 100%;
-      left: 0;
-      top: 0;
-      position: absolute;
-      height: 0.4em;
-      background: rgba(255,255,255,0.3);
-      animation-fill-mode: both;
-      animation: ${ animation };
-    }
-  ` : '') };
 `;
 
 export const Close = styled.a`
@@ -56,9 +29,10 @@ export const Close = styled.a`
   justify-content: center;
   align-items: center;
   right: 0;
-  width: 30px;
+  width: 3rem;
   height: 100%;
   opacity: 0.6;
+  color: #fff;
   cursor: pointer;
   transition: opacity 0.3s linear;
   &:hover {
