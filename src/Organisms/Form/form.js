@@ -116,7 +116,8 @@ const Form = (props) => {
 
   React.useEffect(() => {
     const prompter = (event) => {
-      if (isDirty) {
+      if (isDirty && !submit.data && !submit.error) {
+        // Show prompt if filled in and not submitted/ing
         event.preventDefault();
         // eslint-disable-next-line no-param-reassign
         event.returnValue = '';
@@ -126,7 +127,7 @@ const Form = (props) => {
     return () => {
       window.removeEventListener('beforeunload', prompter);
     };
-  }, [isDirty]);
+  }, [isDirty, submit]);
 
   return (
     <FormWrapper
