@@ -23,15 +23,19 @@ const useFormData = ({ name, initialErrors = false }) => {
   
   const [state, dispatch] = React.useReducer(reducer, {
     showErrors: initialErrors,
-    activeStep: null
+    activeStep: null,
+    isDirty: false
   });
   
   const {
     activeStep,
+    isDirty,
     showErrors,
     steps,
     values
   } = state;
+
+  console.log('formdata dirty?', isDirty)
 
   React.useEffect(() => {
     if (get(data, 'form_show.fields')) {
@@ -179,6 +183,7 @@ const useFormData = ({ name, initialErrors = false }) => {
   const reset = (value) => {
     dispatch({ type: 'RESET', state: {
       activeStep: 1,
+      isDirty: false,
       showErrors: false,
       steps: [],
       values: []
@@ -194,6 +199,7 @@ const useFormData = ({ name, initialErrors = false }) => {
     handleChange,
     handleSubmit,
     handleSubmitStepper,
+    isDirty,
     loading,
     reset,
     showErrors,

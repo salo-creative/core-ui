@@ -49,6 +49,7 @@ const Form = (props) => {
     error,
     handleSubmit,
     handleSubmitStepper,
+    isDirty,
     loading,
     refetch,
     reset,
@@ -112,6 +113,20 @@ const Form = (props) => {
     }
     return null;
   };
+
+  React.useEffect(() => {
+    const prompter = (event) => {
+      if (isDirty) {
+        event.preventDefault();
+        // eslint-disable-next-line no-param-reassign
+        event.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', prompter);
+    return () => {
+      window.removeEventListener('beforeunload', prompter);
+    };
+  }, [isDirty]);
 
   return (
     <FormWrapper
