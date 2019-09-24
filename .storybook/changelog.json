@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.8.5", "commit": "Adding form dirty state, scroll to top, group field improved rendering and pill responsive sizing" },
 { "user": "Rich Comber", "version": "v0.8.4", "commit": "Adding border to alerts" },
 { "user": "Rich Comber", "version": "v0.8.3", "commit": "Tweak alerts styles" },
 { "user": "Rich Comber", "version": "v0.8.2", "commit": "Adding forward ref to inputs" },
