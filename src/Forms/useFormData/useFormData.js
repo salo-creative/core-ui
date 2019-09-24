@@ -35,8 +35,6 @@ const useFormData = ({ name, initialErrors = false }) => {
     values
   } = state;
 
-  console.log('formdata dirty?', isDirty)
-
   React.useEffect(() => {
     if (get(data, 'form_show.fields')) {
       // Build the main schema
