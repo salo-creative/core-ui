@@ -309,7 +309,7 @@ const RenderFields = (props) => {
                 if (item.type === 'link') {
                   return (
                     <FormCopy key={ item.text.slice(0, 10) }>
-                      <Link to={ item.link }>
+                      <Link to={ item.link } target='_blank'>
                         { item.text }
                       </Link>
                     </FormCopy>
