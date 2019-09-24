@@ -4,7 +4,7 @@ import Icon from '@salo/icons';
 import Loader from '../Loader';
 
 // COMPONENTS & STYLES
-import { PillWrapper, HiddenButton } from './pills.styles';
+import { PillWrapper, HiddenButton, Text } from './pills.styles';
 
 const Pill = (props) => {
   const {
@@ -44,14 +44,13 @@ const Pill = (props) => {
           appearance='light'
         />
       ) }
-      { label }
+      <Text>{ label }</Text>
       { onAdd && (
         <HiddenButton
           onClick={ () => onAdd(value) }
           disabled={ loading }
           inlineLoader={ inlineLoader }
           isLoading={ loading }
-          padding={ padding }
         >
           <Icon
             size={ 20 }
@@ -65,7 +64,6 @@ const Pill = (props) => {
           disabled={ loading }
           inlineLoader={ inlineLoader }
           isLoading={ loading }
-          padding={ padding }
         >
           <Icon
             size={ 20 }
