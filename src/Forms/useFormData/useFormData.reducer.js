@@ -23,6 +23,7 @@ const reducer = (state, action) => {
     case 'UPDATE_VALUE':
       return {
         ...state,
+        isDirty: true,
         values: {
           ...state.values,
           [action.key]: {

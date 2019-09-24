@@ -49,6 +49,7 @@ const Form = (props) => {
     error,
     handleSubmit,
     handleSubmitStepper,
+    isDirty,
     loading,
     refetch,
     reset,
@@ -95,6 +96,8 @@ const Form = (props) => {
     }
   }, [reset, resetForm, shouldResetForm]);
 
+  const formRef = React.useRef(null);
+
   const submitted = get(submit, 'data.form_submit');
 
   // form should render
@@ -112,6 +115,21 @@ const Form = (props) => {
     }
     return null;
   };
+
+  React.useEffect(() => {
+    const prompter = (event) => {
+      if (isDirty && !submit.data && !submit.error) {
+        // Show prompt if filled in and not submitted/ing
+        event.preventDefault();
+        // eslint-disable-next-line no-param-reassign
+        event.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', prompter);
+    return () => {
+      window.removeEventListener('beforeunload', prompter);
+    };
+  }, [isDirty, submit]);
 
   return (
     <FormWrapper
@@ -134,9 +152,10 @@ const Form = (props) => {
       { /* Handle case when form has been submitted */ }
       { renderFormSubmission() }
       <form
-        noValidate
         autoComplete='off'
+        noValidate
         onSubmit={ (e) => (isStepper ? handleSubmitStepper(e) : handleSubmit(e)) }
+        ref={ formRef }
       >
         { /* Render the basic form */ }
         { formShouldRender && !isStepper && (
@@ -157,7 +176,13 @@ const Form = (props) => {
             { ...fieldProps }
             { ...customComponents }
             activeStep={ activeStep }
-            changeStep={ changeStep }
+            changeStep={ (id) => {
+              changeStep(id);
+              setTimeout(() => {
+                // Scroll form to top when page changes.
+                formRef.current.scrollIntoView();
+              }, 1);
+            } }
             showTitles={ showTitles }
             stepper={ stepper }
             steps={ steps }

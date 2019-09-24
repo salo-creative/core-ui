@@ -23,11 +23,13 @@ const useFormData = ({ name, initialErrors = false }) => {
   
   const [state, dispatch] = React.useReducer(reducer, {
     showErrors: initialErrors,
-    activeStep: null
+    activeStep: null,
+    isDirty: false
   });
   
   const {
     activeStep,
+    isDirty,
     showErrors,
     steps,
     values
@@ -179,6 +181,7 @@ const useFormData = ({ name, initialErrors = false }) => {
   const reset = (value) => {
     dispatch({ type: 'RESET', state: {
       activeStep: 1,
+      isDirty: false,
       showErrors: false,
       steps: [],
       values: []
@@ -194,6 +197,7 @@ const useFormData = ({ name, initialErrors = false }) => {
     handleChange,
     handleSubmit,
     handleSubmitStepper,
+    isDirty,
     loading,
     reset,
     showErrors,
