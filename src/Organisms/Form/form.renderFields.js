@@ -19,15 +19,17 @@ import P from '../../Typography/P';
 import { evaluateValue } from '../../Forms/useFormData/useFormData.helpers';
 
 const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
+  @media only screen and (min-width: 720px) {
+    display: flex;
+    justify-content: space-between;
 
-  > * {
-    width: 100%;
-  }
-  
-  > *:not(:first-child) {
-    margin-left: 2rem;
+    > * {
+      width: 100%;
+    }
+    
+    > *:not(:first-child) {
+      margin-left: 2rem;
+    }
   }
 `;
 
