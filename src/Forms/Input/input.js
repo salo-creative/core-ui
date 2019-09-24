@@ -33,6 +33,7 @@ const Input = React.forwardRef((props, ref) => {
     name,
     onBlur,
     onChange,
+    onKeyDown,
     onKeyUp,
     padding,
     placeholder,
@@ -79,6 +80,7 @@ const Input = React.forwardRef((props, ref) => {
           name={ name }
           onBlur={ (e) => onBlur({ e, value: sanitize(e.target.value) }) }
           onChange={ (e) => onChange({ e, value: sanitize(e.target.value) }) }
+          onKeyDown={ onKeyDown }
           onKeyUp={ (e) => onKeyUp({ e, value: sanitize(e.target.value) }) }
           padding={ padding }
           placeholder={ placeholder }
@@ -130,6 +132,7 @@ Input.defaultProps = {
   multiple: null,
   onBlur: () => null,
   onChange: () => null,
+  onKeyDown: null,
   onKeyUp: () => null,
   padding: '0 1rem',
   placeholder: '',
@@ -159,6 +162,7 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
   padding: PropTypes.string,
   placeholder: PropTypes.string,
