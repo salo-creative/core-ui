@@ -6,7 +6,7 @@ import Loader from '../Loader';
 // COMPONENTS & STYLES
 import { PillWrapper, HiddenButton, Text } from './pills.styles';
 
-const Pill = (props) => {
+const Pill = React.forwardRef((props, ref) => {
   const {
     background,
     border,
@@ -47,10 +47,12 @@ const Pill = (props) => {
       <Text>{ label }</Text>
       { onAdd && (
         <HiddenButton
-          onClick={ () => onAdd(value) }
           disabled={ loading }
           inlineLoader={ inlineLoader }
           isLoading={ loading }
+          onClick={ () => onAdd(value) }
+          ref={ ref }
+          tabIndex={ 0 }
         >
           <Icon
             size={ 20 }
@@ -60,10 +62,12 @@ const Pill = (props) => {
       ) }
       { onRemove && (
         <HiddenButton
-          onClick={ () => onRemove(value) }
           disabled={ loading }
           inlineLoader={ inlineLoader }
           isLoading={ loading }
+          onClick={ () => onRemove(value) }
+          ref={ ref }
+          tabIndex={ 0 }
         >
           <Icon
             size={ 20 }
@@ -74,7 +78,7 @@ const Pill = (props) => {
       
     </PillWrapper>
   );
-};
+});
 
 Pill.defaultProps = {
   background: 'grey',
