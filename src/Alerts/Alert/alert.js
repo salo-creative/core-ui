@@ -21,7 +21,6 @@ class Alert extends React.Component {
     const { timer } = this.state;
     if (timer && typeof setAlertClear === 'function') {
       setAlertClear(alert.id, alert.time);
-      // this.setState({ timer: false });
     }
   }
 
@@ -40,13 +39,10 @@ class Alert extends React.Component {
 
   render() {
     const { alert } = this.props;
-    const { timer } = this.state;
     if (alert) {
       return (
         <AlertWrapper
           className={ `${ alert.type }` }
-          time={ alert.time }
-          timer={ timer }
         >
           { alert.message }
           { this.renderClose() }

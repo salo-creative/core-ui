@@ -62,7 +62,7 @@ class ApolloError extends React.Component {
     }
 
     // Add an alert for the initial message
-    if (addAlert) {
+    if (addAlert && insertAlert) {
       insertAlert({
         type: 'error',
         message,
