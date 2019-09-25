@@ -12,6 +12,7 @@ const Button = (props) => {
   const {
     children,
     circle,
+    className,
     disabled,
     fullWidth,
     height,
@@ -58,7 +59,7 @@ const Button = (props) => {
     <ButtonWrapper
       { ...rest }
       { ...buttonType }
-      className={ disabled ? 'disabled' : '' }
+      className={ `${ className } ${ disabled ? 'disabled' : '' }` }
       circle={ circle.toString() }
       disabled={ disable }
       fullwidth={ fullWidth.toString() }
@@ -88,6 +89,7 @@ Button.defaultProps = {
   appearance: 'primary',
   children: '',
   circle: false,
+  className: '',
   disabled: false,
   fullWidth: false,
   height: '4rem',
@@ -105,6 +107,7 @@ Button.propTypes = {
   appearance: PropTypes.string,
   children: PropTypes.any,
   circle: PropTypes.bool,
+  className: PropTypes.string,
   disabled: PropTypes.bool,
   fullWidth: PropTypes.bool,
   height: PropTypes.string,
