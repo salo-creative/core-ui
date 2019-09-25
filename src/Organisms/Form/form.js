@@ -131,7 +131,7 @@ const Form = (props) => {
     };
   }, [isDirty, submit]);
 
-  const Submit = CustomSubmit || Button;
+  const Submit = CustomButton || Button;
 
   return (
     <FormWrapper
