@@ -131,6 +131,8 @@ const Form = (props) => {
     };
   }, [isDirty, submit]);
 
+  const Submit = CustomButton || Button;
+
   return (
     <FormWrapper
       className={ `${ className } ${ !loading && !error && !submitted ? 'expanded' : 'collapsed' }` }
@@ -161,12 +163,12 @@ const Form = (props) => {
         { formShouldRender && !isStepper && (
           <React.Fragment>
             <RenderFields { ...fieldProps } { ...customComponents } typeaheads={ typeaheads } /> { /* eslint-disable-line react/jsx-props-no-spreading */ }
-            <Button
+            <Submit
               loading={ submit.isSubmitting }
               type='submit'
             >
               { get(textStrings, 'submit', 'Submit') }
-            </Button>
+            </Submit>
           </React.Fragment>
         ) }
 
