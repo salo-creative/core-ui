@@ -90,6 +90,7 @@ const RenderFields = (props) => {
         const FormUpload = CustomUpload || Upload;
         return (
           <FormUpload
+            accept={ field.validation.enum }
             error={ hasError }
             errorMessage={ errorMessage }
             key={ name }

@@ -212,7 +212,7 @@ export const buildYup = ({ fields }) => {
       vRule = vRule.required();
     }
     // ENUM
-    if (!isEmpty(oneOf)) {
+    if (type !== 'file' && !isEmpty(oneOf)) {
       vRule = vRule.oneOf(oneOf);
     }
     // MATCHES
