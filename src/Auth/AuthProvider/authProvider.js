@@ -56,13 +56,6 @@ class AuthProvider extends React.Component {
   };
 
   login = (login) => {
-    if (!get(login, 'user')) {
-      throw new Error('Expecting correctly formed login object');
-    }
-    if (!get(webpackVars, 'HOSTNAME')) {
-      throw new Error('Expecting webpackVars.HOSTNAME to be set');
-    }
-
     const jwt = {
       i: login.user.id,
       r: login.user.roles,
