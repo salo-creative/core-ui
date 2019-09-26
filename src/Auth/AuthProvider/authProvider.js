@@ -10,7 +10,6 @@ import { Provider } from '../auth.context';
 import { ENV } from '../../helpers/environments';
 
 const cookies = new Cookies();
-const cookieDomain = ENV === 'local' ? 'localhost' : 'localhost';
 
 class AuthProvider extends React.Component {
   constructor(props) {
@@ -57,17 +56,23 @@ class AuthProvider extends React.Component {
   };
 
   login = (login) => {
+    if (!get(login, 'user')) {
+      throw new Error('Expecting correctly formed login object');
+    }
+    if (!get(webpackVars, 'HOSTNAME')) {
+      throw new Error('Expecting webpackVars.HOSTNAME to be set');
+    }
+
     const jwt = {
-      i: login.id,
-      o: login.organisation,
+      i: login.user.id,
+      r: login.user.roles,
       t: login.jwt,
       ts: Date.now()
     };
     this.setState({ jwt, loggedOut: false });
     const cookieConfig = {
       path: '/',
-      domain: cookieDomain,
-      secure: ENV !== 'local',
+      secure: ENV !== 'development',
       sameSite: 'strict',
       maxAge: 60 * 60 * 24 * 2
     };
@@ -76,7 +81,7 @@ class AuthProvider extends React.Component {
 
   logout = () => {
     setTimeout(() => {
-      cookies.remove('SCSession', { path: '/', domain: cookieDomain });
+      cookies.remove('SCSession', { path: '/' });
       window.location.reload();
     }, 100);
   };
