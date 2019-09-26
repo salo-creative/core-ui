@@ -7,7 +7,7 @@ import { GET_FORM, SUBMIT_FORM } from './useFormData.queries';
 import { buildSchema, formatSteps } from './useFormData.helpers';
 import reducer from './useFormData.reducer';
 
-const useFormData = ({ name, initialErrors = false }) => {
+const useFormData = ({ name, mutationName = 'form_submit', initialErrors = false }) => {
   const model = React.useRef({});
   const {
     data,
@@ -16,11 +16,12 @@ const useFormData = ({ name, initialErrors = false }) => {
   } = useQuery(GET_FORM, { variables: { name } });
 
   const [submitForm, {
-    data: submitData,
+    data: res,
     loading: isSubmitting,
     error: submitError
-  }] = useMutation(SUBMIT_FORM);
+  }] = useMutation(SUBMIT_FORM(mutationName));
   
+  const submitData = get(res, mutationName);
   const [state, dispatch] = React.useReducer(reducer, {
     showErrors: initialErrors,
     activeStep: null,
@@ -126,8 +127,7 @@ const useFormData = ({ name, initialErrors = false }) => {
           type: value.value.type
         };
       } else {
-        // cast booleans to string to prevent issue with form submission (our odm will cast them back)
-        formattedData[key] = typeof value.value === 'boolean' ? value.value.toString() : value.value;
+        formattedData[key] = value.value;
       }
     });
     return { formattedData, files };

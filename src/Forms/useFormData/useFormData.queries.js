@@ -46,8 +46,8 @@ export const GET_FORM = gql`
   }
 `;
 
-export const SUBMIT_FORM = gql`
-  mutation form_submit($id: ID!, $body: String!, $attachments: [UploadInput]) {
-    form_submit(id: $id, body: $body, attachments: $attachments)
+export const SUBMIT_FORM = (name) => gql`
+  mutation ${ name }($id: ID!, $body: String!, $attachments: [UploadInput]) {
+    ${ name }(id: $id, body: $body, attachments: $attachments)
   }
 `;

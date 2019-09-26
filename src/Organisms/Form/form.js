@@ -98,7 +98,7 @@ const Form = (props) => {
 
   const formRef = React.useRef(null);
 
-  const submitted = get(submit, 'data.form_submit');
+  const submitted = get(submit, 'data');
 
   // form should render
   const formShouldRender = !loading && !error && !submitted;
