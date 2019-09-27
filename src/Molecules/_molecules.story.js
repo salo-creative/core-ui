@@ -12,3 +12,4 @@ import './Pill/_pills.story';
 import './Selector/_selector.story';
 import './Stepper/_stepper.story';
 import './Switch/_switch.story';
+import './Tab/_tab.story';
