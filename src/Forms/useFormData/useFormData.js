@@ -151,7 +151,7 @@ const useFormData = ({
         context: { hasUpload: true }, // activate Upload link
         variables: {
           id: data.form_show.id,
-          body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Only stringify if we aren't using a custom mutation
+          body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Have the option to submit as a string or as an object
           attachments: files
         }
       });
