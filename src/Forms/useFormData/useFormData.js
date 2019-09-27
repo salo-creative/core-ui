@@ -7,7 +7,7 @@ import { GET_FORM, SUBMIT_FORM } from './useFormData.queries';
 import { buildSchema, formatSteps } from './useFormData.helpers';
 import reducer from './useFormData.reducer';
 
-const useFormData = ({ name, mutationName = 'form_submit', initialErrors = false }) => {
+const useFormData = ({ name, mutation, mutationName = 'form_submit', initialErrors = false }) => {
   const model = React.useRef({});
   const {
     data,
@@ -15,11 +15,13 @@ const useFormData = ({ name, mutationName = 'form_submit', initialErrors = false
     error
   } = useQuery(GET_FORM, { variables: { name } });
 
+  const submitMutation = mutation ? mutation : SUBMIT_FORM(mutationName); // Allow custom mutation to be passed in
+
   const [submitForm, {
     data: res,
     loading: isSubmitting,
     error: submitError
-  }] = useMutation(SUBMIT_FORM(mutationName));
+  }] = useMutation(submitMutation);
   
   const submitData = get(res, mutationName);
   const [state, dispatch] = React.useReducer(reducer, {

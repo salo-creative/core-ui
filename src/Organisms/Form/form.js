@@ -20,6 +20,7 @@ const Form = (props) => {
     className,
     height,
     margin,
+    mutation,
     mutationName,
     name,
     renderSteps,
@@ -59,7 +60,7 @@ const Form = (props) => {
     submit,
     toggleErrors,
     ...fieldProps
-  } = useFormData({ name, mutationName });
+  } = useFormData({ name, mutation, mutationName });
 
   // Assign custom components to an object so we can pass them down easily
   const customComponents = {
@@ -112,7 +113,7 @@ const Form = (props) => {
       if (CustomSubmit) {
         return <CustomSubmit data={ submitted } />;
       }
-      return <H3 align='center' margin='1rem 0'>{ submitted }</H3>;
+      return <H3 align='center' margin='1rem 0'>{ typeof submitted === 'string' ? submitted : 'Submission successfully added' }</H3>;
     }
     return null;
   };
@@ -202,6 +203,7 @@ Form.defaultProps = {
   className: null,
   height: 'auto',
   margin: '0',
+  mutation: null,
   mutationName: 'form_submit',
   renderSteps: true,
   resetForm: null,
@@ -230,6 +232,7 @@ Form.propTypes = {
   className: PropTypes.string,
   height: PropTypes.string,
   margin: PropTypes.string,
+  mutation: PropTypes.func,
   mutationName: PropTypes.string,
   name: PropTypes.string.isRequired,
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
