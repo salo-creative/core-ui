@@ -44,6 +44,7 @@ export { default as Pill } from './Molecules/Pill';
 export { default as Selector } from './Molecules/Selector';
 export { default as Stepper } from './Molecules/Stepper';
 export { default as Switch } from './Molecules/Switch';
+export { default as Tab } from './Molecules/Tab';
 
 /** FORMS
  *
