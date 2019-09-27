@@ -239,7 +239,7 @@ Form.propTypes = {
   className: PropTypes.string,
   height: PropTypes.string,
   margin: PropTypes.string,
-  mutation: PropTypes.func,
+  mutation: PropTypes.object,
   mutationName: PropTypes.string,
   name: PropTypes.string.isRequired,
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
