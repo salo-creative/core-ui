@@ -37,6 +37,7 @@ export { default as Card } from './Molecules/Card';
 export { default as Drop } from './Molecules/Drop';
 export { default as ErrorMessage } from './Molecules/ErrorMessage';
 export { default as FlyOut, FlyOutButton, FlyOutLink } from './Molecules/FlyOut';
+export { default as ImageUpload } from './Molecules/ImageUpload';
 export { default as Loader } from './Molecules/Loader';
 export { default as Modal } from './Molecules/Modal';
 export { default as Pagination } from './Molecules/Pagination';
