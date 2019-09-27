@@ -144,6 +144,7 @@
     "polished": "^3.0.3",
     "react-apollo": "^3.0.1",
     "react-dates": "^20.1.0",
+    "react-dropzone": "^10.1.9",
     "react-helmet": "^5.2.0",
     "react-ink": "^6.4.0",
     "react-onclickoutside": "^6.8.0",
