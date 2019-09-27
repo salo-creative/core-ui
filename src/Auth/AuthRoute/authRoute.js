@@ -1,22 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router-dom';
-import Transition from 'react-transition-group/Transition';
-import styled from 'styled-components';
 
 // COMPONENTS
 import { Consumer as AuthConsumer } from '../auth.context';
 import ExternalRedirect from '../ExternalRedirect';
-// import Login from '../../../pages/login';
-
-// LOGIN ANIMATION
-const duration = 1800;
-
-const LoginFadeWrapper = styled.div`
-  opacity: ${ ({ state }) => (state === 'entered' || state === 'entering' ? 1 : 0) };
-  transition: opacity ${ duration / 3 }ms ease-in-out;
-  transition-delay: ${ (duration / 3) * 2 }ms;
-`;
 
 class AuthRoute extends React.Component {
   shouldRenderLogin = (isLoggedIn) => {
@@ -92,18 +80,6 @@ class AuthRoute extends React.Component {
           return (
             <React.Fragment>
               { this.renderRoute({ canAccess }) }
-              <Transition
-                in={ showLogin }
-                timeout={ duration }
-                unmountOnExit
-              >
-                { state => (
-                  <LoginFadeWrapper state={ state }>
-                    Hey
-                  </LoginFadeWrapper>
-                )
-                }
-              </Transition>
               { this.renderRedirect({ showLogin, canAccess }) }
             </React.Fragment>
           );

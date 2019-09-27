@@ -7,7 +7,13 @@ import { GET_FORM, SUBMIT_FORM } from './useFormData.queries';
 import { buildSchema, formatSteps } from './useFormData.helpers';
 import reducer from './useFormData.reducer';
 
-const useFormData = ({ name, initialErrors = false }) => {
+const useFormData = ({ 
+  name, 
+  mutation, 
+  mutationName = 'form_submit', 
+  initialErrors = false,
+  submitAsString = true
+}) => {
   const model = React.useRef({});
   const {
     data,
@@ -15,12 +21,15 @@ const useFormData = ({ name, initialErrors = false }) => {
     error
   } = useQuery(GET_FORM, { variables: { name } });
 
+  const submitMutation = mutation ? mutation : SUBMIT_FORM(mutationName); // Allow custom mutation to be passed in
+
   const [submitForm, {
-    data: submitData,
+    data: res,
     loading: isSubmitting,
     error: submitError
-  }] = useMutation(SUBMIT_FORM);
+  }] = useMutation(submitMutation);
   
+  const submitData = get(res, mutationName);
   const [state, dispatch] = React.useReducer(reducer, {
     showErrors: initialErrors,
     activeStep: null,
@@ -126,8 +135,7 @@ const useFormData = ({ name, initialErrors = false }) => {
           type: value.value.type
         };
       } else {
-        // cast booleans to string to prevent issue with form submission (our odm will cast them back)
-        formattedData[key] = typeof value.value === 'boolean' ? value.value.toString() : value.value;
+        formattedData[key] = value.value;
       }
     });
     return { formattedData, files };
@@ -143,7 +151,7 @@ const useFormData = ({ name, initialErrors = false }) => {
         context: { hasUpload: true }, // activate Upload link
         variables: {
           id: data.form_show.id,
-          body: JSON.stringify(formattedData),
+          body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Have the option to submit as a string or as an object
           attachments: files
         }
       });
