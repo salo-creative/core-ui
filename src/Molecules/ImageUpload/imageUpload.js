@@ -56,7 +56,12 @@ const ImageUpload = ({
               { ({ isDragActive, isDragReject, getInputProps, getRootProps }) => {
                 if (isDragReject) {
                   return (
-                    <UploaderZone accepted='not-accepted' className='salo-uploader__zone salo-uploader__zone--reject' htmlFor='dropzone' { ...getRootProps() }>
+                    <UploaderZone
+                      accepted='not-accepted'
+                      className='salo-uploader__zone salo-uploader__zone--reject'
+                      htmlFor='dropzone'
+                      { ...getRootProps() }
+                    >
                       <input id='dropzone' { ...getInputProps() } />
                       <UploaderLabel className='salo-uploader__label'>{ text.INCORRECT_FILE_TYPE_IMAGE }</UploaderLabel>
                     </UploaderZone>
@@ -64,7 +69,12 @@ const ImageUpload = ({
                 }
                 if (isDragActive) {
                   return (
-                    <UploaderZone accepted='accepted' className='salo-uploader__zone salo-uploader__zone--accepted' htmlFor='dropzone' { ...getRootProps() }>
+                    <UploaderZone
+                      accepted='accepted'
+                      className='salo-uploader__zone salo-uploader__zone--accepted'
+                      htmlFor='dropzone'
+                      { ...getRootProps() }
+                    >
                       <input id='dropzone' { ...getInputProps() } />
                       <UploaderLabel className='salo-uploader__label'>{ text.ADD_AN_IMAGE }</UploaderLabel>
                     </UploaderZone>
@@ -72,7 +82,12 @@ const ImageUpload = ({
                 }
                 if (fileSizeError) {
                   return (
-                    <UploaderZone accepted='not-accepted' className='salo-uploader__zone salo-uploader__zone--reject' htmlFor='dropzone' { ...getRootProps() }>
+                    <UploaderZone
+                      accepted='not-accepted'
+                      className='salo-uploader__zone salo-uploader__zone--reject'
+                      htmlFor='dropzone'
+                      { ...getRootProps() }
+                    >
                       <input id='dropzone' { ...getInputProps() } />
                       { showButton && (
                         <Button
@@ -91,7 +106,11 @@ const ImageUpload = ({
                   );
                 }
                 return (
-                  <UploaderZone className='salo-uploader__zone' htmlFor='dropzone' { ...getRootProps() }>
+                  <UploaderZone
+                    className='salo-uploader__zone'
+                    htmlFor='dropzone'
+                    { ...getRootProps() }
+                  >
                     <input id='dropzone' { ...getInputProps() } />
                     { showButton && (
                       <Button
