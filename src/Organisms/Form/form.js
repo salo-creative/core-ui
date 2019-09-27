@@ -27,6 +27,7 @@ const Form = (props) => {
     resetForm,
     showTitles,
     stepper,
+    submitAsString,
     textStrings,
     typeaheads,
     width,
@@ -60,7 +61,12 @@ const Form = (props) => {
     submit,
     toggleErrors,
     ...fieldProps
-  } = useFormData({ name, mutation, mutationName });
+  } = useFormData({
+    name,
+    mutation,
+    mutationName,
+    submitAsString
+  });
 
   // Assign custom components to an object so we can pass them down easily
   const customComponents = {
@@ -209,6 +215,7 @@ Form.defaultProps = {
   resetForm: null,
   showTitles: true,
   stepper: 'full',
+  submitAsString: true,
   textStrings: {},
   typeaheads: null,
   width: 'auto',
@@ -239,6 +246,7 @@ Form.propTypes = {
   resetForm: PropTypes.func,
   showTitles: PropTypes.bool,
   stepper: PropTypes.oneOf(['condensed', 'full']),
+  submitAsString: PropTypes.bool,
   textStrings: PropTypes.object,
   typeaheads: PropTypes.object,
   width: PropTypes.string,

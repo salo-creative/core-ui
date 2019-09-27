@@ -7,7 +7,13 @@ import { GET_FORM, SUBMIT_FORM } from './useFormData.queries';
 import { buildSchema, formatSteps } from './useFormData.helpers';
 import reducer from './useFormData.reducer';
 
-const useFormData = ({ name, mutation, mutationName = 'form_submit', initialErrors = false }) => {
+const useFormData = ({ 
+  name, 
+  mutation, 
+  mutationName = 'form_submit', 
+  initialErrors = false,
+  submitAsString = true
+}) => {
   const model = React.useRef({});
   const {
     data,
@@ -145,7 +151,7 @@ const useFormData = ({ name, mutation, mutationName = 'form_submit', initialErro
         context: { hasUpload: true }, // activate Upload link
         variables: {
           id: data.form_show.id,
-          body: JSON.stringify(formattedData),
+          body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Only stringify if we aren't using a custom mutation
           attachments: files
         }
       });
