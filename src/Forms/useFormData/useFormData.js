@@ -8,6 +8,7 @@ import { buildSchema, formatSteps } from './useFormData.helpers';
 import reducer from './useFormData.reducer';
 
 const useFormData = ({ 
+  initialData,
   name, 
   mutation, 
   mutationName = 'form_submit', 
@@ -47,7 +48,7 @@ const useFormData = ({
   React.useEffect(() => {
     if (get(data, 'form_show.fields')) {
       // Build the main schema
-      const { initial, builtSchema } = buildSchema(data);
+      const { initial, builtSchema } = buildSchema(data, initialData);
       model.current = builtSchema;
 
       let processedSteps;

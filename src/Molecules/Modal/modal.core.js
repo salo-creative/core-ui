@@ -97,6 +97,7 @@ class Core extends Component {
   constructModal() {
     // Build up the header, body, footer of the modal.
     const {
+      background,
       closeOnBackdrop,
       transparent,
       transition,
@@ -117,6 +118,7 @@ class Core extends Component {
         >
           { this.renderContent() }
           <Backdrop
+            background={ background }
             transparent={ transparent }
             onClick={ e => closeOnBackdrop !== false && this.handleClose(e) }
           />
@@ -207,6 +209,7 @@ class Core extends Component {
 }
 
 Core.defaultProps = {
+  background: null,
   bodyBackground: '#fff',
   children: '',
   closeOnBackdrop: true,
@@ -229,6 +232,7 @@ Core.defaultProps = {
 };
 
 Core.propTypes = {
+  background: PropTypes.string,
   bodyBackground: PropTypes.string,
   children: PropTypes.any,
   closeOnBackdrop: PropTypes.bool,

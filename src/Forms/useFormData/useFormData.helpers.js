@@ -26,8 +26,7 @@ export const evaluateValue = ({ value, type }) => {
  * GET INITIAL VALUES
  * Build the initial values from the provided fields and schema
  */
-const getInitialValues = (fields, schema) => {
-  // TODO: Allow values to be passed in.
+const getInitialValues = (fields, schema, initialData) => {
   return fields.reduce((accum, field) => {
     const value = evaluateValue(field);
     let invalid = false;
@@ -39,7 +38,7 @@ const getInitialValues = (fields, schema) => {
     return {
       ...accum,
       [field.name]: {
-        value: field.value || value,
+        value: get(initialData, field.name) || field.value || value,
         error: invalid
       }
     };
@@ -50,9 +49,9 @@ const getInitialValues = (fields, schema) => {
  * BUILD SCHEMA
  * Build the YUP schema from the provided validations
  */
-export const buildSchema = (data) => {
+export const buildSchema = (data, initialData) => {
   const builtSchema = buildYup({ fields: data.form_show.fields });
-  const initial = getInitialValues(get(data, 'form_show.fields', []), builtSchema);
+  const initial = getInitialValues(get(data, 'form_show.fields', []), builtSchema, initialData);
 
   return {
     builtSchema,
