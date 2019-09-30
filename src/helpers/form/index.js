@@ -194,11 +194,23 @@ export const buildYup = ({ fields }) => {
         if (!isEmpty(oneOf)) {
           // get the mime types
           const acceptedTypes = getMimeTypes(oneOf);
-          vRule = vRule.test('fileType', 'Unsupported file type', value => value && acceptedTypes.includes(value.type));
+          vRule = vRule.test('fileType', 'Unsupported file type', value => {
+            // If we don't have a value and the field isn't required then pass test.
+            if (!value && !required) {
+              return true;
+            }
+            return value && acceptedTypes.includes(value.type);
+          });
         }
         // check file size
         if (max) {
-          vRule = vRule.test('fileSize', 'File size is too large', value => value && value.size <= parseInt(max, 10));
+          vRule = vRule.test('fileSize', 'File size is too large', value => {
+            // If we don't have a value and the field isn't required then pass test.
+            if (!value && !required) {
+              return true;
+            }
+            return value && value.size <= parseInt(max, 10);
+          });
         }
         break;
       }
