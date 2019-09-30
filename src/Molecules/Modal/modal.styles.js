@@ -40,7 +40,7 @@ export const Backdrop = styled.div`
   z-index: 96;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, ${ ({ transparent }) => transparent } );
+  background-color: ${ ({ background }) => (background || `rgba(0, 0, 0, ${ ({ transparent }) => transparent })`) } ;
 `;
 
 export const Wrapper = styled.div`

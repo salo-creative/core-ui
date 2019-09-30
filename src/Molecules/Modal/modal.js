@@ -24,6 +24,7 @@ const Modal = (props) => {
 };
 
 Modal.defaultProps = {
+  background: null,
   bodyBackground: '#fff',
   children: '',
   closeOnBackdrop: true,
@@ -47,6 +48,7 @@ Modal.defaultProps = {
 };
 
 Modal.propTypes = {
+  background: PropTypes.string,
   bodyBackground: PropTypes.string,
   children: PropTypes.any,
   closeOnBackdrop: PropTypes.bool,
