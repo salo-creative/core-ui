@@ -23,6 +23,7 @@ const Form = (props) => {
     mutation,
     mutationName,
     name,
+    initialData,
     renderSteps,
     resetForm,
     showTitles,
@@ -62,6 +63,7 @@ const Form = (props) => {
     toggleErrors,
     ...fieldProps
   } = useFormData({
+    initialData,
     name,
     mutation,
     mutationName,
@@ -208,6 +210,7 @@ const Form = (props) => {
 Form.defaultProps = {
   className: null,
   height: 'auto',
+  initialData: null,
   margin: '0',
   mutation: null,
   mutationName: 'form_submit',
@@ -238,6 +241,7 @@ Form.propTypes = {
   // Standard props
   className: PropTypes.string,
   height: PropTypes.string,
+  initialData: PropTypes.object,
   margin: PropTypes.string,
   mutation: PropTypes.object,
   mutationName: PropTypes.string,
