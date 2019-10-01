@@ -142,6 +142,7 @@ Table.propTypes = {
   pagination: PropTypes.shape({
     perPage: PropTypes.number.isRequired,
     page: PropTypes.number.isRequired,
+    pages: PropTypes.number.isRequired,
     total: PropTypes.number
   }),
   pageChange: PropTypes.func
