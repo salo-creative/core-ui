@@ -9,7 +9,13 @@ import { BodyRow, BodyCell, ActionCell } from './table.styles';
 import { columnsProps } from './table.propTypes';
 
 const Row = (props) => {
-  const { actions, actionsWidth, columns, data } = props;
+  const {
+    actions,
+    actionsWidth,
+    columns,
+    data,
+    rowHeight
+  } = props;
   
   const renderValue = (dataKey) => {
     const value = get(data, `${ dataKey }`, '-');
@@ -30,7 +36,7 @@ const Row = (props) => {
   };
 
   return (
-    <BodyRow>
+    <BodyRow height={ rowHeight }>
       { columns.map(column => {
         const { dataKey, minWidth, render } = column;
         return (
@@ -48,7 +54,7 @@ const Row = (props) => {
           key='actions'
           width={ actionsWidth }
         >
-            { actions(data) }
+          { actions(data) }
         </ActionCell>
       ) }
     </BodyRow>
@@ -64,7 +70,8 @@ Row.propTypes = {
   actions: PropTypes.any,
   actionsWidth: PropTypes.string.isRequired,
   columns: columnsProps,
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  rowHeight: PropTypes.string.isRequired
 };
 
 export default Row;

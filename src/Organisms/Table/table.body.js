@@ -21,7 +21,8 @@ const Body = (props) => {
     dataEmptyText,
     error,
     errorMessage,
-    retryAction
+    retryAction,
+    rowHeight
   } = props;
 
   // If an error let the user know and show a retry action
@@ -59,6 +60,7 @@ const Body = (props) => {
             actionsWidth={ actionsWidth }
             columns={ columns }
             data={ item }
+            rowHeight={ rowHeight }
           />
         );
       }) }
@@ -83,7 +85,8 @@ Body.propTypes = {
   dataEmptyText: PropTypes.string.isRequired,
   error: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
-  retryAction: PropTypes.func
+  retryAction: PropTypes.func,
+  rowHeight: PropTypes.string.isRequired
 };
 
 export default Body;

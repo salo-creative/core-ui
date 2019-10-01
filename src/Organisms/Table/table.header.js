@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
+import { ThemeContext } from 'styled-components';
 
 // COMPONENTS & STYLES
 import Icon from '@salo/icons';
@@ -8,8 +9,6 @@ import { HeaderRow, HeaderCell, HeaderSorting } from './table.styles';
 
 // HELPERS
 import { columnsProps, sortingProps } from './table.propTypes';
-import { colours } from '../../helpers/colours';
-
 
 const Header = (props) => {
   const { actionsWidth, columns, hasActions, sorting, onSort } = props;
@@ -25,6 +24,8 @@ const Header = (props) => {
     return get(sorting, 'direction') === 'asc' ? 'chevron_up' : 'chevron_down';
   };
 
+  const theme = React.useContext(ThemeContext);
+
   return (
     <HeaderRow>
       { columns.map(column => {
@@ -39,7 +40,11 @@ const Header = (props) => {
             { label }
             { sortable && (
               <HeaderSorting onClick={ () => onSort({ dataKey }) }>
-                <Icon size={ 24 } fill={ icon === 'chevron_up_down' ? colours.grey : colours.charcoal } icon={ icon } />
+                <Icon
+                  size={ 24 }
+                  fill={ icon === 'chevron_up_down' ? theme.grey : theme.primary }
+                  icon={ icon }
+                />
               </HeaderSorting>
             ) }
           </HeaderCell>
