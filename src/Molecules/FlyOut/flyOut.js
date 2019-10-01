@@ -92,7 +92,7 @@ FlyOut.defaultProps = {
 
 FlyOut.propTypes = {
   children: PropTypes.any,
-  context: PropTypes.oneOf(['float', 'table', 'card']),
+  context: PropTypes.oneOf(['float', 'float-horizontal', 'table', 'card']),
   inverse: PropTypes.bool,
   mobile: PropTypes.bool,
   onGetRef: PropTypes.func
