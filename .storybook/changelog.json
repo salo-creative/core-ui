@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.9.8", "commit": "Adding classes to flyout icon wrappers" },
 { "user": "Rich Comber", "version": "v0.9.7", "commit": "Adding toggle class for flyout" },
 { "user": "Rich Comber", "version": "v0.9.6", "commit": "Making table more flexible" },
 { "user": "Rich Comber", "version": "v0.9.5", "commit": "Updating form mutation to allow variables" },
