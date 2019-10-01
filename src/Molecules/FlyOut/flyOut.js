@@ -69,7 +69,10 @@ class FlyOut extends Component {
           >
             { this.renderChildren() }
           </Actions>
-          <Toggle onClick={ () => { this.toggleInlineMenu(); } }>
+          <Toggle 
+            className='salo-flyout__toggle'
+            onClick={ () => { this.toggleInlineMenu(); } }
+          >
             <Ink />
             <Icon fill={ inverse ? colours.charcoal : '#fff' } icon='dots_vertical' size={ 24 } />
           </Toggle>
