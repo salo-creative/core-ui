@@ -17,7 +17,7 @@ class AuthProvider extends React.Component {
     const { tokens } = props;
     let state = { jwt: {} };
     if (tokens) {
-      state = ({ jwt: get(tokens, 'jwt', {}) });
+      state = { jwt: get(tokens, 'jwt', {}) };
     }
     this.state = {
       jwt: state.jwt,
@@ -59,6 +59,8 @@ class AuthProvider extends React.Component {
     const jwt = {
       i: login.user.id,
       r: login.user.roles,
+      fn: login.user.first_name,
+      ln: login.user.last_name,
       t: login.jwt,
       ts: Date.now()
     };
@@ -81,7 +83,13 @@ class AuthProvider extends React.Component {
 
   render() {
     const { children } = this.props;
-    const { user } = this.state;
+    const { jwt } = this.state;
+    const user = isEmpty(jwt) ? null : {
+      first_name: jwt.fn,
+      last_name: jwt.ln,
+      id: jwt.i,
+      roles: jwt.r
+    };
     return (
       <Provider value={ {
         hasPermissions: this.hasPermissions,
