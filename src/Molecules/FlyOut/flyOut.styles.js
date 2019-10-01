@@ -35,7 +35,8 @@ export const Container = styled.div`
     display: flex;
     justify-content: flex-end;
   }
-  &.float {
+  &.float,
+  &.float-horizontal {
     position: relative;
   }
   &.table {
@@ -94,6 +95,17 @@ export const Actions = styled.div`
     transform: translateY(-50%);
     text-align: left;
   }
+
+  .float-horizontal & {
+    bottom: 4rem;
+    flex-direction: column;
+    justify-content: inherit;
+    left: 0;
+    padding: 0 0 1rem;
+    right: 0;
+    text-align: right;
+    top: 100%;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -110,7 +122,7 @@ export const Toggle = styled.button`
   display: flex;
   outline: none;
   border-radius: 50%;
-  background: ${ ({ theme }) => theme.font };
+  background: inherit;
   height: 4rem;
   width: 4rem;
   overflow: hidden;
@@ -163,6 +175,10 @@ export const Item = styled.div`
     padding-top: 0;
     padding-bottom: 0;
   }
+  .float-horizontal & {
+    padding-left: 0;
+    padding-right: 0;
+  }
 `;
 
 export const ItemButton = styled.button`
@@ -174,7 +190,7 @@ export const ItemButton = styled.button`
   background: transparent;
   margin: 0;
   padding: 1rem;
-  color: ${ ({ theme }) => theme.font };
+  color: inherit;
   &:focus,
   &:active {
     outline: none;
@@ -190,7 +206,7 @@ export const Title = styled.span`
   font-weight: 500;
   letter-spacing: 1px;
   white-space: nowrap;
-  color: ${ ({ theme }) => theme.font };
+  color: inherit;
 `;
 
 export const IconWrapper = styled.div`
@@ -203,12 +219,12 @@ export const IconWrapper = styled.div`
   background: #fff;
   height: 4rem;
   width: 4rem;
-  border: 0.1rem solid ${ ({ theme }) => theme.font };
+  border: 0.1rem solid inherit;
   display: flex;
   margin-left: 1rem;
   box-sizing: border-box;
   svg path {
-    fill: ${ ({ theme }) => theme.font };
+    fill: inherit;
   }
   &:after {
     content: '';
