@@ -27,7 +27,7 @@ const Header = (props) => {
   const theme = React.useContext(ThemeContext);
 
   return (
-    <HeaderRow>
+    <HeaderRow className='salo-table__header'>
       { columns.map(column => {
         const { label, minWidth, dataKey, sortable } = column;
         const icon = sortingIcon(dataKey);
