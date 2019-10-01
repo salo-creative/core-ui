@@ -97,11 +97,9 @@ export const Actions = styled.div`
   }
 
   .float-horizontal & {
-    bottom: 4rem;
     flex-direction: column;
     justify-content: inherit;
     left: 0;
-    padding: 0 0 1rem;
     right: 0;
     text-align: right;
     top: 100%;
