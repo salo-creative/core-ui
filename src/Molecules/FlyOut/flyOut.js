@@ -61,7 +61,7 @@ class FlyOut extends Component {
 
     return (
       <Container
-        className={ `${ setContext } ${ inlineMenu ? 'is-active' : '' } ${ inverse ? 'inverse' : '' }` }
+        className={ `salo-flyout ${ setContext } ${ inlineMenu ? 'is-active' : '' } ${ inverse ? 'inverse' : '' }` }
       >
         <Wrapper>
           <Actions

@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty, find, has, get } from 'lodash';
+import { get } from 'lodash';
 
 // COMPONENTS & STYLES
 import TableBody from './table.body';
 import TableHeader from './table.header';
+import TablePagination from './table.pagination';
 import { TableWrapper, LoaderWrapper } from './table.styles';
 import Loader from '../../Molecules/Loader';
-import Pagination from '../../Molecules/Pagination';
 
 // HELPERS
 import { columnsProps, sortingProps } from './table.propTypes';
@@ -16,16 +16,20 @@ const Table = (props) => {
   const {
     actions,
     actionsWidth,
+    borders,
     columns,
+    className,
     data,
     dataEmptyComponent,
     dataEmptyText,
     error,
     errorMessage,
     loading,
+    pager,
     pagination,
     pageChange,
     retryAction,
+    rowHeight,
     showHeader,
     sorting,
     onSort,
@@ -51,6 +55,7 @@ const Table = (props) => {
   return (
     <TableWrapper
       width={ width }
+      className={ `salo-table ${ className } ${ borders ? '' : 'no-borders' }` }
     >
       { showHeader && (
         <TableHeader
@@ -73,6 +78,7 @@ const Table = (props) => {
           error={ error }
           errorMessage={ errorMessage }
           retryAction={ retryAction }
+          rowHeight={ rowHeight }
         />
       ) }
       { /* Render loader if we are fetching data */ }
@@ -83,13 +89,12 @@ const Table = (props) => {
           />
         </LoaderWrapper>
       ) }
-      { !isEmpty(pagination) && pageChange && (
-        <Pagination
-          { ...pagination }
-          pagesToShow={ 7 }
-          changePage={ pageChange }
-        />
-      ) }
+      <TablePagination
+        loading={ loading }
+        pager={ pager }
+        pagination={ pagination }
+        pageChange={ pageChange }
+      />
     </TableWrapper>
   );
 };
@@ -97,14 +102,18 @@ const Table = (props) => {
 Table.defaultProps = {
   actions: null,
   actionsWidth: '80px',
+  borders: true,
   columns: [],
+  className: '',
   data: [],
   dataEmptyComponent: null,
   dataEmptyText: 'There are no results to display',
   error: false,
   errorMessage: 'Something went wrong getting your data!',
   loading: false,
+  pager: true,
   retryAction: null,
+  rowHeight: '6rem',
   showHeader: true,
   sorting: {},
   onSort: () => null,
@@ -116,14 +125,18 @@ Table.defaultProps = {
 Table.propTypes = {
   actions: PropTypes.func,
   actionsWidth: PropTypes.string,
+  borders: PropTypes.bool,
   columns: columnsProps,
+  className: PropTypes.string,
   data: PropTypes.arrayOf(PropTypes.object),
   dataEmptyComponent: PropTypes.any,
   dataEmptyText: PropTypes.string,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   loading: PropTypes.bool,
+  pager: PropTypes.bool,
   retryAction: PropTypes.func,
+  rowHeight: PropTypes.string,
   showHeader: PropTypes.bool,
   sorting: sortingProps,
   onSort: PropTypes.func,
@@ -131,6 +144,7 @@ Table.propTypes = {
   pagination: PropTypes.shape({
     perPage: PropTypes.number.isRequired,
     page: PropTypes.number.isRequired,
+    pages: PropTypes.number.isRequired,
     total: PropTypes.number
   }),
   pageChange: PropTypes.func

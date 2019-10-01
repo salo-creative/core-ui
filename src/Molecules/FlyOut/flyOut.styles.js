@@ -38,6 +38,10 @@ export const Container = styled.div`
   &.float {
     position: relative;
   }
+  &.table {
+    align-items: center;
+    display: flex;
+  }
 `;
 
 export const Actions = styled.div`

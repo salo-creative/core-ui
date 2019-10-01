@@ -15,6 +15,7 @@ const FlyOutButton = (props) => {
       <ItemButton
         onClick={ (e) => onClick({ e, toggle }) }
         title={ title }
+        className='salo-flyout__button'
       >
         <Title>{ title }</Title>
         <IconWrapper>

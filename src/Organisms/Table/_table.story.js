@@ -26,6 +26,7 @@ stories.add(
     const margin = text('Width', '100%');
     const width = text('Margin', '0 0 2rem');
     const dataEmptyText = text('Data empty text', 'There are no results to display');
+    const borders = boolean('Borders', true);
     const error = boolean('Error', false);
     const errorMessage = text('Error message', 'Something went wrong getting your data!');
     const showHeader = boolean('Show header', true);
@@ -42,6 +43,7 @@ stories.add(
     ]);
     return (
       <Table
+        borders={ borders }
         columns={ columns }
         data={ data }
         dataEmptyText={ dataEmptyText }
@@ -63,13 +65,16 @@ stories.add(
     const margin = text('Width', '100%');
     const width = text('Margin', '0 0 2rem');
     const dataEmptyText = text('Data empty text', 'There are no results to display');
+    const borders = boolean('Borders', true);
     const error = boolean('Error', false);
     const errorMessage = text('Error message', 'Something went wrong getting your data!');
     const showHeader = boolean('Show header', true);
     const loading = boolean('Loading', false);
+    const pager = boolean('Pager', true);
     const pagination = object('Pagination', {
       perPage: 24,
       page: 3,
+      pages: 13,
       total: 300
     });
     const columns = object('Columns', [
@@ -87,6 +92,7 @@ stories.add(
     ]);
     return (
       <Table
+        borders={ borders }
         columns={ columns }
         data={ data }
         dataEmptyText={ dataEmptyText }
@@ -94,6 +100,7 @@ stories.add(
         errorMessage={ errorMessage }
         loading={ loading }
         margin={ margin }
+        pager={ pager }
         pagination={ pagination }
         pageChange={ (page) => alert(`Change to page => ${ page }`) }
         retryAction={ () => alert('retry') }
@@ -111,6 +118,7 @@ stories.add(
     const margin = text('Width', '100%');
     const width = text('Margin', '0 0 2rem');
     const dataEmptyText = text('Data empty text', 'There are no results to display');
+    const borders = boolean('Borders', true);
     const error = boolean('Error', false);
     const errorMessage = text('Error message', 'Something went wrong getting your data!');
     const loading = boolean('Loading', false);
@@ -133,6 +141,7 @@ stories.add(
     );
     return (
       <Table
+        borders={ borders }
         columns={ columns }
         data={ data }
         dataEmptyText={ dataEmptyText }
@@ -164,6 +173,7 @@ stories.add(
     const margin = text('Width', '100%');
     const width = text('Margin', '0 0 2rem');
     const dataEmptyText = text('Data empty text', 'There are no results to display');
+    const borders = boolean('Borders', true);
     const error = boolean('Error', false);
     const errorMessage = text('Error message', 'Something went wrong getting your data!');
     const loading = boolean('Loading', false);
@@ -177,6 +187,7 @@ stories.add(
     return (
       <RenderWithProps store={ store }>
         <Table
+          borders={ borders }
           columns={ columns }
           sorting={ store.state.storing }
           onSort={ (sorting) => {

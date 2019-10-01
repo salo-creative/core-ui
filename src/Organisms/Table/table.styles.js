@@ -16,9 +16,12 @@ export const BodyRow = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  height: 5rem;
+  height: ${ ({ height }) => height };
   flex-wrap: none;
   border-bottom: 1px solid ${ ({ theme }) => theme.grey };
+  .no-borders & {
+    border-bottom: none;
+  }
 `;
 
 export const BodyCell = styled.div`
@@ -32,7 +35,7 @@ export const BodyCell = styled.div`
 `;
 
 export const ActionCell = styled(BodyCell)`
-  padding: 0.5rem 1rem 0.5rem 3rem;
+  padding: 0 1rem 0 3rem;
   min-width: ${ ({ width }) => width };
   flex-basis: ${ ({ width }) => width };
 `;
@@ -45,6 +48,9 @@ export const HeaderRow = styled.div`
   flex-wrap: none;
   border-bottom: 2px solid ${ ({ theme }) => theme.grey };
   position: relative;
+  .no-borders & {
+    border-bottom: none;
+  }
 `;
 
 export const HeaderCell = styled.div`
@@ -88,4 +94,12 @@ export const ErrorMessage = styled.div`
   align-items: center;
   font-size: 1.2rem;
   justify-content: center;
+`;
+
+// PAGINATION
+export const LoadMoreWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 2rem 0;
 `;
