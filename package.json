@@ -1,6 +1,6 @@
 {
   "name": "@salo/core-ui",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Core Salo React UI library",
   "main": "./index.js",
   "sideEffects": false,
@@ -126,7 +126,7 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
-    "@salo/icons": "^1.0.3",
+    "@salo/icons": "^1.0.4",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-client": "^2.6.4",
     "apollo-link": "^1.2.12",
