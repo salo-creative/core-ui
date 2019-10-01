@@ -30,7 +30,7 @@ const TablePagination = (props) => {
   }
 
   // Render load more if we have pages of data left
-  if (pagination.pages >= pagination.page) {
+  if (pagination.pages > pagination.page) {
     return (
       <LoadMoreWrapper>
         <Button
