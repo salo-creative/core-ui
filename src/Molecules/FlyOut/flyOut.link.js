@@ -17,6 +17,7 @@ const FlyOutLink = (props) => {
         to={ link }
         title={ title }
         as={ Link }
+        className='salo-flyout__button'
       >
         <Title>{ title }</Title>
         <IconWrapper>
