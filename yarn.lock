@@ -1452,10 +1452,10 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
-"@salo/icons@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@salo/icons/-/icons-1.0.3.tgz#91102dd6be85931e5b3d17260f6ee1b765952624"
-  integrity sha512-b4QyF2yo6NhlxPpffKPjt3wYQSia43brfSSYTh0HfdGdzaTEmwILuTxxlo1BO2HGrJZeSeugkYJNehe2kxGugQ==
+"@salo/icons@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@salo/icons/-/icons-1.0.4.tgz#94912a78f282b85e27b1b9bf8ed00762c49a1532"
+  integrity sha512-ZVS1hN4lCBpof9hE3Q4QY13UFqPn4SErb9lWOetdGkCKTHqw78wV2ksjnYCU7ICP+Iya6qY9aqj1v3VXwSPyuA==
   dependencies:
     lodash "^4.17.11"
 
