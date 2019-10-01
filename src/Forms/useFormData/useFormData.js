@@ -12,6 +12,7 @@ const useFormData = ({
   name, 
   mutation, 
   mutationName = 'form_submit', 
+  mutationVariables = {},
   initialErrors = false,
   submitAsString = true
 }) => {
@@ -153,7 +154,8 @@ const useFormData = ({
         variables: {
           id: data.form_show.id,
           body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Have the option to submit as a string or as an object
-          attachments: files
+          attachments: files,
+          ...mutationVariables
         }
       });
     } else {
