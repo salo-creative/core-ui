@@ -18,7 +18,7 @@ const FlyOutButton = (props) => {
         className='salo-flyout__button'
       >
         <Title>{ title }</Title>
-        <IconWrapper>
+        <IconWrapper className='salo-flyout__icon-wrapper'>
           <Icon fill={ colours.charcoal } icon={ icon } size={ 24 } />
         </IconWrapper>
       </ItemButton>

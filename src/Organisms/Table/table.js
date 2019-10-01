@@ -89,12 +89,14 @@ const Table = (props) => {
           />
         </LoaderWrapper>
       ) }
-      <TablePagination
-        loading={ loading }
-        pager={ pager }
-        pagination={ pagination }
-        pageChange={ pageChange }
-      />
+      { !loading && !error && (
+        <TablePagination
+          loading={ loading }
+          pager={ pager }
+          pagination={ pagination }
+          pageChange={ pageChange }
+        />
+      ) }
     </TableWrapper>
   );
 };
@@ -142,9 +144,9 @@ Table.propTypes = {
   onSort: PropTypes.func,
   width: PropTypes.string,
   pagination: PropTypes.shape({
-    perPage: PropTypes.number.isRequired,
-    page: PropTypes.number.isRequired,
-    pages: PropTypes.number.isRequired,
+    perPage: PropTypes.number,
+    page: PropTypes.number,
+    pages: PropTypes.number,
     total: PropTypes.number
   }),
   pageChange: PropTypes.func

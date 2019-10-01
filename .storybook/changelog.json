@@ -1,4 +1,12 @@
 [
+{ "user": "Rich Comber", "version": "v0.9.13", "commit": "Styling amends to FlyOut" },
+{ "user": "Rich Comber", "version": "v0.9.12", "commit": "Adding classname to table header cell" },
+{ "user": "Rich Comber", "version": "v0.9.11", "commit": "Adding class name to salo table header" },
+{ "user": "Rich Comber", "version": "v0.9.10", "commit": "Hiding table loadmore correctly" },
+{ "user": "Rich Comber", "version": "v0.9.9", "commit": "Fixing prop issues and hiding pagination at load" },
+{ "user": "Rich Comber", "version": "v0.9.8", "commit": "Adding classes to flyout icon wrappers" },
+{ "user": "Rich Comber", "version": "v0.9.7", "commit": "Adding toggle class for flyout" },
+{ "user": "Rich Comber", "version": "v0.9.6", "commit": "Making table more flexible" },
 { "user": "Rich Comber", "version": "v0.9.5", "commit": "Updating form mutation to allow variables" },
 { "user": "Rich Comber", "version": "v0.9.4", "commit": "Fixing permission check in AuthProvider" },
 { "user": "Rich Comber", "version": "v0.9.3", "commit": "Allowing initialData to be passed into forms" },
