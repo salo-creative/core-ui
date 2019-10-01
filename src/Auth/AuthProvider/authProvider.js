@@ -41,7 +41,7 @@ class AuthProvider extends React.Component {
     // First check the user is logged in
     if (!isEmpty(jwt)) {
       if (permissions && permissions.length) {
-        const userPermissions = jwt.pg || [];
+        const userPermissions = jwt.r || [];
         const match = intersection(userPermissions, permissions);
         return match && !!match.length;
       }
