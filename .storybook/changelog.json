@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.9.13", "commit": "Styling amends to FlyOut" },
 { "user": "Rich Comber", "version": "v0.9.12", "commit": "Adding classname to table header cell" },
 { "user": "Rich Comber", "version": "v0.9.11", "commit": "Adding class name to salo table header" },
 { "user": "Rich Comber", "version": "v0.9.10", "commit": "Hiding table loadmore correctly" },
