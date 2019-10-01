@@ -16,7 +16,9 @@ const Table = (props) => {
   const {
     actions,
     actionsWidth,
+    borders,
     columns,
+    className,
     data,
     dataEmptyComponent,
     dataEmptyText,
@@ -26,6 +28,7 @@ const Table = (props) => {
     pagination,
     pageChange,
     retryAction,
+    rowHeight,
     showHeader,
     sorting,
     onSort,
@@ -51,6 +54,7 @@ const Table = (props) => {
   return (
     <TableWrapper
       width={ width }
+      className={ `salo-table ${ className } ${ borders ? '' : 'no-borders' }` }
     >
       { showHeader && (
         <TableHeader
@@ -73,6 +77,7 @@ const Table = (props) => {
           error={ error }
           errorMessage={ errorMessage }
           retryAction={ retryAction }
+          rowHeight={ rowHeight }
         />
       ) }
       { /* Render loader if we are fetching data */ }
@@ -97,7 +102,9 @@ const Table = (props) => {
 Table.defaultProps = {
   actions: null,
   actionsWidth: '80px',
+  borders: true,
   columns: [],
+  className: '',
   data: [],
   dataEmptyComponent: null,
   dataEmptyText: 'There are no results to display',
@@ -105,6 +112,7 @@ Table.defaultProps = {
   errorMessage: 'Something went wrong getting your data!',
   loading: false,
   retryAction: null,
+  rowHeight: '6rem',
   showHeader: true,
   sorting: {},
   onSort: () => null,
@@ -116,7 +124,9 @@ Table.defaultProps = {
 Table.propTypes = {
   actions: PropTypes.func,
   actionsWidth: PropTypes.string,
+  borders: PropTypes.bool,
   columns: columnsProps,
+  className: PropTypes.string,
   data: PropTypes.arrayOf(PropTypes.object),
   dataEmptyComponent: PropTypes.any,
   dataEmptyText: PropTypes.string,
@@ -124,6 +134,7 @@ Table.propTypes = {
   errorMessage: PropTypes.string,
   loading: PropTypes.bool,
   retryAction: PropTypes.func,
+  rowHeight: PropTypes.string,
   showHeader: PropTypes.bool,
   sorting: sortingProps,
   onSort: PropTypes.func,
