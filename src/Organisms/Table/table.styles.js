@@ -81,6 +81,9 @@ export const NoData = styled.div`
   align-items: center;
   font-size: 1.6rem;
   justify-content: center;
+  &.error {
+    color: ${ ({ theme }) => theme.error };
+  }
 `;
 
 // ERROR MESSAGE
@@ -94,7 +97,9 @@ export const ErrorMessage = styled.div`
   align-items: center;
   font-size: 1.6rem;
   justify-content: center;
-  color: ${ ({ theme }) => theme.error };
+  .error {
+    color: ${ ({ theme }) => theme.error };
+  }
 `;
 
 // PAGINATION

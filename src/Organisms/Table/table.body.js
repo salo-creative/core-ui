@@ -31,7 +31,7 @@ const Body = (props) => {
     if (retryAction) {
       return (
         <ErrorMessage>
-          <P align='center'><strong>{ errorMessage }</strong></P>
+          <P align='center' className='error'><strong>{ errorMessage }</strong></P>
           <P align='center'>You can retry the last action by pressing the button below.</P>
           <Button onClick={ retryAction } iconBefore='sync'>Retry</Button>
         </ErrorMessage>
@@ -39,7 +39,7 @@ const Body = (props) => {
     }
     // Otherwise just show the message
     return (
-      <NoData>{ errorMessage }</NoData>
+      <NoData className='error'>{ errorMessage }</NoData>
     );
   }
   // If no data display a friendly message for the user
