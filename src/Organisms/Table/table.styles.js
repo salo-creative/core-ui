@@ -95,3 +95,11 @@ export const ErrorMessage = styled.div`
   font-size: 1.2rem;
   justify-content: center;
 `;
+
+// PAGINATION
+export const LoadMoreWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 2rem 0;
+`;

@@ -70,9 +70,11 @@ stories.add(
     const errorMessage = text('Error message', 'Something went wrong getting your data!');
     const showHeader = boolean('Show header', true);
     const loading = boolean('Loading', false);
+    const pager = boolean('Pager', true);
     const pagination = object('Pagination', {
       perPage: 24,
       page: 3,
+      pages: 13,
       total: 300
     });
     const columns = object('Columns', [
@@ -98,6 +100,7 @@ stories.add(
         errorMessage={ errorMessage }
         loading={ loading }
         margin={ margin }
+        pager={ pager }
         pagination={ pagination }
         pageChange={ (page) => alert(`Change to page => ${ page }`) }
         retryAction={ () => alert('retry') }

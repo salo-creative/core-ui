@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty, find, has, get } from 'lodash';
+import { get } from 'lodash';
 
 // COMPONENTS & STYLES
 import TableBody from './table.body';
 import TableHeader from './table.header';
+import TablePagination from './table.pagination';
 import { TableWrapper, LoaderWrapper } from './table.styles';
 import Loader from '../../Molecules/Loader';
-import Pagination from '../../Molecules/Pagination';
 
 // HELPERS
 import { columnsProps, sortingProps } from './table.propTypes';
@@ -25,6 +25,7 @@ const Table = (props) => {
     error,
     errorMessage,
     loading,
+    pager,
     pagination,
     pageChange,
     retryAction,
@@ -88,13 +89,12 @@ const Table = (props) => {
           />
         </LoaderWrapper>
       ) }
-      { !isEmpty(pagination) && pageChange && (
-        <Pagination
-          { ...pagination }
-          pagesToShow={ 7 }
-          changePage={ pageChange }
-        />
-      ) }
+      <TablePagination
+        loading={ loading }
+        pager={ pager }
+        pagination={ pagination }
+        pageChange={ pageChange }
+      />
     </TableWrapper>
   );
 };
@@ -111,6 +111,7 @@ Table.defaultProps = {
   error: false,
   errorMessage: 'Something went wrong getting your data!',
   loading: false,
+  pager: true,
   retryAction: null,
   rowHeight: '6rem',
   showHeader: true,
@@ -133,6 +134,7 @@ Table.propTypes = {
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   loading: PropTypes.bool,
+  pager: PropTypes.bool,
   retryAction: PropTypes.func,
   rowHeight: PropTypes.string,
   showHeader: PropTypes.bool,
