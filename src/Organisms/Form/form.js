@@ -22,6 +22,7 @@ const Form = (props) => {
     margin,
     mutation,
     mutationName,
+    mutationVariables,
     name,
     initialData,
     renderSteps,
@@ -67,6 +68,7 @@ const Form = (props) => {
     name,
     mutation,
     mutationName,
+    mutationVariables,
     submitAsString
   });
 
@@ -145,7 +147,7 @@ const Form = (props) => {
 
   return (
     <FormWrapper
-      className={ `${ className } ${ !loading && !error && !submitted ? 'expanded' : 'collapsed' }` }
+      className={ `${ className } ${ formShouldRender ? 'expanded' : 'collapsed' }` }
       height={ height }
       margin={ margin }
       width={ width }
@@ -214,6 +216,7 @@ Form.defaultProps = {
   margin: '0',
   mutation: null,
   mutationName: 'form_submit',
+  mutationVariables: {},
   renderSteps: true,
   resetForm: null,
   showTitles: true,
@@ -245,6 +248,7 @@ Form.propTypes = {
   margin: PropTypes.string,
   mutation: PropTypes.object,
   mutationName: PropTypes.string,
+  mutationVariables: PropTypes.object,
   name: PropTypes.string.isRequired,
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
   resetForm: PropTypes.func,
