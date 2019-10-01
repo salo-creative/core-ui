@@ -33,6 +33,7 @@ const Header = (props) => {
         const icon = sortingIcon(dataKey);
         return (
           <HeaderCell
+            className='salo-table__header-cell'
             key={ dataKey }
             flexBasis={ `${ 100 / columns.length }%` }
             minWidth={ minWidth }
