@@ -196,6 +196,9 @@ export const ItemButton = styled.button`
   .table & {
     flex-direction: row-reverse;
   }
+  .float-horizontal & {
+    padding-right: 0;
+  }
 `;
 
 export const Title = styled.span`
