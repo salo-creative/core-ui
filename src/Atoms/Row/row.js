@@ -22,7 +22,7 @@ Row.defaultProps = {
 };
 
 Row.propTypes = {
-  alignItems: PropTypes.oneOf(['flex-start', 'center', 'flex-end', 'stretch', 'unset']),
+  alignItems: PropTypes.oneOf(['flex-start', 'center', 'flex-end', 'stretch', 'unset', 'inherit']),
   flex: PropTypes.string,
   flexDirection: PropTypes.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
   flexWrap: PropTypes.oneOf(['wrap', 'no-wrap', 'wrap-reverse']),
