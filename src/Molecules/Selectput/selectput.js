@@ -10,49 +10,64 @@ const Selectput = ({
   onSubmit,
   placeholder,
   initialMode,
+  initialSelected,
   renderItem
 }) => {
   const [mode, setMode] = React.useState(initialMode);
+  const [selected, setSelected] = React.useState(initialSelected);
 
   const handleSelect = (e) => {
     onChange(e);
+    setSelected(e.target.value);
     setMode('edit');
   };
   
   const handleSubmit = (e) => {
     onSubmit(e);
-    setMode('default');
+    if (initialSelected) {
+      setMode('transparent');
+    } else {
+      setMode('default');
+    }
   };
 
   const handleClose = (e) => {
     onReset(e);
-    setMode('default');
+    if (initialSelected) {
+      setMode('transparent');
+    } else {
+      setMode('default');
+    }
   };
 
-  const render = () => {
-    switch (mode) {
-      case 'edit':
-        return (
-          <div>
-            <input type='text' />
-            <button
-              type='button'
-              onClick={ handleSubmit }
-              className='salo-selectput__button--submit'
-            >
-              <Icon icon='tick' />
-            </button>
-            <button
-              type='button'
-              onClick={ handleClose }
-              className='salo-selectput__button--close'
-            >
-              <Icon icon='close' />
-            </button>
-          </div>
-        );
-      case 'select':
-        return (
+  switch (mode) {
+    case 'transparent':
+      return null;
+    case 'edit':
+      return (
+        <div className={ `${ className } salo-selectput salo-selectput--${ mode }` }>
+          <Icon icon={ selected } />
+          <input type='text' />
+          <button
+            type='button'
+            onClick={ handleSubmit }
+            className='salo-selectput__button--submit'
+          >
+            <Icon icon='tick' />
+          </button>
+          <button
+            type='button'
+            onClick={ handleClose }
+            className='salo-selectput__button--close'
+          >
+            <Icon icon='close' />
+          </button>
+        </div>
+      );
+    case 'select':
+      return (
+        <div className={ `${ className } salo-selectput salo-selectput--${ mode }` }>
+
           <div className='salo-selectput__wrapper'>
             <select
               onChange={ handleSelect }
@@ -86,9 +101,11 @@ const Selectput = ({
               <Icon icon='close' />
             </button>
           </div>
-        );
-      default:
-        return (
+        </div>
+      );
+    default:
+      return (
+        <div className={ `${ className } salo-selectput salo-selectput--${ mode }` }>
           <button
             type='button'
             className='salo-selectput__button'
@@ -96,35 +113,45 @@ const Selectput = ({
           >
             { placeholder }
           </button>
-        );
-    }
-  };
-
-  return (
-    <div className={ `${ className } salo-selectput salo-selectput--${ mode }` }>
-      { render() }
-    </div>
-  );
+          <button
+            type='button'
+            disabled
+            className='salo-selectput__button--submit'
+          >
+            <Icon icon='tick' />
+          </button>
+          <button
+            type='button'
+            onClick={ handleClose }
+            className='salo-selectput__button--close'
+          >
+            <Icon icon='close' />
+          </button>
+        </div>
+      );
+  }
 };
 
 Selectput.defaultProps = {
   className: null,
+  initialMode: 'default',
+  initialSelected: null,
   placeholder: 'Please select…',
-  renderItem: null,
-  initialMode: 'default'
+  renderItem: null
 };
 
 Selectput.propTypes = {
   className: PropTypes.string,
+  initialMode: PropTypes.string,
+  initialSelected: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
     value: PropTypes.any.isRequired
   })).isRequired,
-  onChange: PropTypes.func.isRequired,
-  onReset: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
-  initialMode: PropTypes.string,
   renderItem: PropTypes.func
 };
 
