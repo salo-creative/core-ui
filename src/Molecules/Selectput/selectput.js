@@ -6,6 +6,7 @@ const Selectput = ({
   className,
   options,
   onChange,
+  onReset,
   onSubmit,
   placeholder,
   initialMode,
@@ -24,6 +25,7 @@ const Selectput = ({
   };
 
   const handleClose = (e) => {
+    onReset(e);
     setMode('default');
   };
 
@@ -33,29 +35,54 @@ const Selectput = ({
         return (
           <div>
             <input type='text' />
-            <button type='button' onClick={ handleSubmit }>
+            <button
+              type='button'
+              onClick={ handleSubmit }
+              className='salo-selectput__button--submit'
+            >
               <Icon icon='tick' />
             </button>
-            <button type='button' onClick={ handleClose }>
+            <button
+              type='button'
+              onClick={ handleClose }
+              className='salo-selectput__button--close'
+            >
               <Icon icon='close' />
             </button>
           </div>
         );
       case 'select':
         return (
-          <div className={ `${ className } salo-selectput salo-selectput--select` }>
-            <select onChange={ handleSelect }>
+          <div className='salo-selectput__wrapper'>
+            <select
+              onChange={ handleSelect }
+              className='salo-selectput__select'
+            >
               { options.map((item, index, array) => {
                 if (typeof renderItem === 'function') {
                   return renderItem(item, index, array);
                 }
-                return <option key={ item.value } value={ item.value }>{ item.label }</option>;
+                return (
+                  <option
+                    key={ item.value }
+                    value={ item.value }
+                  >{ item.label }
+                  </option>
+                );
               }) }
             </select>
-            <button type='button' disabled>
+            <button
+              type='button'
+              disabled
+              className='salo-selectput__button--submit'
+            >
               <Icon icon='tick' />
             </button>
-            <button type='button' onClick={ handleClose }>
+            <button
+              type='button'
+              onClick={ handleClose }
+              className='salo-selectput__button--close'
+            >
               <Icon icon='close' />
             </button>
           </div>
@@ -64,7 +91,7 @@ const Selectput = ({
         return (
           <button
             type='button'
-            className={ `${ className } salo-selectput salo-selectput--default` }
+            className='salo-selectput__button'
             onFocus={ () => setMode('select') }
           >
             { placeholder }
@@ -94,6 +121,7 @@ Selectput.propTypes = {
     value: PropTypes.any.isRequired
   })).isRequired,
   onChange: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   initialMode: PropTypes.string,
