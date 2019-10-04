@@ -40,67 +40,77 @@ const Selectput = ({
     }
   };
 
+  const Actions = ({ disabled }) => (
+    <React.Fragment>
+      <button
+        type='button'
+        onClick={ handleSubmit }
+        disabled={ disabled[0] }
+        className='salo-selectput__button--submit'
+      >
+        <Icon icon='tick' size={ 16 } />
+      </button>
+      <button
+        type='button'
+        onClick={ handleClose }
+        disabled={ disabled[1] }
+        className='salo-selectput__button--close'
+      >
+        <Icon icon='close' size={ 16 } />
+      </button>
+    </React.Fragment>
+  );
+
+  Actions.defaultProps = { disabled: [false, false] };
+
+  Actions.propTypes = { disabled: PropTypes.arrayOf(PropTypes.bool) };
+
   switch (mode) {
     case 'transparent':
       return null;
     case 'edit':
       return (
         <div className={ `${ className } salo-selectput salo-selectput--${ mode }` }>
-          <Icon icon={ selected } />
-          <input type='text' />
-          <button
-            type='button'
-            onClick={ handleSubmit }
-            className='salo-selectput__button--submit'
-          >
-            <Icon icon='tick' />
-          </button>
-          <button
-            type='button'
-            onClick={ handleClose }
-            className='salo-selectput__button--close'
-          >
-            <Icon icon='close' />
-          </button>
+          <input type='text' className='salo-selectput__input' />
+          <span className='salo-selectput__icon-wrapper'>
+            <Icon icon={ selected } fill='#fff' size={ 16 } />
+          </span>
+          <Actions />
         </div>
       );
     case 'select':
       return (
         <div className={ `${ className } salo-selectput salo-selectput--${ mode }` }>
-
-          <div className='salo-selectput__wrapper'>
-            <select
-              onChange={ handleSelect }
-              className='salo-selectput__select'
-            >
-              { options.map((item, index, array) => {
-                if (typeof renderItem === 'function') {
-                  return renderItem(item, index, array);
-                }
-                return (
-                  <option
-                    key={ item.value }
-                    value={ item.value }
-                  >{ item.label }
-                  </option>
-                );
-              }) }
-            </select>
-            <button
-              type='button'
-              disabled
-              className='salo-selectput__button--submit'
-            >
-              <Icon icon='tick' />
-            </button>
-            <button
-              type='button'
-              onClick={ handleClose }
-              className='salo-selectput__button--close'
-            >
-              <Icon icon='close' />
-            </button>
+          <div
+            type='button'
+            className='salo-selectput__button'
+          >
+            { placeholder }
+            <div className='salo-selectput__wrapper'>
+              <ul
+                className='salo-selectput__list'
+              >
+                { options.map((item, index) => {
+                  if (typeof renderItem === 'function') {
+                    return renderItem({ item, index, handleSelect });
+                  }
+                  return (
+                    <li key={ item.value }>
+                      <button
+                        className='salo-selectput__item'
+                        type='button'
+                        onClick={ handleSelect }
+                        value={ item.value }
+                      >
+                        { item.label }
+                      </button>
+                    </li>
+                  );
+                }) }
+              </ul>
+            </div>
           </div>
+          <Actions disabled={ [true, false] } />
         </div>
       );
     default:
@@ -113,20 +123,7 @@ const Selectput = ({
           >
             { placeholder }
           </button>
-          <button
-            type='button'
-            disabled
-            className='salo-selectput__button--submit'
-          >
-            <Icon icon='tick' />
-          </button>
-          <button
-            type='button'
-            onClick={ handleClose }
-            className='salo-selectput__button--close'
-          >
-            <Icon icon='close' />
-          </button>
+          <Actions disabled={ [true, false] } />
         </div>
       );
   }
