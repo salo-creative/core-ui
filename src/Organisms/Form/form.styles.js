@@ -6,6 +6,7 @@ export const FormWrapper = styled.div`
   height: ${ ({ height }) => height || 'auto' };
   margin: ${ ({ margin }) => margin };
   max-width: ${ ({ width }) => width };
+  width: 100%;
   &.collapsed {
     justify-content: center;
     max-height: 10rem;
