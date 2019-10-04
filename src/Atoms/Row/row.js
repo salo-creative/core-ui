@@ -1,21 +1,16 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { PropTypes } from 'prop-types';
 
-const StyledRow = styled.div`
+const Row = styled.div`
   display: flex;
   width: 100%;
-  flex: ${ props => props.flex };
-  flex-direction: ${ props => props.flexDirection };
-  flex-wrap: ${ props => props.flexWrap };
-  align-items: ${ props => props.alignItems };
-  justify-content: ${ props => props.justifyContent };
-  padding: ${ props => props.padding };
+  align-items: ${ ({ alignItems }) => alignItems };
+  flex-direction: ${ ({ flexDirection }) => flexDirection };
+  flex-wrap: ${ ({ flexWrap }) => flexWrap };
+  flex: ${ ({ flex }) => flex };
+  justify-content: ${ ({ justifyContent }) => justifyContent };
+  padding: ${ ({ padding }) => padding };
 `;
-
-const Row = ({ children, ...props }) => {
-  return <StyledRow { ...props }>{ children }</StyledRow>;
-};
 
 Row.defaultProps = {
   alignItems: 'flex-start',
@@ -23,16 +18,18 @@ Row.defaultProps = {
   flexDirection: 'row',
   flexWrap: 'wrap',
   justifyContent: 'flex-start',
-  padding: '0 0 0 0'
+  padding: '0'
 };
 
 Row.propTypes = {
-  alignItems: PropTypes.oneOf(['flex-start', 'center', 'flex-end', 'stretch', 'unset']),
+  alignItems: PropTypes.oneOf(['flex-start', 'center', 'flex-end', 'stretch', 'unset', 'inherit']),
   flex: PropTypes.string,
   flexDirection: PropTypes.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
   flexWrap: PropTypes.oneOf(['wrap', 'no-wrap', 'wrap-reverse']),
   justifyContent: PropTypes.oneOf(['space-between', 'center', 'flex-start', 'flex-end']),
   padding: PropTypes.string
 };
+
+Row.displayName = 'Row';
 
 export default Row;
