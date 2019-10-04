@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.9.16", "commit": "Refactor Container, Row and FlyOut" },
 { "user": "Rich Comber", "version": "v0.9.15", "commit": "Table error style improvements" },
 { "user": "Rich Comber", "version": "v0.9.14", "commit": "Updating table styles" },
 { "user": "Rich Comber", "version": "v0.9.13", "commit": "Styling amends to FlyOut" },
