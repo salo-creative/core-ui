@@ -23,6 +23,10 @@ const Selectput = ({
     setMode('default');
   };
 
+  const handleClose = (e) => {
+    setMode('default');
+  };
+
   const render = () => {
     switch (mode) {
       case 'edit':
@@ -30,7 +34,10 @@ const Selectput = ({
           <div>
             <input type='text' />
             <button type='button' onClick={ handleSubmit }>
-              <Icon icon='add' />
+              <Icon icon='tick' />
+            </button>
+            <button type='button' onClick={ handleClose }>
+              <Icon icon='close' />
             </button>
           </div>
         );
@@ -45,6 +52,12 @@ const Selectput = ({
                 return <option key={ item.value } value={ item.value }>{ item.label }</option>;
               }) }
             </select>
+            <button type='button' disabled>
+              <Icon icon='tick' />
+            </button>
+            <button type='button' onClick={ handleClose }>
+              <Icon icon='close' />
+            </button>
           </div>
         );
       default:
