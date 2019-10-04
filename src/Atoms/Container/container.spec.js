@@ -15,8 +15,7 @@ test('Render default Container and styles', async () => {
   const el = getByTestId('test-container');
   // Assert
   expect(el).toHaveTextContent('A tasty treat');
-  expect(el).toHaveStyleRule('padding', '10px');
-  expect(el).toHaveStyleRule('max-width', '1280px');
+  expect(el).toHaveStyleRule('max-width', '128rem');
   expect(container.firstChild).toMatchSnapshot();
 });
 
