@@ -31,10 +31,10 @@ Actions.defaultProps = {
 };
 
 Actions.propTypes = {
-  disabled: PropTypes.arrayOf(PropTypes.shape({
+  disabled: PropTypes.shape({
     submit: PropTypes.bool.isRequired,
     close: PropTypes.bool.isRequired
-  })),
+  }),
   handleClose: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired
 };
