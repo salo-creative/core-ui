@@ -17,7 +17,7 @@ const Selectput = ({
 }) => {
   const [mode, setMode] = React.useState(initialMode);
   const [selected, setSelected] = React.useState(initialSelected);
-  const [value, setValue] = React.useState(initialMode);
+  const [value, setValue] = React.useState('');
   const inputEl = React.useRef(null);
 
   const handleSelect = (e) => {
@@ -112,7 +112,7 @@ const Selectput = ({
             </div>
           </div>
           <Actions
-            disabled={ [true, false] }
+            disabled={ { submit: true, close: false } }
             handleSubmit={ handleSubmit }
             handleClose={ handleClose }
           />
@@ -129,7 +129,7 @@ const Selectput = ({
             { placeholder }
           </button>
           <Actions
-            disabled={ [true, false] }
+            disabled={ { submit: true, close: false } }
             handleSubmit={ handleSubmit }
             handleClose={ handleClose }
           />

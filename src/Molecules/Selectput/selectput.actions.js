@@ -7,7 +7,7 @@ const Actions = ({ disabled, handleSubmit, handleClose }) => (
     <button
       type='button'
       onClick={ handleSubmit }
-      disabled={ disabled[0] }
+      disabled={ disabled.submit }
       className='salo-selectput__button--submit'
     >
       <Icon icon='tick' size={ 16 } />
@@ -15,7 +15,7 @@ const Actions = ({ disabled, handleSubmit, handleClose }) => (
     <button
       type='button'
       onClick={ handleClose }
-      disabled={ disabled[1] }
+      disabled={ disabled.close }
       className='salo-selectput__button--close'
     >
       <Icon icon='close' size={ 16 } />
@@ -23,10 +23,18 @@ const Actions = ({ disabled, handleSubmit, handleClose }) => (
   </React.Fragment>
 );
 
-Actions.defaultProps = { disabled: [false, false] };
+Actions.defaultProps = {
+  disabled: {
+    submit: false,
+    close: false
+  }
+};
 
 Actions.propTypes = {
-  disabled: PropTypes.arrayOf(PropTypes.bool),
+  disabled: PropTypes.arrayOf(PropTypes.shape({
+    submit: PropTypes.bool.isRequired,
+    close: PropTypes.bool.isRequired
+  })),
   handleClose: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired
 };
