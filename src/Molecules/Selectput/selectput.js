@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '@salo/icons';
 
+import Actions from './selectput.actions';
+
 const Selectput = ({
   className,
   options,
@@ -15,76 +17,75 @@ const Selectput = ({
 }) => {
   const [mode, setMode] = React.useState(initialMode);
   const [selected, setSelected] = React.useState(initialSelected);
+  const [value, setValue] = React.useState(initialMode);
+  const inputEl = React.useRef(null);
 
   const handleSelect = (e) => {
-    onChange(e);
+    if (typeof onChange === 'function') {
+      onChange(e);
+    }
     setSelected(e.target.value);
     setMode('edit');
   };
   
-  const handleSubmit = (e) => {
-    onSubmit(e);
-    if (initialSelected) {
-      setMode('transparent');
-    } else {
-      setMode('default');
+  const handleSubmit = (event) => {
+    onSubmit({
+      type: selected,
+      value,
+      event
+    });
+   
+    setMode('default');
+  };
+
+  const handleChange = (e) => {
+    if (typeof onChange === 'function') {
+      onChange(e);
     }
+    setValue(e.target.value);
   };
 
   const handleClose = (e) => {
-    onReset(e);
-    if (initialSelected) {
-      setMode('transparent');
-    } else {
-      setMode('default');
+    if (typeof onReset === 'function') {
+      onReset(e);
     }
+    setMode('default');
   };
 
-  const Actions = ({ disabled }) => (
-    <React.Fragment>
-      <button
-        type='button'
-        onClick={ handleSubmit }
-        disabled={ disabled[0] }
-        className='salo-selectput__button--submit'
-      >
-        <Icon icon='tick' size={ 16 } />
-      </button>
-      <button
-        type='button'
-        onClick={ handleClose }
-        disabled={ disabled[1] }
-        className='salo-selectput__button--close'
-      >
-        <Icon icon='close' size={ 16 } />
-      </button>
-    </React.Fragment>
-  );
-
-  Actions.defaultProps = { disabled: [false, false] };
-
-  Actions.propTypes = { disabled: PropTypes.arrayOf(PropTypes.bool) };
+  React.useEffect(() => {
+    // Autofocus element when editing.
+    if (mode === 'edit') {
+      inputEl.current.focus();
+    }
+  }, [mode]);
 
   switch (mode) {
-    case 'transparent':
-      return null;
     case 'edit':
       return (
         <div className={ `${ className } salo-selectput salo-selectput--${ mode }` }>
-          <input type='text' className='salo-selectput__input' />
+          <input
+            className='salo-selectput__input'
+            onChange={ handleChange }
+            onKeyPress={ (event) => {
+              if (event.key === 'Enter') {
+                handleSubmit(event);
+              }
+            } }
+            ref={ inputEl }
+          />
           <span className='salo-selectput__icon-wrapper'>
             <Icon icon={ selected } fill='#fff' size={ 16 } />
           </span>
-          <Actions />
+          <Actions
+            handleSubmit={ handleSubmit }
+            handleClose={ handleClose }
+          />
         </div>
       );
     case 'select':
       return (
         <div className={ `${ className } salo-selectput salo-selectput--${ mode }` }>
-          <div
-            type='button'
-            className='salo-selectput__button'
-          >
+          <div className='salo-selectput__button'>
             { placeholder }
             <div className='salo-selectput__wrapper'>
               <ul
@@ -110,7 +111,11 @@ const Selectput = ({
               </ul>
             </div>
           </div>
-          <Actions disabled={ [true, false] } />
+          <Actions
+            disabled={ [true, false] }
+            handleSubmit={ handleSubmit }
+            handleClose={ handleClose }
+          />
         </div>
       );
     default:
@@ -123,7 +128,11 @@ const Selectput = ({
           >
             { placeholder }
           </button>
-          <Actions disabled={ [true, false] } />
+          <Actions
+            disabled={ [true, false] }
+            handleSubmit={ handleSubmit }
+            handleClose={ handleClose }
+          />
         </div>
       );
   }
@@ -133,6 +142,8 @@ Selectput.defaultProps = {
   className: null,
   initialMode: 'default',
   initialSelected: null,
+  onChange: null,
+  onReset: null,
   placeholder: 'Please select…',
   renderItem: null
 };
@@ -141,8 +152,8 @@ Selectput.propTypes = {
   className: PropTypes.string,
   initialMode: PropTypes.string,
   initialSelected: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  onReset: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+  onReset: PropTypes.func,
   onSubmit: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
