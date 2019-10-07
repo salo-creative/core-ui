@@ -9,6 +9,7 @@ const Actions = ({ disabled, handleSubmit, handleClose }) => (
       onClick={ handleSubmit }
       disabled={ disabled.submit }
       className='salo-selectput__button--submit'
+      value='Add'
     >
       <Icon icon='tick' size={ 16 } />
     </button>
@@ -17,6 +18,7 @@ const Actions = ({ disabled, handleSubmit, handleClose }) => (
       onClick={ handleClose }
       disabled={ disabled.close }
       className='salo-selectput__button--close'
+      value='Close'
     >
       <Icon icon='close' size={ 16 } />
     </button>

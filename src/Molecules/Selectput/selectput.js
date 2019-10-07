@@ -125,6 +125,7 @@ const Selectput = ({
             type='button'
             className='salo-selectput__button'
             onFocus={ () => setMode('select') }
+            onClick={ () => setMode('select') }
           >
             { placeholder }
           </button>
