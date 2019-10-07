@@ -21,13 +21,13 @@ Implement as follows
 ```javascript
 const [value, setValue] = React.useState('1');
 
-<Selector 
-  data={ [
+<Selectput 
+  options={ [
     { value: '1', label: 'Option 1' },
     { value: '2', label: 'Option 2' },
     { value: '3', label: 'Option 3' }
   ] }
   value={ value }
-  onChange={ (val) => setValue(val) }
+  onSubmit={ (val) => setValue(val) }
 />
 ```
