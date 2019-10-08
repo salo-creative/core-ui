@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.10.0", "commit": "Adding edit select input" },
 { "user": "Rich Comber", "version": "v0.9.17", "commit": "Fixing failing tests" },
 { "user": "Rich Comber", "version": "v0.9.16", "commit": "Refactor Container, Row and FlyOut" },
 { "user": "Rich Comber", "version": "v0.9.15", "commit": "Table error style improvements" },
