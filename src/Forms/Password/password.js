@@ -86,16 +86,17 @@ const Password = (props) => {
     <div className={ `password__wrapper ${ className }` }>
       <Input
         { ...standardProps }
+        autoComplete='new-password'
         error={ error && !string().matches(new RegExp(passwordRegex)).required().isValidSync(state.password) }
         errorMessage='Your password is not valid'
         key={ `password_${ name }` }
         label='Password'
         name={ `password_${ name }` }
+        onChange={ ({ value: val }) => handleChange({ key: 'password', val }) }
         placeholder='Enter a password'
         required={ required }
         type='password'
         value={ state.password }
-        onChange={ ({ value: val }) => handleChange({ key: 'password', val }) }
       />
       { showHelper && <PasswordHelper password={ state.password } /> }
       { confirm && (
@@ -106,11 +107,11 @@ const Password = (props) => {
           key={ `password_confirm_${ name }` }
           label='Re-enter password'
           name={ `password_confirm_${ name }` }
+          onChange={ ({ value: val }) => handleChange({ key: 'password_confirm', val }) }
           placeholder='Confirm password'
           required={ required }
           type='password'
           value={ state.password_confirm }
-          onChange={ ({ value: val }) => handleChange({ key: 'password_confirm', val }) }
         />
       ) }
     </div>

@@ -24,9 +24,11 @@ const Form = (props) => {
     mutationName,
     mutationVariables,
     name,
+    onSubmit,
     initialData,
     renderSteps,
     resetForm,
+    showFormAfterSubmission,
     showTitles,
     stepper,
     submitAsString,
@@ -66,6 +68,7 @@ const Form = (props) => {
   } = useFormData({
     initialData,
     name,
+    onSubmit,
     mutation,
     mutationName,
     mutationVariables,
@@ -86,19 +89,17 @@ const Form = (props) => {
     CustomUpload,
     Link
   };
+
+  const formRef = React.useRef(null);
+  const submitted = get(submit, 'data');
+  const formShouldRender = !loading && !error && (showFormAfterSubmission || !submitted);
+  // check if form is stepped
+  const isStepper = renderSteps && !isEmpty(steps);
+  const Submit = CustomButton || Button;
   
-  // If something external has told form to reset then reset it.
-  // External usage:
-  // const [reset, setReset] = React.useState(false);
-  // const resetForm = () => {
-  //   if (!reset) {
-  //     return false;
-  //   }
-  //   return () => {
-  //     setReset(false);
-  //   };
-  // };
+  // See readme on resetting
   const shouldResetForm = typeof resetForm === 'function' ? resetForm() : false;
+
   React.useEffect(() => {
     if (shouldResetForm) {
       // Call data handler
@@ -106,16 +107,7 @@ const Form = (props) => {
       // Call callback
       shouldResetForm();
     }
-  }, [reset, resetForm, shouldResetForm]);
-
-  const formRef = React.useRef(null);
-
-  const submitted = get(submit, 'data');
-
-  // form should render
-  const formShouldRender = !loading && !error && !submitted;
-  // check if form is stepped
-  const isStepper = renderSteps && !isEmpty(steps);
+  }, [reset, shouldResetForm]);
 
   const renderFormSubmission = () => {
     // Works out if we should pass submitted data to a custom component or not.
@@ -142,8 +134,6 @@ const Form = (props) => {
       window.removeEventListener('beforeunload', prompter);
     };
   }, [isDirty, submit]);
-
-  const Submit = CustomButton || Button;
 
   return (
     <FormWrapper
@@ -174,7 +164,11 @@ const Form = (props) => {
         { /* Render the basic form */ }
         { formShouldRender && !isStepper && (
           <React.Fragment>
-            <RenderFields { ...fieldProps } { ...customComponents } typeaheads={ typeaheads } /> { /* eslint-disable-line react/jsx-props-no-spreading */ }
+            <RenderFields
+              { ...fieldProps }
+              { ...customComponents }
+              typeaheads={ typeaheads }
+            />
             <Submit
               loading={ submit.isSubmitting }
               type='submit'
@@ -217,8 +211,10 @@ Form.defaultProps = {
   mutation: null,
   mutationName: 'form_submit',
   mutationVariables: {},
+  onSubmit: null,
   renderSteps: true,
   resetForm: null,
+  showFormAfterSubmission: false,
   showTitles: true,
   stepper: 'full',
   submitAsString: true,
@@ -244,19 +240,21 @@ Form.propTypes = {
   // Standard props
   className: PropTypes.string,
   height: PropTypes.string,
-  initialData: PropTypes.object,
+  initialData: PropTypes.object, // Optionally pass in values to pre-populate fields
   margin: PropTypes.string,
-  mutation: PropTypes.object,
-  mutationName: PropTypes.string,
-  mutationVariables: PropTypes.object,
+  mutation: PropTypes.object, // gql mutation
+  mutationName: PropTypes.string, // Mandatory if passing mutation, mutation name to look up against
+  mutationVariables: PropTypes.object, // Any additional variables you need to pass when doing a custom mutation
   name: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func,
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
   resetForm: PropTypes.func,
-  showTitles: PropTypes.bool,
+  showFormAfterSubmission: PropTypes.bool, // Optionally keep form rather than rendering custom component after submit
+  showTitles: PropTypes.bool, // Optionally show step titles
   stepper: PropTypes.oneOf(['condensed', 'full']),
-  submitAsString: PropTypes.bool,
-  textStrings: PropTypes.object,
-  typeaheads: PropTypes.object,
+  submitAsString: PropTypes.bool, // Send submitted data as a string or object
+  textStrings: PropTypes.object, // Customise strings ({ submit })
+  typeaheads: PropTypes.object, // Customise typeahead behaviour
   width: PropTypes.string,
   // Custom components
   Button: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
