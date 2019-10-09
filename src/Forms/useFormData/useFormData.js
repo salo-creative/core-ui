@@ -10,6 +10,7 @@ import reducer from './useFormData.reducer';
 const useFormData = ({ 
   initialData,
   name, 
+  onSubmit,
   mutation, 
   mutationName = 'form_submit', 
   mutationVariables = {},
@@ -149,15 +150,22 @@ const useFormData = ({
     const { formattedData, files } = extractDataFromState();
     const valid = await model.current.isValid(formattedData);
     if (valid) {
-      submitForm({
-        context: { hasUpload: true }, // activate Upload link
-        variables: {
-          id: data.form_show.id,
-          body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Have the option to submit as a string or as an object
-          attachments: files,
-          ...mutationVariables
+      try {
+        const submitted = await submitForm({
+          context: { hasUpload: true }, // activate Upload link
+          variables: {
+            id: data.form_show.id,
+            body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Have the option to submit as a string or as an object
+            attachments: files,
+            ...mutationVariables
+          }
+        });
+        if (typeof onSubmit === 'function') {
+          onSubmit(submitted);
         }
-      });
+      } catch (e) {
+        console.log(e);
+      }
     } else {
       dispatch({ type: 'SHOW_ERRORS', value: true });
     }
@@ -199,7 +207,7 @@ const useFormData = ({
       isDirty: false,
       showErrors: false,
       steps: [],
-      values: []
+      values: {}
     } });
   };
 
