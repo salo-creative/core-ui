@@ -165,11 +165,12 @@ const RenderFields = (props) => {
           />
         );
       }
-      case 'text':
-      case 'url':
+      case 'currentPassword':
       case 'email':
+      case 'number':
       case 'tel':
-      case 'number': {
+      case 'text':
+      case 'url': {
         // Evaluate the component to use
         const FormInput = CustomInput || Input;
 
@@ -191,7 +192,7 @@ const RenderFields = (props) => {
             onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
             placeholder={ placeholder }
             required={ required }
-            type={ type }
+            type={ type === 'currentPassword' ? 'password' : type }
             value={ value }
           />
         );
