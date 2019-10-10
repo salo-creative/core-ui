@@ -38,6 +38,11 @@ const Address = (props) => {
     ...value
   });
 
+  React.useEffect(() => {
+    // Update state if new external values are provided.
+    setState((prev) => ({ ...prev, ...value }));
+  }, [value]);
+
   // On field blur we emit these back on the on change function to the parent
   const handleBlur = () => {
     onChange(state);
