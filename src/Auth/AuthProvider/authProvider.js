@@ -11,33 +11,21 @@ import { ENV } from '../../helpers/environments';
 
 const cookies = new Cookies();
 
-class AuthProvider extends React.Component {
-  constructor(props) {
-    super(props);
-    const { tokens } = props;
-    let state = { jwt: {} };
-    if (tokens) {
-      state = { jwt: get(tokens, 'jwt', {}) };
-    }
-    this.state = {
-      jwt: state.jwt,
-      loggedOut: false
-    };
-  }
+const AuthProvider = (props) => {
+  const {
+    children,
+    tokens
+  } = props;
 
-  // Set user into state from tokens if we login during session
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { jwt, loggedOut } = prevState;
-    const { tokens } = nextProps;
-    if ((isEmpty(jwt)) && tokens && !loggedOut) {
-      const state = ({ jwt: get(tokens, 'jwt', {}) });
-      return { jwt: state.jwt };
-    }
-    return null;
-  }
+  const [{ jwt }, setState] = React.useState({ jwt: get(tokens, 'jwt', {}) });
 
-  hasPermissions = (permissions) => {
-    const { jwt } = this.state;
+  React.useEffect(() => {
+    if (tokens && isEmpty(jwt)) {
+      setState({ jwt: get(tokens, 'jwt', {}) });
+    }
+  }, [jwt, tokens]);
+
+  const hasPermissions = (permissions) => {
     // First check the user is logged in
     if (!isEmpty(jwt)) {
       if (permissions && permissions.length) {
@@ -50,60 +38,58 @@ class AuthProvider extends React.Component {
     return false;
   };
 
-  loggedIn = () => {
-    const { jwt } = this.state;
+  const loggedIn = () => {
     return !isEmpty(jwt);
   };
 
-  login = (login) => {
-    const jwt = {
-      i: login.user.id,
-      r: login.user.roles,
-      fn: login.user.first_name,
-      ln: login.user.last_name,
-      t: login.jwt,
+  const login = (data) => {
+    const newSession = {
+      i: get(data, 'user.id'),
+      r: get(data, 'user.roles'),
+      fn: get(data, 'user.first_name'),
+      ln: get(data, 'user.last_name'),
+      t: get(data, 'jwt'),
+      meta: get(data, 'meta', {}),
       ts: Date.now()
     };
-    this.setState({ jwt, loggedOut: false });
+    setState({ jwt: newSession });
     const cookieConfig = {
       path: '/',
       secure: ENV !== 'development',
       sameSite: 'strict',
       maxAge: 60 * 60 * 24 * 2
     };
-    cookies.set('SCSession', JSON.stringify(jwt), cookieConfig);
+    cookies.set('SCSession', JSON.stringify(newSession), cookieConfig);
   };
 
-  logout = () => {
+  const logout = () => {
     setTimeout(() => {
       cookies.remove('SCSession', { path: '/' });
       window.location.reload();
     }, 100);
   };
 
-  render() {
-    const { children } = this.props;
-    const { jwt } = this.state;
-    const user = isEmpty(jwt) ? null : {
-      first_name: jwt.fn,
-      last_name: jwt.ln,
-      id: jwt.i,
-      roles: jwt.r
-    };
-    return (
-      <Provider value={ {
-        hasPermissions: this.hasPermissions,
-        loggedIn: this.loggedIn,
-        login: this.login,
-        logout: () => this.logout(),
-        user
-      } }
-      >
-        { children }
-      </Provider>
-    );
-  }
-}
+  const user = isEmpty(jwt) ? null : {
+    first_name: jwt.fn,
+    last_name: jwt.ln,
+    id: jwt.i,
+    roles: jwt.r,
+    meta: jwt.meta
+  };
+
+  return (
+    <Provider value={ {
+      hasPermissions,
+      loggedIn,
+      login,
+      logout: () => logout(),
+      user
+    } }
+    >
+      { children }
+    </Provider>
+  );
+};
 
 AuthProvider.defaultProps = { tokens: null };
 
