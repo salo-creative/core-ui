@@ -23,15 +23,17 @@ stories.add(
   'Basic',
   (() => {
     // KNOBS
-    const image = text('Image URL', 'http://i.stack.imgur.com/Dj7eP.jpg');
+    const image = text('Image URL', 'https://traveler.marriott.com/wp-content/uploads/2017/12/Costa-Rica_surfers-GettyImages-578363125.jpg');
     const size = number('Size', 100);
-    const fallbackText = text('Fallback Text', 'Salo');
+    const firstName = text('First name', 'Salo');
+    const lastName = text('Last name', 'Creative');
     const colour = text('Fallback Colour', colours.blue);
 
     return (
       <Avatar
         size={ size }
-        text={ fallbackText }
+        firstName={ firstName }
+        lastName={ lastName }
         image={ image }
         colour={ colour }
         onClick={ () => alert('Avatar clicked') }
