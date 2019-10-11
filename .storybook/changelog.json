@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.10.3", "commit": "Refactoring and extending auth provider" },
 { "user": "Rich Comber", "version": "v0.10.2", "commit": "Fix for address data hydration" },
 { "user": "Rich Comber", "version": "v0.10.1", "commit": "Adding support for password reset and other form improvements" },
 { "user": "Rich Comber", "version": "v0.10.0", "commit": "Adding edit select input" },
