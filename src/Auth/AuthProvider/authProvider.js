@@ -17,16 +17,13 @@ const AuthProvider = (props) => {
     tokens
   } = props;
 
-  const [{ jwt, loggedOut }, setState] = React.useState({
-    jwt: get(tokens, 'jwt', {}),
-    loggedOut: false
-  });
+  const [{ jwt }, setState] = React.useState({ jwt: get(tokens, 'jwt', {}) });
 
   React.useEffect(() => {
-    if (tokens && isEmpty(jwt) && !loggedOut) {
-      setState({ jwt: get(tokens, 'jwt', {}), loggedOut: false });
+    if (tokens && isEmpty(jwt)) {
+      setState({ jwt: get(tokens, 'jwt', {}) });
     }
-  }, [jwt, loggedOut, tokens]);
+  }, [jwt, tokens]);
 
   const hasPermissions = (permissions) => {
     // First check the user is logged in
@@ -55,7 +52,7 @@ const AuthProvider = (props) => {
       meta: get(data, 'meta', {}),
       ts: Date.now()
     };
-    setState({ jwt: newSession, loggedOut: false });
+    setState({ jwt: newSession });
     const cookieConfig = {
       path: '/',
       secure: ENV !== 'development',
