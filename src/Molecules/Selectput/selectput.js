@@ -13,7 +13,8 @@ const Selectput = ({
   placeholder,
   initialMode,
   initialSelected,
-  renderItem
+  renderItem,
+  icons
 }) => {
   const [mode, setMode] = React.useState(initialMode);
   const [selected, setSelected] = React.useState(initialSelected);
@@ -73,9 +74,11 @@ const Selectput = ({
             } }
             ref={ inputEl }
           />
-          <span className='salo-selectput__icon-wrapper'>
-            <Icon icon={ selected } fill='#fff' size={ 16 } />
-          </span>
+          { icons && (
+            <span className='salo-selectput__icon-wrapper'>
+              <Icon icon={ icons[selected] || selected } fill='#fff' size={ 16 } />
+            </span>
+          ) }
           <Actions
             handleSubmit={ handleSubmit }
             handleClose={ handleClose }
@@ -141,6 +144,7 @@ const Selectput = ({
 
 Selectput.defaultProps = {
   className: null,
+  icons: null,
   initialMode: 'default',
   initialSelected: null,
   onChange: null,
@@ -151,6 +155,7 @@ Selectput.defaultProps = {
 
 Selectput.propTypes = {
   className: PropTypes.string,
+  icons: PropTypes.object,
   initialMode: PropTypes.string,
   initialSelected: PropTypes.string,
   onChange: PropTypes.func,
