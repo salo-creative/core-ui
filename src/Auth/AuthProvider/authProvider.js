@@ -17,11 +17,11 @@ const AuthProvider = (props) => {
     tokens
   } = props;
 
-  const [{ jwt }, setState] = React.useState({ jwt: get(tokens, 'jwt', {}) });
+  const [jwt, setState] = React.useState(get(tokens, 'jwt', {}));
 
   React.useEffect(() => {
     if (tokens && isEmpty(jwt)) {
-      setState({ jwt: get(tokens, 'jwt', {}) });
+      setState(get(tokens, 'jwt', {}));
     }
   }, [jwt, tokens]);
 
@@ -52,7 +52,7 @@ const AuthProvider = (props) => {
       meta: get(data, 'meta', {}),
       ts: Date.now()
     };
-    setState({ jwt: newSession });
+    setState(newSession);
     const cookieConfig = {
       path: '/',
       secure: ENV !== 'development',
