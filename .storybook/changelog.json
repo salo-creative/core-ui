@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.10.6", "commit": "Adding classes to salo modal" },
 { "user": "Rich Comber", "version": "v0.10.5", "commit": "Making avatar more suitable" },
 { "user": "Rich Comber", "version": "v0.10.4", "commit": "Fixes for select dropown" },
 { "user": "Rich Comber", "version": "v0.10.3", "commit": "Refactoring and extending auth provider" },
