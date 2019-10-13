@@ -8,7 +8,7 @@ import { AvatarWrapper, TextWrapper } from './avatar.styles';
 import { colours } from '../../helpers/colours';
 
 const Avatar = (props) => {
-  const { text, colour, size, image, onClick } = props;
+  const { firstName, lastName, colour, size, image, onClick } = props;
 
   const hasAction = typeof onClick === 'function';
 
@@ -29,7 +29,7 @@ const Avatar = (props) => {
       <TextWrapper
         colour={ colour }
       >
-        { image === '' ? text.slice(0, 1).toUpperCase() : '' }
+        { !image ? `${ firstName.charAt(0) }${ lastName.charAt(0) }` : '' }
       </TextWrapper>
     </AvatarWrapper>
   );
@@ -37,7 +37,8 @@ const Avatar = (props) => {
 
 Avatar.defaultProps = {
   image: '',
-  text: 'Avatar',
+  firstName: 'Avatar',
+  lastName: 'Fallback',
   colour: colours.blue,
   onClick: null,
   size: 100
@@ -47,7 +48,8 @@ Avatar.propTypes = {
   image: PropTypes.string,
 
   // Fallback if image not available
-  text: PropTypes.string,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
   colour: PropTypes.string,
   onClick: PropTypes.func,
   size: PropTypes.number

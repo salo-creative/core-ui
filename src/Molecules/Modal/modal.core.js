@@ -106,8 +106,12 @@ class Core extends Component {
     } = this.props;
 
     return (
-      <ModalWrapper state={ transitionState } transition={ transition }>
+      <ModalWrapper
+        state={ transitionState }
+        transition={ transition }
+      >
         <Container
+          className='salo-modal'
           role='dialog'
           tabIndex={ -1 }
           ref={ (e) => { this.Container = e; } }
@@ -119,6 +123,7 @@ class Core extends Component {
           { this.renderContent() }
           <Backdrop
             background={ background }
+            className='salo-modal__backdrop'
             transparent={ transparent }
             onClick={ e => closeOnBackdrop !== false && this.handleClose(e) }
           />
@@ -162,7 +167,7 @@ class Core extends Component {
 
     return (
       <Wrapper
-        className='modal-wrapper'
+        className='salo-modal__wrapper modal-wrapper'
         ref={ (e) => { this.modalWrapper = e; } }
         forceHeight={ forceHeight }
         setHeight={ height }
@@ -172,13 +177,17 @@ class Core extends Component {
         bodyBackground={ bodyBackground }
       >
         <Header
+          className='salo-modal__header'
           handleClose={ this.handleClose }
           hideClose={ hideClose }
           hideHeader={ hideHeader }
           stickyHeader={ stickyHeader }
           title={ title }
         />
-        <Body padding={ padding }>
+        <Body
+          className='salo-modal__body'
+          padding={ padding }
+        >
           { mounted && this.renderChildren() }
         </Body>
         { this.renderFooter() }
@@ -191,7 +200,10 @@ class Core extends Component {
 
     if (footer) {
       return (
-        <Footer sticky={ stickyFooter }>
+        <Footer
+          className='salo-modal__footer'
+          sticky={ stickyFooter }
+        >
           { footer }
         </Footer>
       );
