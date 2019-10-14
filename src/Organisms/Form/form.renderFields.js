@@ -108,19 +108,14 @@ const RenderFields = (props) => {
         const typeahead = typeaheads[name];
         return (
           <FormTypeAhead
-            add={ typeahead.add }
             debounced
             disabled={ disabled }
             error={ hasError }
-            errors={ typeahead.errors }
             errorMessage={ errorMessage }
-            hydrateQuery={ typeahead.hydrateQuery }
-            isSubmitting={ typeahead.isSubmitting }
             key={ name }
             label={ label }
             max={ max }
             name={ name }
-            namespace={ typeahead.namespace }
             onChange={ ({ value: val }) => {
               handleChange({ key: name, value: val });
               if (typeof typeahead.callback === 'function') {
@@ -128,12 +123,9 @@ const RenderFields = (props) => {
               }
             } }
             onSelect={ (val) => handleBlur({ key: name, value: val.map((v) => v.id) }) }
-            parent={ typeahead.parent }
             required={ required }
-            retryAction={ typeahead.retryAction }
-            strings={ typeahead.strings }
-            suggestions={ typeahead.suggestions }
             value={ values[name] }
+            { ...typeahead }
           />
         );
       }
