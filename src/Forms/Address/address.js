@@ -5,6 +5,8 @@ import { string } from 'yup';
 // HELPERS & CONSTANTS
 import { colours } from '../../helpers/colours';
 
+import CoreInput from '../Input';
+
 const allowedFields = ['line2', 'county', 'country'];
 
 const Address = (props) => {
@@ -75,9 +77,11 @@ const Address = (props) => {
     onKeyUp: handleKeyUp
   };
 
+  const AddressInput = Input || CoreInput;
+
   return (
     <div className={ `address__wrapper ${ className }` }>
-      <Input
+      <AddressInput
         { ...standardProps }
         error={ error && !string().required().isValidSync(state.line1) }
         errorMessage='The first line of address is required'
@@ -90,7 +94,7 @@ const Address = (props) => {
         onChange={ ({ value: val }) => handleChange({ key: 'line1', val }) }
       />
       { fields.includes('line2') && (
-        <Input
+        <AddressInput
           { ...standardProps }
           error={ error && !string().isValidSync(state.line2) }
           key={ `line2_${ name }` }
@@ -101,7 +105,7 @@ const Address = (props) => {
           onChange={ ({ value: val }) => handleChange({ key: 'line2', val }) }
         />
       ) }
-      <Input
+      <AddressInput
         { ...standardProps }
         error={ error && !string().required().isValidSync(state.city) }
         errorMessage='A city is required'
@@ -114,7 +118,7 @@ const Address = (props) => {
         onChange={ ({ value: val }) => handleChange({ key: 'city', val }) }
       />
       { fields.includes('county') && (
-        <Input
+        <AddressInput
           { ...standardProps }
           error={ error && !string().isValidSync(state.county) }
           key={ `county_${ name }` }
@@ -125,7 +129,7 @@ const Address = (props) => {
           onChange={ ({ value: val }) => handleChange({ key: 'county', val }) }
         />
       ) }
-      <Input
+      <AddressInput
         { ...standardProps }
         error={ error && !string().required().isValidSync(state.postcode) }
         errorMessage='A valid postcode is required'
@@ -138,7 +142,7 @@ const Address = (props) => {
         onChange={ ({ value: val }) => handleChange({ key: 'postcode', val }) }
       />
       { fields.includes('country') && (
-        <Input
+        <AddressInput
           { ...standardProps }
           error={ error && !string().isValidSync(state.country) }
           key={ `country_${ name }` }
