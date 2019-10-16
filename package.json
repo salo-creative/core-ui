@@ -116,7 +116,6 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "^4.2.2",
-    "react-test-renderer": "^16.10.2",
     "sass-loader": "^6.0.6",
     "storybook-addon-jest": "^0.0.1",
     "style-loader": "^0.19.1",
