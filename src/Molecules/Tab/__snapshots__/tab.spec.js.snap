@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c0 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 5px 5px 0 0;
+  border: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding: 15px 30px;
+  position: relative;
+  background-color: #fafcff;
+  box-shadow: 0px -1px 1px 0px #e9ecef;
+}
+
+.c0:focus {
+  box-shadow: 0px -2px 2px 0px #e9ecef;
+}
+
+.c0:active {
+  top: 1px;
+}
+
+.c1 {
+  background-color: #fafcff;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 1px 2px 1px 0px #e9ecef;
+  padding: 30px;
+}
+
+<div
+  class=" salo-tabs"
+>
+  <div
+    aria-label="Tabs"
+    class="salo-tabs__tabs"
+    role="tablist"
+    tabindex="0"
+  >
+    <button
+      aria-controls="item-1"
+      aria-selected="true"
+      class="c0 salo-tabs__button"
+      id="tab-item-1"
+      role="tab"
+      tabindex="0"
+      type="button"
+    >
+      Item 1
+    </button>
+  </div>
+  <div>
+    <div
+      aria-labelledby="tab-item-1"
+      class="c1 salo-tabs__pane"
+      id="item-1"
+      role="tabpanel"
+      tabindex="0"
+    >
+      Item 1 content
+    </div>
+  </div>
+</div>
+`;

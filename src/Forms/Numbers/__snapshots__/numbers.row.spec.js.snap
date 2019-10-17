@@ -1,0 +1,569 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c2 {
+  height: 14px;
+  width: 14px;
+  margin: 0 0.5rem 0 0;
+}
+
+.c18 {
+  height: 24px;
+  width: 24px;
+  margin: 0;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-flex-basis: 0%;
+  -ms-flex-preferred-size: 0%;
+  flex-basis: 0%;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  padding: 1rem 1rem 1rem 0;
+  width: 25%;
+  -webkit-flex-basis: 25%;
+  -ms-flex-preferred-size: 25%;
+  flex-basis: 25%;
+  max-width: 25%;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-flex-basis: 0%;
+  -ms-flex-preferred-size: 0%;
+  flex-basis: 0%;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  padding: 10px;
+  width: 50%;
+  -webkit-flex-basis: 50%;
+  -ms-flex-preferred-size: 50%;
+  flex-basis: 50%;
+  max-width: 50%;
+}
+
+.c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-flex-basis: 0%;
+  -ms-flex-preferred-size: 0%;
+  flex-basis: 0%;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  padding: 1rem 0 1rem 1rem;
+  width: 25%;
+  -webkit-flex-basis: 25%;
+  -ms-flex-preferred-size: 25%;
+  flex-basis: 25%;
+  max-width: 25%;
+}
+
+.c0 {
+  position: relative;
+  margin: 0 0 2rem;
+}
+
+.c1 {
+  right: 0;
+  top: 0;
+  padding: 0;
+  height: 2rem;
+  width: 10rem;
+  background: none;
+  border: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  position: absolute;
+  font-size: 1.2rem;
+  color: #6c757d;
+  cursor: pointer;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.c1 path {
+  fill: #6c757d;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.c1:hover {
+  color: #00ACED;
+}
+
+.c1:hover path {
+  fill: #00ACED;
+}
+
+.c3 {
+  height: 1px;
+  width: 100%;
+  padding-top: 0.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  padding: 0;
+  position: relative;
+}
+
+.c6 {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.c16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.c8 {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  width: 100%;
+  background: #fafcff;
+}
+
+.c7 {
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+}
+
+.c9 {
+  width: 100%;
+  height: 4rem;
+  background: transparent;
+  color: #333333;
+  font-size: inherit;
+  padding: 0 4rem 0 1rem;
+  border: 1px solid;
+  border-color: rgba(0,172,237,0.5);
+  margin: 0;
+  border-radius: 0;
+  text-overflow: '';
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none !important;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  -webkit-transition: border 0.2s linear;
+  transition: border 0.2s linear;
+  position: relative;
+  z-index: 2;
+}
+
+.c9:focus,
+.c9:active {
+  border-color: #00ACED;
+}
+
+.c9[disabled] {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 4rem;
+  height: calc(100% - 1.5rem);
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  right: 0;
+  top: 0.75rem;
+  position: absolute;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-left: 1px solid;
+  border-color: rgba(0,172,237,0.5);
+  z-index: 1;
+}
+
+.c12 {
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+}
+
+.c13 {
+  position: relative;
+}
+
+.c14 {
+  margin: 0;
+  padding: 0 1rem;
+  height: 4rem;
+  background-color: #fafcff;
+  border: 1px solid;
+  border-color: rgba(0,172,237,0.5);
+  -webkit-transition: border 0.2s linear;
+  transition: border 0.2s linear;
+  width: 100%;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+}
+
+.c14:focus,
+.c14:active {
+  border-color: #00ACED;
+}
+
+.c14[disabled] {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.c17 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  background-color: #31D238;
+  border: 1px solid #31D238;
+  color: #fff;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  position: relative;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-letter-spacing: 1px;
+  -moz-letter-spacing: 1px;
+  -ms-letter-spacing: 1px;
+  letter-spacing: 1px;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  height: 4rem;
+  padding: 0 1.5rem;
+  width: auto;
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+.c17 path {
+  -webkit-transition: fill 0.3s linear;
+  transition: fill 0.3s linear;
+  fill: #fff !important;
+}
+
+.c17.disabled,
+.c17:disabled {
+  background-color: #31D238 !important;
+  border: 1px solid #31D238;
+  color: #fff;
+  opacity: 0.6;
+  pointer-events: auto;
+  cursor: not-allowed;
+}
+
+.c17.disabled path,
+.c17:disabled path {
+  fill: #fff !important;
+}
+
+.c17:focus {
+  outline: none;
+}
+
+.c17:hover:not([disabled]) {
+  border: 1px solid #219626;
+  background: #219626;
+}
+
+.c17.active,
+.c17:hover:not([disabled]) {
+  color: #fff;
+}
+
+.c17.active path,
+.c17:hover:not([disabled]) path {
+  fill: #fff !important;
+}
+
+<div
+  class="c0"
+>
+  <button
+    class="c1"
+  >
+    <svg
+      class="c2"
+      size="14"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"
+        fill="#00222b"
+      />
+    </svg>
+    Add number
+  </button>
+  <div
+    class="c3"
+  />
+  <div
+    class="c4"
+  >
+    <div
+      class="c5 c6"
+      default=""
+    >
+      <div
+        class="c7 salo-select "
+      >
+        <div
+          class="c8 salo-select__wrapper"
+        >
+          <select
+            aria-invalid="false"
+            aria-required="true"
+            class="c9 salo-select__field"
+            height="4rem"
+            id="phone_type"
+            name="phone_type"
+          >
+            <option
+              value=""
+            >
+              Please select…
+            </option>
+            <option
+              value="mobile"
+            >
+              Mobile
+            </option>
+            <option
+              value="home"
+            >
+              Home
+            </option>
+            <option
+              value="work"
+            >
+              Work
+            </option>
+            <option
+              value="office"
+            >
+              Office
+            </option>
+            <option
+              value="reception"
+            >
+              Reception
+            </option>
+            <option
+              value="other"
+            >
+              Other
+            </option>
+          </select>
+          <span
+            class="c10"
+          >
+            <svg
+              style="width: 24px; height: 24px;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7,10L12,15L17,10H7Z"
+                fill="#6c757d"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="c11 c6"
+      default=""
+    >
+      <div
+        class="c12 salo-input "
+      >
+        <div
+          class="c13 salo-input__wrapper"
+        >
+          <input
+            aria-invalid="false"
+            aria-required="true"
+            class="c14 salo-input__field"
+            font-size="1.4rem"
+            height="4rem"
+            id="phone_number"
+            name="phone_number"
+            placeholder="Phone number"
+            type="tel"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="c15 c6"
+      default=""
+    >
+      <div
+        class="c16"
+      >
+        <button
+          class="c17  disabled"
+          disabled=""
+          height="4rem"
+          loading="false"
+          radius="true"
+          type="button"
+        >
+          <canvas
+            height="0"
+            style="border-radius: inherit; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%;"
+            width="0"
+          />
+          <svg
+            class="c18"
+            size="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+              fill="#00222b"
+            />
+          </svg>
+          
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

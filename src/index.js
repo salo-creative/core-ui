@@ -56,6 +56,7 @@ export { default as Address } from './Forms/Address';
 export { default as CheckBox, CheckBoxGroup } from './Forms/CheckBox';
 export { default as DatePicker } from './Forms/DatePicker';
 export { default as Input } from './Forms/Input';
+export { default as Numbers } from './Forms/Numbers';
 export { default as Password } from './Forms/Password';
 export { default as Radio } from './Forms/Radio';
 export { default as Range } from './Forms/Range';

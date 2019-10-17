@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c0 {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  outline: none;
+  width: 100%;
+  height: 4rem;
+  border-radius: 0.4rem;
+  background: transparent;
+  font-size: 1.4rem;
+  padding: 0 4rem 0 1rem;
+  border: 1px solid rgba(0,172,237,0.5);
+  margin: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.c0:focus,
+.c0:active {
+  border: 1px solid #00ACED;
+}
+
+.c0.noValue {
+  color: #6c757d;
+}
+
+.c0:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 40px;
+  height: calc(100% - 10px);
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  right: 0;
+  top: 5px;
+  position: absolute;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-left: 1px solid rgba(0,172,237,0.5);
+}
+
+.c1 svg {
+  fill: #6c757d;
+}
+
+<button
+  class="c0 noValue"
+  value=""
+>
+  Please select…
+  <span
+    class="c1"
+  >
+    <svg
+      style="width: 24px; height: 24px;"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M7,10L12,15L17,10H7Z"
+      />
+    </svg>
+  </span>
+</button>
+`;

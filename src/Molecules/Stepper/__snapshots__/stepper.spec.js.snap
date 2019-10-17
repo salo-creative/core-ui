@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c0 {
+  font-weight: 400;
+  width: 100%;
+  color: #333333;
+  text-align: left;
+  margin: 0 0 20px;
+  padding: 0;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.c0 em,
+.c0 i {
+  font-style: italic;
+}
+
+.c0 b,
+.c0 strong {
+  font-weight: bold;
+}
+
+.c0 a {
+  font-size: 1em;
+  color: currentColor;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  font-weight: 600;
+}
+
+.c0 a:hover {
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  color: #8f8f8f;
+}
+
+.c0 pre {
+  font-family: "Courier 10 Pitch",Courier,monospace;
+  font-size: 95%;
+  line-height: 140%;
+  white-space: pre;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+}
+
+.c0 code {
+  font-family: Monaco,Consolas,"Andale Mono","DejaVu Sans Mono",monospace;
+  font-size: 95%;
+  line-height: 140%;
+  white-space: pre;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  background: #faf8f0;
+}
+
+@media screen and (min-width:400px) {
+  .c0 {
+    font-size: calc(14px + (17 - 14) * (100vw - 400px) / (1200 - 400));
+    line-height: calc(17px + (29 - 17) * (100vw - 400px) / (1200 - 400));
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .c0 {
+    font-size: 17px;
+    line-height: 29px;
+  }
+}
+
+<p
+  class="c0"
+  color=""
+  font-size=""
+>
+  No steps defined
+</p>
+`;

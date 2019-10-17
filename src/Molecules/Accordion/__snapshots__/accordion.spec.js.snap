@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c4 {
+  height: 20px;
+  width: 20px;
+  margin: 0;
+}
+
+.c0 {
+  width: 100%;
+}
+
+.c1 {
+  outline: none;
+  border: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #fafcff;
+  -webkit-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+  border-bottom: 1px solid #e9ecef;
+  cursor: pointer;
+  height: 5rem;
+  width: 100%;
+  text-align: left;
+  padding: 0 1rem;
+}
+
+.c2 {
+  margin: 0 1rem;
+  font-size: 1.4rem;
+  width: 100%;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: -webkit-transform 0.3s linear;
+  -webkit-transition: transform 0.3s linear;
+  transition: transform 0.3s linear;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+<div
+  class="c0"
+>
+  <button
+    class="c1"
+  >
+    
+    <p
+      class="c2"
+    >
+      label 1
+    </p>
+    <span
+      class="c3"
+    >
+      <svg
+        class="c4"
+        size="20"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+          fill="#00222b"
+        />
+      </svg>
+    </span>
+  </button>
+</div>
+`;

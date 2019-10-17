@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c0 {
+  background: #e9ecef;
+  border-radius: 0.4rem;
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.2);
+  margin: 0;
+  overflow: hidden;
+  padding: 2rem;
+  width: 100%;
+}
+
+<div
+  class="c0"
+>
+  No content supplied!
+</div>
+`;

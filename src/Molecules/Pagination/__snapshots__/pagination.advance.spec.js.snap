@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c1 {
+  height: 24px;
+  width: 24px;
+  margin: 0;
+}
+
+.c0 {
+  border: none;
+  background: none;
+  outline: none;
+  color: #333333;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.1rem;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  margin: 0 0.25rem 0;
+}
+
+.c0.active {
+  color: #fff;
+  background: #00ACED;
+}
+
+.c0:hover:not(.active):not([disabled]) {
+  background: #e9ecef;
+}
+
+.c0[disabled] {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+<button
+  class="c0"
+>
+  <svg
+    class="c1"
+    size="24"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"
+      fill="#00222b"
+    />
+  </svg>
+</button>
+`;

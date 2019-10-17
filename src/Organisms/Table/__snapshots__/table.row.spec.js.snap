@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c0 {
+  width: 100%;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 5rem;
+  -webkit-flex-wrap: none;
+  -ms-flex-wrap: none;
+  flex-wrap: none;
+  border-bottom: 2px solid #e9ecef;
+  position: relative;
+}
+
+.no-borders .c1 {
+  border-bottom: none;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 5rem;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 1.6rem;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c2.error {
+  color: #f15b60;
+}
+
+<div
+  class="c0 salo-table  "
+  width="100%"
+>
+  <div
+    class="c1 salo-table__header"
+  />
+  <div
+    class="c2"
+  >
+    There are no results to display
+  </div>
+</div>
+`;
