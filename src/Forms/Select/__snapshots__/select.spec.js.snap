@@ -80,15 +80,15 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="salo-select  c0"
+  class="c0 salo-select "
 >
   <div
-    class="salo-select__wrapper c1"
+    class="c1 salo-select__wrapper"
   >
     <select
       aria-invalid="false"
       aria-required="false"
-      class="salo-select__field c2"
+      class="c2 salo-select__field"
       height="4rem"
     />
     <span

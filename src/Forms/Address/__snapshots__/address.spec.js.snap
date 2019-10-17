@@ -53,7 +53,7 @@ exports[`Renders against snapshot 1`] = `
   class="address__wrapper "
 >
   <div
-    class="salo-input  c0"
+    class="c0 salo-input "
   >
     <label
       class="c1"
@@ -62,12 +62,12 @@ exports[`Renders against snapshot 1`] = `
       Address line 1
     </label>
     <div
-      class="salo-input__wrapper c2"
+      class="c2 salo-input__wrapper"
     >
       <input
         aria-invalid="false"
         aria-required="false"
-        class="salo-input__field c3"
+        class="c3 salo-input__field"
         font-size="1.4rem"
         height="4rem"
         id="line1_undefined"
@@ -79,7 +79,7 @@ exports[`Renders against snapshot 1`] = `
     </div>
   </div>
   <div
-    class="salo-input  c0"
+    class="c0 salo-input "
   >
     <label
       class="c1"
@@ -88,12 +88,12 @@ exports[`Renders against snapshot 1`] = `
       Address line 2
     </label>
     <div
-      class="salo-input__wrapper c2"
+      class="c2 salo-input__wrapper"
     >
       <input
         aria-invalid="false"
         aria-required="false"
-        class="salo-input__field c3"
+        class="c3 salo-input__field"
         font-size="1.4rem"
         height="4rem"
         id="line2_undefined"
@@ -105,7 +105,7 @@ exports[`Renders against snapshot 1`] = `
     </div>
   </div>
   <div
-    class="salo-input  c0"
+    class="c0 salo-input "
   >
     <label
       class="c1"
@@ -114,12 +114,12 @@ exports[`Renders against snapshot 1`] = `
       City
     </label>
     <div
-      class="salo-input__wrapper c2"
+      class="c2 salo-input__wrapper"
     >
       <input
         aria-invalid="false"
         aria-required="false"
-        class="salo-input__field c3"
+        class="c3 salo-input__field"
         font-size="1.4rem"
         height="4rem"
         id="city_undefined"
@@ -131,7 +131,7 @@ exports[`Renders against snapshot 1`] = `
     </div>
   </div>
   <div
-    class="salo-input  c0"
+    class="c0 salo-input "
   >
     <label
       class="c1"
@@ -140,12 +140,12 @@ exports[`Renders against snapshot 1`] = `
       County
     </label>
     <div
-      class="salo-input__wrapper c2"
+      class="c2 salo-input__wrapper"
     >
       <input
         aria-invalid="false"
         aria-required="false"
-        class="salo-input__field c3"
+        class="c3 salo-input__field"
         font-size="1.4rem"
         height="4rem"
         id="county_undefined"
@@ -157,7 +157,7 @@ exports[`Renders against snapshot 1`] = `
     </div>
   </div>
   <div
-    class="salo-input  c0"
+    class="c0 salo-input "
   >
     <label
       class="c1"
@@ -166,12 +166,12 @@ exports[`Renders against snapshot 1`] = `
       Postcode
     </label>
     <div
-      class="salo-input__wrapper c2"
+      class="c2 salo-input__wrapper"
     >
       <input
         aria-invalid="false"
         aria-required="false"
-        class="salo-input__field c3"
+        class="c3 salo-input__field"
         font-size="1.4rem"
         height="4rem"
         id="postcode_undefined"
@@ -183,7 +183,7 @@ exports[`Renders against snapshot 1`] = `
     </div>
   </div>
   <div
-    class="salo-input  c0"
+    class="c0 salo-input "
   >
     <label
       class="c1"
@@ -192,12 +192,12 @@ exports[`Renders against snapshot 1`] = `
       Country
     </label>
     <div
-      class="salo-input__wrapper c2"
+      class="c2 salo-input__wrapper"
     >
       <input
         aria-invalid="false"
         aria-required="false"
-        class="salo-input__field c3"
+        class="c3 salo-input__field"
         font-size="1.4rem"
         height="4rem"
         id="country_undefined"

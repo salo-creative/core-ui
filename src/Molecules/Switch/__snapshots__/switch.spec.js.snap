@@ -67,7 +67,7 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="alignRight c0"
+  class="c0 alignRight"
   width="auto"
 >
   <button

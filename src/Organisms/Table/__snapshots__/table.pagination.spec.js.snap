@@ -46,11 +46,11 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="salo-table   c0"
+  class="c0 salo-table  "
   width="100%"
 >
   <div
-    class="salo-table__header c1"
+    class="c1 salo-table__header"
   />
   <div
     class="c2"

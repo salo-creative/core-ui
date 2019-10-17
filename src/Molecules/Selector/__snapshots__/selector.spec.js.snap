@@ -69,7 +69,7 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <button
-  class="noValue c0"
+  class="c0 noValue"
   value=""
 >
   Please select…

@@ -69,7 +69,7 @@ exports[`Renders against snapshot 1`] = `
       type="checkbox"
     />
     <div
-      class="styled-checkbox  c3"
+      class="c3 styled-checkbox "
       width="2rem"
     >
       <svg

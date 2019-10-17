@@ -106,15 +106,15 @@ exports[`Renders against snapshot 1`] = `
     class="c1"
   >
     <div
-      class="salo-select  c2"
+      class="c2 salo-select "
     >
       <div
-        class="salo-select__wrapper c3"
+        class="c3 salo-select__wrapper"
       >
         <select
           aria-invalid="false"
           aria-required="false"
-          class="salo-select__field c4"
+          class="c4 salo-select__field"
           height="4rem"
           id="dd_undefined"
           name="dd_undefined"
@@ -300,15 +300,15 @@ exports[`Renders against snapshot 1`] = `
     class="c1"
   >
     <div
-      class="salo-select  c2"
+      class="c2 salo-select "
     >
       <div
-        class="salo-select__wrapper c3"
+        class="c3 salo-select__wrapper"
       >
         <select
           aria-invalid="false"
           aria-required="false"
-          class="salo-select__field c4"
+          class="c4 salo-select__field"
           height="4rem"
           id="mm_undefined"
           name="mm_undefined"
@@ -399,15 +399,15 @@ exports[`Renders against snapshot 1`] = `
     class="c1"
   >
     <div
-      class="salo-select  c2"
+      class="c2 salo-select "
     >
       <div
-        class="salo-select__wrapper c3"
+        class="c3 salo-select__wrapper"
       >
         <select
           aria-invalid="false"
           aria-required="false"
-          class="salo-select__field c4"
+          class="c4 salo-select__field"
           height="4rem"
           id="yyyy_undefined"
           name="yyyy_undefined"

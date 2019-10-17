@@ -93,13 +93,14 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="salo-upload  c0"
+  class="c0 salo-upload "
 >
   <label
-    class="salo-upload__label  c1"
+    class="c1 salo-upload__label "
     height="4rem"
     id="undefined_label"
     label=""
+    loading="false"
     radius="true"
   >
     <canvas
@@ -113,7 +114,7 @@ exports[`Renders against snapshot 1`] = `
     accept="*"
     aria-invalid="false"
     aria-required="false"
-    class="salo-upload__field c2"
+    class="c2 salo-upload__field"
     font-size="1.4rem"
     type="file"
   />

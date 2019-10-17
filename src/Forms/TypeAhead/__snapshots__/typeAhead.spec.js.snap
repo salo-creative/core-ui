@@ -42,15 +42,15 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="salo-input  c0"
+  class="c0 salo-input "
 >
   <div
-    class="salo-input__wrapper c1"
+    class="c1 salo-input__wrapper"
   >
     <input
       aria-invalid="false"
       aria-required="false"
-      class="salo-input__field c2"
+      class="c2 salo-input__field"
       font-size="1.4rem"
       height="4rem"
       id="undefined-input"

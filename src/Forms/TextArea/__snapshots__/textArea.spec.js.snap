@@ -37,12 +37,12 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="salo-textarea  c0"
+  class="c0 salo-textarea "
 >
   <textarea
     aria-invalid="false"
     aria-required="false"
-    class="salo-textarea__field c1"
+    class="c1 salo-textarea__field"
     placeholder=""
     rows="3"
   />
