@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c0 {
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 0 2rem;
+}
+
+.c1 {
+  position: relative;
+}
+
+.c2 {
+  margin: 0;
+  padding: 0 1rem;
+  height: 4rem;
+  background-color: #fafcff;
+  border: 1px solid;
+  border-color: rgba(0,172,237,0.5);
+  -webkit-transition: border 0.2s linear;
+  transition: border 0.2s linear;
+  width: 100%;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+}
+
+.c2:focus,
+.c2:active {
+  border-color: #00ACED;
+}
+
+.c2[disabled] {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+<div
+  class="c0 salo-input "
+>
+  <div
+    class="c1 salo-input__wrapper"
+  >
+    <input
+      aria-invalid="false"
+      aria-required="false"
+      class="c2 salo-input__field"
+      font-size="1.4rem"
+      height="4rem"
+      placeholder=""
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;

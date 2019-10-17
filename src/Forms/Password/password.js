@@ -4,6 +4,7 @@ import { string } from 'yup';
 
 // COMPONENTS & STYLES
 import PasswordHelper from './password.helper';
+import CoreInput from '../Input';
 
 // HELPERS & CONSTANTS
 import { colours } from '../../helpers/colours';
@@ -29,6 +30,8 @@ const Password = (props) => {
     value,
     Input
   } = props;
+
+  const PasswordInput = Input || CoreInput;
 
   // Hold state of individual inputs within component
   const [state, setState] = React.useState({
@@ -84,7 +87,7 @@ const Password = (props) => {
 
   return (
     <div className={ `password__wrapper ${ className }` }>
-      <Input
+      <PasswordInput
         { ...standardProps }
         autoComplete='new-password'
         error={ error && !string().matches(new RegExp(passwordRegex)).required().isValidSync(state.password) }
@@ -100,7 +103,7 @@ const Password = (props) => {
       />
       { showHelper && <PasswordHelper password={ state.password } /> }
       { confirm && (
-        <Input
+        <PasswordInput
           { ...standardProps }
           error={ !state.matches && (state.password_confirm_touched || error) }
           errorMessage='Your passwords do not match'

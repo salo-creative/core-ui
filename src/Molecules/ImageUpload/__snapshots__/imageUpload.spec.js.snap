@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c0 {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  background: #8F8F8F;
+  display: block;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.c0:before {
+  content: '';
+  display: block;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+
+<div
+  class="c0 salo-uploader "
+/>
+`;

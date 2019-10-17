@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c4 {
+  height: 18px;
+  width: 18px;
+  margin: 0;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin: 0;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition-duration: .1s;
+  transition-duration: .1s;
+}
+
+.is-active .c0 {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+}
+
+.card .c0 {
+  padding-top: 0.5rem;
+  padding-left: 0;
+  padding-bottom: 0.5rem;
+  padding-right: 0;
+}
+
+.table .c0 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.table--card .c0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.float .c0 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.float-horizontal .c0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.c1 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 1rem;
+  color: inherit;
+}
+
+.c1:focus,
+.c1:active {
+  outline: none;
+}
+
+.table .c1 {
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+.float-horizontal .c1 {
+  padding-right: 0;
+}
+
+.c2 {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  -webkit-letter-spacing: 1px;
+  -moz-letter-spacing: 1px;
+  -ms-letter-spacing: 1px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  color: inherit;
+}
+
+.c3 {
+  cursor: pointer;
+  outline: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-radius: 4rem;
+  background: #fff;
+  height: 4rem;
+  width: 4rem;
+  border: 0.1rem solid inherit;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 1rem;
+  box-sizing: border-box;
+}
+
+.c3 svg path {
+  fill: inherit;
+}
+
+.c3:after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 4rem;
+  border-radius: 4rem;
+  width: 4rem;
+}
+
+.table .c3 {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+<div
+  class="c0"
+>
+  <a
+    class="c1 salo-flyout__button"
+    href="/"
+    title=""
+  >
+    <span
+      class="c2"
+    />
+    <div
+      class="c3 salo-flyout__icon-wrapper"
+    >
+      <svg
+        class="c4"
+        size="18"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z"
+          fill="#333333"
+        />
+      </svg>
+    </div>
+  </a>
+</div>
+`;

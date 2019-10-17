@@ -40,6 +40,11 @@
       "/node_modules/",
       "/dist/"
     ],
+    "globals": {
+      "webpackVars": {
+        "ENV": "test"
+      }
+    },
     "verbose": true,
     "testURL": "http://localhost:6001/"
   },
