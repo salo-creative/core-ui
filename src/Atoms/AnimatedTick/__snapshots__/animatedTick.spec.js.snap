@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c0 {
+  margin: 0 auto;
+  max-width: 40px;
+  width: 100%;
+}
+
+.c1 {
+  fill: none;
+  stroke: #31D238;
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+  opacity: 0;
+  stroke-dasharray: 130;
+  stroke-dashoffset: 130;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.active .c1 {
+  opacity: 1;
+  stroke-dashoffset: 0;
+}
+
+.c2 {
+  fill: none;
+  stroke: #31D238;
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  -webkit-transition: stroke-dashoffset 1s 0.5s ease-out;
+  transition: stroke-dashoffset 1s 0.5s ease-out;
+}
+
+.active .c2 {
+  stroke-dashoffset: 0;
+}
+
+<div
+  class="c0"
+>
+  <svg
+    style="enable-background: new 0 0 37 37;"
+    viewBox="0 0 37 37"
+    x="0px"
+    xml:space="preserve"
+    y="0px"
+  >
+    <path
+      class="c1"
+      d="M30.5,6.5L30.5,6.5c6.6,6.6,6.6,17.4,0,24l0,0c-6.6,6.6-17.4,6.6-24,0l0,0c-6.6-6.6-6.6-17.4,0-24l0,0C13.1-0.2,23.9-0.2,30.5,6.5z"
+    />
+    <polyline
+      class="c2"
+      points=" 11.6,20 15.9,24.2 26.4,13.8 "
+    />
+  </svg>
+</div>
+`;

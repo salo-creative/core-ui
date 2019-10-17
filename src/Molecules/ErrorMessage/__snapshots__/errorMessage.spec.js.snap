@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c1 {
+  width: 100%;
+  color: #333333;
+  text-align: center;
+  margin: 0 0 1rem;
+  padding: 0;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 27px;
+}
+
+.c2 {
+  font-weight: 400;
+  width: 100%;
+  color: #333333;
+  text-align: center;
+  margin: 0 0 20px;
+  padding: 0;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.c2 em,
+.c2 i {
+  font-style: italic;
+}
+
+.c2 b,
+.c2 strong {
+  font-weight: bold;
+}
+
+.c2 a {
+  font-size: 1em;
+  color: currentColor;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  font-weight: 600;
+}
+
+.c2 a:hover {
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  color: #8f8f8f;
+}
+
+.c2 pre {
+  font-family: "Courier 10 Pitch",Courier,monospace;
+  font-size: 95%;
+  line-height: 140%;
+  white-space: pre;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+}
+
+.c2 code {
+  font-family: Monaco,Consolas,"Andale Mono","DejaVu Sans Mono",monospace;
+  font-size: 95%;
+  line-height: 140%;
+  white-space: pre;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  background: #faf8f0;
+}
+
+.c0 {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  max-width: 700px;
+  padding: 2rem;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+@media screen and (min-width:400px) {
+  .c1 {
+    font-size: calc(17px + (27 - 17) * (100vw - 400px) / (1200 - 400));
+    line-height: calc(27px + (34 - 27) * (100vw - 400px) / (1200 - 400));
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .c1 {
+    font-size: 27px;
+    line-height: 34px;
+  }
+}
+
+@media screen and (min-width:400px) {
+  .c2 {
+    font-size: calc(14px + (17 - 14) * (100vw - 400px) / (1200 - 400));
+    line-height: calc(17px + (29 - 17) * (100vw - 400px) / (1200 - 400));
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .c2 {
+    font-size: 17px;
+    line-height: 29px;
+  }
+}
+
+<div
+  class="c0"
+  width="700px"
+>
+  <h3
+    class="c1"
+    color=""
+    font-size=""
+  >
+    Whoops something went wrong
+  </h3>
+  <p
+    class="c2"
+    color=""
+    font-size=""
+  >
+    Status: 
+    400
+     | 
+    Something went wrong!
+  </p>
+</div>
+`;

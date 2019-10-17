@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c0 {
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 0 2rem;
+}
+
+.c2 {
+  position: relative;
+}
+
+.c3 {
+  margin: 0;
+  padding: 0 1rem;
+  height: 4rem;
+  background-color: #fafcff;
+  border: 1px solid;
+  border-color: rgba(0,172,237,0.5);
+  -webkit-transition: border 0.2s linear;
+  transition: border 0.2s linear;
+  width: 100%;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+}
+
+.c3:focus,
+.c3:active {
+  border-color: #00ACED;
+}
+
+.c3[disabled] {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.c1 {
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  color: inherit;
+  word-break: break-word;
+}
+
+<div
+  class="address__wrapper "
+>
+  <div
+    class="salo-input  c0"
+  >
+    <label
+      class="c1"
+      for="line1_undefined"
+    >
+      Address line 1
+    </label>
+    <div
+      class="salo-input__wrapper c2"
+    >
+      <input
+        aria-invalid="false"
+        aria-required="false"
+        class="salo-input__field c3"
+        font-size="1.4rem"
+        height="4rem"
+        id="line1_undefined"
+        name="line1_undefined"
+        placeholder="Enter address line 1"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    class="salo-input  c0"
+  >
+    <label
+      class="c1"
+      for="line2_undefined"
+    >
+      Address line 2
+    </label>
+    <div
+      class="salo-input__wrapper c2"
+    >
+      <input
+        aria-invalid="false"
+        aria-required="false"
+        class="salo-input__field c3"
+        font-size="1.4rem"
+        height="4rem"
+        id="line2_undefined"
+        name="line2_undefined"
+        placeholder="Enter address line 2"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    class="salo-input  c0"
+  >
+    <label
+      class="c1"
+      for="city_undefined"
+    >
+      City
+    </label>
+    <div
+      class="salo-input__wrapper c2"
+    >
+      <input
+        aria-invalid="false"
+        aria-required="false"
+        class="salo-input__field c3"
+        font-size="1.4rem"
+        height="4rem"
+        id="city_undefined"
+        name="city_undefined"
+        placeholder="Enter a city"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    class="salo-input  c0"
+  >
+    <label
+      class="c1"
+      for="county_undefined"
+    >
+      County
+    </label>
+    <div
+      class="salo-input__wrapper c2"
+    >
+      <input
+        aria-invalid="false"
+        aria-required="false"
+        class="salo-input__field c3"
+        font-size="1.4rem"
+        height="4rem"
+        id="county_undefined"
+        name="county_undefined"
+        placeholder="Enter a county"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    class="salo-input  c0"
+  >
+    <label
+      class="c1"
+      for="postcode_undefined"
+    >
+      Postcode
+    </label>
+    <div
+      class="salo-input__wrapper c2"
+    >
+      <input
+        aria-invalid="false"
+        aria-required="false"
+        class="salo-input__field c3"
+        font-size="1.4rem"
+        height="4rem"
+        id="postcode_undefined"
+        name="postcode_undefined"
+        placeholder="Enter a postcode"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    class="salo-input  c0"
+  >
+    <label
+      class="c1"
+      for="country_undefined"
+    >
+      Country
+    </label>
+    <div
+      class="salo-input__wrapper c2"
+    >
+      <input
+        aria-invalid="false"
+        aria-required="false"
+        class="salo-input__field c3"
+        font-size="1.4rem"
+        height="4rem"
+        id="country_undefined"
+        name="country_undefined"
+        placeholder="Enter a country"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;

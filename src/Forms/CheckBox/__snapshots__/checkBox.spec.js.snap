@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders against snapshot 1`] = `
+.c0 {
+  margin: 0 0 2rem 0;
+}
+
+.c1 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #00ACED;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1.4rem;
+  height: 2.1rem;
+  opacity: 1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c2 {
+  border: 0;
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.c3 {
+  background-color: #fafcff;
+  border-radius: 3px;
+  border: .1rem #6c757d solid;
+  height: 2rem;
+  margin-right: 1rem;
+  -webkit-transition: all 150ms;
+  transition: all 150ms;
+  box-shadow: none;
+  width: 2rem;
+}
+
+.c3 svg {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2px;
+  visibility: hidden;
+}
+
+<div
+  class="c0"
+>
+  <label
+    class="c1"
+  >
+    <input
+      class="c2"
+      type="checkbox"
+    />
+    <div
+      class="styled-checkbox  c3"
+      width="2rem"
+    >
+      <svg
+        viewBox="0 0 24 24"
+      >
+        <polyline
+          points="20 6 9 17 4 12"
+        />
+      </svg>
+    </div>
+  </label>
+</div>
+`;

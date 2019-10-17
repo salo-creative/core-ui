@@ -82,7 +82,7 @@ const AuthProvider = (props) => {
       hasPermissions,
       loggedIn,
       login,
-      logout: () => logout(),
+      logout,
       user
     } }
     >
