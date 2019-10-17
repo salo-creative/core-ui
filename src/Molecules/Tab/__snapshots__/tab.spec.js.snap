@@ -42,7 +42,7 @@ exports[`Renders against snapshot 1`] = `
     <button
       aria-controls="item-1"
       aria-selected="true"
-      class="salo-tabs__button c0"
+      class="c0 salo-tabs__button"
       id="tab-item-1"
       role="tab"
       tabindex="0"
@@ -54,7 +54,7 @@ exports[`Renders against snapshot 1`] = `
   <div>
     <div
       aria-labelledby="tab-item-1"
-      class="salo-tabs__pane c1"
+      class="c1 salo-tabs__pane"
       id="item-1"
       role="tabpanel"
       tabindex="0"

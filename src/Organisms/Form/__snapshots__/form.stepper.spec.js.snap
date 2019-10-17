@@ -63,7 +63,7 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="null collapsed c0"
+  class="c0 null collapsed"
   height="auto"
   width="auto"
 >

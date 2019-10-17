@@ -157,7 +157,7 @@ exports[`Renders against snapshot 1`] = `
   class="c0"
 >
   <a
-    class="salo-flyout__button c1"
+    class="c1 salo-flyout__button"
     href="/"
     title=""
   >
@@ -165,7 +165,7 @@ exports[`Renders against snapshot 1`] = `
       class="c2"
     />
     <div
-      class="salo-flyout__icon-wrapper c3"
+      class="c3 salo-flyout__icon-wrapper"
     >
       <svg
         class="c4"

@@ -27,6 +27,6 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="salo-uploader  c0"
+  class="c0 salo-uploader "
 />
 `;

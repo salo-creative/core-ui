@@ -77,8 +77,9 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <button
-  class="  c0"
+  class="c0  "
   height="4rem"
+  loading="false"
   radius="true"
   type="button"
 >

@@ -25,7 +25,7 @@
     "url": "git+https://github.com/SaloCreative/core-ui.git"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "./test-setup.js",
+    "setupFilesAfterEnv": ["./test-setup.js"],
     "collectCoverageFrom": [
       "src/**/*.js",
       "!src/**/_story.js",

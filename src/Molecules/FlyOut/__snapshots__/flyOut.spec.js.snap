@@ -369,7 +369,7 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="salo-flyout float  inverse c0"
+  class="c0 salo-flyout float  inverse"
 >
   <div
     class="c1"
@@ -381,8 +381,8 @@ exports[`Renders against snapshot 1`] = `
         class="c3"
       >
         <a
-          class="salo-flyout__button c4"
-          href="/"
+          class="c4 salo-flyout__button"
+          href="#"
           title="Title"
         >
           <span
@@ -391,7 +391,7 @@ exports[`Renders against snapshot 1`] = `
             Title
           </span>
           <div
-            class="salo-flyout__icon-wrapper c6"
+            class="c6 salo-flyout__icon-wrapper"
           >
             <svg
               class="c7"
@@ -408,7 +408,7 @@ exports[`Renders against snapshot 1`] = `
       </div>
     </div>
     <button
-      class="salo-flyout__toggle c8"
+      class="c8 salo-flyout__toggle"
     >
       <canvas
         height="0"

@@ -13,7 +13,7 @@ exports[`Renders against snapshot 1`] = `
   margin: 0;
 }
 
-.c6 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -199,7 +199,7 @@ exports[`Renders against snapshot 1`] = `
   position: relative;
 }
 
-.c5 {
+.c6 {
   border-bottom: 1px solid #e9ecef;
 }
 
@@ -440,15 +440,15 @@ exports[`Renders against snapshot 1`] = `
       default=""
     >
       <div
-        class="salo-select  c7"
+        class="c7 salo-select "
       >
         <div
-          class="salo-select__wrapper c8"
+          class="c8 salo-select__wrapper"
         >
           <select
             aria-invalid="false"
             aria-required="true"
-            class="salo-select__field c9"
+            class="c9 salo-select__field"
             height="4rem"
             id="phone_type"
             name="phone_type"
@@ -506,19 +506,19 @@ exports[`Renders against snapshot 1`] = `
       </div>
     </div>
     <div
-      class="c5 c11"
+      class="c11 c6"
       default=""
     >
       <div
-        class="salo-input  c12"
+        class="c12 salo-input "
       >
         <div
-          class="salo-input__wrapper c13"
+          class="c13 salo-input__wrapper"
         >
           <input
             aria-invalid="false"
             aria-required="true"
-            class="salo-input__field c14"
+            class="c14 salo-input__field"
             font-size="1.4rem"
             height="4rem"
             id="phone_number"
@@ -531,16 +531,17 @@ exports[`Renders against snapshot 1`] = `
       </div>
     </div>
     <div
-      class="c5 c15"
+      class="c15 c6"
       default=""
     >
       <div
         class="c16"
       >
         <button
-          class=" disabled c17"
+          class="c17  disabled"
           disabled=""
           height="4rem"
+          loading="false"
           radius="true"
           type="button"
         >
