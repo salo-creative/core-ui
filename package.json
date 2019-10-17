@@ -40,6 +40,11 @@
       "/node_modules/",
       "/dist/"
     ],
+    "globals": {
+      "webpackVars": {
+        "ENV": "test"
+      }
+    },
     "verbose": true,
     "testURL": "http://localhost:6001/"
   },
@@ -111,8 +116,6 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "^4.2.2",
-    "react-test-renderer": "^16.4.1",
-    "react-testing-library": "^5.4.0",
     "sass-loader": "^6.0.6",
     "storybook-addon-jest": "^0.0.1",
     "style-loader": "^0.19.1",
@@ -128,6 +131,7 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
+    "@testing-library/react": "^9.3.0",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-client": "^2.6.4",
     "apollo-link": "^1.2.12",
