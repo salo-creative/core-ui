@@ -215,6 +215,28 @@ const useFormData = ({
     }
   };
 
+  // Handle submit event
+  const directSubmit = async ({ formattedData, files }) => {
+    try {
+      const submitted = await submitForm({
+        context: {
+          hasUpload: true
+        }, // activate Upload link
+        variables: {
+          id: data.form_show.id,
+          body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Have the option to submit as a string or as an object
+          attachments: files,
+          ...mutationVariables
+        }
+      });
+      if (typeof onSubmit === 'function') {
+        onSubmit(submitted);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   // Handle step change
   const changeStep = (id) => {
     dispatch({
@@ -229,7 +251,7 @@ const useFormData = ({
   };
 
   // Handle form reset
-  const reset = (value) => {
+  const reset = () => {
     dispatch({
       type: 'RESET',
       state: {
@@ -245,6 +267,7 @@ const useFormData = ({
   return {
     activeStep,
     changeStep,
+    directSubmit,
     error,
     fields: get(data, 'form_show.fields', []),
     handleBlur,

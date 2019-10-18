@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get, isEmpty, forEach, map } from 'lodash';
+import {
+  get, isEmpty, forEach, map
+} from 'lodash';
 import styled from 'styled-components';
 
 // COMPONENTS & STYLES
@@ -97,7 +99,9 @@ const RenderFields = (props) => {
             label={ label }
             name={ name }
             onChange={ ({ value: val }) => {
-              handleBlur({ key: name, value: val });
+              handleBlur({
+                key: name, value: val
+              });
             } }
             type='file'
           />
@@ -117,12 +121,18 @@ const RenderFields = (props) => {
             max={ max }
             name={ name }
             onChange={ ({ value: val }) => {
-              handleChange({ key: name, value: val });
+              handleChange({
+                key: name, value: val
+              });
               if (typeof typeahead.callback === 'function') {
-                typeahead.callback({ key: name, value: val });
+                typeahead.callback({
+                  key: name, value: val
+                });
               }
             } }
-            onSelect={ (val) => handleBlur({ key: name, value: val.map((v) => v.id) }) }
+            onSelect={ (val) => handleBlur({
+              key: name, value: val.map((v) => v.id)
+            }) }
             required={ required }
             value={ values[name] }
             { ...typeahead }
@@ -142,14 +152,20 @@ const RenderFields = (props) => {
             max={ field.validation.max }
             min={ field.validation.min }
             name={ name }
-            onBlur={ ({ value: val }) => handleBlur({ key: name, value: val }) }
+            onBlur={ ({ value: val }) => handleBlur({
+              key: name, value: val
+            }) }
             onKeyUp={ ({ e, value: val }) => {
             // This is needed to trigger field validation when return is pressed to submit
               if (e.keyCode === 13) {
-                handleBlur({ key: name, value: val });
+                handleBlur({
+                  key: name, value: val
+                });
               }
             } }
-            onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
+            onChange={ ({ value: val }) => handleChange({
+              key: name, value: val
+            }) }
             placeholder={ placeholder }
             required={ required }
             type={ field.type }
@@ -174,14 +190,20 @@ const RenderFields = (props) => {
             key={ name }
             label={ label }
             name={ name }
-            onBlur={ ({ value: val }) => handleBlur({ key: name, value: val }) }
+            onBlur={ ({ value: val }) => handleBlur({
+              key: name, value: val
+            }) }
             onKeyUp={ ({ e, value: val }) => {
               // This is needed to trigger field validation when return is pressed to submit
               if (e.keyCode === 13) {
-                handleBlur({ key: name, value: val });
+                handleBlur({
+                  key: name, value: val
+                });
               }
             } }
-            onChange={ ({ value: val }) => handleChange({ key: name, value: val }) }
+            onChange={ ({ value: val }) => handleChange({
+              key: name, value: val
+            }) }
             placeholder={ placeholder }
             required={ required }
             type={ type === 'currentPassword' ? 'password' : type }
@@ -198,7 +220,9 @@ const RenderFields = (props) => {
             disabled={ disabled }
             key={ name }
             name={ name }
-            onChange={ (val) => handleBlur({ key: name, value: val }) }
+            onChange={ (val) => handleBlur({
+              key: name, value: val
+            }) }
             required={ required }
             value={ value }
             // Custom components
@@ -218,7 +242,9 @@ const RenderFields = (props) => {
             key={ name }
             label={ label }
             name={ name }
-            onChange={ ({ value: val }) => handleBlur({ key: name, value: val }) }
+            onChange={ ({ value: val }) => handleBlur({
+              key: name, value: val
+            }) }
             placeholder={ placeholder }
             required={ required }
             value={ value }
@@ -247,7 +273,9 @@ const RenderFields = (props) => {
             key={ name }
             label={ label }
             name={ name }
-            onChange={ ({ checked }) => handleBlur({ key: name, value: checked }) }
+            onChange={ ({ checked }) => handleBlur({
+              key: name, value: checked
+            }) }
             required={ required }
           />
         );
@@ -263,7 +291,9 @@ const RenderFields = (props) => {
             key={ name }
             label={ label }
             name={ name }
-            onChange={ (val) => handleBlur({ key: name, value: val }) }
+            onChange={ (val) => handleBlur({
+              key: name, value: val
+            }) }
             options={ options }
             required={ required }
             value={ value }
@@ -280,7 +310,9 @@ const RenderFields = (props) => {
             fields={ get(metaData, 'fields', ['line2', 'county']) }
             key={ name }
             name={ name }
-            onChange={ (val) => handleBlur({ key: name, value: val }) }
+            onChange={ (val) => handleBlur({
+              key: name, value: val
+            }) }
             required={ required }
             value={ value }
             // Custom components
