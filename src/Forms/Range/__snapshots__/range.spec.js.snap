@@ -51,7 +51,7 @@ exports[`Renders against snapshot 1`] = `
   background: #00ACED;
   cursor: pointer;
   margin-top: -.8rem;
-  z-index: 10000;
+  z-index: 5;
 }
 
 .c2::-moz-range-thumb {
@@ -61,7 +61,7 @@ exports[`Renders against snapshot 1`] = `
   background: #00ACED;
   cursor: pointer;
   margin-top: -.8rem;
-  z-index: 10000;
+  z-index: 5;
 }
 
 .c2::-ms-thumb {
@@ -71,7 +71,7 @@ exports[`Renders against snapshot 1`] = `
   background: #00ACED;
   cursor: pointer;
   margin-top: -.8rem;
-  z-index: 10000;
+  z-index: 5;
 }
 
 .c2::-webkit-slider-runnable-track {

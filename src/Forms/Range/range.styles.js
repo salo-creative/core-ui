@@ -28,7 +28,7 @@ const thumbPartial = css`
   background: ${ ({ theme }) => theme.primary };
   cursor: pointer;
   margin-top: -.8rem;
-  z-index: 10000;
+  z-index: 5;
 `;
 
 const trackPartial = css`
