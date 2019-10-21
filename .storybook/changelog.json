@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.11.2", "commit": "Updating z-index for alerts consumer" },
 { "user": "Rich Comber", "version": "v0.11.1", "commit": "Adding direct submit method to useFormData" },
 { "user": "Rich Comber", "version": "v0.11.0", "commit": "Adding tests and package updates" },
 { "user": "Rich Comber", "version": "v0.10.7", "commit": "Spreading typeahead props in form typeahead" },
