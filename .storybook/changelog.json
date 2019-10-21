@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.11.3", "commit": "Allowing helper text in form organism (meta.helpText)" },
 { "user": "Rich Comber", "version": "v0.11.2", "commit": "Updating z-index for alerts consumer" },
 { "user": "Rich Comber", "version": "v0.11.1", "commit": "Adding direct submit method to useFormData" },
 { "user": "Rich Comber", "version": "v0.11.0", "commit": "Adding tests and package updates" },

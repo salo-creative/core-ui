@@ -80,7 +80,8 @@ const RenderFields = (props) => {
     const errorMessage = typeof error === 'string' ? error.replace(name, label || name) : 'Field invalid';
     // Grab the meta info from the form
     const metaData = meta && typeof meta === 'string' ? JSON.parse(meta) : {};
-    
+    const helperText = get(metaData, 'helpText');
+
     if (metaData.group) {
       // If this field has a grouping then add it to the hash.
       groups[metaData.group] = groups[metaData.group] ? [...groups[metaData.group], index] : [index];
@@ -95,6 +96,7 @@ const RenderFields = (props) => {
             accept={ field.validation.enum }
             error={ hasError }
             errorMessage={ errorMessage }
+            helperText={ helperText }
             key={ name }
             label={ label }
             name={ name }
@@ -116,6 +118,7 @@ const RenderFields = (props) => {
             disabled={ disabled }
             error={ hasError }
             errorMessage={ errorMessage }
+            helperText={ helperText }
             key={ name }
             label={ label }
             max={ max }
@@ -147,6 +150,7 @@ const RenderFields = (props) => {
             error={ hasError }
             errorMessage={ errorMessage }
             disabled={ disabled }
+            helperText={ helperText }
             key={ name }
             label={ label }
             max={ field.validation.max }
@@ -187,6 +191,7 @@ const RenderFields = (props) => {
             error={ hasError }
             errorMessage={ errorMessage }
             disabled={ disabled }
+            helperText={ helperText }
             key={ name }
             label={ label }
             name={ name }
@@ -218,6 +223,7 @@ const RenderFields = (props) => {
           <FormPassword
             error={ hasError }
             disabled={ disabled }
+            helperText={ helperText }
             key={ name }
             name={ name }
             onChange={ (val) => handleBlur({
@@ -239,6 +245,7 @@ const RenderFields = (props) => {
             error={ hasError }
             errorMessage={ errorMessage }
             disabled={ disabled }
+            helperText={ helperText }
             key={ name }
             label={ label }
             name={ name }
@@ -270,6 +277,7 @@ const RenderFields = (props) => {
             error={ hasError }
             errorMessage={ errorMessage }
             disabled={ disabled }
+            helperText={ helperText }
             key={ name }
             label={ label }
             name={ name }
@@ -288,6 +296,7 @@ const RenderFields = (props) => {
             error={ hasError }
             errorMessage={ errorMessage }
             disabled={ disabled }
+            helperText={ helperText }
             key={ name }
             label={ label }
             name={ name }
@@ -308,6 +317,7 @@ const RenderFields = (props) => {
             error={ hasError }
             disabled={ disabled }
             fields={ get(metaData, 'fields', ['line2', 'county']) }
+            helperText={ helperText }
             key={ name }
             name={ name }
             onChange={ (val) => handleBlur({
