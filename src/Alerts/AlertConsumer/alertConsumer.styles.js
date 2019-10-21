@@ -6,6 +6,6 @@ export const AlertsContainer = styled.div`
   top: ${ ({ topOffset }) => topOffset }px;
   left: 0;
   width: 100%;
-  z-index: 99;
+  z-index: 101;
   ${ ({ styleString }) => styleString }
 `;
