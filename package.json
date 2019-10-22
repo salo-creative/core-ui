@@ -1,6 +1,6 @@
 {
   "name": "@salo/core-ui",
-  "version": "0.11.3",
+  "version": "0.11.4",
   "description": "Core Salo React UI library",
   "main": "./index.js",
   "sideEffects": false,
@@ -25,7 +25,9 @@
     "url": "git+https://github.com/SaloCreative/core-ui.git"
   },
   "jest": {
-    "setupFilesAfterEnv": ["./test-setup.js"],
+    "setupFilesAfterEnv": [
+      "./test-setup.js"
+    ],
     "collectCoverageFrom": [
       "src/**/*.js",
       "!src/**/_story.js",

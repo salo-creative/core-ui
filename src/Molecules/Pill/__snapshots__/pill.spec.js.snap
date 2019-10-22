@@ -2,7 +2,7 @@
 
 exports[`Renders against snapshot 1`] = `
 .c0 {
-  background-color: #e9ecef;
+  background: #e9ecef;
   border: none;
   border-radius: 5rem;
   box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.2);
