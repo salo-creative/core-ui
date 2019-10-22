@@ -12,9 +12,6 @@
       "cwd": "${workspaceRoot}",
       "program": "${workspaceRoot}/node_modules/.bin/jest",
       "stopOnEntry": false,
-      // "args": [
-      //     "--config=config/packages/jest.client.config.json"
-      // ],
       "runtimeArgs": ["--nolazy"],
       "console": "internalConsole",
       "sourceMaps": false,
