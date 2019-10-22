@@ -14,7 +14,7 @@ const rotate = keyframes`
 `;
 
 export const PillWrapper = styled.div`
-  background-color: ${ ({ theme, background }) => (theme[background] ? theme[background] : theme.primary) };
+  background: ${ ({ theme, background }) => (theme[background] ? theme[background] : theme.primary) };
   border: ${ ({ border }) => border };
   border-radius: 5rem;
   box-shadow: ${ ({ shadow }) => shadow || boxShadow() };
