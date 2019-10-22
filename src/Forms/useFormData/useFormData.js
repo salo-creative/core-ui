@@ -1,5 +1,7 @@
 import React from 'react';
-import { get, isEmpty, find, findIndex } from 'lodash';
+import {
+  get, isEmpty, find, findIndex
+} from 'lodash';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 // HELPERS & CONSTANTS
@@ -7,12 +9,12 @@ import { GET_FORM, SUBMIT_FORM } from './useFormData.queries';
 import { buildSchema, formatSteps } from './useFormData.helpers';
 import reducer from './useFormData.reducer';
 
-const useFormData = ({ 
+const useFormData = ({
   initialData,
-  name, 
+  name,
   onSubmit,
-  mutation, 
-  mutationName = 'form_submit', 
+  mutation,
+  mutationName = 'form_submit',
   mutationVariables = {},
   initialErrors = false,
   submitAsString = true
@@ -22,9 +24,13 @@ const useFormData = ({
     data,
     loading,
     error
-  } = useQuery(GET_FORM, { variables: { name } });
+  } = useQuery(GET_FORM, {
+    variables: {
+      name
+    }
+  });
 
-  const submitMutation = mutation ? mutation : SUBMIT_FORM(mutationName); // Allow custom mutation to be passed in
+  const submitMutation = mutation || SUBMIT_FORM(mutationName); // Allow custom mutation to be passed in
 
   const [submitForm, {
     data: res,
@@ -58,7 +64,9 @@ const useFormData = ({
       const stepsData = get(data, 'form_show.steps');
       if (!isEmpty(stepsData)) {
         // Map over steps and validate
-        processedSteps = formatSteps({ steps: stepsData, values: initial });
+        processedSteps = formatSteps({
+          steps: stepsData, values: initial
+        });
       }
 
       dispatch({
@@ -68,14 +76,16 @@ const useFormData = ({
         steps: processedSteps
       });
     }
-  }, [data]);
+  }, [data, initialData]);
   
   // Handle blur events in form
   const handleBlur = ({ key, value }) => {
     // Run the validation
     let invalid = false;
     try {
-      model.current.validateSyncAt(key, { [key]: value });
+      model.current.validateSyncAt(key, {
+        [key]: value
+      });
     } catch (err) {
       invalid = err.message;
     }
@@ -141,7 +151,9 @@ const useFormData = ({
         formattedData[key] = value.value;
       }
     });
-    return { formattedData, files };
+    return {
+      formattedData, files
+    };
   };
  
   // Handle submit event
@@ -152,7 +164,9 @@ const useFormData = ({
     if (valid) {
       try {
         const submitted = await submitForm({
-          context: { hasUpload: true }, // activate Upload link
+          context: {
+            hasUpload: true
+          }, // activate Upload link
           variables: {
             id: data.form_show.id,
             body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Have the option to submit as a string or as an object
@@ -167,7 +181,9 @@ const useFormData = ({
         console.log(e);
       }
     } else {
-      dispatch({ type: 'SHOW_ERRORS', value: true });
+      dispatch({
+        type: 'SHOW_ERRORS', value: true
+      });
     }
   };
 
@@ -175,45 +191,83 @@ const useFormData = ({
   const handleSubmitStepper = async (e) => {
     e.preventDefault();
     // First check whether we are on the final step and should submit
-    const index = findIndex(steps, { id: activeStep });
+    const index = findIndex(steps, {
+      id: activeStep
+    });
     if (index + 1 === steps.length) {
       handleSubmit(e);
     } else {
       // we just need to validate the current step and change the page
-      const currentStep = find(steps, { id: activeStep });
+      const currentStep = find(steps, {
+        id: activeStep
+      });
       if (currentStep.complete) {
       // If step is valid go to the next one
-        dispatch({ type: 'CHANGE_STEP', id: get(steps, `[${ index + 1 }].id`) });
+        dispatch({
+          type: 'CHANGE_STEP', id: get(steps, `[${ index + 1 }].id`)
+        });
       } else {
         // Otherwise throw up the errors
-        dispatch({ type: 'SHOW_ERRORS', value: true });
+        dispatch({
+          type: 'SHOW_ERRORS', value: true
+        });
       }
+    }
+  };
+
+  // Handle submit event
+  const directSubmit = async ({ formattedData, files }) => {
+    try {
+      const submitted = await submitForm({
+        context: {
+          hasUpload: true
+        }, // activate Upload link
+        variables: {
+          id: data.form_show.id,
+          body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Have the option to submit as a string or as an object
+          attachments: files,
+          ...mutationVariables
+        }
+      });
+      if (typeof onSubmit === 'function') {
+        onSubmit(submitted);
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
   // Handle step change
   const changeStep = (id) => {
-    dispatch({ type: 'CHANGE_STEP', id });
+    dispatch({
+      type: 'CHANGE_STEP', id
+    });
   };
 
   const toggleErrors = (value) => {
-    dispatch({ type: 'SHOW_ERRORS', value: !!value });
+    dispatch({
+      type: 'SHOW_ERRORS', value: !!value
+    });
   };
 
   // Handle form reset
-  const reset = (value) => {
-    dispatch({ type: 'RESET', state: {
-      activeStep: 1,
-      isDirty: false,
-      showErrors: false,
-      steps: [],
-      values: {}
-    } });
+  const reset = () => {
+    dispatch({
+      type: 'RESET',
+      state: {
+        activeStep: 1,
+        isDirty: false,
+        showErrors: false,
+        steps: [],
+        values: {}
+      }
+    });
   };
 
   return {
     activeStep,
     changeStep,
+    directSubmit,
     error,
     fields: get(data, 'form_show.fields', []),
     handleBlur,

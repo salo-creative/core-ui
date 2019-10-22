@@ -1,4 +1,8 @@
 [
+{ "user": "Rich Comber", "version": "v0.11.3", "commit": "Allowing helper text in form organism (meta.helpText)" },
+{ "user": "Rich Comber", "version": "v0.11.2", "commit": "Updating z-index for alerts consumer" },
+{ "user": "Rich Comber", "version": "v0.11.1", "commit": "Adding direct submit method to useFormData" },
+{ "user": "Rich Comber", "version": "v0.11.0", "commit": "Adding tests and package updates" },
 { "user": "Rich Comber", "version": "v0.10.7", "commit": "Spreading typeahead props in form typeahead" },
 { "user": "Rich Comber", "version": "v0.10.6", "commit": "Adding classes to salo modal" },
 { "user": "Rich Comber", "version": "v0.10.5", "commit": "Making avatar more suitable" },

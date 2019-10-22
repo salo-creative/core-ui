@@ -8,13 +8,18 @@ import { saloTheme } from '../helpers/colours';
 const Theme = (props) => {
   const { children, theme } = props;
   return (
-    <ThemeProvider theme={ { ...saloTheme, ...theme } }>
+    <ThemeProvider theme={ {
+      ...saloTheme, ...theme
+    } }
+    >
       { children }
     </ThemeProvider>
   );
 };
 
-Theme.defaultProps = { theme: {} };
+Theme.defaultProps = {
+  theme: {}
+};
 
 Theme.propTypes = {
   children: PropTypes.any.isRequired,
