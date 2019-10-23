@@ -173,7 +173,7 @@ const Form = (props) => {
               loading={ submit.isSubmitting }
               type='submit'
             >
-              { get(textStrings, 'submit', 'Submit') }
+              { get(strings, 'submit', 'Submit') }
             </Submit>
           </React.Fragment>
         ) }

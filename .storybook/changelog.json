@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.11.5", "commit": "Fixing strings usage outside of stepper form" },
 { "user": "Rich Comber", "version": "v0.11.4", "commit": "Pill bug fixes" },
 { "user": "Rich Comber", "version": "v0.11.3", "commit": "Allowing helper text in form organism (meta.helpText)" },
 { "user": "Rich Comber", "version": "v0.11.2", "commit": "Updating z-index for alerts consumer" },
