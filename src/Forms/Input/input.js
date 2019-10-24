@@ -8,6 +8,7 @@ import Label from '../components/Label';
 import ErrorText from '../components/ErrorText';
 import HelperText from '../components/HelperText';
 import Strength from '../components/Strength';
+import FieldIcon from '../components/FieldIcon';
 
 // HELPERS
 import { sanitize } from '../../helpers/form';
@@ -27,6 +28,7 @@ const Input = React.forwardRef((props, ref) => {
     files,
     fontSize,
     helperText,
+    icon,
     label,
     margin,
     multiple,
@@ -65,6 +67,7 @@ const Input = React.forwardRef((props, ref) => {
         className='salo-input__label'
       />
       <FieldWrapper className='salo-input__wrapper'>
+        { icon && <FieldIcon icon={ icon } disabled={ disabled } /> }
         <Field
           aria-required={ required.toString() }
           aria-invalid={ error.toString() }
@@ -78,10 +81,19 @@ const Input = React.forwardRef((props, ref) => {
           height={ height() }
           id={ name }
           name={ name }
-          onBlur={ (e) => onBlur({ e, value: sanitize(e.target.value) }) }
-          onChange={ (e) => onChange({ e, value: sanitize(e.target.value) }) }
+          onBlur={ (e) => onBlur({
+            e,
+            value: sanitize(e.target.value)
+          }) }
+          onChange={ (e) => onChange({
+            e,
+            value: sanitize(e.target.value)
+          }) }
           onKeyDown={ onKeyDown }
-          onKeyUp={ (e) => onKeyUp({ e, value: sanitize(e.target.value) }) }
+          onKeyUp={ (e) => onKeyUp({
+            e,
+            value: sanitize(e.target.value)
+          }) }
           padding={ padding }
           placeholder={ placeholder }
           ref={ ref }
@@ -89,10 +101,18 @@ const Input = React.forwardRef((props, ref) => {
           value={ value }
 
           // File specific props
-          { ...(type === 'file' ? { accept } : {}) }
-          { ...(type === 'file' ? { capture } : {}) }
-          { ...(type === 'file' ? { files } : {}) }
-          { ...(type === 'file' ? { multiple } : {}) }
+          { ...(type === 'file' ? {
+            accept
+          } : {}) }
+          { ...(type === 'file' ? {
+            capture
+          } : {}) }
+          { ...(type === 'file' ? {
+            files
+          } : {}) }
+          { ...(type === 'file' ? {
+            multiple
+          } : {}) }
         />
       </FieldWrapper>
       <ErrorText
@@ -127,6 +147,7 @@ Input.defaultProps = {
   files: null,
   fontSize: '1.4rem',
   helperText: '',
+  icon: null,
   label: '',
   margin: '0 0 2rem',
   multiple: null,
@@ -156,6 +177,11 @@ Input.propTypes = {
   files: PropTypes.string,
   fontSize: PropTypes.string,
   helperText: PropTypes.string,
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({
+    icon: PropTypes.string.isRequired,
+    offset: PropTypes.string,
+    position: PropTypes.oneOf(['left', 'right'])
+  })]),
   label: PropTypes.string,
   margin: PropTypes.string,
   multiple: PropTypes.string,
