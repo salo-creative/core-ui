@@ -4,12 +4,16 @@ import PropTypes from 'prop-types';
 
 // COMPONENTS & STYLES
 import Header from './modal.header';
-import { Container, Backdrop, Wrapper, Footer, Body, ModalWrapper } from './modal.styles';
+import {
+  Container, Backdrop, Wrapper, Footer, Body, ModalWrapper
+} from './modal.styles';
 
 class Core extends Component {
   constructor(props) {
     super(props);
-    this.state = { mounted: false };
+    this.state = {
+      mounted: false
+    };
     // Create a div that we'll render the modal into. Because each
     // Modal component has its own element, we can render multiple
     // modal components into the modal container.
@@ -21,8 +25,21 @@ class Core extends Component {
     this.modalRoot.className = 'modal-container';
     document.body.appendChild(this.modalRoot);
     this.setState(() => {
-      return { mounted: true };
+      return {
+        mounted: true
+      };
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { mounted } = this.state;
+    // Automatically focus the first interactive area on mount.
+    if (prevState.mounted === false && mounted === true) {
+      const input = this.modalRoot.querySelector('input, textarea');
+      if (input) {
+        input.focus();
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -140,7 +157,9 @@ class Core extends Component {
       const childrenWithProps = React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           return (
-            React.cloneElement(child, { modal: this.modalWrapper })
+            React.cloneElement(child, {
+              modal: this.modalWrapper
+            })
           );
         }
         return child;

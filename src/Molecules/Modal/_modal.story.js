@@ -15,8 +15,12 @@ import README from './README.md';
 // Start of story logic
 const stories = storiesOf('Molecules | Modal', module);
 stories.addDecorator(withKnobs);
-stories.addDecorator(withTests({ results }));
-stories.addParameters({ jest: ['modal'] });
+stories.addDecorator(withTests({
+  results
+}));
+stories.addParameters({
+  jest: ['modal']
+});
 
 stories.add(
   'Basic',
@@ -41,7 +45,28 @@ stories.add(
     );
   }),
   {
-    info: { propTablesExclude: [] },
+    notes: README
+  }
+);
+
+stories.add(
+  'Input as child',
+  (() => {
+    // KNOBS
+    const open = boolean('Open', true);
+    const showInput = boolean('Show input', true);
+    const showTextarea = boolean('Show textarea', false);
+    return (
+      <Modal
+        open={ open }
+        onClose={ () => alert('Close modal function called') }
+      >
+        { showTextarea && <textarea placeholder='textarea' /> }
+        { showInput && <input placeholder='text input' /> }
+      </Modal>
+    );
+  }),
+  {
     notes: README
   }
 );
