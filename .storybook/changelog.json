@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.11.8", "commit": "Added auto focus to modal inputs" },
 { "user": "Rich Comber", "version": "v0.11.7", "commit": "Adding icon to input field" },
 { "user": "Rich Comber", "version": "v0.11.6", "commit": "Adding icon to input field" },
 { "user": "Rich Comber", "version": "v0.11.5", "commit": "Fixing strings usage outside of stepper form" },
