@@ -1,4 +1,4 @@
-# Upload
+# Input
 
 This is an input component. It works well with `useForm`.
 
