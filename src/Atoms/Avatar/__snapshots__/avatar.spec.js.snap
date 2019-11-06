@@ -39,6 +39,7 @@ exports[`Renders against snapshot 1`] = `
 .c1 {
   font-size: 0.4em;
   color: #333333;
+  text-transform: uppercase;
   text-align: center;
   font-weight: bold;
   -webkit-user-select: none;
@@ -57,7 +58,7 @@ exports[`Renders against snapshot 1`] = `
   <p
     class="c1"
   >
-    AF
+    U
   </p>
 </button>
 `;
