@@ -40,7 +40,7 @@ const Avatar = (props) => {
       <TextWrapper
         colour={ colour }
       >
-        { !image ? `${ firstName.charAt(0) }${ lastName ? lastName.charAt(0) : firstName.charAt(1) }` : '' }
+        { !image ? `${ firstName.charAt(0) }${ lastName ? lastName.charAt(0) : '' }` : '' }
       </TextWrapper>
     </AvatarWrapper>
   );
