@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.11.13", "commit": "Fixing broken tests" },
 { "user": "Rich Comber", "version": "v0.11.12", "commit": "Minor avatar fix" },
 { "user": "Rich Comber", "version": "v0.11.11", "commit": "Fixes to avatar styling and logic" },
 { "user": "Rich Comber", "version": "v0.11.10", "commit": "Adding new size control to avatar and bumping node-sass version" },

@@ -58,7 +58,7 @@ exports[`Renders against snapshot 1`] = `
   <p
     class="c1"
   >
-    Un
+    U
   </p>
 </button>
 `;
