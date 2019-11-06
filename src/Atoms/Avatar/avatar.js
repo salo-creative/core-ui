@@ -40,7 +40,7 @@ const Avatar = (props) => {
       <TextWrapper
         colour={ colour }
       >
-        { !image ? `${ firstName.charAt(0) }${ lastName.charAt(0) }` : '' }
+        { !image ? `${ firstName.charAt(0) }${ lastName ? lastName.charAt(0) : firstName.charAt(1) }` : '' }
       </TextWrapper>
     </AvatarWrapper>
   );
@@ -49,8 +49,8 @@ const Avatar = (props) => {
 Avatar.defaultProps = {
   className: null,
   image: '',
-  firstName: 'Avatar',
-  lastName: 'Fallback',
+  firstName: 'Undefined',
+  lastName: '',
   colour: colours.blue,
   onClick: null,
   size: 100

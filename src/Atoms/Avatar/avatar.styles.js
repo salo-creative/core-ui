@@ -28,6 +28,7 @@ export const AvatarWrapper = styled.button`
 export const TextWrapper = styled.p`
   font-size: 0.4em;
   color: ${ ({ theme }) => theme.font };
+  text-transform: uppercase;
   text-align: center;
   font-weight: bold;
   user-select: none;
