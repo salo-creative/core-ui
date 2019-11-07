@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.11.15", "commit": "Fixing broken snapshot" },
 { "user": "Rich Comber", "version": "v0.11.14", "commit": "Lint and pill text alignment fix" },
 { "user": "Rich Comber", "version": "v0.11.13", "commit": "Fixing broken tests" },
 { "user": "Rich Comber", "version": "v0.11.12", "commit": "Minor avatar fix" },
