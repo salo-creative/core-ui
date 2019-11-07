@@ -60,5 +60,5 @@ export const HiddenButton = styled.button`
 `;
 
 export const Text = styled.span`
-  margin-right: 1.5rem;
+  margin: ${ ({ margin }) => margin };
 `;
