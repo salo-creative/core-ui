@@ -1,4 +1,6 @@
-import { get, hasIn, forEach, isEmpty, find } from 'lodash';
+import {
+  get, hasIn, forEach, isEmpty, find
+} from 'lodash';
 
 import { ENV } from '../helpers/environments';
 
@@ -24,8 +26,12 @@ export const isError = ({ networkStatus, error, skip = false }) => (
 
 export const getRequestStatus = ({ networkStatus, error, skip = false }) => {
   return {
-    requestLoading: isLoading({ networkStatus, skip }),
-    requestError: isError({ networkStatus, error, skip })
+    requestLoading: isLoading({
+      networkStatus, skip
+    }),
+    requestError: isError({
+      networkStatus, error, skip
+    })
   };
 };
 
@@ -37,7 +43,9 @@ export const parseApolloError = ({ error, propName = 'APOLLO_ERROR' }) => {
   let name = propName; // For custom sentry logging
   if (error.graphQLErrors) {
     // Find custom errors if they exist
-    const customError = find(error.graphQLErrors, { message: 'SC_ERROR' });
+    const customError = find(error.graphQLErrors, {
+      message: 'SC_ERROR'
+    });
 
     if (hasIn(customError, 'path')) {
       extra.path = customError.path.join(' -> ');

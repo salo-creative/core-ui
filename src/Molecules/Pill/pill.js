@@ -40,11 +40,16 @@ const Pill = React.forwardRef((props, ref) => {
       { loading && !inlineLoader && (
         <Loader
           display={ true }
-          loaderProps={ { size: 40, position: 'absolute' } }
+          loaderProps={ {
+            size: 40, position: 'absolute'
+          } }
           appearance='light'
         />
       ) }
-      <Text>{ label }</Text>
+      <Text
+        margin={ onAdd || onRemove ? '0 1.5rem 0 0' : '0' }
+      >{ label }
+      </Text>
       { onAdd && (
         <HiddenButton
           disabled={ loading }
