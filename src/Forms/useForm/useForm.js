@@ -21,7 +21,9 @@ const buildSchema = memoizedBuildSchema();
  */
 const useForm = ({ model, initialErrors = false, name = uuid(), currentData }) => {
   // Setup state
-  const { schema, initial } = buildSchema({ name, model });
+  const { schema, initial } = buildSchema({
+    name, model
+  });
   const [state, dispatch] = React.useReducer(reducer, {
     ...initial,
     mapData: true,
@@ -45,7 +47,7 @@ const useForm = ({ model, initialErrors = false, name = uuid(), currentData }) =
         });
       });
     }
-  }, [model, mapData]);
+  }, [model, mapData, fields, schema]);
 
   React.useEffect(() => {
     if (mapData && !isEmpty(currentData)) {
@@ -59,11 +61,15 @@ const useForm = ({ model, initialErrors = false, name = uuid(), currentData }) =
           }
         };
       });
-      dispatch({ type: 'DATA_MAPPED', data: newData });
+      dispatch({
+        type: 'DATA_MAPPED', data: newData
+      });
     } else {
-      dispatch({ type: 'NO_DATA_TO_MAP' });
+      dispatch({
+        type: 'NO_DATA_TO_MAP'
+      });
     }
-  }, [currentData]);
+  }, [currentData, fields, mapData]);
 
   // Flatten data held in state
   const extractDataFromState = () => {
@@ -106,13 +112,20 @@ const useForm = ({ model, initialErrors = false, name = uuid(), currentData }) =
       if (valid) {
         action(data);
       } else {
-        dispatch({ type: 'SHOW_ERRORS', value: true });
+        dispatch({
+          type: 'SHOW_ERRORS', value: true
+        });
       }
     });
   };
 
   const reset = () => {
-    dispatch({ type: 'RESET', state: { ...initial, showErrors: initialErrors } });
+    dispatch({
+      type: 'RESET',
+      state: {
+        ...initial, showErrors: initialErrors
+      }
+    });
     // Run an initial validation
     forEach(model, ({ value }, key) => {
       reach(schema, key).isValid(value).then(valid => {
@@ -127,7 +140,9 @@ const useForm = ({ model, initialErrors = false, name = uuid(), currentData }) =
   };
 
   const toggleErrors = (value) => {
-    dispatch({ type: 'SHOW_ERRORS', value: !!value });
+    dispatch({
+      type: 'SHOW_ERRORS', value: !!value
+    });
   };
 
   return {
