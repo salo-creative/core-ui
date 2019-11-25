@@ -47,7 +47,7 @@ const useForm = ({ model, initialErrors = false, name = uuid(), currentData }) =
         });
       });
     }
-  }, [model, mapData, fields, schema]);
+  }, [model, mapData]); // eslint-disable-line
 
   React.useEffect(() => {
     if (mapData && !isEmpty(currentData)) {
@@ -69,7 +69,7 @@ const useForm = ({ model, initialErrors = false, name = uuid(), currentData }) =
         type: 'NO_DATA_TO_MAP'
       });
     }
-  }, [currentData, fields, mapData]);
+  }, [currentData]); // eslint-disable-line
 
   // Flatten data held in state
   const extractDataFromState = () => {
