@@ -50,7 +50,7 @@ exports[`Renders against snapshot 1`] = `
   mix-blend-mode: difference;
 }
 
-<button
+<div
   class="c0"
   cursor="auto"
   size="100"
@@ -60,5 +60,5 @@ exports[`Renders against snapshot 1`] = `
   >
     U
   </p>
-</button>
+</div>
 `;
