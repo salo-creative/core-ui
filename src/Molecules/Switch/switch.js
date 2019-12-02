@@ -50,6 +50,8 @@ const Switch = (props) => {
         active={ value }
         onClick={ () => onChange(!value) }
         size={ size }
+        role='switch'
+        ariaChecked={ `${ !!value }` }
         className={ `salo-switch__container salo-switch__container--${ value ? 'active' : 'inactive' }` }
       >
         <SwitchHandle
