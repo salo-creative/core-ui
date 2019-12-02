@@ -16,8 +16,12 @@ import README from './README.md';
 // Start of story logic
 const stories = storiesOf('Atoms | Avatar', module);
 stories.addDecorator(withKnobs);
-stories.addDecorator(withTests({ results }));
-stories.addParameters({ jest: ['avatar'] });
+stories.addDecorator(withTests({
+  results
+}));
+stories.addParameters({
+  jest: ['avatar']
+});
 
 stories.add(
   'Basic',
@@ -41,7 +45,9 @@ stories.add(
     );
   }),
   {
-    info: { propTablesExclude: [RenderWithProps] },
+    info: {
+      propTablesExclude: [RenderWithProps]
+    },
     notes: README
   }
 );

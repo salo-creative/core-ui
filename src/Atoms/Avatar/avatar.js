@@ -36,6 +36,7 @@ const Avatar = (props) => {
       background={ colour }
       onClick={ handleClick }
       cursor={ hasAction ? 'pointer' : 'auto' }
+      as={ hasAction ? 'button' : 'div' }
     >
       <TextWrapper
         colour={ colour }
