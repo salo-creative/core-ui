@@ -51,7 +51,7 @@ export const SwitchHandle = styled.span`
   cursor: pointer;
   border: 0.2rem solid #fff;
   background: ${ ({ active, theme }) => (active ? theme.success : theme.darkGrey) };
-  transition: all 0.3s linear;
+  transition: ${ ({ hasTransition }) => hasTransition };
   ${ ({ size, active }) => (size === 'L' ? `
     height: 3rem;
     width: 3rem;
