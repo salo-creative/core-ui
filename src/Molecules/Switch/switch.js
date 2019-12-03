@@ -21,6 +21,7 @@ const Switch = (props) => {
     labelPosition,
     loading,
     margin,
+    name,
     onChange,
     size,
     transition,
@@ -50,6 +51,7 @@ const Switch = (props) => {
         active={ value }
         onClick={ () => onChange(!value) }
         size={ size }
+        id={ name }
         role='switch'
         ariaChecked={ `${ !!value }` }
         className={ `salo-switch__container salo-switch__container--${ value ? 'active' : 'inactive' }` }
@@ -79,6 +81,7 @@ const Switch = (props) => {
       <SwitchLabel
         className='salo-switch__label'
         size={ size }
+        for={ name }
       >
         { renderLabel() }
       </SwitchLabel>
@@ -110,6 +113,7 @@ Switch.propTypes = {
   labelPosition: PropTypes.oneOf(['left', 'right']),
   loading: PropTypes.bool,
   margin: PropTypes.string,
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   size: PropTypes.oneOf(['L', 'M']),
   transition: PropTypes.string,

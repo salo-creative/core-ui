@@ -63,7 +63,7 @@ export const SwitchHandle = styled.span`
   `) }
 `;
 
-export const SwitchLabel = styled.span`
+export const SwitchLabel = styled.label`
   color: ${ ({ theme }) => theme.darkGrey };
   font-size: ${ ({ size }) => (size === 'L' ? '1.6rem' : '1.4rem') };
 `;
