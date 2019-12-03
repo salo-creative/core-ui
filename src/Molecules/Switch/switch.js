@@ -3,10 +3,17 @@ import PropTypes from 'prop-types';
 
 // COMPONENTS & STYLES
 import Loader from '../Loader';
-import { SwitchWrapper, SwitchContainer, SwitchHandle, SwitchLabel, LoaderContainer } from './switch.styles';
+import {
+  SwitchWrapper,
+  SwitchContainer,
+  SwitchHandle,
+  SwitchLabel,
+  LoaderContainer
+} from './switch.styles';
 
 const Switch = (props) => {
   const {
+    className,
     disabled,
     justify,
     label,
@@ -14,8 +21,10 @@ const Switch = (props) => {
     labelPosition,
     loading,
     margin,
+    name,
     onChange,
     size,
+    transition,
     value,
     width
   } = props;
@@ -35,37 +44,53 @@ const Switch = (props) => {
       disabled={ isDisabled }
       size={ size }
       margin={ margin }
-      className={ labelPosition === 'right' ? 'alignRight' : 'alignLeft' }
+      className={ `${ className } salo-switch ${ labelPosition === 'right' ? 'alignRight' : 'alignLeft' }` }
       width={ width }
     >
       <SwitchContainer
         active={ value }
         onClick={ () => onChange(!value) }
         size={ size }
+        id={ name }
+        role='switch'
+        ariaChecked={ `${ !!value }` }
+        className={ `salo-switch__container salo-switch__container--${ value ? 'active' : 'inactive' }` }
       >
         <SwitchHandle
           active={ value }
           size={ size }
+          className='salo-switch__handle'
+          hasTransition={ transition }
         />
         { loading && (
           <LoaderContainer
             size={ size }
             active={ value }
+            className='salo-switch__loader'
           >
             <Loader
               display
               appearance='light'
-              loaderProps={ { size: 25 } }
+              loaderProps={ {
+                size: 25
+              } }
             />
           </LoaderContainer>
         ) }
       </SwitchContainer>
-      <SwitchLabel size={ size }>{ renderLabel() }</SwitchLabel>
+      <SwitchLabel
+        className='salo-switch__label'
+        size={ size }
+        htmlFor={ name }
+      >
+        { renderLabel() }
+      </SwitchLabel>
     </SwitchWrapper>
   );
 };
 
 Switch.defaultProps = {
+  className: '',
   disabled: false,
   justify: '',
   label: '',
@@ -74,11 +99,13 @@ Switch.defaultProps = {
   loading: false,
   margin: '0',
   size: 'M',
+  transition: 'left 0.3s ease-in-out',
   value: false,
   width: 'auto'
 };
 
 Switch.propTypes = {
+  className: PropTypes.string,
   disabled: PropTypes.bool,
   justify: PropTypes.string,
   label: PropTypes.string,
@@ -86,9 +113,11 @@ Switch.propTypes = {
   labelPosition: PropTypes.oneOf(['left', 'right']),
   loading: PropTypes.bool,
   margin: PropTypes.string,
-  value: PropTypes.bool,
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   size: PropTypes.oneOf(['L', 'M']),
+  transition: PropTypes.string,
+  value: PropTypes.bool,
   width: PropTypes.string
 };
 

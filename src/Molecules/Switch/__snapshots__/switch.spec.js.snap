@@ -54,8 +54,8 @@ exports[`Renders against snapshot 1`] = `
   cursor: pointer;
   border: 0.2rem solid #fff;
   background: #6c757d;
-  -webkit-transition: all 0.3s linear;
-  transition: all 0.3s linear;
+  -webkit-transition: left 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out;
   height: 2.5rem;
   width: 2.5rem;
   left: 0;
@@ -67,18 +67,19 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="c0 alignRight"
+  class="c0  salo-switch alignRight"
   width="auto"
 >
   <button
-    class="c1"
+    class="c1 salo-switch__container salo-switch__container--inactive"
+    role="switch"
   >
     <span
-      class="c2"
+      class="c2 salo-switch__handle"
     />
   </button>
-  <span
-    class="c3"
+  <label
+    class="c3 salo-switch__label"
   />
 </div>
 `;
