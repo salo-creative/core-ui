@@ -78,7 +78,7 @@ exports[`Renders against snapshot 1`] = `
       class="c2 salo-switch__handle"
     />
   </button>
-  <span
+  <label
     class="c3 salo-switch__label"
   />
 </div>
