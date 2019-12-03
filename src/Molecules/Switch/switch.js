@@ -81,7 +81,7 @@ const Switch = (props) => {
       <SwitchLabel
         className='salo-switch__label'
         size={ size }
-        for={ name }
+        htmlFor={ name }
       >
         { renderLabel() }
       </SwitchLabel>
