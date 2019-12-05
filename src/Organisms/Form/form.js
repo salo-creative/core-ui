@@ -34,6 +34,7 @@ const Form = (props) => {
     submitAsString,
     textStrings,
     typeaheads,
+    usePrompt,
     width,
     // Custom components
     Button: CustomButton,
@@ -121,19 +122,21 @@ const Form = (props) => {
   };
 
   React.useEffect(() => {
-    const prompter = (event) => {
-      if (isDirty && !submit.data && !submit.error) {
-        // Show prompt if filled in and not submitted/ing
-        event.preventDefault();
-        // eslint-disable-next-line no-param-reassign
-        event.returnValue = '';
-      }
-    };
-    window.addEventListener('beforeunload', prompter);
-    return () => {
-      window.removeEventListener('beforeunload', prompter);
-    };
-  }, [isDirty, submit]);
+    if (usePrompt) {
+      const prompter = (event) => {
+        if (isDirty && !submit.data && !submit.error) {
+          // Show prompt if filled in and not submitted/ing
+          event.preventDefault();
+          // eslint-disable-next-line no-param-reassign
+          event.returnValue = '';
+        }
+      };
+      window.addEventListener('beforeunload', prompter);
+      return () => {
+        window.removeEventListener('beforeunload', prompter);
+      };
+    }
+  }, [isDirty, submit, usePrompt]);
 
   return (
     <FormWrapper
@@ -220,6 +223,7 @@ Form.defaultProps = {
   submitAsString: true,
   textStrings: {},
   typeaheads: null,
+  usePrompt: true,
   width: 'auto',
   // Custom components
   Button: null,
@@ -255,6 +259,7 @@ Form.propTypes = {
   submitAsString: PropTypes.bool, // Send submitted data as a string or object
   textStrings: PropTypes.object, // Customise strings ({ submit })
   typeaheads: PropTypes.object, // Customise typeahead behaviour
+  usePrompt: PropTypes.bool, // Optionally disable the prompter when navigating away from dirty forms
   width: PropTypes.string,
   // Custom components
   Button: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
