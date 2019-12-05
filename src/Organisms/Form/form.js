@@ -223,7 +223,7 @@ Form.defaultProps = {
   submitAsString: true,
   textStrings: {},
   typeaheads: null,
-  usePrompt: false,
+  usePrompt: true,
   width: 'auto',
   // Custom components
   Button: null,
