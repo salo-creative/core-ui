@@ -1,4 +1,5 @@
 [
+{ "user": "Tim Stone", "version": "v0.11.23", "commit": "Adds an extra step to sanitising to allow '&', '<', '>' after DOMPurify has escaped them." },
 { "user": "Rich Comber", "version": "v0.11.22", "commit": "Making form prompt optional" },
 { "user": "Tim Stone", "version": "v0.11.21", "commit": "Switch is now customisable" },
 { "user": "Rich Comber", "version": "v0.11.20", "commit": "Udating release process" },
