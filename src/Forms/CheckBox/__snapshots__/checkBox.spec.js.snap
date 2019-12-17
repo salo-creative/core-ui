@@ -59,17 +59,17 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="c0"
+  class="c0  salo-checkbox"
 >
   <label
-    class="c1"
+    class="c1 salo-checkbox__label"
   >
     <input
       class="c2"
       type="checkbox"
     />
     <div
-      class="c3 styled-checkbox "
+      class="c3 salo-checkbox__input styled-checkbox "
       width="2rem"
     >
       <svg
