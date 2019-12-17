@@ -27,7 +27,7 @@ class Radio extends React.Component {
     } = this.props;
     return (
       <Group
-        className={ className }
+        className={ `${ className } salo-radio` }
         margin={ margin }
       >
         <Label
@@ -36,8 +36,9 @@ class Radio extends React.Component {
           name={ name }
           required={ required }
           size={ size }
+          className='salo-radio__label'
         />
-        <GroupWrapper>
+        <GroupWrapper className='salo-radio__wrapper'>
           { options.map((field, i) => {
             // Set margin equivalent to parent but hide for last item
             const checkMargin = i <= (options.length - 2) ? margin : '0';
@@ -57,12 +58,14 @@ class Radio extends React.Component {
           }) }
         </GroupWrapper>
         <ErrorText
+          className='salo-radio__error'
           disabled={ disabled }
           error={ error }
           errorMessage={ errorMessage }
           size={ size }
         />
         <HelperText
+          className='salo-radio__helper'
           disabled={ disabled }
           error={ error }
           helperText={ helperText }
