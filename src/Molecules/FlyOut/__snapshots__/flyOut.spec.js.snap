@@ -382,7 +382,7 @@ exports[`Renders against snapshot 1`] = `
       >
         <a
           class="c4 salo-flyout__button"
-          href="#"
+          href="/"
           title="Title"
         >
           <span
