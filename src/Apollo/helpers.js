@@ -4,9 +4,9 @@ import {
 
 import { ENV } from '../helpers/environments';
 
-export const GraphQLUrl = (local = false) => {
+export const GraphQLUrl = (local = false, port = 7000) => {
   if (local && ENV === 'development') {
-    return 'http://localhost:7000/graphql';
+    return `http://localhost:${ port }/graphql`;
   }
   return webpackVars.GRAPHLQL_URL;
 };
