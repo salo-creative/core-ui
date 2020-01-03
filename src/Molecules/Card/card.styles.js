@@ -11,4 +11,5 @@ export const CardWrapper = styled.div`
   overflow: hidden;
   padding: ${ ({ padding }) => padding };
   width: 100%;
+  position: relative;
 `;
