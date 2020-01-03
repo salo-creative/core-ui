@@ -60,11 +60,13 @@ export const Actions = styled.div`
   .card & {
     flex-direction: column;
     right: 0;
-    bottom: 6rem;
-    left: 0;
+    bottom: 5rem;
     padding: 0 0 0.5rem;
-    width: calc(100% - 6rem);
+    width: 100%;
     text-align: right;
+    .salo-flyout__button {
+      padding: 0;
+    }
   }
 
   .table & {
@@ -112,6 +114,9 @@ export const Wrapper = styled.div`
     position: absolute;
     right: 1rem;
     bottom: 1rem;
+  }
+  .card__actions-top & {
+    top: 1rem;
   }
 `;
 

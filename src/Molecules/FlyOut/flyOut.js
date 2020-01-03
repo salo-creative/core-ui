@@ -4,7 +4,9 @@ import Icon from '@salo/icons';
 import Ink from 'react-ink';
 
 // COMPONENTS & STYLES
-import { Container, Actions, Wrapper, Toggle } from './flyOut.styles';
+import {
+  Container, Actions, Wrapper, Toggle
+} from './flyOut.styles';
 
 // HELPERS & CONSTANTS
 import { colours } from '../../helpers/colours';
@@ -12,7 +14,9 @@ import { colours } from '../../helpers/colours';
 class FlyOut extends Component {
   constructor(props) {
     super(props);
-    this.state = { inlineMenu: false };
+    this.state = {
+      inlineMenu: false
+    };
     this.inlineMenuContainer = null;
   }
 
@@ -23,14 +27,18 @@ class FlyOut extends Component {
   }
 
   toggleInlineMenu = () => {
-    this.setState(prevState => ({ inlineMenu: !prevState.inlineMenu }));
+    this.setState(prevState => ({
+      inlineMenu: !prevState.inlineMenu
+    }));
   }
 
   handleClick(e) {
     const target = e.target.className;
     if (typeof target === 'string') {
       if (target.includes('ui-inline-menu__row')) {
-        this.setState({ inlineMenu: false });
+        this.setState({
+          inlineMenu: false
+        });
       }
     }
   }
@@ -41,7 +49,9 @@ class FlyOut extends Component {
     const childrenWithProps = React.Children.map(children, (child) => {
       if (child !== null) {
         return (
-          React.cloneElement(child, { toggle: this.toggleInlineMenu })
+          React.cloneElement(child, {
+            toggle: this.toggleInlineMenu
+          })
         );
       }
       return null;
@@ -51,7 +61,7 @@ class FlyOut extends Component {
   }
 
   render() {
-    const { mobile, context, inverse } = this.props;
+    const { mobile, context, inverse, cardActionsTop } = this.props;
     const { inlineMenu } = this.state;
 
     let setContext = context;
@@ -61,7 +71,7 @@ class FlyOut extends Component {
 
     return (
       <Container
-        className={ `salo-flyout ${ setContext } ${ inlineMenu ? 'is-active' : '' } ${ inverse ? 'inverse' : '' }` }
+        className={ `salo-flyout ${ setContext } ${ inlineMenu ? 'is-active' : '' } ${ inverse ? 'inverse' : '' } ${ cardActionsTop ? 'card__actions-top' : '' }` }
       >
         <Wrapper>
           <Actions
@@ -69,7 +79,7 @@ class FlyOut extends Component {
           >
             { this.renderChildren() }
           </Actions>
-          <Toggle 
+          <Toggle
             className='salo-flyout__toggle'
             onClick={ () => { this.toggleInlineMenu(); } }
           >
@@ -87,7 +97,8 @@ FlyOut.defaultProps = {
   context: 'float',
   inverse: true,
   mobile: false,
-  onGetRef: null
+  onGetRef: null,
+  cardActionsTop: false
 };
 
 FlyOut.propTypes = {
@@ -95,6 +106,7 @@ FlyOut.propTypes = {
   context: PropTypes.oneOf(['float', 'float-horizontal', 'table', 'card']),
   inverse: PropTypes.bool,
   mobile: PropTypes.bool,
+  cardActionsTop: PropTypes.bool,
   onGetRef: PropTypes.func
 };
 
