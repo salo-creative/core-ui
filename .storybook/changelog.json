@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.12.6", "commit": "Fixing flyout z-index issue" },
 { "user": "Rich Comber", "version": "v0.12.5", "commit": "Changing image uploader" },
 { "user": "Rich Comber", "version": "v0.12.4", "commit": "Changing loader appearance" },
 { "user": "Rich Comber", "version": "v0.12.3", "commit": "Fixing image uploader loading state" },

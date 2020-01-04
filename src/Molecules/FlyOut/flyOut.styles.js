@@ -112,6 +112,7 @@ export const Wrapper = styled.div`
   display: inline-block;
   .card & {
     position: absolute;
+    z-index: 5;
     right: 1rem;
     bottom: 1rem;
   }

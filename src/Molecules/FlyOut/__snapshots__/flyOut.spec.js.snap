@@ -179,6 +179,7 @@ exports[`Renders against snapshot 1`] = `
 
 .card .c1 {
   position: absolute;
+  z-index: 5;
   right: 1rem;
   bottom: 1rem;
 }
