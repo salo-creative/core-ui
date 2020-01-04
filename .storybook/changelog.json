@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.12.3", "commit": "Fixing image uploader loading state" },
 { "user": "Rich Comber", "version": "v0.12.2", "commit": "Updating modal transitions" },
 { "user": "Rich Comber", "version": "v0.12.1", "commit": "Adding more customisations and transitions for the modal" },
 { "user": "Rich Comber", "version": "v0.12.0", "commit": "Making flyout work neatly in cards" },

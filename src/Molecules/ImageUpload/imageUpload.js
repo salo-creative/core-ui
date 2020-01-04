@@ -37,7 +37,13 @@ const ImageUpload = ({
       setHeight={ height }
       setWidth={ width }
     >
-      { loading && <Loader position='absolute' theme='white' /> }
+      <Loader
+        display={ loading }
+        loaderProps={ {
+          position: 'absolute'
+        } }
+        theme='white'
+      />
       { !loading
           && (
             <UploaderDropZone
