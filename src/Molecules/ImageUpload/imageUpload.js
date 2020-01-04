@@ -42,7 +42,7 @@ const ImageUpload = ({
         loaderProps={ {
           position: 'absolute'
         } }
-        appearance='light'
+        appearance='dark'
       />
       { !loading
           && (
