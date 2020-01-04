@@ -124,6 +124,7 @@ class Core extends Component {
 
     return (
       <ModalWrapper
+        className='salo-modal__wrapper'
         state={ transitionState }
         transition={ transition }
       >

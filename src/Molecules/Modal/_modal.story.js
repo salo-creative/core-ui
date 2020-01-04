@@ -41,6 +41,8 @@ stories.add(
         title={ title }
         open={ open }
         onClose={ () => alert('Close modal function called') }
+        transition='slide'
+        background='#333'
       />
     );
   }),

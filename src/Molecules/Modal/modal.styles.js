@@ -1,12 +1,26 @@
 import styled from 'styled-components';
 
 export const ModalWrapper = styled.div`
-  ${ ({ transition, state }) => (
-    transition === 'fade' ? `
-      opacity: ${ state === 'entered' ? 1 : 0 };
-      transition: opacity 300ms ease-in-out;
-    ` : ''
-  ) }
+  ${ ({ transition, state }) => {
+    if (transition === 'fade') {
+      return `
+        opacity: ${ state === 'entered' ? 1 : 0 };
+        transition: opacity 300ms cubic-bezier(0.470, 0.000, 0.745, 0.715);
+      `;
+    }
+    if (transition === 'slide') {
+      return `
+        position: fixed;
+        top: ${ state === 'entered' ? 0 : '-100vh' };
+        transition: top 300ms cubic-bezier(0.470, 0.000, 0.745, 0.715);
+        .salo-modal__backdrop {
+          opacity: ${ state === 'entered' ? 1 : 0 };
+          transition: opacity 300ms cubic-bezier(0.470, 0.000, 0.745, 0.715);
+        }
+      `;
+    }
+    return '';
+  } }
 `;
 
 export const Container = styled.div`
