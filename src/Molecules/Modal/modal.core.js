@@ -123,30 +123,25 @@ class Core extends Component {
     } = this.props;
 
     return (
-      <ModalWrapper
-        className='salo-modal__wrapper'
+      <Container
+        className='salo-modal'
+        role='dialog'
+        tabIndex={ -1 }
+        ref={ (e) => { this.Container = e; } }
+        onKeyDown={ (e) => { this.handleKeyDown(e); } }
+        outerPadding={ outerPadding }
         state={ transitionState }
         transition={ transition }
       >
-        <Container
-          className='salo-modal'
-          role='dialog'
-          tabIndex={ -1 }
-          ref={ (e) => { this.Container = e; } }
-          onKeyDown={ (e) => { this.handleKeyDown(e); } }
-          outerPadding={ outerPadding }
+        { this.renderContent() }
+        <Backdrop
+          background={ background }
+          className='salo-modal__backdrop'
+          transparent={ transparent }
           state={ transitionState }
-          transition={ transition }
-        >
-          { this.renderContent() }
-          <Backdrop
-            background={ background }
-            className='salo-modal__backdrop'
-            transparent={ transparent }
-            onClick={ e => closeOnBackdrop !== false && this.handleClose(e) }
-          />
-        </Container>
-      </ModalWrapper>
+          onClick={ e => closeOnBackdrop !== false && this.handleClose(e) }
+        />
+      </Container>
     );
   }
 

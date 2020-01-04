@@ -1,16 +1,5 @@
 import styled from 'styled-components';
 
-export const ModalWrapper = styled.div`
-  ${ ({ state }) => {
-    return `
-      .salo-modal__backdrop {
-        opacity: ${ state === 'entered' ? 1 : 0 };
-        transition: opacity 300ms cubic-bezier(0.470, 0.000, 0.745, 0.715);
-      }
-    `;
-  } }
-`;
-
 export const Container = styled.div`
   position: fixed;
   z-index: 97;
@@ -54,6 +43,8 @@ export const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${ ({ background }) => (background || `rgba(0, 0, 0, ${ ({ transparent }) => transparent })`) } ;
+  opacity: ${ ({ state }) => (state === 'entered' ? 1 : 0) };
+  transition: opacity 300ms cubic-bezier(0.470, 0.000, 0.745, 0.715);
 `;
 
 export const Wrapper = styled.div`
