@@ -9,6 +9,7 @@ exports[`Renders against snapshot 1`] = `
   overflow: hidden;
   padding: 2rem;
   width: 100%;
+  position: relative;
 }
 
 <div

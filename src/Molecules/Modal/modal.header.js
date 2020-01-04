@@ -19,10 +19,14 @@ const Header = (props) => {
     );
   }
   return (
-    <HeaderWrapper sticky={ stickyHeader }>
+    <HeaderWrapper
+      className='salo-modal__header'
+      sticky={ stickyHeader }
+    >
       <Title>{ title }</Title>
       { !hideClose && (
         <Close
+          className='salo-modal__close'
           top='50%'
           theme='inverse'
           onClick={ e => handleClose(e) }
