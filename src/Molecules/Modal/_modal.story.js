@@ -3,7 +3,9 @@ import { storiesOf } from '@storybook/react';
 
 // load tests
 import { withTests } from '@storybook/addon-jest';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import {
+  withKnobs, text, boolean, select
+} from '@storybook/addon-knobs';
 import results from '../../../.storybook/jest-test-results.json';
 
 // FEATURED COMPONENTS //
@@ -32,6 +34,11 @@ stories.add(
     const hideClose = boolean('hideClose', false);
     const hideHeader = boolean('hideHeader', false);
     const title = text('Modal title', 'Modal title');
+    const transition = select('Transition', {
+      'fade': 'fade',
+      'slide': 'slide'
+    }, 'fade');
+    const background = text('background', null);
     return (
       <Modal
         hideClose={ hideClose }
@@ -41,6 +48,8 @@ stories.add(
         title={ title }
         open={ open }
         onClose={ () => alert('Close modal function called') }
+        transition={ transition }
+        background={ background }
       />
     );
   }),

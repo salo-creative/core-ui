@@ -10,7 +10,7 @@ const Modal = (props) => {
   return (
     <Transition
       in={ open }
-      timeout={ 200 }
+      timeout={ 300 }
       unmountOnExit
     >
       { state => (

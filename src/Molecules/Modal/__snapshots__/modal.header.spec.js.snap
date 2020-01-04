@@ -65,7 +65,7 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="c0"
+  class="c0 salo-modal__header"
 >
   <h5
     class="c1"
@@ -73,7 +73,7 @@ exports[`Renders against snapshot 1`] = `
     Modal title
   </h5>
   <button
-    class="c2"
+    class="c2 salo-modal__close"
   >
     <svg
       class="c3"
