@@ -36,7 +36,8 @@ stories.add(
     const title = text('Modal title', 'Modal title');
     const transition = select('Transition', {
       'fade': 'fade',
-      'slide': 'slide'
+      'slide': 'slide',
+      'expand': 'expand'
     }, 'fade');
     const background = text('background', null);
     return (
