@@ -30,8 +30,8 @@ exports[`Renders against snapshot 1`] = `
   margin: -30px;
   width: 60px;
   height: 60px;
-  -webkit-animation: lkOjTQ 1.3s 0s linear infinite;
-  animation: lkOjTQ 1.3s 0s linear infinite;
+  -webkit-animation: eyGOfj 1.3s 0s linear infinite;
+  animation: eyGOfj 1.3s 0s linear infinite;
 }
 
 .c1:before {
