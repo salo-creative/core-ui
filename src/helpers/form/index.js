@@ -77,6 +77,11 @@ export const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/;
 export const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&£#])[A-Za-z\d@$!%*?&£#]{8,}$/;
 
 /**
+ * URL REGEX
+ */
+export const urlRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-_\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i;
+
+/**
  * POSTCODE REGEX
  */
 // https://stackoverflow.com/questions/164979/regex-for-matching-uk-postcodes
@@ -211,7 +216,7 @@ export const buildYup = ({ fields }) => {
         break;
       }
       case 'url': {
-        vRule = string().url();
+        vRule = string().matches(urlRegex, 'The url supplied is not in an accepted format');
         vRule = minMaxInt({
           min, max, vRule
         });

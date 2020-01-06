@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.13.0", "commit": "Normalising url regex between api and client" },
 { "user": "Rich Comber", "version": "v0.12.7", "commit": "Fixing flyout card wrapper styles" },
 { "user": "Rich Comber", "version": "v0.12.6", "commit": "Fixing flyout z-index issue" },
 { "user": "Rich Comber", "version": "v0.12.5", "commit": "Changing image uploader" },
