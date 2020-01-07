@@ -253,7 +253,7 @@ Form.propTypes = {
   mutationName: PropTypes.string, // Mandatory if passing mutation, mutation name to look up against
   mutationVariables: PropTypes.object, // Any additional variables you need to pass when doing a custom mutation
   name: PropTypes.string.isRequired,
-  nestedBody: PropTypes.bool, // Submit form feels nested in a body object
+  nestedBody: PropTypes.bool, // Submit form fields nested in a body object
   onSubmit: PropTypes.func,
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
   resetForm: PropTypes.func,
