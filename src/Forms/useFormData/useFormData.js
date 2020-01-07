@@ -198,7 +198,7 @@ const useFormData = ({
   };
 
   // Handle submit event for stepper
-  const handleSubmitStepper = async (e) => {
+  const handleSubmitStepper = async (e, formRef) => {
     e.preventDefault();
     // First check whether we are on the final step and should submit
     const index = findIndex(steps, {
@@ -216,6 +216,12 @@ const useFormData = ({
         dispatch({
           type: 'CHANGE_STEP', id: get(steps, `[${ index + 1 }].id`)
         });
+        // Scroll form to top when page changes.
+        if (formRef) {
+          setTimeout(() => {
+            formRef.current.scrollIntoView();
+          }, 1);
+        }
       } else {
         // Otherwise throw up the errors
         dispatch({
