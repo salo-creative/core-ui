@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  get, isEmpty, find, findIndex
+  get, isEmpty, find, findIndex, hasIn
 } from 'lodash';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
@@ -217,7 +217,7 @@ const useFormData = ({
           type: 'CHANGE_STEP', id: get(steps, `[${ index + 1 }].id`)
         });
         // Scroll form to top when page changes.
-        if (formRef) {
+        if (hasIn(formRef, 'current.scrollIntoView')) {
           setTimeout(() => {
             formRef.current.scrollIntoView();
           }, 1);
