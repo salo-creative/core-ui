@@ -17,7 +17,8 @@ const useFormData = ({
   mutationName = 'form_submit',
   mutationVariables = {},
   initialErrors = false,
-  submitAsString = true
+  submitAsString = true,
+  nestedBody = true // should form values be nested in a body object
 }) => {
   const model = React.useRef({});
   const {
@@ -155,6 +156,15 @@ const useFormData = ({
       formattedData, files
     };
   };
+
+  const prepBody = () => {
+    if (!nestedBody) {
+      return data || {};
+    }
+    return {
+      body: submitAsString ? JSON.stringify(data) : data // Have the option to submit as a string or as an object
+    };
+  };
  
   // Handle submit event
   const handleSubmit = async (e) => {
@@ -169,7 +179,7 @@ const useFormData = ({
           }, // activate Upload link
           variables: {
             id: data.form_show.id,
-            body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Have the option to submit as a string or as an object
+            ...prepBody(formattedData),
             attachments: files,
             ...mutationVariables
           }
