@@ -157,12 +157,12 @@ const useFormData = ({
     };
   };
 
-  const prepBody = () => {
+  const prepBody = (formattedData) => {
     if (!nestedBody) {
-      return data || {};
+      return formattedData || {};
     }
     return {
-      body: submitAsString ? JSON.stringify(data) : data // Have the option to submit as a string or as an object
+      body: submitAsString ? JSON.stringify(formattedData) : formattedData // Have the option to submit as a string or as an object
     };
   };
  
@@ -234,7 +234,7 @@ const useFormData = ({
         }, // activate Upload link
         variables: {
           id: data.form_show.id,
-          body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Have the option to submit as a string or as an object
+          ...prepBody(formattedData),
           attachments: files,
           ...mutationVariables
         }
