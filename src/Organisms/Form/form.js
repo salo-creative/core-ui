@@ -24,6 +24,7 @@ const Form = (props) => {
     mutationName,
     mutationVariables,
     name,
+    nestedBody,
     onSubmit,
     initialData,
     renderSteps,
@@ -73,6 +74,7 @@ const Form = (props) => {
     mutation,
     mutationName,
     mutationVariables,
+    nestedBody,
     submitAsString
   });
 
@@ -214,6 +216,7 @@ Form.defaultProps = {
   mutation: null,
   mutationName: 'form_submit',
   mutationVariables: {},
+  nestedBody: true,
   onSubmit: null,
   renderSteps: true,
   resetForm: null,
@@ -250,6 +253,7 @@ Form.propTypes = {
   mutationName: PropTypes.string, // Mandatory if passing mutation, mutation name to look up against
   mutationVariables: PropTypes.object, // Any additional variables you need to pass when doing a custom mutation
   name: PropTypes.string.isRequired,
+  nestedBody: PropTypes.bool, // Submit form fields nested in a body object
   onSubmit: PropTypes.func,
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
   resetForm: PropTypes.func,
