@@ -163,7 +163,7 @@ const Form = (props) => {
       <form
         autoComplete='off'
         noValidate
-        onSubmit={ (e) => (isStepper ? handleSubmitStepper(e) : handleSubmit(e)) }
+        onSubmit={ (e) => (isStepper ? handleSubmitStepper(e, formRef) : handleSubmit(e)) }
         ref={ formRef }
       >
         { /* Render the basic form */ }

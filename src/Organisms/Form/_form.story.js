@@ -3,7 +3,9 @@ import { storiesOf } from '@storybook/react';
 
 // load tests
 import { withTests } from '@storybook/addon-jest';
-import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
+import {
+  withKnobs, text, boolean, select
+} from '@storybook/addon-knobs';
 import results from '../../../.storybook/jest-test-results.json';
 
 // FEATURED COMPONENT
@@ -15,7 +17,9 @@ import README from './README.md';
 // Start of story logic
 const stories = storiesOf('Organisms | Form', module);
 stories.addDecorator(withKnobs);
-stories.addDecorator(withTests({ results }));
+stories.addDecorator(withTests({
+  results
+}));
 
 stories.add(
   'Basic',
@@ -37,7 +41,12 @@ stories.add(
         strings={ {} }
       />
     );
-  }), { info: { propTablesExclude: [] }, notes: README }
+  }), {
+    info: {
+      propTablesExclude: []
+    },
+    notes: README
+  }
 );
 
 // Custom components
@@ -52,9 +61,13 @@ const CustomInput = ({
   <React.Fragment>
     <label>{ label }</label>
     <input
-      { ...props } 
-      onBlur={ (e) => onBlur({ e, value: e.target.value }) }
-      onChange={ (e) => onChange({ e, value: e.target.value }) }
+      { ...props }
+      onBlur={ (e) => onBlur({
+        e, value: e.target.value
+      }) }
+      onChange={ (e) => onChange({
+        e, value: e.target.value
+      }) }
       onKeyUp={ _ => _ }
     />
     <span>{ error ? errorMessage : '' }</span>
@@ -65,7 +78,7 @@ const CustomButton = ({
   children,
   ...props
 }) => {
-  return <button { ...props }>{ children }</button>; 
+  return <button { ...props }>{ children }</button>;
 };
 
 stories.add(
@@ -83,5 +96,10 @@ stories.add(
         Upload={ CustomInput }
       />
     );
-  }), { info: { propTablesExclude: [] }, notes: README }
+  }), {
+    info: {
+      propTablesExclude: []
+    },
+    notes: README
+  }
 );

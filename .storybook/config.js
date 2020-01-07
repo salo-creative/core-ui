@@ -10,7 +10,7 @@ import ApolloClient from '../src/Apollo/client';
 
 const client = ApolloClient({
   uri: 'http://localhost:7000/graphql',
-  tokens: { clientKey: 'mhbt06bY+s/9vgI6z3q8OKJTgHCUHX710tjENG+3dfY=' }
+  tokens: { clientKey: 'Bx2ojE2xLNcsQsHTUaNf+da35LiWBdac1oU/TovZ9auYiRdhvQfWrHhI0SfaCiKaht2JJ/dFhkyuD+o//LH+qQ==' }
 });
 
 const cookies = new Cookies();
