@@ -7,7 +7,7 @@ import { AvatarWrapper, TextWrapper } from './avatar.styles';
 // HELPERS & CONSTANTS
 import { colours } from '../../helpers/colours';
 
-const Avatar = (props) => {
+const Avatar = React.memo(props => {
   const {
     className,
     colour,
@@ -45,7 +45,7 @@ const Avatar = (props) => {
       </TextWrapper>
     </AvatarWrapper>
   );
-};
+});
 
 Avatar.defaultProps = {
   className: null,

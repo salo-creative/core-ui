@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const AvatarWrapper = styled.button`
+export const AvatarWrapper = styled.button.attrs(({ image }) => ({
+  style: {
+    backgroundImage: `url('${ image }')`
+  }
+}))`
   font-size: ${ ({ size }) => `${ size }px` };
   width: 1em;
   height: 1em;
@@ -8,7 +12,7 @@ export const AvatarWrapper = styled.button`
   border: none;
   background: ${ ({ background }) => background };
   cursor: ${ ({ cursor }) => cursor };
-  background-image: url('${ ({ image }) => image }');
+  /* background-image: url('${ ({ image }) => image }'); */
   background-size: cover;
   background-position: top center;
   border-radius: 50%;
