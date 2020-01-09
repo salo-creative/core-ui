@@ -13,12 +13,13 @@ const Selectput = ({
   placeholder,
   initialMode,
   initialSelected,
+  initialValue,
   renderItem,
   icons
 }) => {
   const [mode, setMode] = React.useState(initialMode);
   const [selected, setSelected] = React.useState(initialSelected);
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState(initialValue);
   const inputEl = React.useRef(null);
 
   const handleSelect = (e) => {
@@ -96,7 +97,9 @@ const Selectput = ({
               >
                 { options.map((item, index) => {
                   if (typeof renderItem === 'function') {
-                    return renderItem({ item, index, handleSelect });
+                    return renderItem({
+                      item, index, handleSelect
+                    });
                   }
                   return (
                     <li key={ item.value }>
@@ -115,7 +118,9 @@ const Selectput = ({
             </div>
           </div>
           <Actions
-            disabled={ { submit: true, close: false } }
+            disabled={ {
+              submit: true, close: false
+            } }
             handleSubmit={ handleSubmit }
             handleClose={ handleClose }
           />
@@ -133,7 +138,9 @@ const Selectput = ({
             { placeholder }
           </button>
           <Actions
-            disabled={ { submit: true, close: false } }
+            disabled={ {
+              submit: true, close: false
+            } }
             handleSubmit={ handleSubmit }
             handleClose={ handleClose }
           />
@@ -146,6 +153,7 @@ Selectput.defaultProps = {
   className: null,
   icons: null,
   initialMode: 'default',
+  initialValue: '',
   initialSelected: null,
   onChange: null,
   onReset: null,
@@ -158,6 +166,7 @@ Selectput.propTypes = {
   icons: PropTypes.object,
   initialMode: PropTypes.string,
   initialSelected: PropTypes.string,
+  initialValue: PropTypes.string,
   onChange: PropTypes.func,
   onReset: PropTypes.func,
   onSubmit: PropTypes.func.isRequired,

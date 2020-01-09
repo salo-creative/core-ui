@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.13.4", "commit": "Allowing initial value to be set on selectPut" },
 { "user": "Rich Comber", "version": "v0.13.3", "commit": "Making avatar component more performant" },
 { "user": "Rich Comber", "version": "v0.13.2", "commit": "Fixing form scroll when changing page" },
 { "user": "Rich Comber", "version": "v0.13.1", "commit": "Adding ability to submit form data without nesting on a body key" },
