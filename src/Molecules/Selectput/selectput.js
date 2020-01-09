@@ -74,6 +74,7 @@ const Selectput = ({
               }
             } }
             ref={ inputEl }
+            value={ value }
           />
           { icons && (
             <span className='salo-selectput__icon-wrapper'>
