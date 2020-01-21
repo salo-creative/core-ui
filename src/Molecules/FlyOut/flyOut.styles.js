@@ -128,6 +128,8 @@ export const Wrapper = styled.div`
 export const Toggle = styled.button`
   cursor: pointer;
   display: flex;
+  justify-content: center;
+  align-items: center;
   outline: none;
   border-radius: 50%;
   background: inherit;
