@@ -14,6 +14,8 @@ import { columnsProps, sortingProps } from './table.propTypes';
 
 const Table = (props) => {
   const {
+    action,
+    actionWidth,
     actions,
     actionsWidth,
     borders,
@@ -41,14 +43,23 @@ const Table = (props) => {
     
     // There is no current sorting
     if (sortingKey === null) {
-      onSort({ dataKey, direction: 'asc' });
+      onSort({
+        dataKey,
+        direction: 'asc'
+      });
     } else if (sortingKey !== dataKey) {
       // Sorting column is being changed
-      onSort({ dataKey, direction: 'asc' });
+      onSort({
+        dataKey,
+        direction: 'asc'
+      });
     } else {
       // Changing the direction of the sorting column
       const direction = get(sorting, 'direction') === 'asc' ? 'desc' : 'asc';
-      onSort({ dataKey, direction });
+      onSort({
+        dataKey,
+        direction
+      });
     }
   };
 
@@ -59,8 +70,10 @@ const Table = (props) => {
     >
       { showHeader && (
         <TableHeader
+          actionWidth={ actionWidth }
           actionsWidth={ actionsWidth }
           columns={ columns }
+          hasAction={ !!action }
           hasActions={ !!actions }
           sorting={ sorting }
           onSort={ sortMe }
@@ -69,6 +82,8 @@ const Table = (props) => {
       { /* Render body if we aren't loading */ }
       { !loading && (
         <TableBody
+          action={ action }
+          actionWidth={ actionWidth }
           actions={ actions }
           actionsWidth={ actionsWidth }
           columns={ columns }
@@ -102,8 +117,10 @@ const Table = (props) => {
 };
 
 Table.defaultProps = {
+  action: null,
+  actionWidth: '12rem',
   actions: null,
-  actionsWidth: '80px',
+  actionsWidth: '8rem',
   borders: true,
   columns: [],
   className: '',
@@ -125,6 +142,8 @@ Table.defaultProps = {
 };
 
 Table.propTypes = {
+  action: PropTypes.func,
+  actionWidth: PropTypes.string,
   actions: PropTypes.func,
   actionsWidth: PropTypes.string,
   borders: PropTypes.bool,
