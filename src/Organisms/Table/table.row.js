@@ -10,6 +10,8 @@ import { columnsProps } from './table.propTypes';
 
 const Row = (props) => {
   const {
+    action,
+    actionWidth,
     actions,
     actionsWidth,
     columns,
@@ -30,7 +32,9 @@ const Row = (props) => {
 
   const renderContent = ({ render, dataKey }) => {
     if (typeof render === 'function') {
-      return render({ data });
+      return render({
+        data
+      });
     }
     return renderValue(dataKey);
   };
@@ -45,10 +49,20 @@ const Row = (props) => {
             flexBasis={ `${ 100 / columns.length }%` }
             minWidth={ minWidth }
           >
-            { renderContent({ render, dataKey }) }
+            { renderContent({
+              render, dataKey
+            }) }
           </BodyCell>
         );
       }) }
+      { !!action && (
+        <BodyCell
+          key='action'
+          minWidth={ actionWidth }
+        >
+          { action(data) }
+        </BodyCell>
+      ) }
       { !!actions && (
         <ActionCell
           key='actions'
@@ -62,11 +76,14 @@ const Row = (props) => {
 };
 
 Row.defaultProps = {
+  action: null,
   actions: null,
   columns: []
 };
 
 Row.propTypes = {
+  action: PropTypes.func,
+  actionWidth: PropTypes.string.isRequired,
   actions: PropTypes.any,
   actionsWidth: PropTypes.string.isRequired,
   columns: columnsProps,

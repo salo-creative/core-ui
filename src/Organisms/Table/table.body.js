@@ -13,6 +13,8 @@ import { columnsProps } from './table.propTypes';
 
 const Body = (props) => {
   const {
+    action,
+    actionWidth,
     actions,
     actionsWidth,
     columns,
@@ -56,6 +58,8 @@ const Body = (props) => {
         return (
           <Row
             key={ key }
+            action={ action }
+            actionWidth={ actionWidth }
             actions={ actions }
             actionsWidth={ actionsWidth }
             columns={ columns }
@@ -70,6 +74,7 @@ const Body = (props) => {
 
 Body.defaultProps = {
   actions: null,
+  action: null,
   columns: [],
   data: [],
   dataEmptyComponent: null,
@@ -77,6 +82,8 @@ Body.defaultProps = {
 };
 
 Body.propTypes = {
+  action: PropTypes.any,
+  actionWidth: PropTypes.string.isRequired,
   actions: PropTypes.any,
   actionsWidth: PropTypes.string.isRequired,
   columns: columnsProps,

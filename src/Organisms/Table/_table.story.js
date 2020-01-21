@@ -1,24 +1,36 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { get } from 'lodash';
-import { ToggleVisibility, Store, RenderWithProps } from '@jamesbliss/storybook-state';
+import { Store, RenderWithProps } from '@jamesbliss/storybook-state';
 
 // load tests
 import { withTests } from '@storybook/addon-jest';
-import { withKnobs, text, object, boolean } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  text,
+  object,
+  boolean
+} from '@storybook/addon-knobs';
 import results from '../../../.storybook/jest-test-results.json';
 
 // FEATURED COMPONENT
-import { Table, FlyOut, FlyOutLink, FlyOutButton } from '../../index';
+import {
+  Table, FlyOut, FlyOutLink, FlyOutButton
+} from '../../index';
 
 // README //
 import README from './README.md';
+import Button from '../../Molecules/Button/index.js';
 
 // Start of story logic
 const stories = storiesOf('Organisms | Table', module);
 stories.addDecorator(withKnobs);
-stories.addDecorator(withTests({ results }));
-stories.addParameters({ jest: ['table'] });
+stories.addDecorator(withTests({
+  results
+}));
+stories.addParameters({
+  jest: ['table']
+});
 
 stories.add(
   'Basic',
@@ -32,14 +44,26 @@ stories.add(
     const showHeader = boolean('Show header', true);
     const loading = boolean('Loading', false);
     const columns = object('Columns', [
-      { label: 'Column 1', dataKey: 'column_1', minWidth: '200px' },
-      { label: 'Column 2', dataKey: 'column_2', minWidth: '200px' },
-      { label: 'Column 3', dataKey: 'column_3', minWidth: '200px' }
+      {
+        label: 'Column 1', dataKey: 'column_1', minWidth: '200px'
+      },
+      {
+        label: 'Column 2', dataKey: 'column_2', minWidth: '200px'
+      },
+      {
+        label: 'Column 3', dataKey: 'column_3', minWidth: '200px'
+      }
     ]);
     const data = object('Data', [
-      { 'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing' },
-      { 'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing' },
-      { 'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing' }
+      {
+        'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing'
+      },
+      {
+        'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing'
+      },
+      {
+        'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing'
+      }
     ]);
     return (
       <Table
@@ -56,7 +80,9 @@ stories.add(
         width={ width }
       />
     );
-  }), { notes: README }
+  }), {
+    notes: README
+  }
 );
 
 stories.add(
@@ -78,17 +104,35 @@ stories.add(
       total: 300
     });
     const columns = object('Columns', [
-      { label: 'Column 1', dataKey: 'column_1', minWidth: '200px' },
-      { label: 'Column 2', dataKey: 'column_2', minWidth: '200px' },
-      { label: 'Column 3', dataKey: 'column_3', minWidth: '200px' }
+      {
+        label: 'Column 1', dataKey: 'column_1', minWidth: '200px'
+      },
+      {
+        label: 'Column 2', dataKey: 'column_2', minWidth: '200px'
+      },
+      {
+        label: 'Column 3', dataKey: 'column_3', minWidth: '200px'
+      }
     ]);
     const data = object('Data', [
-      { 'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing' },
-      { 'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing' },
-      { 'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing' },
-      { 'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing' },
-      { 'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing' },
-      { 'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing' }
+      {
+        'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing'
+      },
+      {
+        'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing'
+      },
+      {
+        'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing'
+      },
+      {
+        'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing'
+      },
+      {
+        'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing'
+      },
+      {
+        'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing'
+      }
     ]);
     return (
       <Table
@@ -108,9 +152,10 @@ stories.add(
         width={ width }
       />
     );
-  }), { notes: README }
+  }), {
+    notes: README
+  }
 );
-
 
 stories.add(
   'Actions',
@@ -123,21 +168,38 @@ stories.add(
     const errorMessage = text('Error message', 'Something went wrong getting your data!');
     const loading = boolean('Loading', false);
     const showHeader = boolean('Show header', true);
+    const showSingleAction = boolean('Show single action', false);
+    const showActions = boolean('Show action menu', true);
     const columns = object('Columns', [
-      { label: 'Column 1', dataKey: 'column_1', minWidth: '200px' },
-      { label: 'Column 2', dataKey: 'column_2', minWidth: '200px' },
-      { label: 'Column 3', dataKey: 'column_3', minWidth: '200px' }
+      {
+        label: 'Column 1', dataKey: 'column_1', minWidth: '200px'
+      },
+      {
+        label: 'Column 2', dataKey: 'column_2', minWidth: '200px'
+      },
+      {
+        label: 'Column 3', dataKey: 'column_3', minWidth: '200px'
+      }
     ]);
     const data = object('Data', [
-      { 'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing' },
-      { 'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing' },
-      { 'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing' }
+      {
+        'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing'
+      },
+      {
+        'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing'
+      },
+      {
+        'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing'
+      }
     ]);
     const inlineMenu = (row) => (
       <FlyOut context='table'>
         <FlyOutButton title='Title' onClick={ () => alert(row.column_1) } icon='sync' />
         <FlyOutLink title='Title' link={ `/${ row.column_1 }` } icon='dashboard' />
       </FlyOut>
+    );
+    const action = (row) => (
+      <Button onClick={ () => alert(row.column_1) } iconAfter='sync'>Title</Button>
     );
     return (
       <Table
@@ -151,19 +213,30 @@ stories.add(
         margin={ margin }
         showHeader={ showHeader }
         width={ width }
-        actions={ inlineMenu }
+        actions={ showActions && inlineMenu }
+        action={ showSingleAction && action }
       />
     );
-  }), { notes: README }
+  }), {
+    notes: README
+  }
 );
 
 // STATE
 const store = new Store({
-  sorting: { direction: 'desc', dataKey: 'column_1' },
+  sorting: {
+    direction: 'desc', dataKey: 'column_1'
+  },
   data: [
-    { 'column_1': '1', 'column_2': '4', 'column_3': '7' },
-    { 'column_1': '2', 'column_2': '5', 'column_3': '8' },
-    { 'column_1': '3', 'column_2': '6', 'column_3': '9' }
+    {
+      'column_1': '1', 'column_2': '4', 'column_3': '7'
+    },
+    {
+      'column_1': '2', 'column_2': '5', 'column_3': '8'
+    },
+    {
+      'column_1': '3', 'column_2': '6', 'column_3': '9'
+    }
   ]
 });
 
@@ -179,9 +252,15 @@ stories.add(
     const loading = boolean('Loading', false);
     const showHeader = boolean('Show header', true);
     const columns = object('Columns', [
-      { label: 'Column 1', dataKey: 'column_1', minWidth: '200px', sortable: true },
-      { label: 'Column 2', dataKey: 'column_2', minWidth: '200px', sortable: true },
-      { label: 'Column 3', dataKey: 'column_3', minWidth: '200px' }
+      {
+        label: 'Column 1', dataKey: 'column_1', minWidth: '200px', sortable: true
+      },
+      {
+        label: 'Column 2', dataKey: 'column_2', minWidth: '200px', sortable: true
+      },
+      {
+        label: 'Column 3', dataKey: 'column_3', minWidth: '200px'
+      }
     ]);
 
     return (
@@ -201,7 +280,9 @@ stories.add(
 
             console.log(sortedData);
 
-            store.set({ sorting, data });
+            store.set({
+              sorting, data
+            });
           } }
           data={ store.state.data }
           dataEmptyText={ dataEmptyText }
@@ -214,5 +295,10 @@ stories.add(
         />
       </RenderWithProps>
     );
-  }), { info: { propTablesExclude: [RenderWithProps] }, notes: README }
+  }), {
+    info: {
+      propTablesExclude: [RenderWithProps]
+    },
+    notes: README
+  }
 );

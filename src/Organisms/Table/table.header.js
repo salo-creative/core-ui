@@ -11,7 +11,15 @@ import { HeaderRow, HeaderCell, HeaderSorting } from './table.styles';
 import { columnsProps, sortingProps } from './table.propTypes';
 
 const Header = (props) => {
-  const { actionsWidth, columns, hasActions, sorting, onSort } = props;
+  const {
+    actionWidth,
+    actionsWidth,
+    columns,
+    hasAction,
+    hasActions,
+    sorting,
+    onSort
+  } = props;
 
   // Determines the sorting icon to be rendered
   const sortingIcon = (dataKey) => {
@@ -40,7 +48,10 @@ const Header = (props) => {
           >
             { label }
             { sortable && (
-              <HeaderSorting onClick={ () => onSort({ dataKey }) }>
+              <HeaderSorting onClick={ () => onSort({
+                dataKey
+              }) }
+              >
                 <Icon
                   size={ 24 }
                   fill={ icon === 'chevron_up_down' ? theme.grey : theme.primary }
@@ -51,6 +62,13 @@ const Header = (props) => {
           </HeaderCell>
         );
       }) }
+      { hasAction && (
+        <HeaderCell
+          key='action'
+          flexBasis={ actionWidth }
+          minWidth={ actionWidth }
+        />
+      ) }
       { hasActions && (
         <HeaderCell
           key='actions'
@@ -69,10 +87,12 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
+  actionWidth: PropTypes.string.isRequired,
   actionsWidth: PropTypes.string.isRequired,
   columns: columnsProps,
   sorting: sortingProps,
   onSort: PropTypes.func,
+  hasAction: PropTypes.bool.isRequired,
   hasActions: PropTypes.bool.isRequired
 };
 
