@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
 import { isEmpty, intersection, get } from 'lodash';
 import Cookies from 'universal-cookie';
+import { useMutation } from '@apollo/react-hooks';
 
 // COMPONENTS
 import { Provider } from '../auth.context';
 
 // HELPERS
-import { cookieConfig } from '../../helpers/auth';
+import { cookieConfig, VALIDATE_SESSION } from '../../helpers/auth';
+import { parseApolloError } from '../../Apollo/helpers';
 
 const cookies = new Cookies();
 
@@ -25,6 +28,8 @@ const AuthProvider = (props) => {
     }
   }, [jwt, tokens]);
 
+
+  // CHECK PERMISSIONS
   const hasPermissions = (permissions) => {
     // First check the user is logged in
     if (!isEmpty(jwt)) {
@@ -64,6 +69,63 @@ const AuthProvider = (props) => {
       window.location.reload();
     }, 100);
   };
+
+  // HANDLE VALIDATION OF SESSIONS
+  const poll = React.useRef();
+
+  // VALIDATE MUTATIONS
+  const [validate] = useMutation(gql`${ VALIDATE_SESSION }`, {
+    onCompleted: (data) => { // handle success
+      const type = get(data, 'validate_session.type');
+      // Update login session
+      if (type === 'refresh') {
+        const session = data.validate_session.login;
+        login(session);
+      }
+    },
+    onError: (e) => { // handle errors
+      // Logout if we get a 401
+      const error = parseApolloError({
+        error: e
+      });
+      if (get(error, 'code') === 401) {
+        logout();
+        if (poll.current) {
+          clearTimeout(poll.current);
+          poll.current = null;
+        }
+      }
+    }
+  });
+
+  // POLLING FUNCTION
+  const runPolling = React.useCallback(() => {
+    const timeoutId = setTimeout(async () => {
+      await validate({
+        variables: {
+          jwt: jwt.t
+        }
+      });
+      runPolling();
+    }, 5 * 60 * 1000); // 5 minutes
+    poll.current = timeoutId;
+  }, [jwt.t, validate]);
+
+  // CANCEL POLLING
+  const stopPolling = React.useCallback(() => {
+    if (poll.current) {
+      clearTimeout(poll.current);
+      poll.current = null;
+    }
+  }, []);
+
+  // START POLL ONCE IF WE HAVE A JWT
+  React.useEffect(() => {
+    if (jwt.t) {
+      runPolling();
+    }
+    return () => stopPolling();
+  }, [jwt.t, runPolling, stopPolling]);
 
   const user = isEmpty(jwt) ? null : {
     first_name: jwt.fn,
