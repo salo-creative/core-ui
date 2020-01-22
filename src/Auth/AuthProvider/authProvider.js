@@ -73,6 +73,14 @@ const AuthProvider = (props) => {
   // HANDLE VALIDATION OF SESSIONS
   const poll = React.useRef();
 
+  // CANCEL POLLING
+  const stopPolling = React.useCallback(() => {
+    if (poll.current) {
+      clearTimeout(poll.current);
+      poll.current = null;
+    }
+  }, []);
+  
   // VALIDATE MUTATIONS
   const [validate] = useMutation(gql`${ VALIDATE_SESSION }`, {
     onCompleted: (data) => { // handle success
@@ -90,10 +98,7 @@ const AuthProvider = (props) => {
       });
       if (get(error, 'code') === 401) {
         logout();
-        if (poll.current) {
-          clearTimeout(poll.current);
-          poll.current = null;
-        }
+        stopPolling();
       }
     }
   });
@@ -110,14 +115,6 @@ const AuthProvider = (props) => {
     }, 5 * 60 * 1000); // 5 minutes
     poll.current = timeoutId;
   }, [jwt.t, validate]);
-
-  // CANCEL POLLING
-  const stopPolling = React.useCallback(() => {
-    if (poll.current) {
-      clearTimeout(poll.current);
-      poll.current = null;
-    }
-  }, []);
 
   // START POLL ONCE IF WE HAVE A JWT
   React.useEffect(() => {
