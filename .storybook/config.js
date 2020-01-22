@@ -64,22 +64,22 @@ addDecorator(withInfo({
 addDecorator(story => {
   const tokens = getTokensClient(cookies);
   return (
-    <AuthProvider tokens={ tokens }>
-      <ApolloProvider client={ client }>
-        <BrowserRouter>
-          <Theme>
-            <AlertProvider>
-              <AlertConsumer
-                topOffset={ 0 }
-              />
-              <Normalise />
-              <GlobalStyles />
-                { story() }
-            </AlertProvider>
-          </Theme>
-        </BrowserRouter>
-      </ApolloProvider>
-    </AuthProvider>
+    <ApolloProvider client={ client }>
+      <AuthProvider tokens={ tokens }>
+          <BrowserRouter>
+            <Theme>
+              <AlertProvider>
+                <AlertConsumer
+                  topOffset={ 0 }
+                />
+                <Normalise />
+                <GlobalStyles />
+                  { story() }
+              </AlertProvider>
+            </Theme>
+          </BrowserRouter>
+      </AuthProvider>
+    </ApolloProvider>
   );
 } );
 
