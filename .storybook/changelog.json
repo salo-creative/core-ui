@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v0.14.2", "commit": "Adding some centralised definitions for auth functions" },
 { "user": "Tim Stone", "version": "v0.14.1", "commit": "Fixed FlyOut Toggle icon position in Firefox" },
 { "user": "Tim Stone", "version": "v0.14.0", "commit": "Added ability to show single action to Table" },
 { "user": "Rich Comber", "version": "v0.13.5", "commit": "Switchin selectput to be a controlled input" },
