@@ -7,7 +7,7 @@ import Cookies from 'universal-cookie';
 import { Provider } from '../auth.context';
 
 // HELPERS
-import { ENV } from '../../helpers/environments';
+import { cookieConfig } from '../../helpers/auth';
 
 const cookies = new Cookies();
 
@@ -53,18 +53,14 @@ const AuthProvider = (props) => {
       ts: Date.now()
     };
     setState(newSession);
-    const cookieConfig = {
-      path: '/',
-      secure: ENV !== 'development',
-      sameSite: 'strict',
-      maxAge: 60 * 60 * 24 * 2
-    };
     cookies.set('SCSession', JSON.stringify(newSession), cookieConfig);
   };
 
   const logout = () => {
     setTimeout(() => {
-      cookies.remove('SCSession', { path: '/' });
+      cookies.remove('SCSession', {
+        path: '/'
+      });
       window.location.reload();
     }, 100);
   };
@@ -91,7 +87,9 @@ const AuthProvider = (props) => {
   );
 };
 
-AuthProvider.defaultProps = { tokens: null };
+AuthProvider.defaultProps = {
+  tokens: null
+};
 
 AuthProvider.propTypes = {
   children: PropTypes.any.isRequired,
