@@ -16,6 +16,8 @@ steps:
     working_directory: ${{main_clone}}
     stage: "test"
     commands:
+      - npm install -g npm-cli-login
+      - npm-cli-login -u "${{NPM_USER}}" -p "${{NPM_PASSWORD}}" -e "${{NPM_EMAIL}}"
       - yarn
       - yarn test
   build:
