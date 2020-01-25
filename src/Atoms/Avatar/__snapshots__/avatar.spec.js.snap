@@ -8,7 +8,6 @@ exports[`Renders against snapshot 1`] = `
   position: relative;
   border: none;
   background: #00ACED;
-  cursor: auto;
   background-size: cover;
   background-position: top center;
   border-radius: 50%;
@@ -53,7 +52,7 @@ exports[`Renders against snapshot 1`] = `
   class="c0"
   cursor="auto"
   size="100"
-  style="background-image: url();"
+  style="background-image: none; cursor: auto;"
 >
   <p
     class="c1"
