@@ -16,6 +16,34 @@ Then run the demo command to run the initial unit tests and boot up the developm
 yarn demo
 ```
 
+## Hooks
+
+### useAnalytics
+
+Example usage:
+
+```javascript
+useAnalytics({
+  event_type: 'user_profile_view',
+  content_id: id,
+  content_type: 'user',
+  url: isBrowser && window.location.href
+});
+```
+
+It returns the call to the mutation so you can also do the following:
+
+```javascript
+const runAnalytics = useAnalytics({
+  defer: true
+});
+
+// later
+runAnalytics({
+  variables: {}
+})
+```
+
 ## Publishing
 
 1. Before opening a PR, run `yarn release:prep` locally to add changelog and increment version number on your branch
