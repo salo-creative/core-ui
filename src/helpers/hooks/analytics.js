@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 
@@ -16,8 +16,10 @@ function useAnalytics(args) {
     content_type,
     url,
     metadata,
-    defer
+    skip
   } = args;
+
+  const dispatch = useRef();
 
   const [run] = useMutation(ADD_ANALYTICS_EVENT, {
     variables: {
@@ -32,12 +34,11 @@ function useAnalytics(args) {
   });
 
   useEffect(() => {
-    if (!defer) {
+    if (!skip && dispatch.current !== content_id) {
       run();
+      dispatch.current = content_id;
     }
-    // Only want to run this on 'mount' so ignore deps used
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [content_id, run, skip]);
 
   return run;
 }
