@@ -91,6 +91,7 @@ export { getBreakpoint } from './helpers/breakpoints';
 export { colours, boxShadow } from './helpers/colours';
 export { ENV, isBrowser } from './helpers/environments';
 export { dateRangeValidation, phoneRegExp, passwordRegex } from './helpers/form';
+export { default as useAnalytics } from './helpers/hooks/analytics';
 
 /**
  * ALERT
