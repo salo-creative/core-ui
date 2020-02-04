@@ -23,3 +23,5 @@ Implement as follows
   name='form_name'
 />
 ```
+
+See [Storybook](http://localhost:6001/?path=/story/organisms-dynamic-form--basic) for more options and uses.
