@@ -78,6 +78,7 @@ export { default as useForm } from './Forms/useForm';
  */
 export { default as Table } from './Organisms/Table';
 export { default as Form } from './Organisms/Form';
+export { default as DynamicForm } from './Organisms/DynamicForm';
 
 /**
  * HELPERS & GLOBALS
