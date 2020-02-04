@@ -1,6 +1,6 @@
-# Form
+# Dynamic Form
 
-An all-in-one solution for managing forms.
+An all-in-one solution for managing forms _done properly_.
 
 ## Usage
 
@@ -13,31 +13,13 @@ yarn add @salo/core-ui
 Include
 
 ```javascript
-import Form from '@salo/core-ui/Organisms/Form';
+import DynamicForm from '@salo/core-ui/Organisms/DynamicForm';
 ```
 
 Implement as follows
 
 ```javascript
-<Form
+<DynamicForm
   name='form_name'
 />
-```
-
-## Resetting
-
-You can reset the form by sending it something like this:
-
-```javascript
-const [reset, setReset] = React.useState(false);
-const resetForm = () => {
-  if (!reset) {
-    return false;
-  }
-  return () => {
-    setReset(false);
-  };
-};
-
-<Form resetForm={ resetForm } />
 ```
