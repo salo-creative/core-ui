@@ -1,4 +1,4 @@
-import { GET_FORM } from '../../../Forms/useFormData2/useFormData.queries';
+import { GET_FORM } from '../../../Forms/useFormData.next/useFormData.queries';
 
 const data = {
   request: {

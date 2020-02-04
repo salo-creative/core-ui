@@ -15,38 +15,38 @@ test('Renders against snapshot', async () => {
   expect(container.firstChild).toMatchSnapshot();
 });
 
-test('Fetches form', async () => {
-  const { findAllByText, findByLabelText } = renderWithApollo(
-    <Form name='test' />,
-    [formMock]
-  );
+// test('Fetches form', async () => {
+//   const { findAllByText, findByLabelText } = renderWithApollo(
+//     <Form name='test' />,
+//     [formMock]
+//   );
   
-  // Wait for form to load.
-  await findAllByText(/Basic inputs/);
+//   // Wait for form to load.
+//   await findAllByText(/Basic inputs/);
 
-  const text = await findByLabelText(/Text field/);
-  fireEvent.change(text, {
-    target: {
-      value: 'some text'
-    }
-  });
-  expect(text.value).toBe('some text');
-});
+//   const text = await findByLabelText(/Text field/);
+//   fireEvent.change(text, {
+//     target: {
+//       value: 'some text'
+//     }
+//   });
+//   expect(text.value).toBe('some text');
+// });
 
-test.only('Submits custom form', async () => {
-  const spy = jest.fn();
-  const x = renderWithApollo(
-    <Form name='test' onSubmit={ spy } />,
-    [formMock]
-  );
+// test.only('Submits custom form', async () => {
+//   const spy = jest.fn();
+//   const x = renderWithApollo(
+//     <Form name='test' onSubmit={ spy } />,
+//     [formMock]
+//   );
   
-  // Wait for form to load.
-  await x.findByLabelText('Text field'); // form title
+//   // Wait for form to load.
+//   await x.findByLabelText('Text field'); // form title
 
-  console.log(x.debug());
+//   console.log(x.debug());
 
-  const submit = await x.getByText('Submit');
-  fireEvent.click(submit);
+//   const submit = await x.getByText('Submit');
+//   fireEvent.click(submit);
   
-  expect(spy).toHaveBeenCalledTimes(1);
-});
+//   expect(spy).toHaveBeenCalledTimes(1);
+// });
