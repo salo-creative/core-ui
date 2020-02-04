@@ -59,7 +59,7 @@ export const buildSchema = (data, initialData) => {
     fields: data.form_show.fields
   });
   const initial = getInitialValues(get(data, 'form_show.fields', []), builtSchema, initialData);
-  console.log('builtSchema', builtSchema);
+
   return {
     builtSchema,
     initial
