@@ -18,14 +18,17 @@ const FormStep = (props) => {
     title,
     total,
     typeaheads,
-    CustomButton, // eslint-disable-line react/prop-types
-    CustomHeading, // eslint-disable-line react/prop-types
+    inputs,
     ...fieldProps
   } = props;
 
   // Check if we have a custom button
-  const FormButton = CustomButton || Button;
-  const FormHeading = CustomHeading || H1;
+  const FormButton = inputs.Button || Button;
+  const FormHeading = inputs.Heading || H1;
+
+  console.log('fieldProps', fieldProps);
+
+  console.log('inputs', inputs);
 
   return (
     <React.Fragment>
@@ -39,6 +42,7 @@ const FormStep = (props) => {
         <RenderFields
           { ...fieldProps }
           fields={ fields }
+          inputs={ inputs }
           typeaheads={ typeaheads }
         />
       ) }
@@ -72,6 +76,7 @@ FormStep.propTypes = {
   fields: PropTypes.array.isRequired,
   showTitle: PropTypes.bool,
   step: PropTypes.number.isRequired,
+  inputs: PropTypes.object.isRequired,
   strings: PropTypes.shape({
     next: PropTypes.string,
     previous: PropTypes.string,

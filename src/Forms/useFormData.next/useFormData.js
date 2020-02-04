@@ -200,7 +200,6 @@ const useFormData = ({
         }
 
         // Reset the form if needed
-        console.log('resetFormPostSubmit', options.resetFormPostSubmit);
         if (options.resetFormPostSubmit) {
           reset();
         }

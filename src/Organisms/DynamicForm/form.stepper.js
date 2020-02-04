@@ -15,6 +15,7 @@ const FormStepper = (props) => {
     stepper,
     strings,
     typeaheads,
+    inputs,
     ...fieldProps
   } = props;
 
@@ -35,6 +36,7 @@ const FormStepper = (props) => {
             content: (
               <FormStep
                 { ...fieldProps }
+                inputs={ inputs }
                 changeStep={ () => changeStep(get(steps, `[${ i - 1 }].id`)) }
                 fields={ step.fields }
                 showTitle={ showTitles } // show individual titles
@@ -62,6 +64,7 @@ FormStepper.defaultProps = {
 FormStepper.propTypes = {
   activeStep: PropTypes.string,
   changeStep: PropTypes.func.isRequired,
+  inputs: PropTypes.object.isRequired,
   steps: PropTypes.array.isRequired,
   showTitles: PropTypes.bool.isRequired,
   stepper: PropTypes.string,

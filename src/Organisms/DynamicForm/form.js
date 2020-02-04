@@ -47,9 +47,6 @@ const Form = (props) => {
     initialData: data.initialData
   });
 
-  // Assign custom components to an object so we can pass them down easily
-  const customComponents = inputs;
-
   const formRef = React.useRef(null);
   const submitted = !!get(submit, 'data');
   const formShouldRender = !loading && !error && !(options.hideFormPostSubmit && submitted);
@@ -113,7 +110,7 @@ const Form = (props) => {
           <React.Fragment>
             <RenderFields
               { ...fieldProps }
-              { ...customComponents }
+              inputs={ inputs }
               typeaheads={ options.typeaheads }
             />
             <Submit
@@ -129,7 +126,7 @@ const Form = (props) => {
         { formShouldRender && isStepper && (
           <FormStepper
             { ...fieldProps }
-            { ...customComponents }
+            inputs={ inputs }
             activeStep={ activeStep }
             changeStep={ (id) => {
               changeStep(id);
