@@ -29,7 +29,7 @@ export const evaluateValue = ({ value, type }) => {
 const getInitialValues = (fields, schema, initialData) => {
   return fields.reduce((accum, field) => {
     const value = evaluateValue({
-      value: field.value || initialData ? initialData[field.name] : '',
+      value: initialData ? initialData[field.name] : '',
       type: field.type
     });
     let invalid = false;
@@ -59,7 +59,7 @@ export const buildSchema = (data, initialData) => {
     fields: data.form_show.fields
   });
   const initial = getInitialValues(get(data, 'form_show.fields', []), builtSchema, initialData);
-
+  console.log('builtSchema', builtSchema);
   return {
     builtSchema,
     initial

@@ -135,8 +135,8 @@ const Form = (props) => {
                 formRef.current.scrollIntoView();
               }, 1);
             } }
-            showTitles={ options.stepper.showTitles }
-            stepper={ options.stepper.type }
+            showTitles={ get(options, 'stepper.showTitles', Form.defaultProps.options.stepper.showTitles) }
+            stepper={ get(options, 'stepper.type', Form.defaultProps.options.stepper.type) }
             steps={ steps }
             strings={ strings }
             typeaheads={ options.typeaheads }
