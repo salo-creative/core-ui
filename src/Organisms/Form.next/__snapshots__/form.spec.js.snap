@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fetches form 1`] = `
+.c1 {
+  box-sizing: border-box;
+  position: relative;
+  height: 60px;
+  width: 60px;
+  will-change: transform,opacity;
+  margin: 0 auto;
+}
+
+.c1:before,
+.c1:after,
+.c1 div {
+  content: '';
+  will-change: transform,opacity;
+  border-radius: 100%;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -30px;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: eyGOfj 1.3s 0s linear infinite;
+  animation: eyGOfj 1.3s 0s linear infinite;
+}
+
+.c1:before {
+  -webkit-animation-delay: -0.4s;
+  animation-delay: -0.4s;
+}
+
+.c1:after {
+  -webkit-animation-delay: -0.2s;
+  animation-delay: -0.2s;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: auto;
+  margin: 0;
+  max-width: auto;
+  width: 100%;
+}
+
+.c0.collapsed {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  max-height: 10rem;
+  overflow: hidden;
+}
+
+<div
+  class="c0 null collapsed"
+  height="auto"
+  width="auto"
+>
+  <div
+    class="c1"
+    data-testid="pulse-loader"
+    size="60"
+  >
+    <div />
+  </div>
+  <form
+    autocomplete="off"
+    novalidate=""
+  />
+</div>
+`;
+
+exports[`Renders against snapshot 1`] = `
+.c1 {
+  box-sizing: border-box;
+  position: relative;
+  height: 60px;
+  width: 60px;
+  will-change: transform,opacity;
+  margin: 0 auto;
+}
+
+.c1:before,
+.c1:after,
+.c1 div {
+  content: '';
+  will-change: transform,opacity;
+  border-radius: 100%;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -30px;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: eyGOfj 1.3s 0s linear infinite;
+  animation: eyGOfj 1.3s 0s linear infinite;
+}
+
+.c1:before {
+  -webkit-animation-delay: -0.4s;
+  animation-delay: -0.4s;
+}
+
+.c1:after {
+  -webkit-animation-delay: -0.2s;
+  animation-delay: -0.2s;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: auto;
+  margin: 0;
+  max-width: auto;
+  width: 100%;
+}
+
+.c0.collapsed {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  max-height: 10rem;
+  overflow: hidden;
+}
+
+<div
+  class="c0 null collapsed"
+  height="auto"
+  width="auto"
+>
+  <div
+    class="c1"
+    data-testid="pulse-loader"
+    size="60"
+  >
+    <div />
+  </div>
+  <form
+    autocomplete="off"
+    novalidate=""
+  />
+</div>
+`;

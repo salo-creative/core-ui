@@ -123,6 +123,8 @@ const Form = (props) => {
     return null;
   };
 
+  // useEffect only expects functions to be returned.
+  // eslint-disable-next-line consistent-return
   React.useEffect(() => {
     if (usePrompt) {
       const prompter = (event) => {
