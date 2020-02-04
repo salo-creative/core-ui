@@ -26,10 +26,6 @@ const FormStep = (props) => {
   const FormButton = inputs.Button || Button;
   const FormHeading = inputs.Heading || H1;
 
-  console.log('fieldProps', fieldProps);
-
-  console.log('inputs', inputs);
-
   return (
     <React.Fragment>
       { showTitle && (
