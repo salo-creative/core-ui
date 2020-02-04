@@ -10,13 +10,13 @@ import {
 import results from '../../../.storybook/jest-test-results.json';
 
 // FEATURED COMPONENT
-import { FormNext as Form } from '../../index';
+import { DynamicForm } from '../../index';
 
 // README //
 import README from './README.md';
 
 // Start of story logic
-const stories = storiesOf('Organisms | Form v2', module);
+const stories = storiesOf('Organisms | Dynamic Form', module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(withTests({
   results
@@ -38,7 +38,7 @@ stories.add(
     }, 'condensed');
     
     return (
-      <Form
+      <DynamicForm
         name={ name }
         options={ {
           hideFormPostSubmit,
@@ -72,25 +72,6 @@ stories.add(
             alert(JSON.stringify(data, null, 2));
           } : null
         } }
-      />
-    );
-  }), {
-    info: {
-      propTablesExclude: []
-    },
-    notes: README
-  }
-);
-
-stories.add(
-  'Custom submit',
-  (() => {
-    const name = text('name', 'reset_password');
-   
-    return (
-      <Form
-        name={ name }
-        
       />
     );
   }), {
@@ -140,7 +121,7 @@ stories.add(
     const renderSteps = boolean('Use stepper', true);
 
     return (
-      <Form
+      <DynamicForm
         name={ name }
         options={ {
           stepper: {
