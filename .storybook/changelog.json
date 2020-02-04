@@ -1,4 +1,5 @@
 [
+{ "user": "Tim Stone", "version": "v1.2.0", "commit": "Added Dynamic Form organism" },
 { "user": "Tim Stone", "version": "v1.1.0", "commit": "Added analytics hook" },
 { "user": "Rich Comber", "version": "v1.0.1", "commit": "Fixing performance bug with avatar component where attempts to call current page if no image is passed" },
 { "user": "Rich Comber", "version": "v1.0.0", "commit": "Removing auth helpers and functions" },
