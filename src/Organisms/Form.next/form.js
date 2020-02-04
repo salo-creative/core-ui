@@ -5,6 +5,7 @@ import { get, isEmpty } from 'lodash';
 // COMPONENTS & STYLES
 import Button from '../../Molecules/Button';
 import Loader from '../../Molecules/Loader';
+import H3 from '../../Typography/H3';
 import ErrorMessage from '../../Molecules/ErrorMessage';
 import ApolloError from '../../Apollo/Error';
 import FormStepper from './form.stepper';
@@ -51,7 +52,7 @@ const Form = (props) => {
 
   const formRef = React.useRef(null);
   const submitted = !!get(submit, 'data');
-  const formShouldRender = !loading && !error && !(options.hideFormPostSubmit && !submitted);
+  const formShouldRender = !loading && !error && !(options.hideFormPostSubmit && submitted);
   // check if form is stepped
   const isStepper = options.stepper.renderSteps && !isEmpty(steps);
   const Submit = inputs.Button || Button;
@@ -74,6 +75,14 @@ const Form = (props) => {
       };
     }
   }, [isDirty, options.showPrompt, submit]);
+
+  if (submitted && options.hideFormPostSubmit) {
+    return (
+      <H3 align='center' margin='1rem 0'>
+        { get(strings, 'successMessage', 'Submission successfully added') }
+      </H3>
+    );
+  }
 
   return (
     <FormWrapper

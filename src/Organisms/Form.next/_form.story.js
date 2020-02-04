@@ -30,6 +30,7 @@ stories.add(
     const showTitles = boolean('Use titles', true);
     const customSubmit = boolean('Use custom submit method', false);
     const resetFormPostSubmit = boolean('Reset after submit', false);
+    const hideFormPostSubmit = boolean('Hide after submit', false);
     const prepopulated = boolean('Prepopulate fields', true);
     const stepper = select('Stepper', {
       'Full': 'full',
@@ -40,6 +41,7 @@ stories.add(
       <Form
         name={ name }
         options={ {
+          hideFormPostSubmit,
           resetFormPostSubmit,
           stepper: {
             renderSteps,
