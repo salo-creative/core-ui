@@ -47,14 +47,11 @@ const Form = (props) => {
     initialData: data.initialData
   });
 
-  // Assign custom components to an object so we can pass them down easily
-  const customComponents = inputs;
-
   const formRef = React.useRef(null);
   const submitted = !!get(submit, 'data');
-  const formShouldRender = !loading && !error && !(options.hideFormPostSubmit && submitted);
+  const formShouldRender = !loading && !error && !(get(options, 'hideFormPostSubmit', Form.defaultProps.options.hideFormPostSubmit) && submitted);
   // check if form is stepped
-  const isStepper = options.stepper.renderSteps && !isEmpty(steps);
+  const isStepper = get(options, 'stepper.renderSteps', Form.defaultProps.options.stepper.renderSteps) && !isEmpty(steps);
   const Submit = inputs.Button || Button;
   
   // useEffect only expects functions to be returned.
@@ -113,8 +110,8 @@ const Form = (props) => {
           <React.Fragment>
             <RenderFields
               { ...fieldProps }
-              { ...customComponents }
-              typeaheads={ options.typeaheads }
+              inputs={ inputs }
+              typeaheads={ get(options, 'typeaheads') }
             />
             <Submit
               loading={ submit.isSubmitting }
@@ -129,7 +126,7 @@ const Form = (props) => {
         { formShouldRender && isStepper && (
           <FormStepper
             { ...fieldProps }
-            { ...customComponents }
+            inputs={ inputs }
             activeStep={ activeStep }
             changeStep={ (id) => {
               changeStep(id);
@@ -138,11 +135,11 @@ const Form = (props) => {
                 formRef.current.scrollIntoView();
               }, 1);
             } }
-            showTitles={ options.stepper.showTitles }
-            stepper={ options.stepper.type }
+            showTitles={ get(options, 'stepper.showTitles', Form.defaultProps.options.stepper.showTitles) }
+            stepper={ get(options, 'stepper.type', Form.defaultProps.options.stepper.type) }
             steps={ steps }
             strings={ strings }
-            typeaheads={ options.typeaheads }
+            typeaheads={ get(options, 'typeaheads') }
           />
         ) }
       </form>

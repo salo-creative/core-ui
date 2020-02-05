@@ -44,20 +44,24 @@ const RenderFields = (props) => {
     showErrors,
     typeaheads,
     values,
-    // Custom components
-    CustomAddress,
-    CustomCheckBox,
-    CustomCopy,
-    CustomInput,
-    Link,
-    CustomPassword,
-    CustomRadio,
-    CustomSelect,
-    CustomTextArea,
-    CustomTypeAhead,
-    CustomUpload
+    inputs
   } = props;
-
+  
+  // Custom components
+  const {
+    Address: CustomAddress,
+    CheckBox: CustomCheckBox,
+    Copy: CustomCopy,
+    Input: CustomInput,
+    Link,
+    Password: CustomPassword,
+    Radio: CustomRadio,
+    Select: CustomSelect,
+    TextArea: CustomTextArea,
+    TypeAhead: CustomTypeAhead,
+    Upload: CustomUpload
+  } = inputs;
+  
   const groups = {};
 
   const hydratedFields = fields.map((field, index) => {
