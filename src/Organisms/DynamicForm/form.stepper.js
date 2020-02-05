@@ -56,6 +56,7 @@ const FormStepper = (props) => {
 
 FormStepper.defaultProps = {
   activeStep: '',
+  isSubmitting: false,
   typeaheads: null,
   strings: null,
   stepper: 'full'
@@ -65,6 +66,7 @@ FormStepper.propTypes = {
   activeStep: PropTypes.string,
   changeStep: PropTypes.func.isRequired,
   inputs: PropTypes.object.isRequired,
+  isSubmitting: PropTypes.bool,
   steps: PropTypes.array.isRequired,
   showTitles: PropTypes.bool.isRequired,
   stepper: PropTypes.string,

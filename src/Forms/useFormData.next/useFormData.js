@@ -13,6 +13,7 @@ const useFormData = ({
   name,
   options,
   onSubmit,
+  saving,
   initialData,
   initialErrors = false
 }) => {
@@ -279,7 +280,7 @@ const useFormData = ({
     submit: {
       data: submitData,
       error: submitError,
-      isSubmitting
+      isSubmitting: typeof onSubmit === 'function' ? saving : isSubmitting
     },
     toggleErrors,
     values

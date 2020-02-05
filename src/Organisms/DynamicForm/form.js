@@ -44,6 +44,7 @@ const Form = (props) => {
     name,
     options,
     onSubmit: data.onSubmit,
+    saving: data.loading,
     initialData: data.initialData
   });
 
@@ -140,6 +141,7 @@ const Form = (props) => {
             steps={ steps }
             strings={ strings }
             typeaheads={ get(options, 'typeaheads') }
+            isSubmitting={ submit.isSubmitting }
           />
         ) }
       </form>
@@ -156,7 +158,8 @@ Form.defaultProps = {
   },
   data: {
     onSubmit: null,
-    initialData: null
+    initialData: null,
+    loading: null
   },
   options: {
     hideFormPostSubmit: false,
@@ -190,7 +193,8 @@ Form.propTypes = {
   name: PropTypes.string.isRequired,
   data: PropTypes.shape({
     initialData: PropTypes.object, // Optionally pass in values to pre-populate fields
-    onSubmit: PropTypes.func
+    onSubmit: PropTypes.func,
+    loading: PropTypes.bool
   }),
   options: PropTypes.shape({
     hideFormPostSubmit: PropTypes.bool, // Optionally hide form after submission

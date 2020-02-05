@@ -19,6 +19,7 @@ const FormStep = (props) => {
     total,
     typeaheads,
     inputs,
+    isSubmitting,
     ...fieldProps
   } = props;
 
@@ -49,7 +50,7 @@ const FormStep = (props) => {
         ) }
         { /* If last page render submit */ }
         { step === total && (
-          <FormButton type='submit'>{ get(strings, 'submit', 'Submit') }</FormButton>
+          <FormButton type='submit' loading={ isSubmitting }>{ get(strings, 'submit', 'Submit') }</FormButton>
         ) }
         { /* If not last page render next */ }
         { step < total && (
@@ -73,6 +74,7 @@ FormStep.propTypes = {
   showTitle: PropTypes.bool,
   step: PropTypes.number.isRequired,
   inputs: PropTypes.object.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
   strings: PropTypes.shape({
     next: PropTypes.string,
     previous: PropTypes.string,
