@@ -165,7 +165,7 @@ const useFormData = ({
     dispatch({
       type: 'RESET',
       state: {
-        activeStep: steps[0].id,
+        activeStep: !isEmpty(steps) ? steps[0].id : null,
         steps,
         isDirty: false,
         showErrors: false,
