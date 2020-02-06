@@ -38,16 +38,6 @@ const useFormData = ({
       name
     }
   });
-
-  // Setup submit mutation.
-  const [submitForm, {
-    data: res,
-    loading: isSubmitting,
-    error: submitError
-  }] = useMutation(SUBMIT_FORM);
-  
-  // * Definitions
-  const submitData = get(res, 'form_submit');
   
   const {
     activeStep,
@@ -81,7 +71,8 @@ const useFormData = ({
         steps: processedSteps
       });
     }
-  }, [data, initialData]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]); // Ignore initial data to prevent re-evaluation when server fetched data is being updated
   
   // Handle blur events in form
   const handleBlur = ({ key, value }) => {
@@ -175,6 +166,19 @@ const useFormData = ({
     });
   };
  
+  // Setup submit mutation.
+  const [submitForm, {
+    data: res,
+    loading: isSubmitting,
+    error: submitError
+  }] = useMutation(SUBMIT_FORM, {
+    onCompleted: () => {
+      if (options.resetFormPostSubmit) {
+        reset();
+      }
+    }
+  });
+
   // Handle submit event
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -185,7 +189,8 @@ const useFormData = ({
         if (typeof onSubmit === 'function') {
           onSubmit({
             data: formattedData,
-            files
+            files,
+            resetForm: reset
           });
         } else {
           await submitForm({
@@ -198,11 +203,6 @@ const useFormData = ({
               attachments: files
             }
           });
-        }
-
-        // Reset the form if needed
-        if (options.resetFormPostSubmit) {
-          reset();
         }
       } catch (err) {
         console.log(err);
@@ -278,7 +278,7 @@ const useFormData = ({
     steps,
     strings: get(data, 'form_show.strings', {}),
     submit: {
-      data: submitData,
+      data: get(res, 'form_submit'),
       error: submitError,
       isSubmitting: typeof onSubmit === 'function' ? saving : isSubmitting
     },
