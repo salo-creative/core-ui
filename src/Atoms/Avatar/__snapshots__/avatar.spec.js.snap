@@ -9,7 +9,7 @@ exports[`Renders against snapshot 1`] = `
   border: none;
   background: #00ACED;
   background-size: cover;
-  background-position: top center;
+  background-position: center;
   border-radius: 50%;
   -webkit-align-items: center;
   -webkit-box-align: center;
