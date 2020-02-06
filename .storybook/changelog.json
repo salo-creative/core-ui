@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v1.2.5", "commit": "Fixing avatar background positioning" },
 { "user": "Rich Comber", "version": "v1.2.4", "commit": "Minor errors in Dynamic form reset and submit handling" },
 { "user": "Rich Comber", "version": "v1.2.3", "commit": "Fixing submit loading state when using custom method" },
 { "user": "Rich Comber", "version": "v1.2.2", "commit": "Fixing error in form trying to reset steps on submit and erroring if not a stepper" },

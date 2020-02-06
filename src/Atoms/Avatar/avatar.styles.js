@@ -13,7 +13,7 @@ export const AvatarWrapper = styled.button.attrs(({ image, cursor }) => ({
   border: none;
   background: ${ ({ background }) => background };
   background-size: cover;
-  background-position: top center;
+  background-position: center;
   border-radius: 50%;
   align-items: center;
   justify-content: center;
