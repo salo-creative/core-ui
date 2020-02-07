@@ -10,12 +10,16 @@ export const Wrapper = styled.div`
   min-height: 18rem;
   padding: ${ ({ showControls }) => (showControls ? '7rem 3rem 3rem' : '3rem') };
   border: 1px solid #E9EAED;
-  transition: padding 0.5s linear;
+  transition: padding 0.5s ease-in;
 
   .public-DraftEditorPlaceholder-inner {
     position: absolute;
     color: rgba(0,0,0,0.5);
     pointer-events: none;
+  }
+
+  .public-DraftEditor-content {
+    min-height: 13rem;
   }
 
   .RichEditor-blockquote {
@@ -42,9 +46,8 @@ export const Controls = styled.div`
   box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
-
   opacity: 0;
-  transition: all 0.5s linear;
+  transition: all 0.5s ease-in;
 
   ${ ({ hide }) => {
     if (!hide) {
@@ -57,23 +60,8 @@ export const Controls = styled.div`
     return '';
   } }
 
-
-`;
-
-export const URLPrompt = styled.div`
-  background-color: #fff;
-  position: absolute;
-  left: 50%;
-  top: 5rem;
-  padding: 1rem 2rem;
-  transform: translate(-50%, 50%);
-  width: 35rem;
-  border-radius: 2rem;
-  box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-
-  input { 
+  input {
+    margin: 0 1rem;
     flex: 1;
   }
 `;

@@ -12,9 +12,7 @@ import {
 import { stateToHTML } from 'draft-js-export-html';
 import Icon from '@salo/icons';
 
-import {
-  Wrapper, Controls, Format, URLPrompt
-} from './editor.styles';
+import { Wrapper, Controls, Format } from './editor.styles';
 
 import BlockStyleControls from './editor.block';
 import InlineStyleControls from './editor.inline';
@@ -161,8 +159,7 @@ const WYSIWYG = (props) => {
   };
 
   // * Links
-  const promptForLink = async (event) => {
-    event.preventDefault();
+  const promptForLink = async () => {
     const selection = editorState.getSelection();
     if (!selection.isCollapsed()) {
       await dispatch({
@@ -190,14 +187,13 @@ const WYSIWYG = (props) => {
     setTimeout(() => editorEl.current.focus(), 0);
   };
 
-  const onLinkInputKeyDown = (event) => {
+  const handleLinkInput = (event) => {
     if (event.key === 'Enter') {
       confirmLink(event);
     }
   };
 
-  const removeLink = (event) => {
-    event.preventDefault();
+  const removeLink = () => {
     const selection = editorState.getSelection();
     if (!selection.isCollapsed()) {
       dispatch({
@@ -220,50 +216,55 @@ const WYSIWYG = (props) => {
       showControls={ showControls }
       ref={ wrapperEl }
     >
-      { showURLInput && (
-        <URLPrompt>
-          <input
-            type='url'
-            onChange={ onURLChange }
-            ref={ urlInput }
-            value={ urlValue }
-            onKeyDown={ onLinkInputKeyDown }
-            placeholder='https://…'
-          />
-          <Format
-            type='button'
-            onClick={ confirmLink }
-          >
-            Add link
-          </Format>
-        </URLPrompt>
-      ) }
       <Controls hide={ !showControls }>
-        <InlineStyleControls
-          editorState={ editorState }
-          onToggle={ toggleInlineStyle }
-        />
-        { !hasLink && (
-          <Format
-            type='button'
-            onClick={ promptForLink }
-          >
-            <Icon icon='link' />
-          </Format>
+        { showURLInput && (
+          <React.Fragment>
+            <input
+              type='url'
+              onChange={ onURLChange }
+              ref={ urlInput }
+              value={ urlValue }
+              onKeyPress={ handleLinkInput }
+              placeholder='https://…'
+            />
+            <Format
+              type='button'
+              onClick={ confirmLink }
+            >
+              Add link
+            </Format>
+          </React.Fragment>
         ) }
-        { hasLink && (
-          <Format
-            type='button'
-            onClick={ removeLink }
-          >
-            <Icon icon='link_off' />
-          </Format>
+        { !showURLInput && (
+          <React.Fragment>
+            <InlineStyleControls
+              editorState={ editorState }
+              onToggle={ toggleInlineStyle }
+            />
+            <Format
+              type='button'
+              onClick={ (event) => {
+                event.preventDefault();
+
+                dispatch({
+                  type: 'TOGGLE_CONTROLS',
+                  payload: true
+                });
+                if (hasLink) {
+                  removeLink();
+                } else {
+                  promptForLink();
+                }
+              } }
+            >
+              <Icon icon={ hasLink ? 'link-off' : 'link' } />
+            </Format>
+            <BlockStyleControls
+              editorState={ editorState }
+              onToggle={ toggleBlockType }
+            />
+          </React.Fragment>
         ) }
-        <BlockStyleControls
-          editorState={ editorState }
-          onToggle={ toggleBlockType }
-        />
-        
       </Controls>
       <div
         className={ `salo-editor__editor ${ !showPlaceholder ? 'hide-placeholder' : '' } ${ className }` }
@@ -278,7 +279,7 @@ const WYSIWYG = (props) => {
           spellCheck={ true }
           ref={ editorEl }
           onBlur={ (event) => {
-            if (!wrapperEl.current.contains(event.target)) {
+            if (!wrapperEl.current.contains(event.relatedTarget)) {
               dispatch({
                 type: 'TOGGLE_CONTROLS',
                 payload: false
