@@ -6,6 +6,12 @@ const reducer = (state, action) => {
         editorState: action.payload
       };
 
+    case 'TOGGLE_PLACEHOLDER':
+      return {
+        ...state,
+        showPlaceholder: action.payload
+      };
+
     case 'UPDATE_URL':
       return {
         ...state,

@@ -10,8 +10,9 @@ import {
   convertFromHTML
 } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
+import Icon from '@salo/icons';
 
-import { Wrapper, Controls } from './editor.styles';
+import { Wrapper, Controls, Format } from './editor.styles';
 
 import BlockStyleControls from './editor.block';
 import InlineStyleControls from './editor.inline';
@@ -41,11 +42,17 @@ const WYSIWYG = (props) => {
   
   const [state, dispatch] = React.useReducer(reducer, {
     editorState: value ? EditorState.createWithContent(x, decorator) : EditorState.createEmpty(decorator),
+    showPlaceholder: false,
     showURLInput: false,
     urlValue: ''
   });
 
-  const { editorState, showURLInput, urlValue } = state;
+  const {
+    editorState,
+    showPlaceholder,
+    showURLInput,
+    urlValue
+  } = state;
 
   const handleChange = (newEditorState) => {
     dispatch({
@@ -72,14 +79,34 @@ const WYSIWYG = (props) => {
   };
 
   // Placeholder behaviour
-  const contentState = editorState.getCurrentContent();
-  let showPlaceholder = false;
-  if (!contentState.hasText()) {
-    if (contentState.getBlockMap().first().getType() === 'unstyled') {
-      showPlaceholder = true;
+  React.useEffect(() => {
+    const contentState = editorState.getCurrentContent();
+    console.log('hasText', contentState.hasText());
+    const firstType = contentState
+      .getBlockMap()
+      .first()
+      .getType();
+    console.log('firstType', firstType);
+    console.log('eval', !contentState.hasText() && firstType === 'unstyled');
+    if (!contentState.hasText() && firstType === 'unstyled') {
+      dispatch({
+        type: 'TOGGLE_PLACEHOLDER',
+        payload: true
+      });
+    } else {
+      dispatch({
+        type: 'TOGGLE_PLACEHOLDER',
+        payload: false
+      });
     }
-  }
-
+  
+    console.log('in', {
+      showPlaceholder
+    });
+  }, [editorState, showPlaceholder]);
+  console.log('out', {
+    showPlaceholder
+  });
   const toggleBlockType = (blockType) => {
     handleChange(
       RichUtils.toggleBlockType(
@@ -102,9 +129,7 @@ const WYSIWYG = (props) => {
   const promptForLink = async (event) => {
     event.preventDefault();
     const selection = editorState.getSelection();
-    debugger; //eslint-disable-line
     if (!selection.isCollapsed()) {
-      debugger; //eslint-disable-line
       await dispatch({
         type: 'PROMPT_FOR_LINK'
       });
@@ -163,46 +188,47 @@ const WYSIWYG = (props) => {
             value={ urlValue }
             onKeyDown={ onLinkInputKeyDown }
           />
-          <button type='button' onMouseDown={ confirmLink }>
+          <Format type='button' onMouseDown={ confirmLink }>
             Confirm
-          </button>
+          </Format>
         </div>
       ) }
       <Controls>
-        { /* <button type='button' onClick={ () => handleStyleClick('BOLD') }>B</button>
-        <button type='button' onClick={ () => handleStyleClick('ITALIC') }>I</button>
-        <button type='button' onClick={ () => handleStyleClick('UNDERLINE') }>U</button> */ }
-        <button
-          type='button'
-          onMouseDown={ promptForLink }
-          style={ {
-            marginRight: 10
-          } }
-        >
-          Add Link
-        </button>
-        <button type='button' onMouseDown={ removeLink }>
-          Remove Link
-        </button>
-        <BlockStyleControls
-          editorState={ editorState }
-          onToggle={ toggleBlockType }
-        />
         <InlineStyleControls
           editorState={ editorState }
           onToggle={ toggleInlineStyle }
         />
+        <Format
+          type='button'
+          onMouseDown={ promptForLink }
+        >
+          <Icon icon='link' />
+        </Format>
+        <Format
+          type='button'
+          onMouseDown={ removeLink }
+        >
+          <Icon icon='link_off' />
+        </Format>
+        <BlockStyleControls
+          editorState={ editorState }
+          onToggle={ toggleBlockType }
+        />
+        
       </Controls>
-      <Editor
+      <div
         className={ `salo-editor__editor ${ !showPlaceholder ? 'hide-placeholder' : '' } ${ className }` }
-        editorState={ editorState }
-        onChange={ handleChange }
-        handleKeyCommand={ handleKeyCommand }
-        placeholder={ placeholder }
-        blockStyleFn={ getBlockStyle }
-        customStyleMap={ styleMap }
-        spellCheck={ true }
-      />
+      >
+        <Editor
+          editorState={ editorState }
+          onChange={ handleChange }
+          handleKeyCommand={ handleKeyCommand }
+          placeholder={ placeholder }
+          blockStyleFn={ getBlockStyle }
+          customStyleMap={ styleMap }
+          spellCheck={ true }
+        />
+      </div>
     </Wrapper>
   );
 };

@@ -1,35 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Icon from '@salo/icons';
+
+import { Format } from './editor.styles';
 
 const StyleButton = props => {
-  const { style, active, label } = props;
+  const { style, active, label, icon } = props;
 
   const onToggle = (event) => {
     event.preventDefault();
     props.onToggle(style);
   };
 
-  let className = 'RichEditor-styleButton';
-  if (active) {
-    className += ' RichEditor-activeButton';
-  }
-  
   return (
-    <button
+    <Format
       type='button'
-      className={ className }
+      isActive={ active }
       onMouseDown={ onToggle }
     >
-      { label }
-    </button>
+      { icon ? <Icon icon={ icon } vAlign='middle' /> : label }
+    </Format>
   );
+};
+
+StyleButton.defaultProps = {
+  icon: ''
 };
 
 StyleButton.propTypes = {
   style: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
+  icon: PropTypes.string,
   onToggle: PropTypes.func.isRequired
 };
 
-export default StyleButton;
+export default React.memo(StyleButton);

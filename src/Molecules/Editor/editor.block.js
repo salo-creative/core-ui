@@ -1,47 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Icon from '@salo/icons';
 
-import StyleButton from './editor.stylebutton';
+import { Dropdown, DropdownWrapper } from './editor.styles';
 
 const BLOCK_TYPES = [
   {
-    label: 'H1',
-    style: 'header-one'
-  },
-  {
-    label: 'H2',
-    style: 'header-two'
-  },
-  {
-    label: 'H3',
+    label: 'Heading',
     style: 'header-three'
   },
   {
-    label: 'H4',
+    label: 'Subheading',
     style: 'header-four'
   },
   {
-    label: 'H5',
-    style: 'header-five'
+    label: 'Paragraph',
+    style: 'unstyled'
   },
   {
-    label: 'H6',
-    style: 'header-six'
-  },
-  {
-    label: 'Blockquote',
+    label: 'Quote',
     style: 'blockquote'
   },
   {
-    label: 'UL',
+    label: 'Bulleted list',
     style: 'unordered-list-item'
   },
   {
-    label: 'OL',
+    label: 'Numbered list',
     style: 'ordered-list-item'
   },
   {
-    label: 'Code Block',
+    label: 'Code',
     style: 'code-block'
   }
 ];
@@ -54,18 +43,31 @@ const EditorBlock = (props) => {
     .getBlockForKey(selection.getStartKey())
     .getType();
 
+  const handleChange = (event) => {
+    props.onToggle(event.target.value);
+  };
+
   return (
-    <div className='RichEditor-controls'>
-      { BLOCK_TYPES.map((type) => (
-        <StyleButton
-          key={ type.label }
-          active={ type.style === blockType }
-          label={ type.label }
-          onToggle={ props.onToggle }
-          style={ type.style }
-        />
-      )) }
-    </div>
+    <DropdownWrapper>
+      <Dropdown onChange={ handleChange }>
+        { BLOCK_TYPES.map((type) => (
+          <option
+            key={ type.label }
+            selected={ type.style === blockType }
+            label={ type.label }
+            onToggle={ props.onToggle }
+            value={ type.style }
+          >
+            { type.label }
+          </option>
+        )) }
+      </Dropdown>
+      <Icon
+        icon='chevron_down'
+        fill='#444'
+        vAlign='middle'
+      />
+    </DropdownWrapper>
   );
 };
 

@@ -6,19 +6,18 @@ import StyleButton from './editor.stylebutton';
 const INLINE_STYLES = [
   {
     label: 'Bold',
-    style: 'BOLD'
+    style: 'BOLD',
+    icon: 'format_bold'
   },
   {
     label: 'Italic',
-    style: 'ITALIC'
+    style: 'ITALIC',
+    icon: 'format_italic'
   },
   {
     label: 'Underline',
-    style: 'UNDERLINE'
-  },
-  {
-    label: 'Monospace',
-    style: 'CODE'
+    style: 'UNDERLINE',
+    icon: 'format_underline'
   }
 ];
 
@@ -26,19 +25,16 @@ const InlineStyleControls = (props) => {
   const { editorState, onToggle } = props;
   const currentStyle = editorState.getCurrentInlineStyle();
   
-  return (
-    <div className='RichEditor-controls'>
-      { INLINE_STYLES.map((type) => (
-        <StyleButton
-          key={ type.label }
-          active={ currentStyle.has(type.style) }
-          label={ type.label }
-          onToggle={ onToggle }
-          style={ type.style }
-        />
-      )) }
-    </div>
-  );
+  return INLINE_STYLES.map((type) => (
+    <StyleButton
+      key={ type.label }
+      active={ currentStyle.has(type.style) }
+      label={ type.label }
+      onToggle={ onToggle }
+      style={ type.style }
+      icon={ type.icon }
+    />
+  ));
 };
 
 InlineStyleControls.propTypes = {
