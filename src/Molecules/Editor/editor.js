@@ -146,6 +146,7 @@ const WYSIWYG = (props) => {
         blockType
       )
     );
+    setTimeout(() => editorEl.current.focus(), 0);
   };
 
   // Toggles inline selections e.g. bold.
