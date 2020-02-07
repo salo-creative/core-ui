@@ -29,6 +29,7 @@ const WYSIWYG = (props) => {
   // * Refs (used to focus)
   const editorEl = React.useRef();
   const urlInput = React.useRef();
+  const wrapperEl = React.useRef();
   
   // Setup ability to add anchor tags.
   const decorator = new CompositeDecorator([
@@ -217,6 +218,7 @@ const WYSIWYG = (props) => {
     <Wrapper
       className='salo-editor'
       showControls={ showControls }
+      ref={ wrapperEl }
     >
       { showURLInput && (
         <URLPrompt>
@@ -226,6 +228,7 @@ const WYSIWYG = (props) => {
             ref={ urlInput }
             value={ urlValue }
             onKeyDown={ onLinkInputKeyDown }
+            placeholder='https://…'
           />
           <Format
             type='button'
@@ -274,11 +277,13 @@ const WYSIWYG = (props) => {
           customStyleMap={ styleMap }
           spellCheck={ true }
           ref={ editorEl }
-          onBlur={ () => {
-            dispatch({
-              type: 'TOGGLE_CONTROLS',
-              payload: false
-            });
+          onBlur={ (event) => {
+            if (!wrapperEl.current.contains(event.target)) {
+              dispatch({
+                type: 'TOGGLE_CONTROLS',
+                payload: false
+              });
+            }
           } }
           onFocus={ () => {
             dispatch({
