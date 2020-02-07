@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  get, isEmpty, find, findIndex
+  get, isEmpty, find, findIndex, hasIn
 } from 'lodash';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
@@ -17,7 +17,8 @@ const useFormData = ({
   mutationName = 'form_submit',
   mutationVariables = {},
   initialErrors = false,
-  submitAsString = true
+  submitAsString = true,
+  nestedBody = true // should form values be nested in a body object
 }) => {
   const model = React.useRef({});
   const {
@@ -155,6 +156,15 @@ const useFormData = ({
       formattedData, files
     };
   };
+
+  const prepBody = (formattedData) => {
+    if (!nestedBody) {
+      return formattedData || {};
+    }
+    return {
+      body: submitAsString ? JSON.stringify(formattedData) : formattedData // Have the option to submit as a string or as an object
+    };
+  };
  
   // Handle submit event
   const handleSubmit = async (e) => {
@@ -169,7 +179,7 @@ const useFormData = ({
           }, // activate Upload link
           variables: {
             id: data.form_show.id,
-            body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Have the option to submit as a string or as an object
+            ...prepBody(formattedData),
             attachments: files,
             ...mutationVariables
           }
@@ -188,7 +198,7 @@ const useFormData = ({
   };
 
   // Handle submit event for stepper
-  const handleSubmitStepper = async (e) => {
+  const handleSubmitStepper = async (e, formRef) => {
     e.preventDefault();
     // First check whether we are on the final step and should submit
     const index = findIndex(steps, {
@@ -206,6 +216,12 @@ const useFormData = ({
         dispatch({
           type: 'CHANGE_STEP', id: get(steps, `[${ index + 1 }].id`)
         });
+        // Scroll form to top when page changes.
+        if (hasIn(formRef, 'current.scrollIntoView')) {
+          setTimeout(() => {
+            formRef.current.scrollIntoView();
+          }, 1);
+        }
       } else {
         // Otherwise throw up the errors
         dispatch({
@@ -224,7 +240,7 @@ const useFormData = ({
         }, // activate Upload link
         variables: {
           id: data.form_show.id,
-          body: submitAsString ? JSON.stringify(formattedData) : formattedData, // Have the option to submit as a string or as an object
+          ...prepBody(formattedData),
           attachments: files,
           ...mutationVariables
         }

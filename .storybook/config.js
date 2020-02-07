@@ -5,25 +5,23 @@ import { withOptions } from '@storybook/addon-options';
 import { BrowserRouter } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import { ApolloProvider } from 'react-apollo';
-
+import { AuthProvider, getTokensClient } from '@salo/auth';
 import ApolloClient from '../src/Apollo/client';
 
 const client = ApolloClient({
   uri: 'http://localhost:7000/graphql',
-  tokens: { clientKey: 'mhbt06bY+s/9vgI6z3q8OKJTgHCUHX710tjENG+3dfY=' }
+  tokens: { clientKey: 'Bx2ojE2xLNcsQsHTUaNf+da35LiWBdac1oU/TovZ9auYiRdhvQfWrHhI0SfaCiKaht2JJ/dFhkyuD+o//LH+qQ==' }
 });
 
 const cookies = new Cookies();
 
 // COMPONENTS
 import {
-  AuthProvider, 
   GlobalStyles,
   Normalise, 
   Theme,
   AlertProvider,
-  AlertConsumer,
-  getTokensClient 
+  AlertConsumer
 } from '../src/index';
 import './storybook.scss';
 import 'react-dates/lib/css/_datepicker.css';
@@ -66,22 +64,22 @@ addDecorator(withInfo({
 addDecorator(story => {
   const tokens = getTokensClient(cookies);
   return (
-    <AuthProvider tokens={ tokens }>
-      <ApolloProvider client={ client }>
-        <BrowserRouter>
-          <Theme>
-            <AlertProvider>
-              <AlertConsumer
-                topOffset={ 0 }
-              />
-              <Normalise />
-              <GlobalStyles />
-                { story() }
-            </AlertProvider>
-          </Theme>
-        </BrowserRouter>
-      </ApolloProvider>
-    </AuthProvider>
+    <ApolloProvider client={ client }>
+      <AuthProvider tokens={ tokens }>
+          <BrowserRouter>
+            <Theme>
+              <AlertProvider>
+                <AlertConsumer
+                  topOffset={ 0 }
+                />
+                <Normalise />
+                <GlobalStyles />
+                  { story() }
+              </AlertProvider>
+            </Theme>
+          </BrowserRouter>
+      </AuthProvider>
+    </ApolloProvider>
   );
 } );
 
@@ -93,7 +91,6 @@ function loadStories() {
   require('../src/Molecules/_molecules.story');
   require('../src/Forms/_forms.story');
   require('../src/Organisms/_organisms.story');
-  require('../src/Auth/_auth.story');
   require('../src/helpers/_helpers.story');
 }
 

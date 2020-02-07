@@ -8,10 +8,8 @@ exports[`Renders against snapshot 1`] = `
   position: relative;
   border: none;
   background: #00ACED;
-  cursor: auto;
-  background-image: url('');
   background-size: cover;
-  background-position: top center;
+  background-position: center;
   border-radius: 50%;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -50,15 +48,16 @@ exports[`Renders against snapshot 1`] = `
   mix-blend-mode: difference;
 }
 
-<button
+<div
   class="c0"
   cursor="auto"
   size="100"
+  style="background-image: none; cursor: auto;"
 >
   <p
     class="c1"
   >
     U
   </p>
-</button>
+</div>
 `;

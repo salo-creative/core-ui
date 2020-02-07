@@ -1,6 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders against snapshot 1`] = `
+.c1 {
+  box-sizing: border-box;
+  position: relative;
+  height: 60px;
+  width: 60px;
+  will-change: transform,opacity;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%,-50%,0);
+  -ms-transform: translate3d(-50%,-50%,0);
+  transform: translate3d(-50%,-50%,0);
+}
+
+.c1:before,
+.c1:after,
+.c1 div {
+  content: '';
+  will-change: transform,opacity;
+  border-radius: 100%;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -30px;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: eyGOfj 1.3s 0s linear infinite;
+  animation: eyGOfj 1.3s 0s linear infinite;
+}
+
+.c1:before {
+  -webkit-animation-delay: -0.4s;
+  animation-delay: -0.4s;
+}
+
+.c1:after {
+  -webkit-animation-delay: -0.2s;
+  animation-delay: -0.2s;
+}
+
 .c0 {
   position: relative;
   width: 100%;
@@ -28,5 +71,13 @@ exports[`Renders against snapshot 1`] = `
 
 <div
   class="c0 salo-uploader "
-/>
+>
+  <div
+    class="c1"
+    data-testid="pulse-loader"
+    size="60"
+  >
+    <div />
+  </div>
+</div>
 `;

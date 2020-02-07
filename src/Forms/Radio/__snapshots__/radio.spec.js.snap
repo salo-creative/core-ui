@@ -30,7 +30,7 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="c0"
+  class="c0  salo-radio"
 >
   <label
     class="c1"
@@ -38,7 +38,7 @@ exports[`Renders against snapshot 1`] = `
     Label Text
   </label>
   <div
-    class="c2"
+    class="c2 salo-radio__wrapper"
   />
 </div>
 `;

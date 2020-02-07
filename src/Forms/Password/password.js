@@ -41,6 +41,20 @@ const Password = (props) => {
     matches: false
   });
 
+
+  // Reset values if blanked from outside
+  React.useEffect(() => {
+    if (!value && state.password !== value) {
+      setState({
+        password: '',
+        password_confirm: '',
+        password_confirm_touched: false,
+        matches: false
+      });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+  
   // On field blur we emit these back on the on change function to the
   // parent if fields match or not using the confirm functionality
   const handleBlur = () => {
@@ -95,7 +109,9 @@ const Password = (props) => {
         key={ `password_${ name }` }
         label='Password'
         name={ `password_${ name }` }
-        onChange={ ({ value: val }) => handleChange({ key: 'password', val }) }
+        onChange={ ({ value: val }) => handleChange({
+          key: 'password', val
+        }) }
         placeholder='Enter a password'
         required={ required }
         type='password'
@@ -110,7 +126,9 @@ const Password = (props) => {
           key={ `password_confirm_${ name }` }
           label='Re-enter password'
           name={ `password_confirm_${ name }` }
-          onChange={ ({ value: val }) => handleChange({ key: 'password_confirm', val }) }
+          onChange={ ({ value: val }) => handleChange({
+            key: 'password_confirm', val
+          }) }
           placeholder='Confirm password'
           required={ required }
           type='password'

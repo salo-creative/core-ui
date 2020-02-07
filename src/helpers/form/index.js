@@ -77,6 +77,11 @@ export const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/;
 export const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&£#])[A-Za-z\d@$!%*?&£#]{8,}$/;
 
 /**
+ * URL REGEX
+ */
+export const urlRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-_\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i;
+
+/**
  * POSTCODE REGEX
  */
 // https://stackoverflow.com/questions/164979/regex-for-matching-uk-postcodes
@@ -85,10 +90,26 @@ export const postcodeRegExp = /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(
 /**
  * SANITIZE HTML INPUT
  */
+const escapeHTML = str => str.replace(/(&amp;)|(&gt;)|(&lt;)/g,
+  match => {
+    // If it matches any of these tags they will be replaced
+    // by the non-escaped equivalent.
+    return {
+      '&amp;': '&',
+      '&lt;': '<',
+      '&gt;': '>'
+    }[match] || match;
+  });
 export const sanitize = (value) => {
-  return DomPurify.sanitize(value);
+  // DOMPurify does a cracking job at purifying for the DOM but in this case for display
+  // purposes we can de-escape '&' and chevrons as DOMPurify does the heavylifting for us
+  // of escaping bad content.
+  return escapeHTML(DomPurify.sanitize(value, {
+    USE_PROFILES: {
+      html: true
+    }
+  }));
 };
-
 
 /**
  * BUILD YUP SCHEMA
@@ -114,7 +135,9 @@ export const buildYup = ({ fields }) => {
     switch (type) {
       case 'string': {
         vRule = string();
-        vRule = minMaxInt({ min, max, vRule });
+        vRule = minMaxInt({
+          min, max, vRule
+        });
         if (regex) {
           vRule = vRule.matches(new RegExp(regex));
         }
@@ -122,13 +145,17 @@ export const buildYup = ({ fields }) => {
       }
       case 'password': {
         vRule = string();
-        vRule = minMaxInt({ min, max, vRule });
+        vRule = minMaxInt({
+          min, max, vRule
+        });
         vRule = vRule.matches(new RegExp(passwordRegex));
         break;
       }
       case 'number': {
         vRule = number();
-        vRule = minMaxInt({ min, max, vRule });
+        vRule = minMaxInt({
+          min, max, vRule
+        });
         break;
       }
       case 'boolean': {
@@ -141,7 +168,9 @@ export const buildYup = ({ fields }) => {
       case 'array':
       case 'arrayOfIds': {
         vRule = array();
-        vRule = minMaxInt({ min, max, vRule });
+        vRule = minMaxInt({
+          min, max, vRule
+        });
         break;
       }
       case 'date': {
@@ -177,7 +206,9 @@ export const buildYup = ({ fields }) => {
       }
       case 'email': {
         vRule = string().email();
-        vRule = minMaxInt({ min, max, vRule });
+        vRule = minMaxInt({
+          min, max, vRule
+        });
         break;
       }
       case 'tel': {
@@ -185,8 +216,10 @@ export const buildYup = ({ fields }) => {
         break;
       }
       case 'url': {
-        vRule = string().url();
-        vRule = minMaxInt({ min, max, vRule });
+        vRule = string().matches(urlRegex, 'The url supplied is not in an accepted format');
+        vRule = minMaxInt({
+          min, max, vRule
+        });
         break;
       }
       case 'file': {

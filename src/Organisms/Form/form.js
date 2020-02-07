@@ -24,6 +24,7 @@ const Form = (props) => {
     mutationName,
     mutationVariables,
     name,
+    nestedBody,
     onSubmit,
     initialData,
     renderSteps,
@@ -34,6 +35,7 @@ const Form = (props) => {
     submitAsString,
     textStrings,
     typeaheads,
+    usePrompt,
     width,
     // Custom components
     Button: CustomButton,
@@ -72,6 +74,7 @@ const Form = (props) => {
     mutation,
     mutationName,
     mutationVariables,
+    nestedBody,
     submitAsString
   });
 
@@ -120,20 +123,24 @@ const Form = (props) => {
     return null;
   };
 
+  // useEffect only expects functions to be returned.
+  // eslint-disable-next-line consistent-return
   React.useEffect(() => {
-    const prompter = (event) => {
-      if (isDirty && !submit.data && !submit.error) {
-        // Show prompt if filled in and not submitted/ing
-        event.preventDefault();
-        // eslint-disable-next-line no-param-reassign
-        event.returnValue = '';
-      }
-    };
-    window.addEventListener('beforeunload', prompter);
-    return () => {
-      window.removeEventListener('beforeunload', prompter);
-    };
-  }, [isDirty, submit]);
+    if (usePrompt) {
+      const prompter = (event) => {
+        if (isDirty && !submit.data && !submit.error) {
+          // Show prompt if filled in and not submitted/ing
+          event.preventDefault();
+          // eslint-disable-next-line no-param-reassign
+          event.returnValue = '';
+        }
+      };
+      window.addEventListener('beforeunload', prompter);
+      return () => {
+        window.removeEventListener('beforeunload', prompter);
+      };
+    }
+  }, [isDirty, submit, usePrompt]);
 
   return (
     <FormWrapper
@@ -158,7 +165,7 @@ const Form = (props) => {
       <form
         autoComplete='off'
         noValidate
-        onSubmit={ (e) => (isStepper ? handleSubmitStepper(e) : handleSubmit(e)) }
+        onSubmit={ (e) => (isStepper ? handleSubmitStepper(e, formRef) : handleSubmit(e)) }
         ref={ formRef }
       >
         { /* Render the basic form */ }
@@ -211,6 +218,7 @@ Form.defaultProps = {
   mutation: null,
   mutationName: 'form_submit',
   mutationVariables: {},
+  nestedBody: true,
   onSubmit: null,
   renderSteps: true,
   resetForm: null,
@@ -220,6 +228,7 @@ Form.defaultProps = {
   submitAsString: true,
   textStrings: {},
   typeaheads: null,
+  usePrompt: true,
   width: 'auto',
   // Custom components
   Button: null,
@@ -246,6 +255,7 @@ Form.propTypes = {
   mutationName: PropTypes.string, // Mandatory if passing mutation, mutation name to look up against
   mutationVariables: PropTypes.object, // Any additional variables you need to pass when doing a custom mutation
   name: PropTypes.string.isRequired,
+  nestedBody: PropTypes.bool, // Submit form fields nested in a body object
   onSubmit: PropTypes.func,
   renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
   resetForm: PropTypes.func,
@@ -255,6 +265,7 @@ Form.propTypes = {
   submitAsString: PropTypes.bool, // Send submitted data as a string or object
   textStrings: PropTypes.object, // Customise strings ({ submit })
   typeaheads: PropTypes.object, // Customise typeahead behaviour
+  usePrompt: PropTypes.bool, // Optionally disable the prompter when navigating away from dirty forms
   width: PropTypes.string,
   // Custom components
   Button: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

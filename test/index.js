@@ -2,11 +2,10 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { MockedProvider } from '@apollo/react-testing';
 
 // HELPERS
 import Theme from '../src/Global/Theme';
-import createApolloClient from '../src/Apollo/client';
 
 export const fluidTypeVals = ({ minLH, maxLH, maxFS, minFS }) => ({
   minFont: `calc(${ minFS }px + (${ maxFS } - ${ minFS }) * (100vw - 400px) / (1200 - 400))`,
@@ -25,19 +24,14 @@ export const renderWithTheme = (node) => {
   );
 };
 
-export const renderWithApollo = (node) => {
-  const client = createApolloClient({
-    uri: 'http://localhost:7000',
-    tokens: {}
-  });
-  
+export const renderWithApollo = (node, mocks) => {
   return (
     render(
       <Theme>
         <Router history={ createHistory() }>
-          <ApolloProvider client={ client }>
+          <MockedProvider mocks={ mocks } addTypename={ false }>
             { node }
-          </ApolloProvider>
+          </MockedProvider>
         </Router>
       </Theme>
     )

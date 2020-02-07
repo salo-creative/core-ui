@@ -1,30 +1,32 @@
 import styled from 'styled-components';
 
-export const ModalWrapper = styled.div`
-  ${ ({ transition, state }) => (
-    transition === 'fade' ? `
-      opacity: ${ state === 'entered' ? 1 : 0 };
-      transition: opacity 300ms ease-in-out;
-    ` : ''
-  ) }
-`;
-
 export const Container = styled.div`
   position: fixed;
   z-index: 97;
-  ${ ({ transition, state }) => (
-    transition === 'slide' ? `
-      top: ${ state === 'entered' ? 0 : '-100%' };
-      transition: top 300ms ease-in-out;
-    ` : 'top: 0;'
-  ) }
-  ${ ({ transition, state }) => (
-    transition === 'expand' ? `
-      height: ${ state === 'entered' ? '100%' : 0 };
-      transition: height 300ms ease-in-out;
-      overflow: hidden;
-    ` : 'height: 100%;'
-  ) }
+  top: 0%;
+  height: 100%;
+  ${ ({ transition, state }) => {
+    switch (transition) {
+      case 'slide':
+        return `
+          top: ${ state === 'entered' ? 0 : '-100%' };
+          transition: top 300ms cubic-bezier(0.470, 0.000, 0.745, 0.715);
+        `;
+      case 'expand':
+        return `
+          height: ${ state === 'entered' ? '100%' : 0 };
+          transition: height 300ms cubic-bezier(0.470, 0.000, 0.745, 0.715);
+          overflow: hidden;
+        `;
+      case 'fade':
+      default:
+        return `
+          opacity: ${ state === 'entered' ? 1 : 0 };
+          transition: opacity 300ms cubic-bezier(0.470, 0.000, 0.745, 0.715);
+        `;
+    }
+  } }
+  
   left: 0;
   width: 100%;
   display: flex;
@@ -41,6 +43,8 @@ export const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${ ({ background }) => (background || `rgba(0, 0, 0, ${ ({ transparent }) => transparent })`) } ;
+  opacity: ${ ({ state }) => (state === 'entered' ? 1 : 0) };
+  transition: opacity 300ms cubic-bezier(0.470, 0.000, 0.745, 0.715);
 `;
 
 export const Wrapper = styled.div`

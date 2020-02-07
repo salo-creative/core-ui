@@ -60,11 +60,13 @@ export const Actions = styled.div`
   .card & {
     flex-direction: column;
     right: 0;
-    bottom: 6rem;
-    left: 0;
+    bottom: 5rem;
     padding: 0 0 0.5rem;
-    width: calc(100% - 6rem);
+    width: 100%;
     text-align: right;
+    .salo-flyout__button {
+      padding: 0;
+    }
   }
 
   .table & {
@@ -110,14 +112,24 @@ export const Wrapper = styled.div`
   display: inline-block;
   .card & {
     position: absolute;
+    z-index: 5;
     right: 1rem;
-    bottom: 1rem;
+    bottom: auto;
+  }
+  .card.is-active & {
+      bottom: 1rem;
+    }
+  }
+  .card__actions-top & {
+    top: 1rem;
   }
 `;
 
 export const Toggle = styled.button`
   cursor: pointer;
   display: flex;
+  justify-content: center;
+  align-items: center;
   outline: none;
   border-radius: 50%;
   background: inherit;

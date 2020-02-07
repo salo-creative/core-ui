@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 // COMPONENTS & STYLES
 import ErrorText from '../components/ErrorText';
 import HelperText from '../components/HelperText';
-import { Wrapper, HiddenCheckBox, StyledCheckBox, CheckBoxLabel } from './checkBox.styles';
+import {
+  Wrapper, HiddenCheckBox, StyledCheckBox, CheckBoxLabel
+} from './checkBox.styles';
 
 class CheckBox extends React.Component {
   handleCheckboxChange = (e) => {
@@ -12,11 +14,14 @@ class CheckBox extends React.Component {
     e.preventDefault();
 
     if (disabled) return;
-    onChange({ checked: !checked, label, name });
+    onChange({
+      checked: !checked, label, name
+    });
   }
 
   render() {
     const {
+      className,
       checked,
       colours,
       disabled,
@@ -35,8 +40,10 @@ class CheckBox extends React.Component {
     return (
       <Wrapper
         margin={ margin }
+        className={ `${ className } salo-checkbox` }
       >
         <CheckBoxLabel
+          className='salo-checkbox__label'
           onClick={ this.handleCheckboxChange }
           disabled={ disabled }
           size={ size }
@@ -44,7 +51,7 @@ class CheckBox extends React.Component {
           <HiddenCheckBox defaultChecked={ checked } name={ name } />
           <StyledCheckBox
             borderRadius={ radio ? '50%' : '3px' }
-            className={ `styled-checkbox ${ checked ? 'checked' : '' }` }
+            className={ `salo-checkbox__input styled-checkbox ${ checked ? 'checked' : '' }` }
             checked={ checked }
             colours={ colours }
             shadow={ shadow }
@@ -59,12 +66,14 @@ class CheckBox extends React.Component {
           { label }{ required && <sup>*</sup> }
         </CheckBoxLabel>
         <ErrorText
+          className='salo-checkbox__error'
           disabled={ disabled }
           error={ error }
           errorMessage={ errorMessage }
           size={ size }
         />
         <HelperText
+          className='salo-checkbox__helper'
           disabled={ disabled }
           error={ error }
           helperText={ helperText }
@@ -76,6 +85,7 @@ class CheckBox extends React.Component {
 }
 
 CheckBox.defaultProps = {
+  className: '',
   colours: null,
   disabled: false,
   error: false,
@@ -90,6 +100,7 @@ CheckBox.defaultProps = {
 };
 
 CheckBox.propTypes = {
+  className: PropTypes.string,
   checked: PropTypes.bool.isRequired,
   colours: PropTypes.shape({
     checked: PropTypes.shape({
