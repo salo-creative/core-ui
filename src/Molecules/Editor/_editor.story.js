@@ -16,7 +16,7 @@ stories.add(
     return (
       <Editor
         placeholder={ 'some \n\rmultiline text' }
-        value='<p>sdf sdf sdf sdf&nbsp;</p>'
+        value='<p>sdf sdf <a href="https://facebook.com">sdf</a> sdf&nbsp;</p>'
         onExport={ ({ html }) => console.log(html) }
       />
     );

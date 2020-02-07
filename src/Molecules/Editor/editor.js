@@ -12,7 +12,9 @@ import {
 import { stateToHTML } from 'draft-js-export-html';
 import Icon from '@salo/icons';
 
-import { Wrapper, Controls, Format } from './editor.styles';
+import {
+  Wrapper, Controls, Format, URLPrompt
+} from './editor.styles';
 
 import BlockStyleControls from './editor.block';
 import InlineStyleControls from './editor.inline';
@@ -55,6 +57,7 @@ const WYSIWYG = (props) => {
   const [state, dispatch] = React.useReducer(reducer, {
     // Either create from pre-populated HTML or empty
     editorState: blocks ? EditorState.createWithContent(blocks, decorator) : EditorState.createEmpty(decorator),
+    showControls: false,
     showPlaceholder: false,
     showURLInput: false,
     urlValue: ''
@@ -62,6 +65,7 @@ const WYSIWYG = (props) => {
 
   const {
     editorState,
+    showControls,
     showPlaceholder,
     showURLInput,
     urlValue
@@ -77,7 +81,24 @@ const WYSIWYG = (props) => {
     // Export new HTML on every change.
     if (typeof onExport === 'function') {
       onExport({
-        html: stateToHTML(newEditorState.getCurrentContent())
+        html: stateToHTML(newEditorState.getCurrentContent(), {
+          entityStyleFn: (entity) => {
+            // Add _blank to all links.
+            const entityType = entity.get('type').toLowerCase();
+            if (entityType === 'link') {
+              const data = entity.getData();
+              return {
+                element: 'a',
+                attributes: {
+                  href: data.url,
+                  target: '_blank',
+                  rel: 'noopener noreferrer'
+                }
+              };
+            }
+            return entity;
+          }
+        })
       });
     }
   };
@@ -189,39 +210,51 @@ const WYSIWYG = (props) => {
     payload: event.target.value
   });
 
+  const hasLink = RichUtils.currentBlockContainsLink(editorState);
+
   return (
-    <Wrapper className='salo-editor'>
+    <Wrapper
+      className='salo-editor'
+      showControls={ showControls }
+    >
       { showURLInput && (
-        <div>
+        <URLPrompt>
           <input
+            type='url'
             onChange={ onURLChange }
             ref={ urlInput }
-            type='text'
             value={ urlValue }
             onKeyDown={ onLinkInputKeyDown }
           />
-          <Format type='button' onMouseDown={ confirmLink }>
-            Confirm
+          <Format
+            type='button'
+            onClick={ confirmLink }
+          >
+            Add link
           </Format>
-        </div>
+        </URLPrompt>
       ) }
-      <Controls>
+      <Controls hide={ !showControls }>
         <InlineStyleControls
           editorState={ editorState }
           onToggle={ toggleInlineStyle }
         />
-        <Format
-          type='button'
-          onMouseDown={ promptForLink }
-        >
-          <Icon icon='link' />
-        </Format>
-        <Format
-          type='button'
-          onMouseDown={ removeLink }
-        >
-          <Icon icon='link_off' />
-        </Format>
+        { !hasLink && (
+          <Format
+            type='button'
+            onClick={ promptForLink }
+          >
+            <Icon icon='link' />
+          </Format>
+        ) }
+        { hasLink && (
+          <Format
+            type='button'
+            onClick={ removeLink }
+          >
+            <Icon icon='link_off' />
+          </Format>
+        ) }
         <BlockStyleControls
           editorState={ editorState }
           onToggle={ toggleBlockType }
@@ -239,6 +272,19 @@ const WYSIWYG = (props) => {
           blockStyleFn={ getBlockStyle }
           customStyleMap={ styleMap }
           spellCheck={ true }
+          ref={ editorEl }
+          onBlur={ () => {
+            dispatch({
+              type: 'TOGGLE_CONTROLS',
+              payload: false
+            });
+          } }
+          onFocus={ () => {
+            dispatch({
+              type: 'TOGGLE_CONTROLS',
+              payload: true
+            });
+          } }
         />
       </div>
     </Wrapper>
