@@ -24,9 +24,11 @@ import { styleMap, getBlockStyle, findLinkEntities } from './editor.helpers';
 const WYSIWYG = (props) => {
   const { className, placeholder, value, onExport } = props;
 
-  const editor = React.useRef();
+  // * Refs (used to focus)
+  const editorEl = React.useRef();
   const urlInput = React.useRef();
   
+  // Setup ability to add anchor tags.
   const decorator = new CompositeDecorator([
     {
       strategy: findLinkEntities,
@@ -34,14 +36,25 @@ const WYSIWYG = (props) => {
     }
   ]);
 
-  const blocksFromHTML = convertFromHTML(value);
-  const x = ContentState.createFromBlockArray(
-    blocksFromHTML.contentBlocks,
-    blocksFromHTML.entityMap
-  );
+  // Evaluate if we need to decode HTML.
+  const blocks = (() => {
+    if (!value) {
+      return null;
+    }
+    try {
+      const blocksFromHTML = convertFromHTML(value);
+      return ContentState.createFromBlockArray(
+        blocksFromHTML.contentBlocks,
+        blocksFromHTML.entityMap
+      );
+    } catch (error) {
+      return null;
+    }
+  })();
   
   const [state, dispatch] = React.useReducer(reducer, {
-    editorState: value ? EditorState.createWithContent(x, decorator) : EditorState.createEmpty(decorator),
+    // Either create from pre-populated HTML or empty
+    editorState: blocks ? EditorState.createWithContent(blocks, decorator) : EditorState.createEmpty(decorator),
     showPlaceholder: false,
     showURLInput: false,
     urlValue: ''
@@ -54,12 +67,14 @@ const WYSIWYG = (props) => {
     urlValue
   } = state;
 
+  // Handle updating editor state changes.
   const handleChange = (newEditorState) => {
     dispatch({
       type: 'UPDATE_EDITOR_STATE',
       payload: newEditorState
     });
 
+    // Export new HTML on every change.
     if (typeof onExport === 'function') {
       onExport({
         html: stateToHTML(newEditorState.getCurrentContent())
@@ -67,6 +82,7 @@ const WYSIWYG = (props) => {
     }
   };
 
+  // Handle formatting commands.
   const handleKeyCommand = (command) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
 
@@ -78,16 +94,16 @@ const WYSIWYG = (props) => {
     return 'not-handled';
   };
 
-  // Placeholder behaviour
+  // Placeholder behaviour.
   React.useEffect(() => {
     const contentState = editorState.getCurrentContent();
-    console.log('hasText', contentState.hasText());
     const firstType = contentState
       .getBlockMap()
       .first()
       .getType();
-    console.log('firstType', firstType);
-    console.log('eval', !contentState.hasText() && firstType === 'unstyled');
+    // The default draft.js placeholder behaviour doesn't mimic a normal input
+    // So we have to manually hide it. This check hides it if there's no text or
+    // the first item is unstyled (in case they start with a list).
     if (!contentState.hasText() && firstType === 'unstyled') {
       dispatch({
         type: 'TOGGLE_PLACEHOLDER',
@@ -99,14 +115,9 @@ const WYSIWYG = (props) => {
         payload: false
       });
     }
-  
-    console.log('in', {
-      showPlaceholder
-    });
   }, [editorState, showPlaceholder]);
-  console.log('out', {
-    showPlaceholder
-  });
+
+  // Toggles block selections e.g. headings.
   const toggleBlockType = (blockType) => {
     handleChange(
       RichUtils.toggleBlockType(
@@ -116,6 +127,7 @@ const WYSIWYG = (props) => {
     );
   };
 
+  // Toggles inline selections e.g. bold.
   const toggleInlineStyle = (inlineStyle) => {
     handleChange(
       RichUtils.toggleInlineStyle(
@@ -137,8 +149,8 @@ const WYSIWYG = (props) => {
     }
   };
 
-  const confirmLink = async (e) => {
-    e.preventDefault();
+  const confirmLink = async (event) => {
+    event.preventDefault();
     const entityKey = Entity.create('LINK', 'MUTABLE', {
       url: urlValue
     });
@@ -152,17 +164,17 @@ const WYSIWYG = (props) => {
       )
     });
 
-    setTimeout(() => editor.current.focus(), 0);
+    setTimeout(() => editorEl.current.focus(), 0);
   };
 
   const onLinkInputKeyDown = (event) => {
-    if (event.which === 13) {
+    if (event.key === 'Enter') {
       confirmLink(event);
     }
   };
 
-  const removeLink = (e) => {
-    e.preventDefault();
+  const removeLink = (event) => {
+    event.preventDefault();
     const selection = editorState.getSelection();
     if (!selection.isCollapsed()) {
       dispatch({

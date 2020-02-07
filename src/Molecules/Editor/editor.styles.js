@@ -27,7 +27,7 @@ export const Controls = styled.div`
   background-color: #fff;
   position: absolute;
   left: 50%;
-  top: 1rem;
+  top: -1rem;
   transform: translate(-50%, 50%);
   width: 35rem;
   padding: 1rem 0 0.5rem;
