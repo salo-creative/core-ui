@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '@salo/icons';
 
-import { Format } from './editor.styles';
+import { Format } from '../editor.styles';
 
 const StyleButton = props => {
   const { style, active, label, icon } = props;
