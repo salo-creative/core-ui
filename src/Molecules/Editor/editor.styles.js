@@ -2,15 +2,6 @@ import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   position: relative;
-  padding: 1rem;
-  background-color: ${ ({ theme }) => theme.paleGrey };
-  color: #000;
-  font-size: 1.5rem;
-  line-height: 1.2;
-  min-height: 18rem;
-  padding: ${ ({ showControls }) => (showControls ? '7rem 3rem 3rem' : '3rem') };
-  border: 1px solid #E9EAED;
-  transition: padding 0.5s ease-in;
 
   .public-DraftEditorPlaceholder-inner {
     position: absolute;
@@ -20,6 +11,15 @@ export const Wrapper = styled.div`
 
   .public-DraftEditor-content {
     min-height: 13rem;
+    padding: 1rem;
+    background-color: ${ ({ theme }) => theme.paleGrey };
+    color: #000;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    min-height: 18rem;
+    padding: ${ ({ showControls }) => (showControls ? '7rem 3rem 3rem' : '3rem') };
+    border: 1px solid #E9EAED;
+    transition: padding 0.5s ease-in;
   }
 
   .RichEditor-blockquote {
@@ -86,15 +86,18 @@ export const Dropdown = styled.select`
   background: none;
   appearance: none;
   position: relative;
+  width: 100%;
 `;
 
 export const DropdownWrapper = styled.div`
   position: relative;
-  padding-right: 3rem;
   margin: 0 1rem;
+  width: 13rem;
 
   svg {
-    top: -0.25rem;
     position: absolute;
+    top: -0.25rem;
+    right: 0;
+    pointer-events: none;
   }
 `;

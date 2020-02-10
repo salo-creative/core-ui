@@ -1,12 +1,11 @@
-import { Entity } from 'draft-js';
 
-export function findLinkEntities(contentBlock, callback) {
+export function findLinkEntities(contentBlock, callback, contentState) {
   contentBlock.findEntityRanges(
     (character) => {
       const entityKey = character.getEntity();
       return (
         entityKey !== null
-        && Entity.get(entityKey).getType() === 'LINK'
+        && contentState.getEntity(entityKey).getType() === 'LINK'
       );
     },
     callback

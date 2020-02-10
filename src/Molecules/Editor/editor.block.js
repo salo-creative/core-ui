@@ -49,11 +49,10 @@ const EditorBlock = (props) => {
 
   return (
     <DropdownWrapper>
-      <Dropdown onChange={ handleChange }>
+      <Dropdown onChange={ handleChange } value={ blockType }>
         { BLOCK_TYPES.map((type) => (
           <option
             key={ type.label }
-            selected={ type.style === blockType }
             label={ type.label }
             onToggle={ props.onToggle }
             value={ type.style }

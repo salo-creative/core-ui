@@ -257,7 +257,7 @@ const WYSIWYG = (props) => {
                 }
               } }
             >
-              <Icon icon={ hasLink ? 'link-off' : 'link' } />
+              <Icon icon={ hasLink ? 'link_off' : 'link' } />
             </Format>
             <BlockStyleControls
               editorState={ editorState }

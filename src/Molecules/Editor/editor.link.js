@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Entity } from 'draft-js';
 
 const Link = (props) => {
-  const { children, entityKey } = props;
-  const { url } = Entity.get(entityKey).getData();
+  const { children, contentState, entityKey } = props;
+  const { url } = contentState.getEntity(entityKey).getData();
   return (
     <a href={ url }>
       { children }
@@ -14,6 +13,7 @@ const Link = (props) => {
 
 Link.propTypes = {
   children: PropTypes.any.isRequired,
+  contentState: PropTypes.object.isRequired,
   entityKey: PropTypes.string.isRequired
 };
 
