@@ -122,6 +122,7 @@ const WYSIWYG = (props) => {
       .getBlockMap()
       .first()
       .getType();
+
     // The default draft.js placeholder behaviour doesn't mimic a normal input
     // So we have to manually hide it. This check hides it if there's no text or
     // the first item is unstyled (in case they start with a list).
@@ -159,8 +160,6 @@ const WYSIWYG = (props) => {
     );
   };
 
-  console.log('showURL', showURLInput);
-  
   return (
     <Wrapper
       className='salo-editor'
