@@ -1810,10 +1810,10 @@
     universal-cookie "~4.0.2"
     yup "~0.28.0"
 
-"@salo/icons@~1.1.10":
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/@salo/icons/-/icons-1.1.10.tgz#21703a351c957e2c521dfba5c040088f0383f2d3"
-  integrity sha512-atYw4bpoU8/Qew0Hd6iO23V07b3HkUk0F8noc4d7ocm50965CDpTSsdzoj76TetLqz3PAwGC1uoi1dHIRAZPGg==
+"@salo/icons@~1.1.11":
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/@salo/icons/-/icons-1.1.11.tgz#66e417eaa541fdb62b9f40944345a564c8bd15de"
+  integrity sha512-O9vAuenMP5yCnyDpI6r0oPS0uc2yq54BCJpqw5w0Xqirf8wiKMOzLFytOlUvROKgJ7WFU2IcHsC0g6gq1Q25Vg==
   dependencies:
     "@babel/polyfill" "^7.7.0"
     "@babel/runtime" "^7.7.6"
