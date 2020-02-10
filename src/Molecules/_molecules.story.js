@@ -3,6 +3,7 @@ import './Breadcrumb/_breadcrumb.story';
 import './Button/_button.story';
 import './Card/_card.story';
 import './Drop/_drop.story';
+import './Editor/_editor.story';
 import './ErrorMessage/_errorMessage.story';
 import './FlyOut/_flyOut.story';
 import './ImageUpload/_image.story';
