@@ -26,7 +26,7 @@ stories.add(
     return (
       <Editor
         placeholder={ 'some \n\rmultiline text' }
-        value='<p>Hello, we are <a href="https://salo-creative.co.uk">Salo Creative</a>.</p>'
+        value='<p>Hello, we are <a href="https://salocreative.co.uk">Salo Creative</a>.</p>'
         onExport={ ({ html }) => console.log(html) }
       />
     );
