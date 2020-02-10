@@ -24,10 +24,10 @@ const reducer = (state, action) => {
         urlValue: action.payload
       };
  
-    case 'PROMPT_FOR_LINK':
+    case 'TOGGLE_LINK_CONTROLS':
       return {
         ...state,
-        showURLInput: true,
+        showURLInput: action.payload,
         urlValue: ''
       };
 

@@ -9,14 +9,16 @@ import {
   convertFromHTML
 } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
-import Icon from '@salo/icons';
 
-import { Wrapper, Controls, Format } from './editor.styles';
-
+// COMPONENTS & STYLES
+import { Wrapper, Controls } from './editor.styles';
 import BlockStyleControls from './editor.block';
 import InlineStyleControls from './editor.inline';
 import Link from './editor.link';
+import LinkControls from './editor.linkControls';
+import UrlInput from './editor.linkInput';
 
+// HELPERS & CONSTANTS
 import reducer from './editor.reducer';
 import { styleMap, getBlockStyle, findLinkEntities } from './editor.helpers';
 
@@ -157,59 +159,8 @@ const WYSIWYG = (props) => {
     );
   };
 
-  // * Links
-  const promptForLink = async () => {
-    const selection = editorState.getSelection();
-    if (!selection.isCollapsed()) {
-      await dispatch({
-        type: 'PROMPT_FOR_LINK'
-      });
-      setTimeout(() => urlInput.current.focus(), 0);
-    }
-  };
-
-  const confirmLink = async (event) => {
-    event.preventDefault();
-    const contentStateWithEntity = editorState.getCurrentContent().createEntity('LINK', 'MUTABLE', {
-      url: urlValue
-    });
-    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-
-    await dispatch({
-      type: 'CONFIRM_LINK',
-      payload: RichUtils.toggleLink(
-        editorState,
-        editorState.getSelection(),
-        entityKey
-      )
-    });
-
-    setTimeout(() => editorEl.current.focus(), 0);
-  };
-
-  const handleLinkInput = (event) => {
-    if (event.key === 'Enter') {
-      confirmLink(event);
-    }
-  };
-
-  const removeLink = () => {
-    const selection = editorState.getSelection();
-    if (!selection.isCollapsed()) {
-      dispatch({
-        type: 'UPDATE_EDITOR_STATE',
-        payload: RichUtils.toggleLink(editorState, selection, null)
-      });
-    }
-  };
-
-  const onURLChange = (event) => dispatch({
-    type: 'UPDATE_URL',
-    payload: event.target.value
-  });
-
-  const hasLink = RichUtils.currentBlockContainsLink(editorState);
-
+  console.log('showURL', showURLInput);
+  
   return (
     <Wrapper
       className='salo-editor'
@@ -218,22 +169,13 @@ const WYSIWYG = (props) => {
     >
       <Controls hide={ !showControls }>
         { showURLInput && (
-          <React.Fragment>
-            <input
-              type='url'
-              onChange={ onURLChange }
-              ref={ urlInput }
-              value={ urlValue }
-              onKeyPress={ handleLinkInput }
-              placeholder='https://…'
-            />
-            <Format
-              type='button'
-              onClick={ confirmLink }
-            >
-              Add link
-            </Format>
-          </React.Fragment>
+          <UrlInput
+            dispatch={ dispatch }
+            editorEl={ editorEl }
+            editorState={ editorState }
+            urlInput={ urlInput }
+            urlValue={ urlValue }
+          />
         ) }
         { !showURLInput && (
           <React.Fragment>
@@ -241,24 +183,11 @@ const WYSIWYG = (props) => {
               editorState={ editorState }
               onToggle={ toggleInlineStyle }
             />
-            <Format
-              type='button'
-              onClick={ (event) => {
-                event.preventDefault();
-
-                dispatch({
-                  type: 'TOGGLE_CONTROLS',
-                  payload: true
-                });
-                if (hasLink) {
-                  removeLink();
-                } else {
-                  promptForLink();
-                }
-              } }
-            >
-              <Icon icon={ hasLink ? 'link_off' : 'link' } />
-            </Format>
+            <LinkControls
+              editorState={ editorState }
+              dispatch={ dispatch }
+              urlInput={ urlInput }
+            />
             <BlockStyleControls
               editorState={ editorState }
               onToggle={ toggleBlockType }

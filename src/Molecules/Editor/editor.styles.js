@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { transparentize } from 'polished';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -41,7 +42,7 @@ export const Controls = styled.div`
   top: -1rem;
   transform: translate(-50%, -150%);
   width: 35rem;
-  padding: 1rem 0 0.5rem;
+  padding: 1rem 1rem 0.5rem;
   border-radius: 2rem;
   box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
   display: flex;
@@ -59,11 +60,6 @@ export const Controls = styled.div`
     }
     return '';
   } }
-
-  input {
-    margin: 0 1rem;
-    flex: 1;
-  }
 `;
 
 export const Format = styled.button`
@@ -72,9 +68,43 @@ export const Format = styled.button`
   border: 0;
   color: ${ ({ isActive }) => (isActive ? '#ccc' : '') };
   cursor: pointer;
+
+  &:disabled {
+    path {
+      fill: ${ ({ theme }) => theme.grey };
+    }
+  }
   
   path {
+    transition: fill 0.15s ease-in;
     fill: ${ ({ isActive }) => (isActive ? '#ccc' : '') };
+  }
+`;
+
+export const LinkButton = styled.button`
+  appearance: none;
+  background-color: ${ ({ theme }) => theme.darkGrey };
+  border: 0;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  height: ${ ({ xSize }) => xSize || '3rem' };
+  width: ${ ({ xSize }) => xSize || '3rem' };
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease-in;
+
+  &:hover {
+    background-color: ${ ({ theme, hoverColour }) => (theme[hoverColour] ? theme[hoverColour] : '') };
+  }
+
+  &:disabled {
+    background-color: ${ ({ theme }) => theme.grey };
+  }
+  
+  & + & {
+    margin-left: 1rem;
   }
 `;
 
@@ -100,4 +130,15 @@ export const DropdownWrapper = styled.div`
     right: 0;
     pointer-events: none;
   }
+`;
+
+export const URLInput = styled.input`
+  color: ${ ({ theme }) => theme.darkGrey };
+  background-color: ${ ({ theme }) => theme.grey };
+  margin: 0 1rem;
+  flex: 1;
+  border: 0;
+  font-size: 1.4rem;
+  padding: 1rem;
+  border-radius: 2rem;
 `;
