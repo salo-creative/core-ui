@@ -64,7 +64,7 @@ const useForm = ({ model, initialErrors = false, name = uuid(), currentData }) =
       dispatch({
         type: 'DATA_MAPPED', data: newData
       });
-    } else {
+    } else if (mapData) {
       dispatch({
         type: 'NO_DATA_TO_MAP'
       });
