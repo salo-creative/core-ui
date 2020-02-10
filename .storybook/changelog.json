@@ -1,5 +1,6 @@
 [
-{ "user": "Tim Stone", "version": "v1.2.6", "commit": "Added char count to Editor" },
+{ "user": "Rich Comber", "version": "v1.3.0", "commit": "Adding WYSIWYG molecule" },
+{ "user": "Rich Comber", "version": "v1.2.6", "commit": "Fixing use form data handling" },
 { "user": "Rich Comber", "version": "v1.2.5", "commit": "Fixing avatar background positioning" },
 { "user": "Rich Comber", "version": "v1.2.4", "commit": "Minor errors in Dynamic form reset and submit handling" },
 { "user": "Rich Comber", "version": "v1.2.3", "commit": "Fixing submit loading state when using custom method" },

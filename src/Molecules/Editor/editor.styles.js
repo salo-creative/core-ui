@@ -42,8 +42,9 @@ export const Controls = styled.div`
   left: 50%;
   top: -1rem;
   transform: translate(-50%, -150%);
-  width: 35rem;
-  padding: 1rem 1rem 0.5rem;
+  width: 32rem;
+  padding: 0 1rem;
+  height: 4.5rem;
   border-radius: 2rem;
   box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
   display: flex;
@@ -67,6 +68,8 @@ export const Format = styled.button`
   appearance: none;
   background: transparent;
   border: 0;
+  padding: 0 1rem;
+  height: 4.5rem;
   color: ${ ({ isActive }) => (isActive ? '#ccc' : '') };
   cursor: pointer;
 
@@ -87,7 +90,7 @@ export const LinkButton = styled.button`
   background-color: ${ ({ theme }) => theme.darkGrey };
   border: 0;
   border-radius: 2rem;
-  padding: 0.5rem;
+  padding: 0;
   height: ${ ({ xSize }) => xSize || '3rem' };
   width: ${ ({ xSize }) => xSize || '3rem' };
   cursor: pointer;
@@ -112,12 +115,14 @@ export const LinkButton = styled.button`
 export const Dropdown = styled.select`
   font-size: 1.5rem;
   line-height: 1.2;
+  height: 4.5rem;
   border: 0;
   margin: 0;
   background: none;
   appearance: none;
   position: relative;
   width: 100%;
+  cursor: pointer;
 `;
 
 export const DropdownWrapper = styled.div`
@@ -127,7 +132,7 @@ export const DropdownWrapper = styled.div`
 
   svg {
     position: absolute;
-    top: -0.25rem;
+    top: 1rem;
     right: 0;
     pointer-events: none;
   }
@@ -140,7 +145,8 @@ export const URLInput = styled.input`
   flex: 1;
   border: 0;
   font-size: 1.4rem;
-  padding: 1rem;
+  padding: 0 1rem;
+  height: 3.5rem;
   border-radius: 2rem;
 `;
 
