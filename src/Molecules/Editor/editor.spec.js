@@ -6,9 +6,10 @@ import { renderWithTheme } from '../../../test';
 // COMPONENT
 import Editor from './index';
 
-test('Renders against snapshot', async () => {
+test('it has correct class names', async () => {
   const { container } = renderWithTheme(
     <Editor />
   );
-  expect(container.firstChild).toMatchSnapshot();
+  expect(container.firstChild.className.includes('salo-editor')).toBe(true);
+  expect(container.firstChild.querySelectorAll('.salo-editor__button')).toHaveLength(3);
 });

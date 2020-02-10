@@ -14,6 +14,7 @@ const StyleButton = props => {
 
   return (
     <Format
+      className='salo-editor__button'
       type='button'
       isActive={ active }
       onMouseDown={ onToggle }
