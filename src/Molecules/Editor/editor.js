@@ -5,7 +5,6 @@ import {
   ContentState,
   Editor,
   EditorState,
-  Entity,
   RichUtils,
   convertFromHTML
 } from 'draft-js';
@@ -171,9 +170,10 @@ const WYSIWYG = (props) => {
 
   const confirmLink = async (event) => {
     event.preventDefault();
-    const entityKey = Entity.create('LINK', 'MUTABLE', {
+    const contentStateWithEntity = editorState.getCurrentContent().createEntity('LINK', 'MUTABLE', {
       url: urlValue
     });
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
     await dispatch({
       type: 'CONFIRM_LINK',
