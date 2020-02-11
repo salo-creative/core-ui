@@ -5,6 +5,12 @@ const reducer = (state, action) => {
         ...state,
         editorState: action.payload
       };
+      
+    case 'UPDATE_COUNT':
+      return {
+        ...state,
+        count: action.payload
+      };
 
     case 'TOGGLE_CONTROLS':
       return {

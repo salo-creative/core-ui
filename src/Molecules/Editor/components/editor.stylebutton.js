@@ -19,7 +19,7 @@ const StyleButton = props => {
       isActive={ active }
       onMouseDown={ onToggle }
     >
-      { icon ? <Icon icon={ icon } vAlign='middle' /> : label }
+      { icon ? <Icon icon={ icon } vAlign='middle' size={ 20 } /> : label }
     </Format>
   );
 };

@@ -1,3 +1,4 @@
+import punycode from 'punycode';
 
 export function findLinkEntities(contentBlock, callback, contentState) {
   contentBlock.findEntityRanges(
@@ -13,7 +14,7 @@ export function findLinkEntities(contentBlock, callback, contentState) {
 }
 
 // Custom overrides for "code" style.
-export const styleMap = {
+export const defaultStyleMap = {
   CODE: {
     backgroundColor: 'rgba(0, 0, 0, 0.05)',
     fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
@@ -27,4 +28,12 @@ export function getBlockStyle(block) {
     case 'blockquote': return 'RichEditor-blockquote';
     default: return null;
   }
+}
+
+export function getCharCount(editorState) {
+  const decodeUnicode = str => punycode.ucs2.decode(str); // func to handle unicode characters
+  const plainText = editorState.getCurrentContent().getPlainText('');
+  const regex = /(?:\r\n|\r|\n)/g; // new line, carriage return, line feed
+  const cleanString = plainText.replace(regex, '').trim(); // replace above characters w/ nothing
+  return decodeUnicode(cleanString).length;
 }

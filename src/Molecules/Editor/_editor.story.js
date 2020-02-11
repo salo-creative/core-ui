@@ -33,7 +33,7 @@ stories.add(
       <Editor
         placeholder={ placeholder }
         value={ value }
-        onExport={ ({ html }) => console.log(html) }
+        onExport={ (output) => console.log(output) }
         limit={ limit }
       />
     );
