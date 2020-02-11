@@ -1,27 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import punycode from 'punycode';
 
 import { Characters, Count } from '../editor.styles';
 
-function getCharCount(editorState) {
-  const decodeUnicode = str => punycode.ucs2.decode(str); // func to handle unicode characters
-  const plainText = editorState.getCurrentContent().getPlainText('');
-  const regex = /(?:\r\n|\r|\n)/g; // new line, carriage return, line feed
-  const cleanString = plainText.replace(regex, '').trim(); // replace above characters w/ nothing
-  return decodeUnicode(cleanString).length;
-}
-
 const EditorCharacterCount = props => {
-  const { editorState, limit } = props;
-  const count = getCharCount(editorState);
+  const { limit, count } = props;
   return (
-    <Characters>Characters left <Count>{ limit - count }</Count></Characters>
+    <Characters className='salo-editor__characters'>Characters left <Count className='salo-editor__count'>{ limit - count }</Count></Characters>
   );
 };
 
 EditorCharacterCount.propTypes = {
-  editorState: PropTypes.object.isRequired,
+  count: PropTypes.number.isRequired,
   limit: PropTypes.number.isRequired
 };
 
