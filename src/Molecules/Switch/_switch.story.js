@@ -52,10 +52,11 @@ stories.add(
   'Basic',
   (() => {
     const disabled = boolean('disabled', false);
-    const label = text('label', 'Stuff');
-    const labelOff = text('labelOff', '');
+    const label = text('label', 'Yes');
+    const labelOff = text('labelOff', 'No');
     const labelPosition = select('label position', ['left', 'right'], 'right');
     const loading = boolean('loading', false);
+    const showBoth = boolean('showBoth', false);
     const size = select('size', ['L', 'M'], 'M');
     // STORE
     const store = new Store({
@@ -70,6 +71,7 @@ stories.add(
             labelOff={ labelOff }
             labelPosition={ labelPosition }
             loading={ loading }
+            showBoth={ showBoth }
             onChange={ (value) => store.set({
               value
             }) }
