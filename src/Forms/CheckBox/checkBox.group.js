@@ -13,10 +13,14 @@ class CheckBoxGroup extends React.Component {
   handleFieldChange = (e) => {
     const { fields, onChange } = this.props;
     const { checked, label, name } = e;
-    const i = findIndex(fields, { name });
+    const i = findIndex(fields, {
+      name
+    });
     const updatedFields = [
       ...fields.slice(0, i),
-      { checked, label, name },
+      {
+        checked, label, name
+      },
       ...fields.slice(i + 1)
     ];
     onChange(updatedFields);
@@ -36,19 +40,26 @@ class CheckBoxGroup extends React.Component {
       size
     } = this.props;
     return (
-      <Group margin={ margin }>
-        <Label
-          error={ error }
-          label={ label }
-          name={ name }
-          required={ required }
-        />
-        <GroupWrapper>
+      <Group
+        className='salo-checkboxGroup'
+        margin={ margin }
+      >
+        { label && (
+          <Label
+            className='salo-checkboxGroup__label'
+            error={ error }
+            label={ label }
+            name={ name }
+            required={ required }
+          />
+        ) }
+        <GroupWrapper className='salo-checkboxGroup__wrapper'>
           { fields.map((field, i) => {
             // Set margin equivalent to parent but hide for last item
             const checkMargin = i <= (fields.length - 2) ? margin : '0';
             return (
               <CheckBox
+                className={ `salo-checkboxGroup__checkbox ${ field.checked ? 'is-checked' : '' }` }
                 checked={ field.checked }
                 disabled={ disabled }
                 label={ field.label }
@@ -62,12 +73,14 @@ class CheckBoxGroup extends React.Component {
           }) }
         </GroupWrapper>
         <ErrorText
+          className='salo-checkboxGroup__error-text'
           disabled={ disabled }
           error={ error }
           errorMessage={ errorMessage }
           size={ size }
         />
         <HelperText
+          className='salo-checkboxGroup__helper-text'
           disabled={ disabled }
           error={ error }
           helperText={ helperText }
@@ -84,7 +97,7 @@ CheckBoxGroup.defaultProps = {
   errorMessage: 'Field invalid',
   fields: [],
   helperText: '',
-  label: 'Label Text',
+  label: '',
   margin: '0 0 2rem 0',
   onChange: () => null,
   required: false,
