@@ -23,6 +23,7 @@ const Switch = (props) => {
     margin,
     name,
     onChange,
+    showBoth,
     size,
     transition,
     value,
@@ -32,6 +33,7 @@ const Switch = (props) => {
   const isDisabled = disabled || loading;
 
   const renderLabel = () => {
+    if (showBoth) return label;
     if (!value && labelOff) {
       return labelOff;
     }
@@ -47,6 +49,15 @@ const Switch = (props) => {
       className={ `${ className } salo-switch ${ labelPosition === 'right' ? 'alignRight' : 'alignLeft' }` }
       width={ width }
     >
+      { showBoth && (
+        <SwitchLabel
+          className={ `salo-switch__label left ${ !value ? 'active' : '' }` }
+          size={ size }
+          htmlFor={ name }
+        >
+          { labelOff || label }
+        </SwitchLabel>
+      ) }
       <SwitchContainer
         active={ value }
         onClick={ () => onChange(!value) }
@@ -79,7 +90,7 @@ const Switch = (props) => {
         ) }
       </SwitchContainer>
       <SwitchLabel
-        className='salo-switch__label'
+        className={ `salo-switch__label ${ value ? 'active' : '' }` }
         size={ size }
         htmlFor={ name }
       >
@@ -98,6 +109,7 @@ Switch.defaultProps = {
   labelPosition: 'right',
   loading: false,
   margin: '0',
+  showBoth: true,
   size: 'M',
   transition: 'left 0.3s ease-in-out',
   value: false,
@@ -115,6 +127,7 @@ Switch.propTypes = {
   margin: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  showBoth: PropTypes.bool,
   size: PropTypes.oneOf(['L', 'M']),
   transition: PropTypes.string,
   value: PropTypes.bool,
