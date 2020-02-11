@@ -1,6 +1,6 @@
-# FlyOut menu
+# Editor
 
-The FlyOut menu is designed to be used either as a standalone menu or as part of table and card components. It has been built with specific styles for each of these use cases in mind but can be extended further for other implementations. At its core it is a collapsed menu that can contain both links and button to perform actions within an application. It is similar to the concept of an action button in material design.
+Editor is a WYSIWYG based on Draft.js.
 
 ---
 
@@ -18,17 +18,15 @@ Include
 import Editor from '@salo/core-ui/Molecules/Editor';
 ```
 
-Implement as follows
-
-The FlyOut menu comes with pre-defined buttons and links for use within it that are exported from the module as named exports. These should be used explicitly within the menu and no other components. 
+Implement as follows, note if using with SSR it must be wrapped with a div.
 
 ```javascript
-<FlyOut context='float'>
-  <FlyOutButton title='Title' onClick={ () => alert('Button Clicked') } icon='sync' />
-  <FlyOutLink title='Title' link='#' icon='dashboard' />
-</FlyOut>
+<div>
+  <Editor
+    limit={ 300 }
+    value='<p><strong>some</strong> text</p>'
+  />
+</div>
 ```
 
-For detailed explanations of how to use the FlyOut in  a table or a card component see their stories and README's.
-
-**For full prop types and usage see storybook info/knobs**
+You can pass a styleMap with [options defined here](https://draftjs.org/docs/advanced-topics-inline-styles/#mapping-a-style-string-to-css).
