@@ -65,6 +65,7 @@ const EditorBlock = (props) => {
         icon='chevron_down'
         fill='#444'
         vAlign='middle'
+        size={ 17 }
       />
     </DropdownWrapper>
   );

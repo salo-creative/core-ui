@@ -1,23 +1,32 @@
+# Editor
 
+Editor is a WYSIWYG based on Draft.js.
 
-TODO
+---
 
-1. Look good
-2. Be able to format:
+## Usage
 
-  * bold
-  * italic
-  * underline
-  * link/remove link
+Install
 
-  * heading
-  * subheading
-  * body
+```javascript
+yarn add @salo/core-ui
+```
 
-  * blockquote
-  * ul
-  * ol
-  * code
+Include
 
-3. Import and export HTML
-4. Have custom placeholder text
+```javascript
+import Editor from '@salo/core-ui/Molecules/Editor';
+```
+
+Implement as follows, note if using with SSR it must be wrapped with a div.
+
+```javascript
+<div>
+  <Editor
+    limit={ 300 }
+    value='<p><strong>some</strong> text</p>'
+  />
+</div>
+```
+
+You can pass a styleMap with [options defined here](https://draftjs.org/docs/advanced-topics-inline-styles/#mapping-a-style-string-to-css).
