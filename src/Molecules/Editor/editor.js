@@ -20,8 +20,14 @@ import LinkControls from './components/editor.linkControls';
 import UrlInput from './components/editor.linkInput';
 
 // HELPERS & CONSTANTS
+import { isBrowser } from '../../helpers/environments';
 import reducer from './editor.reducer';
-import { styleMap, getBlockStyle, findLinkEntities } from './editor.helpers';
+import {
+  defaultStyleMap,
+  getBlockStyle,
+  findLinkEntities,
+  getCharCount
+} from './editor.helpers';
 
 const WYSIWYG = (props) => {
   const {
@@ -29,7 +35,8 @@ const WYSIWYG = (props) => {
     placeholder,
     value,
     onExport,
-    limit
+    limit,
+    styleMap
   } = props;
 
   // * Refs (used to focus)
@@ -67,7 +74,8 @@ const WYSIWYG = (props) => {
     showControls: false,
     showPlaceholder: false,
     showURLInput: false,
-    urlValue: ''
+    urlValue: '',
+    count: 0
   });
 
   const {
@@ -75,8 +83,20 @@ const WYSIWYG = (props) => {
     showControls,
     showPlaceholder,
     showURLInput,
-    urlValue
+    urlValue,
+    count
   } = state;
+
+  React.useEffect(() => {
+    // Update count on first mount
+    if (typeof limit === 'number') {
+      dispatch({
+        type: 'UPDATE_COUNT',
+        payload: getCharCount(editorState)
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Handle updating editor state changes.
   const handleChange = (newEditorState) => {
@@ -85,9 +105,14 @@ const WYSIWYG = (props) => {
       payload: newEditorState
     });
 
+    const newCharCount = getCharCount(newEditorState);
+
     // Export new HTML on every change.
     if (typeof onExport === 'function') {
       onExport({
+        count: {
+          characters: newCharCount
+        },
         html: stateToHTML(newEditorState.getCurrentContent(), {
           entityStyleFn: (entity) => {
             // Add _blank to all links.
@@ -106,6 +131,14 @@ const WYSIWYG = (props) => {
             return entity;
           }
         })
+      });
+    }
+    
+    // Handle updating count if limit is set.
+    if (typeof limit === 'number') {
+      dispatch({
+        type: 'UPDATE_COUNT',
+        payload: newCharCount
       });
     }
   };
@@ -167,75 +200,85 @@ const WYSIWYG = (props) => {
     );
   };
 
+  if (!isBrowser) {
+    return null;
+  }
+
   return (
-    <Wrapper
-      className='salo-editor'
-      showControls={ showControls }
-      ref={ wrapperEl }
-    >
-      <Controls hide={ !showControls }>
-        { showURLInput && (
-          <UrlInput
-            dispatch={ dispatch }
-            editorEl={ editorEl }
-            editorState={ editorState }
-            urlInput={ urlInput }
-            urlValue={ urlValue }
-          />
-        ) }
-        { !showURLInput && (
-          <React.Fragment>
-            <InlineStyleControls
-              editorState={ editorState }
-              onToggle={ toggleInlineStyle }
-            />
-            <LinkControls
-              editorState={ editorState }
-              dispatch={ dispatch }
-              urlInput={ urlInput }
-            />
-            <BlockStyleControls
-              editorState={ editorState }
-              onToggle={ toggleBlockType }
-            />
-          </React.Fragment>
-        ) }
-      </Controls>
-      <div
-        className={ `salo-editor__editor ${ !showPlaceholder ? 'hide-placeholder' : '' } ${ className }` }
+    <div>
+      <Wrapper
+        className='salo-editor'
+        showControls={ showControls }
+        ref={ wrapperEl }
       >
-        <Editor
-          editorState={ editorState }
-          onChange={ handleChange }
-          handleKeyCommand={ handleKeyCommand }
-          placeholder={ placeholder }
-          blockStyleFn={ getBlockStyle }
-          customStyleMap={ styleMap }
-          spellCheck={ true }
-          ref={ editorEl }
-          onBlur={ (event) => {
-            if (!wrapperEl.current.contains(event.relatedTarget)) {
+        <Controls hide={ !showControls }>
+          { showURLInput && (
+            <UrlInput
+              dispatch={ dispatch }
+              editorEl={ editorEl }
+              editorState={ editorState }
+              urlInput={ urlInput }
+              urlValue={ urlValue }
+            />
+          ) }
+          { !showURLInput && (
+            <React.Fragment>
+              <InlineStyleControls
+                editorState={ editorState }
+                onToggle={ toggleInlineStyle }
+              />
+              <LinkControls
+                editorState={ editorState }
+                dispatch={ dispatch }
+                urlInput={ urlInput }
+              />
+              <BlockStyleControls
+                editorState={ editorState }
+                onToggle={ toggleBlockType }
+              />
+            </React.Fragment>
+          ) }
+        </Controls>
+        <div
+          className={ `salo-editor__editor ${ !showPlaceholder ? 'hide-placeholder' : '' } ${ className }` }
+        >
+          <Editor
+            editorState={ editorState }
+            onChange={ handleChange }
+            handleKeyCommand={ handleKeyCommand }
+            placeholder={ placeholder }
+            blockStyleFn={ getBlockStyle }
+            customStyleMap={ {
+              ...defaultStyleMap,
+              ...styleMap
+            } }
+            spellCheck={ true }
+            ref={ editorEl }
+            onBlur={ (event) => {
+              if (!wrapperEl.current.contains(event.relatedTarget)) {
+                dispatch({
+                  type: 'TOGGLE_CONTROLS',
+                  payload: false
+                });
+              }
+            } }
+            onFocus={ () => {
               dispatch({
                 type: 'TOGGLE_CONTROLS',
-                payload: false
+                payload: true
               });
-            }
-          } }
-          onFocus={ () => {
-            dispatch({
-              type: 'TOGGLE_CONTROLS',
-              payload: true
-            });
-          } }
-        />
-        { !!limit && (
-          <CharacterCount
-            editorState={ editorState }
-            limit={ limit }
+            } }
           />
-        ) }
-      </div>
-    </Wrapper>
+          { !!limit && (
+            <CharacterCount
+              editorState={ editorState }
+              limit={ limit }
+              count={ count }
+            />
+          ) }
+        </div>
+      </Wrapper>
+    </div>
   );
 };
 
@@ -244,15 +287,17 @@ WYSIWYG.defaultProps = {
   placeholder: '',
   value: '',
   onExport: null,
-  limit: 300
+  limit: null,
+  styleMap: null
 };
 
 WYSIWYG.propTypes = {
   className: PropTypes.string,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
+  limit: PropTypes.number,
   onExport: PropTypes.func,
-  limit: PropTypes.number
+  placeholder: PropTypes.string,
+  styleMap: PropTypes.object,
+  value: PropTypes.string
 };
 
 export default WYSIWYG;

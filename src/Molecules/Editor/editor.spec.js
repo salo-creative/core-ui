@@ -10,6 +10,6 @@ test('it has correct class names', async () => {
   const { container } = renderWithTheme(
     <Editor />
   );
-  expect(container.firstChild.className.includes('salo-editor')).toBe(true);
+  expect(container.firstChild.querySelector('.salo-editor')).toBeDefined();
   expect(container.firstChild.querySelectorAll('.salo-editor__button')).toHaveLength(3);
 });

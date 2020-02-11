@@ -8,7 +8,9 @@ export const Wrapper = styled.div`
     color: rgba(0,0,0,0.5);
     pointer-events: none;
     left: 3rem;
-    top: 7rem;
+    top: 6.5rem;
+    font-size: 1.5rem;
+    line-height: 1.5;
   }
 
   .public-DraftEditor-content {
@@ -17,9 +19,9 @@ export const Wrapper = styled.div`
     background-color: ${ ({ theme }) => theme.paleGrey };
     color: #000;
     font-size: 1.5rem;
-    line-height: 1.2;
+    line-height: 1.5;
     min-height: 18rem;
-    padding: ${ ({ showControls }) => (showControls ? '7rem 3rem 3rem' : '3rem') };
+    padding: ${ ({ showControls }) => (showControls ? '6.5rem 3rem 3rem' : '3rem') };
     border: 1px solid #E9EAED;
     transition: padding 0.5s ease-in;
   }
@@ -44,7 +46,7 @@ export const Controls = styled.div`
   transform: translate(-50%, -150%);
   width: 32rem;
   padding: 0 1rem;
-  height: 4.5rem;
+  height: 4rem;
   border-radius: 2rem;
   box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
   display: flex;
@@ -69,7 +71,7 @@ export const Format = styled.button`
   background: transparent;
   border: 0;
   padding: 0 1rem;
-  height: 4.5rem;
+  height: 4rem;
   color: ${ ({ isActive }) => (isActive ? '#ccc' : '') };
   cursor: pointer;
 
@@ -113,9 +115,9 @@ export const LinkButton = styled.button`
 `;
 
 export const Dropdown = styled.select`
-  font-size: 1.5rem;
+  color: ${ ({ theme }) => theme.primary };
+  font-size: 1.2rem;
   line-height: 1.2;
-  height: 4.5rem;
   border: 0;
   margin: 0;
   background: none;
@@ -128,11 +130,12 @@ export const Dropdown = styled.select`
 export const DropdownWrapper = styled.div`
   position: relative;
   margin: 0 1rem;
-  width: 13rem;
+  width: 11rem;
+  top: -1px;
 
   svg {
     position: absolute;
-    top: 1rem;
+    top: 0;
     right: 0;
     pointer-events: none;
   }
@@ -162,7 +165,4 @@ export const Count = styled.span`
   color: #000;
   font-size: 1.5rem;
   line-height: 1.2;
-  vertical-align: middle;
-  top: -1px;
-  position: relative;
 `;
