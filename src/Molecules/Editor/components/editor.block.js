@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '@salo/icons';
 
-import { Dropdown, DropdownWrapper } from './editor.styles';
+import { Dropdown, DropdownWrapper } from '../editor.styles';
 
 const BLOCK_TYPES = [
   {

@@ -7,6 +7,8 @@ export const Wrapper = styled.div`
     position: absolute;
     color: rgba(0,0,0,0.5);
     pointer-events: none;
+    left: 3rem;
+    top: 7rem;
   }
 
   .public-DraftEditor-content {
@@ -146,4 +148,21 @@ export const URLInput = styled.input`
   padding: 0 1rem;
   height: 3.5rem;
   border-radius: 2rem;
+`;
+
+export const Characters = styled.p`
+  color: ${ ({ theme }) => theme.darkGrey };
+  font-size: 1.3rem;
+  line-height: 1.2;
+  margin: 1rem 0 0;
+  text-align: right;
+`;
+
+export const Count = styled.span`
+  color: #000;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  vertical-align: middle;
+  top: -1px;
+  position: relative;
 `;

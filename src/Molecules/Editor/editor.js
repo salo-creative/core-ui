@@ -12,18 +12,25 @@ import { stateToHTML } from 'draft-js-export-html';
 
 // COMPONENTS & STYLES
 import { Wrapper, Controls } from './editor.styles';
-import BlockStyleControls from './editor.block';
-import InlineStyleControls from './editor.inline';
-import Link from './editor.link';
-import LinkControls from './editor.linkControls';
-import UrlInput from './editor.linkInput';
+import BlockStyleControls from './components/editor.block';
+import CharacterCount from './components/editor.characters';
+import InlineStyleControls from './components/editor.inline';
+import Link from './components/editor.link';
+import LinkControls from './components/editor.linkControls';
+import UrlInput from './components/editor.linkInput';
 
 // HELPERS & CONSTANTS
 import reducer from './editor.reducer';
 import { styleMap, getBlockStyle, findLinkEntities } from './editor.helpers';
 
 const WYSIWYG = (props) => {
-  const { className, placeholder, value, onExport } = props;
+  const {
+    className,
+    placeholder,
+    value,
+    onExport,
+    limit
+  } = props;
 
   // * Refs (used to focus)
   const editorEl = React.useRef();
@@ -221,6 +228,12 @@ const WYSIWYG = (props) => {
             });
           } }
         />
+        { !!limit && (
+          <CharacterCount
+            editorState={ editorState }
+            limit={ limit }
+          />
+        ) }
       </div>
     </Wrapper>
   );
@@ -230,14 +243,16 @@ WYSIWYG.defaultProps = {
   className: '',
   placeholder: '',
   value: '',
-  onExport: null
+  onExport: null,
+  limit: 300
 };
 
 WYSIWYG.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
   value: PropTypes.string,
-  onExport: PropTypes.func
+  onExport: PropTypes.func,
+  limit: PropTypes.number
 };
 
 export default WYSIWYG;

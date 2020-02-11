@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Icon from '@salo/icons';
 import { RichUtils } from 'draft-js';
 
-import { Format } from './editor.styles';
+import { Format } from '../editor.styles';
 
 const LinkControls = props => {
   const { editorState, dispatch, urlInput } = props;

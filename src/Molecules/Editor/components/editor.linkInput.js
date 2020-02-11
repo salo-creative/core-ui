@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Icon from '@salo/icons';
 import { RichUtils } from 'draft-js';
 
-import { LinkButton, URLInput } from './editor.styles';
-import { urlRegex } from '../../helpers/form';
+import { LinkButton, URLInput } from '../editor.styles';
+import { urlRegex } from '../../../helpers/form';
 
 const LinkInput = props => {
   const { urlInput, urlValue, dispatch, editorState, editorEl } = props;
