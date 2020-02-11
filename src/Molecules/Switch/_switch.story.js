@@ -56,6 +56,7 @@ stories.add(
     const labelOff = text('labelOff', 'No');
     const labelPosition = select('label position', ['left', 'right'], 'right');
     const loading = boolean('loading', false);
+    const showBoth = boolean('showBoth', false);
     const size = select('size', ['L', 'M'], 'M');
     // STORE
     const store = new Store({
@@ -70,6 +71,7 @@ stories.add(
             labelOff={ labelOff }
             labelPosition={ labelPosition }
             loading={ loading }
+            showBoth={ showBoth }
             onChange={ (value) => store.set({
               value
             }) }

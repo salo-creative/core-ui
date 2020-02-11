@@ -109,7 +109,7 @@ Switch.defaultProps = {
   labelPosition: 'right',
   loading: false,
   margin: '0',
-  showBoth: true,
+  showBoth: false,
   size: 'M',
   transition: 'left 0.3s ease-in-out',
   value: false,

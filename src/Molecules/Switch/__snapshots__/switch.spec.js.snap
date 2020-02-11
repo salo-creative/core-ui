@@ -27,7 +27,7 @@ exports[`Renders against snapshot 1`] = `
   flex-direction: row-reverse;
 }
 
-.c2 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -43,11 +43,11 @@ exports[`Renders against snapshot 1`] = `
   outline: none;
 }
 
-.alignLeft .c2 {
+.alignLeft .c1 {
   margin: 0 0 0 1rem;
 }
 
-.c3 {
+.c2 {
   top: -0.5rem;
   position: absolute;
   border-radius: 50%;
@@ -61,7 +61,7 @@ exports[`Renders against snapshot 1`] = `
   left: 0;
 }
 
-.c1 {
+.c3 {
   color: #6c757d;
   font-size: 1.4rem;
 }
@@ -70,19 +70,16 @@ exports[`Renders against snapshot 1`] = `
   class="c0  salo-switch alignRight"
   width="auto"
 >
-  <label
-    class="c1 salo-switch__label left active"
-  />
   <button
-    class="c2 salo-switch__container salo-switch__container--inactive"
+    class="c1 salo-switch__container salo-switch__container--inactive"
     role="switch"
   >
     <span
-      class="c3 salo-switch__handle"
+      class="c2 salo-switch__handle"
     />
   </button>
   <label
-    class="c1 salo-switch__label "
+    class="c3 salo-switch__label "
   />
 </div>
 `;
