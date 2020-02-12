@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v1.3.5", "commit": "Fixing datepicker" },
 { "user": "Rich Comber", "version": "v1.3.4", "commit": "Adding classes to checkbox group" },
 { "user": "Rich Comber", "version": "v1.3.3", "commit": "Adding switch customisation" },
 { "user": "Tim Stone", "version": "v1.3.2", "commit": "Made amends to Editor" },

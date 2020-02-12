@@ -10,6 +10,8 @@ import Label from '../components/Label';
 import ErrorText from '../components/ErrorText';
 import HelperText from '../components/HelperText';
 
+import { colours } from '../../helpers/colours';
+
 class DatePicker extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,9 @@ class DatePicker extends React.Component {
         date = inputDate;
       }
     }
-    this.state = { value, date };
+    this.state = {
+      value, date
+    };
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -31,9 +35,13 @@ class DatePicker extends React.Component {
     if (value !== prevState.value) {
       const inputDate = moment(value, ioFormat);
       if (inputDate.isValid()) {
-        return { value, date: inputDate };
+        return {
+          value, date: inputDate
+        };
       }
-      return { value, date: null };
+      return {
+        value, date: null
+      };
     }
     return null;
   }
@@ -50,6 +58,9 @@ class DatePicker extends React.Component {
   render() {
     const {
       asSelect,
+      background,
+      border,
+      borderRadius,
       dateRangeMax,
       dateRangeMin,
       disabled,
@@ -81,6 +92,9 @@ class DatePicker extends React.Component {
       <DatePickerWrapper
         margin={ margin }
         height={ height() }
+        background={ background }
+        border={ border }
+        borderRadius={ borderRadius }
       >
         <Label
           error={ error }
@@ -128,6 +142,9 @@ class DatePicker extends React.Component {
 
 DatePicker.defaultProps = {
   asSelect: false,
+  background: colours.paleGrey,
+  border: '1px solid',
+  borderRadius: '0.4rem',
   dateRangeMax: null,
   dateRangeMin: null,
   disabled: false,
@@ -147,6 +164,9 @@ DatePicker.defaultProps = {
 
 DatePicker.propTypes = {
   asSelect: PropTypes.bool,
+  background: PropTypes.string,
+  border: PropTypes.string,
+  borderRadius: PropTypes.string,
   dateRangeMax: PropTypes.string,
   dateRangeMin: PropTypes.string,
   disabled: PropTypes.bool,

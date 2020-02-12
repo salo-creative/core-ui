@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import { transparentize, darken, lighten } from 'polished';
 
+import base from './datePicker.styles.base';
+
 export const DatePickerWrapper = styled.div`
   width: 100%;
   flex-direction: column;
   display: flex;
   margin: ${ ({ margin }) => margin };
+
+  ${ base }
 
   /* You will find the style overrides for the datepicker below.
      Many of the default hex colors have been replaced with theme references.
@@ -26,8 +30,7 @@ export const DatePickerWrapper = styled.div`
     background-color: ${ ({ theme }) => theme.paleGrey };
   }
   .SingleDatePickerInput__withBorder {
-    border-radius: 3px;
-    border: 1px solid ${ ({ theme }) => transparentize(0.50, theme.primary) };
+    border: none;
   }
   .SingleDatePickerInput__disabled {
     background-color: ${ ({ theme }) => theme.paleGrey };
@@ -254,22 +257,30 @@ export const DatePickerWrapper = styled.div`
     color: ${ ({ theme }) => theme.font };
     background-color: ${ ({ theme }) => theme.paleGrey };
     width: 100%;
-    padding: 0 1rem;
-    border: 0;
-    border-top: 0;
-    border-right: 0;
-    border-bottom: 3px solid transparent;
-    border-left: 0;
-    border-radius: 0;
+    margin: 0;
+    padding: ${ ({ padding }) => padding };
+    height: ${ ({ height }) => height };
+    background-color: ${ ({ background, error, theme }) => (error ? transparentize(0.7, theme.error) : background) };
+    border: ${ ({ border }) => border };
+    border-color: ${ ({ theme, error }) => (error ? transparentize(0.3, theme.error) : transparentize(0.5, theme.primary)) };
+    transition: border 0.2s linear;
+    width: 100%;
+    border-radius: ${ ({ borderRadius }) => borderRadius };
+    font-size: ${ ({ fontSize }) => fontSize };
+
+    &:focus,
+    &:active {
+      border-color: ${ ({ theme }) => theme.primary }
+    }
+
+    &[disabled] {
+      cursor:  not-allowed;
+      opacity: 0.75;
+    }
   }
   .DateInput_input__focused {
     outline: 0;
     background: ${ ({ theme }) => theme.paleGrey };
-    border: 0;
-    border-top: 0;
-    border-right: 0;
-    border-bottom: 3px solid ${ ({ theme }) => theme.primary };
-    border-left: 0;
   }
   .DateInput_input__disabled {
     background: ${ ({ theme }) => theme.paleGrey };
