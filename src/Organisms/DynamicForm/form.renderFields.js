@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  get, isEmpty, forEach, map
+  get, isEmpty, forEach, map, isArray
 } from 'lodash';
 import styled from 'styled-components';
 
@@ -129,16 +129,19 @@ const RenderFields = (props) => {
             name={ name }
             onChange={ ({ value: val }) => {
               handleChange({
-                key: name, value: val
+                key: name,
+                value: val
               });
               if (typeof typeahead.callback === 'function') {
                 typeahead.callback({
-                  key: name, value: val
+                  key: name,
+                  value: val
                 });
               }
             } }
             onSelect={ (val) => handleBlur({
-              key: name, value: val.map((v) => v.id)
+              key: name,
+              value: isArray(val) ? val.map((v) => v.id) : val
             }) }
             required={ required }
             value={ values[name] }
