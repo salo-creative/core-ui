@@ -1402,7 +1402,7 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="c0"
+  class="c0 salo-datepicker"
   height="4rem"
 >
   <div

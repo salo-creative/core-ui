@@ -95,6 +95,7 @@ class DatePicker extends React.Component {
         background={ background }
         border={ border }
         borderRadius={ borderRadius }
+        className='salo-datepicker'
       >
         <Label
           error={ error }
