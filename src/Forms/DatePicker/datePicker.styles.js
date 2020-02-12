@@ -15,85 +15,19 @@ export const DatePickerWrapper = styled.div`
      Many of the default hex colors have been replaced with theme references.
      The Input styles have been adjusted to fit with the other elements in the UI library.
   */
-
-  .PresetDateRangePicker_button {
-    border: 3px solid ${ ({ theme }) => theme.primary };
-    color: ${ ({ theme }) => theme.primary };
-  }
-  .PresetDateRangePicker_button__selected {
-    color: ${ ({ theme }) => theme.paleGrey };
-    background: ${ ({ theme }) => theme.primary };
-  }
   .SingleDatePickerInput {
     width: 100%;
     display: inline-block;
-    background-color: ${ ({ theme }) => theme.paleGrey };
+    background: none;
   }
   .SingleDatePickerInput__withBorder {
     border: none;
-  }
-  .SingleDatePickerInput__disabled {
-    background-color: ${ ({ theme }) => theme.paleGrey };
-  }
-  .SingleDatePickerInput_clearDate__default:focus,
-  .SingleDatePickerInput_clearDate__default:hover {
-    background: ${ ({ theme }) => transparentize(0.50, theme.darkGrey) };
-    border-radius: 50%;
-  }
-  .SingleDatePickerInput_clearDate_svg {
-    fill: ${ ({ theme }) => theme.darkGrey };
   }
   .SingleDatePickerInput_calendarIcon_svg {
     fill: ${ ({ theme }) => theme.darkGrey };
   }
   .SingleDatePicker_picker {
     background-color: ${ ({ theme }) => theme.paleGrey };
-  }
-  .SingleDatePicker_picker__fullScreenPortal {
-    background-color: ${ ({ theme }) => theme.paleGrey };
-  }
-  .SingleDatePicker_closeButton:focus,
-  .SingleDatePicker_closeButton:hover {
-    color: darken(${ ({ theme }) => theme.darkGrey },10%);
-  }
-  .SingleDatePicker_closeButton_svg {
-    fill: ${ ({ theme }) => theme.darkGrey };
-  }
-  .DayPickerKeyboardShortcuts_show__bottomRight::before {
-    border-right: 33px solid ${ ({ theme }) => theme.primary };
-  }
-  .DayPickerKeyboardShortcuts_show__bottomRight:hover::before {
-    border-right: 33px solid ${ ({ theme }) => theme.primary };
-  }
-  .DayPickerKeyboardShortcuts_show__topRight::before {
-    border-bottom: 26px solid transparent;
-    border-right: 33px solid ${ ({ theme }) => theme.primary };
-    top: 0;
-    right: 0;
-  }
-  .DayPickerKeyboardShortcuts_show__topRight:hover::before {
-    border-right: 33px solid ${ ({ theme }) => theme.primary };
-  }
-  .DayPickerKeyboardShortcuts_show__topLeft::before {
-    border-left: 33px solid ${ ({ theme }) => theme.primary };
-  }
-  .DayPickerKeyboardShortcuts_show__topLeft:hover::before {
-    border-left: 33px solid ${ ({ theme }) => theme.primary };
-  }
-  .DayPickerKeyboardShortcuts_showSpan {
-    color: ${ ({ theme }) => theme.paleGrey };
-  }
-  .DayPickerKeyboardShortcuts_panel {
-    background: ${ ({ theme }) => theme.paleGrey };
-    border: 1px solid ${ ({ theme }) => transparentize(0.50, theme.darkGrey) };
-    border-radius: 3px;
-  }
-  .DayPickerKeyboardShortcuts_closeSvg {
-    fill: ${ ({ theme }) => theme.darkGrey };
-  }
-  .DayPickerKeyboardShortcuts_closeSvg:focus,
-  .DayPickerKeyboardShortcuts_closeSvg:hover {
-    fill: ${ ({ theme }) => theme.darkGrey };
   }
   .CalendarDay__default {
     border: 1px solid ${ ({ theme }) => theme.paleGrey };
@@ -240,7 +174,7 @@ export const DatePickerWrapper = styled.div`
   .DateInput {
     margin: 0;
     padding: 0;
-    background: ${ ({ theme }) => theme.paleGrey };
+    background: none;
     position: relative;
     display: inline-block;
     width: 100%;
