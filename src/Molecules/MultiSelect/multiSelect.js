@@ -74,11 +74,6 @@ const MultiSelect = ({
     };
   }, []);
 
-  // Handle option select
-  const handleSelect = (val) => {
-    console.log(val);
-  };
-
 
   // Process text for rendering
   const renderText = () => {
