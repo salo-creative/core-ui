@@ -9,6 +9,7 @@ import './FlyOut/_flyOut.story';
 import './ImageUpload/_image.story';
 import './Loader/_loader.story';
 import './Modal/_modal.story';
+import './MultiSelect/_multiSelect.story';
 import './Pagination/_pagination.story';
 import './Pill/_pills.story';
 import './Selector/_selector.story';

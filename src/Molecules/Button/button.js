@@ -22,6 +22,7 @@ const Button = (props) => {
     padding,
     radius,
     type,
+    useInk,
     ...rest
   } = props;
 
@@ -53,7 +54,9 @@ const Button = (props) => {
   };
 
   // Add type for buttons and submits
-  const buttonType = type === 'submit' || type === 'button' ? { type } : '';
+  const buttonType = type === 'submit' || type === 'button' ? {
+    type
+  } : '';
   
   return (
     <ButtonWrapper
@@ -69,11 +72,13 @@ const Button = (props) => {
       as={ evaluateElement() }
       height={ height }
     >
-      <Ink />
+      { useInk && <Ink /> }
       { loading && (
         <Loader
           display={ true }
-          loaderProps={ { size: 40, position: 'absolute' } }
+          loaderProps={ {
+            size: 40, position: 'absolute'
+          } }
           appearance='light'
         />
       ) }
@@ -99,7 +104,8 @@ Button.defaultProps = {
   padding: '0 1.5rem',
   radius: true,
   shadow: 'default',
-  type: 'button'
+  type: 'button',
+  useInk: true
 };
 
 Button.propTypes = {
@@ -117,7 +123,8 @@ Button.propTypes = {
   padding: PropTypes.string,
   radius: PropTypes.bool,
   shadow: PropTypes.oneOf(['small', 'default', 'large', 'none']),
-  type: PropTypes.oneOf(['button', 'Link', 'submit', 'a', 'label'])
+  type: PropTypes.oneOf(['button', 'Link', 'submit', 'a', 'label']),
+  useInk: PropTypes.bool
 };
 
 export default Button;
