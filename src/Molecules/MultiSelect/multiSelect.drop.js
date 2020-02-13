@@ -80,7 +80,7 @@ const Drop = ({
                         <polyline points='20 6 9 17 4 12' />
                       </svg>
                     </MultiSelectCheck>
-                    { option[keyLabel] }
+                    <span>{ option[keyLabel] }</span>
                   </MultiSelectOption>
                 );
               }) }

@@ -45,13 +45,13 @@ stories.add(
     const disabled = boolean('Show disabled state', false);
     const size = select('size', ['L', 'M'], 'M');
     const options = object('options', [{
-      label: 'Option 1',
+      label: 'Option 1 is really quite long and we need to handle it you',
       value: 'option_one'
     }, {
       label: 'Option 2',
       value: 'option_two'
     }, {
-      label: 'Option 3',
+      label: 'Option 3 is als a little on the long side',
       value: 'option_three'
     }, {
       label: 'Option 4',

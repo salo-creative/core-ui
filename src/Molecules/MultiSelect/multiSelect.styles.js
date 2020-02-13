@@ -37,8 +37,11 @@ export const MultiSelectButton = styled.div`
       background-color: ${ ({ background, error, theme }) => (error ? transparentize(0.7, theme.error) : background) } !important;
       border-color: ${ ({ theme, error }) => (error ? transparentize(0.3, theme.error) : transparentize(0.5, theme.primary)) } !important;
     }
-    svg path {
-      fill: ${ ({ theme }) => theme.font } !important;
+    svg {
+      flex-shrink: 0;
+      path {
+        fill: ${ ({ theme }) => theme.font } !important;
+      }
     }
     &:hover:not([disabled]) {
       svg path {
@@ -83,6 +86,11 @@ export const MultiSelectOption = styled.button`
   padding: 0 2rem; 
   align-items: center;
   cursor: pointer;
+  span {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inherit;
+  }
 `;
 
 export const MultiSelectCheck = styled.span`
