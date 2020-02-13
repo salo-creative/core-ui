@@ -40,6 +40,13 @@ const Drop = ({
     setSelected(uniq(newSelected)); // de-dupe and set
   };
 
+  React.useEffect(() => {
+    if (value !== selected) {
+      setSelected(value);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+
   return (
     <Transition
       in={ open }
