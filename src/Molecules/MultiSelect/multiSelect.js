@@ -7,7 +7,8 @@ import {
   MultiSelectWrapper,
   MultiSelectContainer,
   MultiSelectButton,
-  MultiSelectPlaceholder
+  MultiSelectPlaceholder,
+  MultiSelectText
 } from './multiSelect.styles';
 import Label from '../../Forms/components/Label';
 import ErrorText from '../../Forms/components/ErrorText';
@@ -84,13 +85,15 @@ const MultiSelect = ({
     if (isEmpty(value)) {
       return <MultiSelectPlaceholder className='salo-multi-select__placeholder'>{ placeholder }</MultiSelectPlaceholder>; // If nothing selected return the placeholder
     }
-    return value.map(item => {
+    const valueString = value.map(item => {
       return get(find(options, {
         [keyValue]: item
       }), `[${ keyLabel }]`);
     })
       .filter(i => i)
       .join(', ');
+
+    return <MultiSelectText className='salo-multi-select__values'>{ valueString }</MultiSelectText>;
   };
 
   const height = () => {

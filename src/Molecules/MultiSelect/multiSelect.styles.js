@@ -52,6 +52,12 @@ export const MultiSelectPlaceholder = styled.span`
   color: ${ ({ theme }) => theme.darkGrey };
 `;
 
+export const MultiSelectText = styled.span`
+  overflow-x: auto;
+  white-space: nowrap;
+  display: inherit;
+`;
+
 export const MultiSelectDrop = styled.div`
   opacity: ${ ({ state }) => (state === 'entered' ? 1 : 0) };
   transition: opacity 200ms cubic-bezier(0.470, 0.000, 0.745, 0.715);
@@ -80,17 +86,16 @@ export const MultiSelectOption = styled.button`
 `;
 
 export const MultiSelectCheck = styled.span`
-  height: 1.8rem;
-  width: 1.8rem;
+  height: 1.5rem;
+  width: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid #000;
-  border-radius: 0.4rem;
-  margin: 0 1rem 0 0;
+  margin: 0 1.5rem 0 0;
   svg {
-    width: 1.3rem;
-    height: 1.3rem;
+    width: 1.5rem;
+    height: 1.5rem;
     fill: none;
     stroke: #fff;
     stroke-width: 2px;
