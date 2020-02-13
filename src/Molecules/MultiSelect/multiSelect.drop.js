@@ -8,6 +8,7 @@ import Loader from '../Loader';
 import {
   MultiSelectDrop,
   MultiSelectOption,
+  MultiSelectCheck,
   MultiSelectErrorText,
   MultiSelectFooterControls,
   MultiSelectFooterButton
@@ -74,6 +75,11 @@ const Drop = ({
                     className={ `salo-multi-select__option ${ isActive ? 'active' : '' }` }
                     onClick={ () => handleSelect(option[keyValue]) }
                   >
+                    <MultiSelectCheck className='salo-multi-select__option-check'>
+                      <svg viewBox='0 0 24 24'>
+                        <polyline points='20 6 9 17 4 12' />
+                      </svg>
+                    </MultiSelectCheck>
                     { option[keyLabel] }
                   </MultiSelectOption>
                 );

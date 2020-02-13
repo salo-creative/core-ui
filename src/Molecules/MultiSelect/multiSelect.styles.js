@@ -75,9 +75,29 @@ export const MultiSelectOption = styled.button`
   width: 100%;
   height: 4rem;
   padding: 0 2rem; 
+  align-items: center;
   cursor: pointer;
-  &.active {
-    background: #ccc;
+`;
+
+export const MultiSelectCheck = styled.span`
+  height: 1.8rem;
+  width: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  border-radius: 0.4rem;
+  margin: 0 1rem 0 0;
+  svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2px;
+    visibility: visible;
+  }
+  .active & {
+    background: #000;
   }
 `;
 
