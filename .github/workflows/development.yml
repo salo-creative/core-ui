@@ -28,4 +28,4 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_USERNAME: Salo Creative
           SLACK_ICON: https://res.cloudinary.com/salo-cms-dev/image/upload/v1578149536/salo-admin/projects/synj7hxqobscnaun2yah.png
-          SLACK_MESSAGE: ':raised_hands: @salo/core-ui tests passed'
+          SLACK_MESSAGE: ':white_check_mark: @salo/core-ui tests passed'
