@@ -1,5 +1,8 @@
 # core-ui
 
+![Publish](https://github.com/salo-creative/core-ui/workflows/Publish/badge.svg)
+![Development](https://github.com/salo-creative/core-ui/workflows/Development/badge.svg)
+
 The core ui is developed in order to give components with limited styling that can be used on all Salo projects. Where appropriate props can be exposed to modify the appearance. In order to aid styling from within projects it is also important that components are given structured class names that can be used for override styles in different applications.
 
 ## Development
