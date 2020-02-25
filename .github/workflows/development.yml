@@ -16,6 +16,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
+      - run: npm install -g npm-cli-login
+      - run: npm-cli-login -u "${{ secrets.NPM_USER }}" -p "${{ secrets.NPM_PASSWORD }}" -e "${{ secrets.NPM_EMAIL }}"
       - run: yarn
       - run: yarn test
       - run: yarn bundle
