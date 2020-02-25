@@ -8,7 +8,7 @@ The project uses storybook for local, abstracted development which has been conf
 
 To get started run the following to install the dependencies
 ```bash
-yarns
+yarn
 ```
 
 Then run the demo command to run the initial unit tests and boot up the development server
