@@ -32,10 +32,15 @@ stories.add(
     const resetFormPostSubmit = boolean('Reset after submit', false);
     const hideFormPostSubmit = boolean('Hide after submit', false);
     const prepopulated = boolean('Prepopulate fields', true);
+    const showStepCount = boolean('Show step count', false);
     const stepper = select('Stepper', {
       'Full': 'full',
       'Condensed': 'condensed'
     }, 'condensed');
+    const position = select('Stepper position', {
+      'Above': 'above',
+      'Below': 'below'
+    }, 'below');
     
     return (
       <DynamicForm
@@ -46,7 +51,9 @@ stories.add(
           stepper: {
             renderSteps,
             showTitles,
-            type: stepper
+            type: stepper,
+            position,
+            showStepCount
           }
         } }
         data={ {

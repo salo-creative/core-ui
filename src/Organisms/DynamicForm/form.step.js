@@ -12,6 +12,7 @@ const FormStep = (props) => {
   const {
     changeStep,
     fields,
+    showStepCount,
     showTitle,
     step,
     strings,
@@ -29,6 +30,11 @@ const FormStep = (props) => {
 
   return (
     <React.Fragment>
+      { showStepCount && (
+        <span className='form__stepper-count'>
+          { step } / { total }
+        </span>
+      ) }
       { showTitle && (
         <FormHeading className='form__stepper-title'>
           { title }
@@ -63,6 +69,7 @@ const FormStep = (props) => {
 };
 
 FormStep.defaultProps = {
+  showStepCount: false,
   showTitle: false,
   strings: {},
   typeaheads: null
@@ -71,10 +78,11 @@ FormStep.defaultProps = {
 FormStep.propTypes = {
   changeStep: PropTypes.func.isRequired,
   fields: PropTypes.array.isRequired,
-  showTitle: PropTypes.bool,
-  step: PropTypes.number.isRequired,
   inputs: PropTypes.object.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
+  showStepCount: PropTypes.bool,
+  showTitle: PropTypes.bool,
+  step: PropTypes.number.isRequired,
   strings: PropTypes.shape({
     next: PropTypes.string,
     previous: PropTypes.string,

@@ -10,6 +10,7 @@ const FormStepper = (props) => {
   const {
     activeStep,
     changeStep,
+    position,
     showTitles,
     steps,
     stepper,
@@ -25,6 +26,7 @@ const FormStepper = (props) => {
         activeItem={ activeStep }
         changeStep={ changeStep }
         className='form__stepper'
+        position={ position }
         stepper={ stepper }
       >
         { steps.map((step, i) => {
@@ -57,9 +59,10 @@ const FormStepper = (props) => {
 FormStepper.defaultProps = {
   activeStep: '',
   isSubmitting: false,
-  typeaheads: null,
+  position: 'below',
+  stepper: 'full',
   strings: null,
-  stepper: 'full'
+  typeaheads: null
 };
 
 FormStepper.propTypes = {
@@ -67,9 +70,10 @@ FormStepper.propTypes = {
   changeStep: PropTypes.func.isRequired,
   inputs: PropTypes.object.isRequired,
   isSubmitting: PropTypes.bool,
-  steps: PropTypes.array.isRequired,
+  position: PropTypes.string,
   showTitles: PropTypes.bool.isRequired,
   stepper: PropTypes.string,
+  steps: PropTypes.array.isRequired,
   strings: PropTypes.object,
   typeaheads: PropTypes.object
 };
