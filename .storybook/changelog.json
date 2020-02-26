@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v1.4.5", "commit": "Fixing package build" },
 { "user": "Rich Comber", "version": "v1.4.4", "commit": "Making sure latest is included" },
 { "user": "Rich Comber", "version": "v1.4.3", "commit": "New CI/CD" },
 { "user": "Rich Comber", "version": "v1.4.2", "commit": "Adding new CI setup" },

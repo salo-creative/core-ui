@@ -21,8 +21,7 @@ jobs:
       - run: yarn
       - run: yarn test
       - run: yarn bundle
-      - run: cp -rf .npmignore package.json ./dist
-      - run: cd ./dist
+      - run: cp -rf ./dist/* ./
       - run: npm publish
       
       - name: Notify
