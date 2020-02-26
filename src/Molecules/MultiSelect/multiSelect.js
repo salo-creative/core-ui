@@ -42,6 +42,7 @@ const MultiSelect = ({
   optionsError,
   padding,
   placeholder,
+  requireConfirm,
   required,
   size,
   value
@@ -147,9 +148,10 @@ const MultiSelect = ({
           options={ options }
           optionsLoading={ optionsLoading }
           optionsError={ optionsError }
-          onApply={ (val) => onChange({
+          onChange={ (val) => onChange({
             value: val
           }) }
+          requireConfirm={ requireConfirm }
           close={ () => toggleOpen(false) }
           value={ value }
         />
@@ -194,6 +196,7 @@ MultiSelect.defaultProps = {
   optionsLoading: false,
   padding: '0 1rem',
   placeholder: 'Please select…',
+  requireConfirm: true,
   required: false,
   size: 'M',
   value: []
@@ -222,6 +225,7 @@ MultiSelect.propTypes = {
   optionsLoading: PropTypes.bool, // Are the options loading?
   padding: PropTypes.string,
   placeholder: PropTypes.string,
+  requireConfirm: PropTypes.bool,
   required: PropTypes.bool,
   size: PropTypes.oneOf(['L', 'M']),
   value: PropTypes.array
