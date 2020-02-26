@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // COMPONENTS & STYLES
 import Header from './modal.header';
 import {
-  Container, Backdrop, Wrapper, Footer, Body, ModalWrapper
+  Container, Backdrop, Wrapper, Footer, Body
 } from './modal.styles';
 
 class Core extends Component {
@@ -115,6 +115,7 @@ class Core extends Component {
     // Build up the header, body, footer of the modal.
     const {
       background,
+      className,
       closeOnBackdrop,
       transparent,
       transition,
@@ -124,7 +125,7 @@ class Core extends Component {
 
     return (
       <Container
-        className='salo-modal'
+        className={ `salo-modal ${ className }` }
         role='dialog'
         tabIndex={ -1 }
         ref={ (e) => { this.Container = e; } }
@@ -262,6 +263,7 @@ Core.propTypes = {
   background: PropTypes.string,
   bodyBackground: PropTypes.string,
   children: PropTypes.any,
+  className: PropTypes.string.isRequired,
   closeOnBackdrop: PropTypes.bool,
   closeOnEsc: PropTypes.bool,
   footer: PropTypes.any,
