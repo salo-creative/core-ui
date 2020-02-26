@@ -43,6 +43,7 @@ stories.add(
     const error = boolean('Show error state', false);
     const required = boolean('Required field', false);
     const disabled = boolean('Show disabled state', false);
+    const requireConfirm = boolean('Require confirm', true);
     const size = select('size', ['L', 'M'], 'M');
     const options = object('options', [{
       label: 'Option 1 is really quite long and we need to handle it you',
@@ -76,6 +77,7 @@ stories.add(
           size={ size }
           icon={ icon }
           padding={ padding }
+          requireConfirm={ requireConfirm }
           border={ border }
           borderRadius={ borderRadius }
           value={ store.value }
