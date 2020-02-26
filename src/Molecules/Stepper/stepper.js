@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty, get, find, hasIn } from 'lodash';
+import {
+  isEmpty, get, find, hasIn
+} from 'lodash';
 import P from '../../Typography/P';
 
 // COMPONENTS & STYLES
@@ -13,7 +15,8 @@ const Stepper = (props) => {
     changeStep,
     children,
     className,
-    stepper
+    stepper,
+    position
   } = props;
 
   const [visited, setVisited] = React.useState([activeItem]);
@@ -34,7 +37,9 @@ const Stepper = (props) => {
   const activeStep = activeItem || get(children, '[0].id');
 
   const returnContent = () => {
-    const body = find(children, { id: activeStep });
+    const body = find(children, {
+      id: activeStep
+    });
     if (body && hasIn(body, 'content')) {
       return body.content;
     }
@@ -43,7 +48,7 @@ const Stepper = (props) => {
 
   return (
     <Container className={ className }>
-      { stepper === 'full' && (
+      { position === 'above' && (
         <Navigation
           activeItem={ activeStep } // use passed in active item or first step
           changeStep={ changeStep }
@@ -58,7 +63,7 @@ const Stepper = (props) => {
         />
       ) }
       { returnContent() }
-      { stepper === 'condensed' && (
+      { position === 'below' && (
         <Navigation
           activeItem={ activeStep } // use passed in active item or first step
           changeStep={ changeStep }
@@ -79,7 +84,8 @@ const Stepper = (props) => {
 Stepper.defaultProps = {
   activeItem: null,
   children: [],
-  className: 'stepper'
+  className: 'stepper',
+  position: 'below'
 };
 
 Stepper.propTypes = {
@@ -93,6 +99,7 @@ Stepper.propTypes = {
     content: PropTypes.any.isRequired
   })),
   className: PropTypes.string,
+  position: PropTypes.string,
   stepper: PropTypes.string.isRequired
 };
 

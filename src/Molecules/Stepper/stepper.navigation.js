@@ -13,27 +13,31 @@ const Navigation = (props) => {
   } = props;
 
   const evaluateClassName = ({ active, complete, visited }) => {
+    const base = 'salo-stepper__nav-item';
     if (active) {
-      return 'active';
+      return `${ base } active`;
     }
     if (complete) {
-      return 'complete';
+      return `${ base } complete`;
     }
     if (visited) {
-      return 'error';
+      return `${ base } error`;
     }
-    return '';
+    return base;
   };
 
   return (
-    <NavWrapper stepperType={ type }>
+    <NavWrapper stepperType={ type } className='salo-stepper__nav'>
       { steps.map(step => {
         const active = activeItem === step.id;
         return (
           <NavItem
             type='button'
             key={ step.id }
-            className={ evaluateClassName({ ...step, active }) }
+            className={ evaluateClassName({
+              ...step,
+              active
+            }) }
             onClick={ () => changeStep(step.id) }
             disabled={ step.disabled }
             stepperType={ type }

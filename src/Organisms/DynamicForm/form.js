@@ -127,8 +127,6 @@ const Form = (props) => {
         { formShouldRender && isStepper && (
           <FormStepper
             { ...fieldProps }
-            inputs={ inputs }
-            activeStep={ activeStep }
             changeStep={ (id) => {
               changeStep(id);
               setTimeout(() => {
@@ -136,12 +134,16 @@ const Form = (props) => {
                 formRef.current.scrollIntoView();
               }, 1);
             } }
+            activeStep={ activeStep }
+            inputs={ inputs }
+            isSubmitting={ submit.isSubmitting }
+            position={ get(options, 'stepper.position', Form.defaultProps.options.stepper.position) }
+            showStepCount={ get(options, 'stepper.showStepCount', Form.defaultProps.options.stepper.showStepCount) }
             showTitles={ get(options, 'stepper.showTitles', Form.defaultProps.options.stepper.showTitles) }
             stepper={ get(options, 'stepper.type', Form.defaultProps.options.stepper.type) }
             steps={ steps }
             strings={ strings }
             typeaheads={ get(options, 'typeaheads') }
-            isSubmitting={ submit.isSubmitting }
           />
         ) }
       </form>
@@ -167,7 +169,9 @@ Form.defaultProps = {
     showPrompt: true,
     typeaheads: null,
     stepper: {
+      position: 'below',
       renderSteps: true,
+      showStepCount: false,
       showTitles: true,
       type: 'full'
     }
@@ -202,10 +206,11 @@ Form.propTypes = {
     showPrompt: PropTypes.bool, // Optionally disable the prompter when navigating away from dirty forms
     typeaheads: PropTypes.object, // Customise typeahead behaviour
     stepper: PropTypes.shape({
-      type: PropTypes.oneOf(['condensed', 'full']),
+      position: PropTypes.oneOf(['above', 'below']),
+      renderSteps: PropTypes.bool, // Optionally render a stepper if the form supports it
+      showStepCount: PropTypes.bool, // Optionally show step counter
       showTitles: PropTypes.bool, // Optionally show step titles
-      renderSteps: PropTypes.bool // Optionally render a stepper if the form supports it
-
+      type: PropTypes.oneOf(['condensed', 'full'])
     })
   }),
   styles: PropTypes.shape({
