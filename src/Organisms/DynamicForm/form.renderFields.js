@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import Address from '../../Forms/Address';
 import CheckBox from '../../Forms/CheckBox';
 import Input from '../../Forms/Input';
+import DatePicker from '../../Forms/DatePicker';
 import Password from '../../Forms/Password';
 import Radio from '../../Forms/Radio';
 import Select from '../../Forms/Select';
@@ -18,7 +19,7 @@ import Upload from '../../Forms/Upload';
 import P from '../../Typography/P';
 
 // HELPERS & CONSTANTS
-import { evaluateValue } from '../../Forms/useFormData/useFormData.helpers';
+import { evaluateValue, findDateValidations } from '../../Forms/useFormData/useFormData.helpers';
 
 const Row = styled.div`
   @media only screen and (min-width: 720px) {
@@ -52,6 +53,7 @@ const RenderFields = (props) => {
     Address: CustomAddress,
     CheckBox: CustomCheckBox,
     Copy: CustomCopy,
+    DatePicker: CustomDatePicker,
     Input: CustomInput,
     Link,
     Password: CustomPassword,
@@ -61,7 +63,7 @@ const RenderFields = (props) => {
     TypeAhead: CustomTypeAhead,
     Upload: CustomUpload
   } = inputs;
-  
+
   const groups = {};
 
   const hydratedFields = fields.map((field, index) => {
@@ -106,7 +108,8 @@ const RenderFields = (props) => {
             name={ name }
             onChange={ ({ value: val }) => {
               handleBlur({
-                key: name, value: val
+                key: name,
+                value: val
               });
             } }
             type='file'
@@ -220,6 +223,40 @@ const RenderFields = (props) => {
             required={ required }
             type={ type === 'currentPassword' ? 'password' : type }
             value={ value }
+          />
+        );
+      }
+      case 'date': {
+        // Evaluate the component to use
+        const FormDate = CustomDatePicker || DatePicker;
+        const { dateRangeMax, dateRangeMin } = findDateValidations(field.validation);
+        
+        return (
+          <FormDate
+            asSelect={ metaData.asSelect }
+            background={ metaData.background }
+            border={ metaData.border }
+            borderRadius={ metaData.borderRadius }
+            dateRangeMax={ dateRangeMax }
+            dateRangeMin={ dateRangeMin }
+            displayFormat={ metaData.displayFormat }
+            ioFormat={ metaData.ioFormat }
+            margin={ metaData.margin }
+            size={ metaData.size }
+            disabled={ disabled }
+            error={ hasError }
+            errorMessage={ errorMessage }
+            helperText={ helperText }
+            key={ name }
+            label={ label }
+            name={ name }
+            placeholder={ placeholder }
+            required={ required }
+            value={ value }
+            onChange={ (val) => handleBlur({
+              key: name,
+              value: val
+            }) }
           />
         );
       }
