@@ -174,7 +174,7 @@ export const buildYup = ({ fields }) => {
         break;
       }
       case 'date': {
-        vRule = date();
+        vRule = date().typeError('Please pick a full date');
         if (min || max) {
           vRule.test(
             'date-in-range', 'The supplied date is not valid',
