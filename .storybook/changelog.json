@@ -1,4 +1,5 @@
 [
+{ "user": "Tim Stone", "version": "v1.4.8", "commit": "Added DatePicker to DynamicForm" },
 { "user": "Rich Comber", "version": "v1.4.7", "commit": "Making confirm bar optional on MultiSelect" },
 { "user": "Tim Stone", "version": "v1.4.6", "commit": "Adds className to Modal" },
 { "user": "Rich Comber", "version": "v1.4.5", "commit": "Fixing package build" },
