@@ -93,7 +93,7 @@ class CheckBoxGroup extends React.Component {
 }
 
 CheckBoxGroup.defaultProps = {
-  className: null,
+  className: '',
   disabled: false,
   error: false,
   errorMessage: 'Field invalid',
