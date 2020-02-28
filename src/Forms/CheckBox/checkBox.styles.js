@@ -21,7 +21,9 @@ export const CheckBoxLabel = styled.label`
 `;
 
 // Hidden true input field for accessibility
-export const HiddenCheckBox = styled.input.attrs({ type: 'checkbox' })`
+export const HiddenCheckBox = styled.input.attrs({
+  type: 'checkbox'
+})`
   border: 0;
   clip-path: inset(50%);
   clip: rect(0 0 0 0);
@@ -54,6 +56,7 @@ export const StyledCheckBox = styled.div`
   transition: all 150ms;
   box-shadow: ${ ({ shadow }) => shadow };
   width: ${ ({ width }) => width };
+  min-width: ${ ({ width }) => width };
 
   svg {
     fill: none;
