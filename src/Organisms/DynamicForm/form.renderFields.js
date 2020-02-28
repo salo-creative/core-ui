@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 // COMPONENTS & STYLES
 import Address from '../../Forms/Address';
-import CheckBox from '../../Forms/CheckBox';
+import CheckBox, { CheckBoxGroup } from '../../Forms/CheckBox';
 import Input from '../../Forms/Input';
 import DatePicker from '../../Forms/DatePicker';
 import Password from '../../Forms/Password';
@@ -52,6 +52,7 @@ const RenderFields = (props) => {
   const {
     Address: CustomAddress,
     CheckBox: CustomCheckBox,
+    CheckBoxGroup: CustomCheckBoxGroup,
     Copy: CustomCopy,
     DatePicker: CustomDatePicker,
     Input: CustomInput,
@@ -328,6 +329,37 @@ const RenderFields = (props) => {
             onChange={ ({ checked }) => handleBlur({
               key: name, value: checked
             }) }
+            required={ required }
+          />
+        );
+      }
+      case 'checkboxGroup': {
+        // Evaluate the component to use
+        const FormCheckboxGroup = CustomCheckBoxGroup || CheckBoxGroup;
+        
+        // Rename value to label and set checked
+        const checkboxFields = value || options.map((option) => ({
+          checked: false,
+          name: option.value,
+          label: option.label
+        }));
+        return (
+          <FormCheckboxGroup
+            customLabel={ metaData }
+            error={ hasError }
+            errorMessage={ errorMessage }
+            disabled={ disabled }
+            fields={ checkboxFields }
+            helperText={ helperText }
+            key={ name }
+            label={ label }
+            name={ name }
+            onChange={ (newValue) => {
+              handleBlur({
+                key: name,
+                value: newValue
+              });
+            } }
             required={ required }
           />
         );

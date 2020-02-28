@@ -22,7 +22,7 @@ exports[`Renders against snapshot 1`] = `
 }
 
 <div
-  class="c0 salo-checkboxGroup"
+  class="c0  salo-checkboxGroup"
 >
   
   <div

@@ -28,6 +28,7 @@ class CheckBoxGroup extends React.Component {
 
   render() {
     const {
+      className,
       disabled,
       fields,
       error,
@@ -41,7 +42,7 @@ class CheckBoxGroup extends React.Component {
     } = this.props;
     return (
       <Group
-        className='salo-checkboxGroup'
+        className={ `${ className } salo-checkboxGroup` }
         margin={ margin }
       >
         { label && (
@@ -92,6 +93,7 @@ class CheckBoxGroup extends React.Component {
 }
 
 CheckBoxGroup.defaultProps = {
+  className: '',
   disabled: false,
   error: false,
   errorMessage: 'Field invalid',
@@ -105,6 +107,7 @@ CheckBoxGroup.defaultProps = {
 };
 
 CheckBoxGroup.propTypes = {
+  className: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
