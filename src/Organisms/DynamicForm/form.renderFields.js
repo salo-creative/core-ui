@@ -338,8 +338,8 @@ const RenderFields = (props) => {
         const FormCheckboxGroup = CustomCheckBoxGroup || CheckBoxGroup;
         
         // Rename value to label and set checked
-        const checkboxFields = value || options.map((option) => ({
-          checked: false,
+        const checkboxFields = options.map((option) => ({
+          checked: value.includes(option.value),
           name: option.value,
           label: option.label
         }));
@@ -354,10 +354,17 @@ const RenderFields = (props) => {
             key={ name }
             label={ label }
             name={ name }
+            size='M'
             onChange={ (newValue) => {
               handleBlur({
                 key: name,
-                value: newValue
+                value: newValue.reduce((accum, item) => {
+                  if (item.checked) {
+                    // Only save a list of values.
+                    return [...accum, item.name];
+                  }
+                  return accum;
+                }, [])
               });
             } }
             required={ required }
