@@ -112,6 +112,7 @@ const Form = (props) => {
             <RenderFields
               { ...fieldProps }
               inputs={ inputs }
+              select={ get(options, 'select') }
               typeaheads={ get(options, 'typeaheads') }
             />
             <Submit
@@ -204,6 +205,7 @@ Form.propTypes = {
   options: PropTypes.shape({
     hideFormPostSubmit: PropTypes.bool, // Optionally hide form after submission
     resetFormPostSubmit: PropTypes.bool, // Optionally reset form fields to pristine state after submission
+    select: PropTypes.object, // Pass custom select options
     showPrompt: PropTypes.bool, // Optionally disable the prompter when navigating away from dirty forms
     typeaheads: PropTypes.object, // Customise typeahead behaviour
     stepper: PropTypes.shape({
