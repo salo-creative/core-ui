@@ -13,6 +13,7 @@ import DatePicker from '../../Forms/DatePicker';
 import Password from '../../Forms/Password';
 import Radio from '../../Forms/Radio';
 import Select from '../../Forms/Select';
+import Signature from '../../Forms/Signature';
 import TextArea from '../../Forms/TextArea';
 import TypeAhead from '../../Forms/TypeAhead';
 import Upload from '../../Forms/Upload';
@@ -60,6 +61,7 @@ const RenderFields = (props) => {
     Password: CustomPassword,
     Radio: CustomRadio,
     Select: CustomSelect,
+    Signature: CustomSignature,
     TextArea: CustomTextArea,
     TypeAhead: CustomTypeAhead,
     Upload: CustomUpload
@@ -439,6 +441,25 @@ const RenderFields = (props) => {
               })
             }
           </div>
+        );
+      }
+      case 'signature': {
+        // Evaluate the component to use
+        const FormSignature = CustomSignature || Signature;
+
+        return (
+          <FormSignature
+            error={ hasError }
+            helperText={ helperText }
+            key={ name }
+            name={ name }
+            label={ label }
+            onChange={ ({ value: val }) => handleBlur({
+              key: name,
+              value: val
+            }) }
+            required={ required }
+          />
         );
       }
       default:
