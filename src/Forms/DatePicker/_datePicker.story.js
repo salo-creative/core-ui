@@ -40,11 +40,12 @@ stories.add(
     const error = boolean('Show error state', false);
     const required = boolean('Required field', false);
     const disabled = boolean('Show disabled state');
+    const timePicker = boolean('Show time picker', true);
     const dateRangeMin = text('Date Minimum', moment().format('YYYY-MM-DD'));
     const dateRangeMax = text('Date Maximum');
     const size = select('size', ['L', 'M'], 'M');
-    const displayFormat = text('Display format', 'DD/MM/YYYY');
-    const ioFormat = text('I/O format', 'DD/MM/YYYY');
+    const displayFormat = text('Display format', 'DD/MM/YYYY HH:mm');
+    const ioFormat = text('I/O format', 'YYYY-MM-DDTHH:mm:ss.SSSZ');
     return (
       <State store={ store }>
         { state => (
@@ -64,6 +65,7 @@ stories.add(
             }) }
             required={ required }
             size={ size }
+            timePicker={ timePicker }
             value={ state.date }
           />
         ) }

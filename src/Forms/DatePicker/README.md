@@ -1,6 +1,6 @@
 # DatePicker
 
-This component is a Single Date Picker based on react-dates from AirBnB. It allows the user to select a date from a calendar pop-up and returns a moment object of that selected date for use in the app. The user can also set a minimum and maximum range for the date picker by giving it a string in DD-MM-YYYY format.
+This component is a Single Date Picker based on react-dates from AirBnB. It allows the user to select a date from a calendar pop-up and returns a moment object of that selected date for use in the app. The user can also set a minimum and maximum range for the date picker by giving it a string in DD-MM-YYYY format. You can also show separate hour/minute select dropdowns by passing `timePicker={ true }` to it, this works in conjunction with the date picker to set a datetime. It is recommended to always export to ISO 8601 format.
 
 ## Usage
 
@@ -27,5 +27,6 @@ Implement as follows
   name="Component's Name"
   dateRangeMin="04-07-1776"
   dateRangeMax="01-05-2025"
+  timePicker // show Hour/Minute picker
 />
 ```
