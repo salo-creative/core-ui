@@ -1,11 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
-import { RenderWithProps, Store } from '@jamesbliss/storybook-state';
-
-// Tests.
-import { withTests } from '@storybook/addon-jest';
-import results from '../../../.storybook/jest-test-results.json';
 
 // Featured Component.
 import { Signature } from '../../index';
@@ -16,13 +11,6 @@ import README from './README.md';
 // Story logic.
 const stories = storiesOf('Forms | Signature', module);
 stories.addDecorator(withKnobs);
-stories.addDecorator(withTests({
-  results
-}));
-stories.addParameters({
-  jest: ['signature']
-});
-
 stories.add(
   'Basic',
   (() => {
