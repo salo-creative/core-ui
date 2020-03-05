@@ -285,7 +285,7 @@ const RenderFields = (props) => {
       case 'select': {
         // Evaluate the component to use
         const FormSelect = CustomSelect || Select;
-        const opts = isEmpty(options) && !isEmpty(select[name]) ? select[name] : options;
+        const opts = !isEmpty(select[name]) ? select[name] : options;
 
         return (
           <FormSelect
