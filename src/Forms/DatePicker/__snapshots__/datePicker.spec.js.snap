@@ -1107,6 +1107,7 @@ exports[`Renders against snapshot 1`] = `
 
 .c0 .SingleDatePicker_picker {
   background-color: #fafcff;
+  z-index: 3;
 }
 
 .c0 .CalendarDay__default {
