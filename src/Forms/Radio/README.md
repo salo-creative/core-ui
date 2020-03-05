@@ -34,7 +34,7 @@ In some cases it's useful to have an 'other' field where a user can type in what
 ```javascript
 <Radio
   name='checkbox_group_name'
-  options={ [{ value:'val', label: 'Label', value: 'other', label: 'Other', input: true }] }
+  options={ [{ value:'val', label: 'Label'}, { value: 'other', label: 'Other', input: true }] }
   onChange={ (value) => this.setState({value}) }
   value={ this.state.value }
 >
