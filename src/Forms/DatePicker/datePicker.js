@@ -2,15 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
+import { colours } from '../../helpers/colours';
+
 // COMPONENTS & STYLES
-import { DatePickerWrapper } from './datePicker.styles';
-import Picker from './datePicker.picker';
-import SelectDate from './datePicker.selector';
+import Column from '../../Atoms/Column';
+import Row from '../../Atoms/Row';
+import Select from '../Select';
 import Label from '../components/Label';
 import ErrorText from '../components/ErrorText';
 import HelperText from '../components/HelperText';
 
-import { colours } from '../../helpers/colours';
+import { DatePickerWrapper } from './datePicker.styles';
+import Picker from './datePicker.picker';
+import SelectDate from './datePicker.selector';
 
 class DatePicker extends React.Component {
   constructor(props) {
@@ -54,6 +58,18 @@ class DatePicker extends React.Component {
       onChange(null);
     }
   }
+  
+  handleTimeChange = (type, val) => {
+    const { displayFormat, value } = this.props;
+    let newDate = moment(value, displayFormat);
+    if (type === 'hour') {
+      newDate = newDate.hour(val);
+    } else {
+      newDate = newDate.minute(val);
+    }
+    
+    this.handleChange(newDate);
+  }
 
   render() {
     const {
@@ -73,7 +89,9 @@ class DatePicker extends React.Component {
       name,
       placeholder,
       required,
-      size
+      size,
+      timePicker,
+      value
     } = this.props;
 
     const { date } = this.state;
@@ -124,6 +142,62 @@ class DatePicker extends React.Component {
             placeholder={ placeholder }
           />
         ) }
+        { timePicker && (
+          <Row className='salo-datepicker__time' padding='1rem 0'>
+            <Column default={ 6 } padding='0 0.5rem 0 0' className='salo-datepicker__hour-wrapper'>
+              <Select
+                className='salo-datepicker__select salo-datepicker__select--hour'
+                disabled={ !value }
+                name={ `${ name }_hour` }
+                margins='0'
+                onChange={ ({ value: hour }) => this.handleTimeChange('hour', hour) }
+                value={ moment(value, displayFormat).format('HH') }
+              >
+                { !value && <option value=''>Hour</option> }
+                <option value='00'>00</option>
+                <option value='01'>01</option>
+                <option value='02'>02</option>
+                <option value='03'>03</option>
+                <option value='04'>04</option>
+                <option value='05'>05</option>
+                <option value='06'>06</option>
+                <option value='07'>07</option>
+                <option value='08'>08</option>
+                <option value='09'>09</option>
+                <option value='10'>10</option>
+                <option value='11'>11</option>
+                <option value='12'>12</option>
+                <option value='13'>13</option>
+                <option value='14'>14</option>
+                <option value='15'>15</option>
+                <option value='16'>16</option>
+                <option value='17'>17</option>
+                <option value='18'>18</option>
+                <option value='19'>19</option>
+                <option value='20'>20</option>
+                <option value='21'>21</option>
+                <option value='22'>22</option>
+                <option value='23'>23</option>
+              </Select>
+            </Column>
+            <Column default={ 6 } padding='0 0 0 0.5rem' className='salo-datepicker__minute-wrapper'>
+              <Select
+                className='salo-datepicker__select salo-datepicker__select--minute'
+                disabled={ !value }
+                name={ `${ name }_min` }
+                margins='0'
+                onChange={ ({ value: min }) => this.handleTimeChange('min', min) }
+                value={ moment(value, displayFormat).format('mm') }
+              >
+                { !value && <option value=''>Minute</option> }
+                <option value='00'>00</option>
+                <option value='15'>15</option>
+                <option value='30'>30</option>
+                <option value='45'>45</option>
+              </Select>
+            </Column>
+          </Row>
+        ) }
         <ErrorText
           disabled={ disabled }
           error={ error }
@@ -160,6 +234,7 @@ DatePicker.defaultProps = {
   placeholder: 'Please enter a date...',
   required: false,
   size: 'M',
+  timePicker: false,
   value: ''
 };
 
@@ -183,6 +258,7 @@ DatePicker.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   size: PropTypes.oneOf(['L', 'M']),
+  timePicker: PropTypes.bool,
   value: PropTypes.string
 };
 

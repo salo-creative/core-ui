@@ -240,24 +240,25 @@ const RenderFields = (props) => {
             borderRadius={ metaData.borderRadius }
             dateRangeMax={ dateRangeMax }
             dateRangeMin={ dateRangeMin }
-            displayFormat={ metaData.displayFormat }
-            ioFormat={ metaData.ioFormat }
-            margin={ metaData.margin }
-            size={ metaData.size }
             disabled={ disabled }
+            displayFormat={ metaData.displayFormat }
             error={ hasError }
             errorMessage={ errorMessage }
             helperText={ helperText }
+            ioFormat={ metaData.ioFormat }
             key={ name }
             label={ label }
+            margin={ metaData.margin }
             name={ name }
-            placeholder={ placeholder }
-            required={ required }
-            value={ value }
             onChange={ (val) => handleBlur({
               key: name,
               value: val
             }) }
+            placeholder={ placeholder }
+            required={ required }
+            size={ metaData.size }
+            timePicker={ metaData.timePicker }
+            value={ value }
           />
         );
       }

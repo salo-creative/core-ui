@@ -28,6 +28,7 @@ export const DatePickerWrapper = styled.div`
   }
   .SingleDatePicker_picker {
     background-color: ${ ({ theme }) => theme.paleGrey };
+    z-index: 3; /* Place above time pickers */
   }
   .CalendarDay__default {
     border: 1px solid ${ ({ theme }) => theme.paleGrey };
