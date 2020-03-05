@@ -194,6 +194,7 @@ const RenderFields = (props) => {
       }
       case 'currentPassword':
       case 'email':
+      case 'hidden':
       case 'number':
       case 'tel':
       case 'text':
