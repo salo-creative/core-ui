@@ -42,6 +42,7 @@ const RenderFields = (props) => {
     fields,
     handleBlur,
     handleChange,
+    select,
     showErrors,
     typeaheads,
     values,
@@ -284,6 +285,7 @@ const RenderFields = (props) => {
       case 'select': {
         // Evaluate the component to use
         const FormSelect = CustomSelect || Select;
+        const opts = !isEmpty(select[name]) ? select[name] : options;
 
         return (
           <FormSelect
@@ -295,18 +297,20 @@ const RenderFields = (props) => {
             label={ label }
             name={ name }
             onChange={ ({ value: val }) => handleBlur({
-              key: name, value: val
+              key: name,
+              value: val
             }) }
             placeholder={ placeholder }
             required={ required }
             value={ value }
           >
             <option value=''>Please select…</option>
-            { options.map(option => (
+            { opts.map(option => (
               <option
                 key={ option.value }
                 value={ option.value }
-              >{ option.label }
+              >
+                { option.label }
               </option>
             )) }
           </FormSelect>
@@ -485,6 +489,7 @@ const RenderFields = (props) => {
 
 RenderFields.defaultProps = {
   disabled: false,
+  select: {},
   typeaheads: null,
   values: {}
 };
@@ -494,6 +499,7 @@ RenderFields.propTypes = {
   fields: PropTypes.array.isRequired,
   handleBlur: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+  select: PropTypes.object,
   typeaheads: PropTypes.object,
   values: PropTypes.object
 };
