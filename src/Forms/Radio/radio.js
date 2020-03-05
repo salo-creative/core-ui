@@ -63,8 +63,11 @@ const Radio = props => {
                 margin={ checkMargin }
                 name={ field.value }
                 onChange={ ({ name: val }) => {
+                  // Update callback
                   onChange(val);
+                  // Update internal state
                   setChecked(val);
+                  // Reset other value to trigger it on blur
                   setOther('');
                 } }
                 radio
