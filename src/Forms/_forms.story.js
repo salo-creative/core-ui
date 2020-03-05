@@ -8,6 +8,7 @@ import './Radio/_radio.story';
 import './Range/_range.story';
 import './ReadOnly/_readOnly.story';
 import './Select/_select.story';
+import './Signature/_signature.story';
 import './TextArea/_textArea.story';
 import './TypeAhead/_typeAhead.story';
 import './Upload/_upload.story';
