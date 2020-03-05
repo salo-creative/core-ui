@@ -1,20 +1,4 @@
-const dataURItoBlob = (dataURI) => {
-  // convert base64 to raw binary data held in a string
-  // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-  const byteString = atob(dataURI.split(',')[1]);
-
-  // separate out the mime component
-  const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-
-  // write the bytes of the string to an ArrayBuffer
-  const ab = new ArrayBuffer(byteString.length);
-  const ia = new Uint8Array(ab);
-  for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
-  }
-  // write the ArrayBuffer to a blob, and you're done
-  return new Blob([ab], { type: mimeString });
-};
+import { dataURItoBlob } from '../../helpers/files';
 
 export const onImageDrop = async ({
   files,
@@ -48,7 +32,9 @@ export const onImageDrop = async ({
     reader.onload = (event) => {
       // Image service requires a binary, not base64 so we need to convert back
       const fileBlob = dataURItoBlob(event.target.result);
-      onUpload({ blob: fileBlob, base64: event.target.result, sizes });
+      onUpload({
+        blob: fileBlob, base64: event.target.result, sizes
+      });
     };
     reader.readAsDataURL(file);
   };

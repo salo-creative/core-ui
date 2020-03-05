@@ -64,6 +64,7 @@ export { default as Radio } from './Forms/Radio';
 export { default as Range } from './Forms/Range';
 export { default as ReadOnly } from './Forms/ReadOnly';
 export { default as Select } from './Forms/Select';
+export { default as Signature } from './Forms/Signature';
 export { default as TextArea } from './Forms/TextArea';
 export { default as TypeAhead } from './Forms/TypeAhead';
 export { default as Upload } from './Forms/Upload';

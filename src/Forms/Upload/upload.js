@@ -126,7 +126,10 @@ const Upload = (props) => {
         name={ name }
         onChange={ (e) => {
           setSelectedFiles(e.target.files);
-          onChange({ e, value: multiple ? e.target.files : e.target.files[0] });
+          onChange({
+            e,
+            value: multiple ? e.target.files : e.target.files[0]
+          });
         } }
       />
       <ErrorText
