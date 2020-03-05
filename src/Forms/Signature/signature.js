@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SignaturePad from 'react-signature-canvas';
 
 import { isBrowser } from '../../helpers/environments';
+import { dataURItoBlob } from '../../helpers/files';
 import Label from '../components/Label';
 import ErrorText from '../components/ErrorText';
 import HelperText from '../components/HelperText';
@@ -36,8 +37,10 @@ const Signature = props => {
   };
 
   const handleChange = () => {
+    const blob = dataURItoBlob(exportPad());
+
     onChange({
-      value: exportPad()
+      value: blob
     });
   };
 
@@ -52,7 +55,7 @@ const Signature = props => {
         className='salo-signature__label'
       />
       <div className='salo-signature__wrapper'>
-        { !isBrowser && (
+        { isBrowser && (
           <SignaturePad
             canvasProps={ {
               className: 'salo-signature__canvas',

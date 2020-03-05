@@ -134,7 +134,7 @@ const useFormData = ({
     const formattedData = {};
     const files = [];
     Object.entries(values).forEach(([key, value]) => {
-      if (value.value instanceof File) {
+      if (value.value instanceof Blob || value.value instanceof File) {
         files.push({
           name: key,
           file: value.value
@@ -184,6 +184,7 @@ const useFormData = ({
     event.preventDefault();
     const { formattedData, files } = extractDataFromState();
     const valid = await model.current.isValid(formattedData);
+    console.log('formattedData', formattedData);
     if (valid) {
       try {
         if (typeof onSubmit === 'function') {

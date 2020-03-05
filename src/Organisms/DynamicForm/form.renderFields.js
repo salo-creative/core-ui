@@ -109,6 +109,7 @@ const RenderFields = (props) => {
             key={ name }
             label={ label }
             name={ name }
+            multiple={ !!metaData.multiple }
             onChange={ ({ value: val }) => {
               handleBlur({
                 key: name,
@@ -459,6 +460,11 @@ const RenderFields = (props) => {
               value: val
             }) }
             required={ required }
+            canvasProps={ {
+              width: 600,
+              height: 300,
+              ...metaData.canvasProps || {}
+            } }
           />
         );
       }
