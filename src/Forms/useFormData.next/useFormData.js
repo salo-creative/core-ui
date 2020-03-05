@@ -184,7 +184,7 @@ const useFormData = ({
     event.preventDefault();
     const { formattedData, files } = extractDataFromState();
     const valid = await model.current.isValid(formattedData);
-    console.log('formattedData', formattedData);
+
     if (valid) {
       try {
         if (typeof onSubmit === 'function') {
