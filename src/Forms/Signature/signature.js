@@ -4,6 +4,7 @@ import SignaturePad from 'react-signature-canvas';
 
 import { isBrowser } from '../../helpers/environments';
 import { dataURItoBlob } from '../../helpers/files';
+import Button from '../../Molecules/Button';
 import Label from '../components/Label';
 import ErrorText from '../components/ErrorText';
 import HelperText from '../components/HelperText';
@@ -19,8 +20,11 @@ const Signature = props => {
     helperText,
     onChange,
     required,
-    size
+    size,
+    inputs
   } = props;
+
+  const CustomButton = inputs.Button || Button;
 
   const pad = React.useRef();
 
@@ -67,13 +71,13 @@ const Signature = props => {
         ) }
       </div>
       <div className='salo-signature__buttons'>
-        <button
+        <CustomButton
           type='button'
-          className='salo-signature__clear'
+          className='salo-signature__button salo-signature__button--clear'
           onClick={ clearPad }
         >
           Clear
-        </button>
+        </CustomButton>
       </div>
       <ErrorText
         className='salo-signature__error'
@@ -97,6 +101,7 @@ Signature.defaultProps = {
   error: false,
   errorMessage: 'Please write your signature',
   helperText: '',
+  inputs: {},
   label: '',
   required: false,
   size: 'M'
@@ -108,6 +113,9 @@ Signature.propTypes = {
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   helperText: PropTypes.string,
+  inputs: PropTypes.shape({
+    Button: PropTypes.any
+  }),
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
