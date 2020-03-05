@@ -1,6 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
+import {
+  withKnobs, boolean, text, select
+} from '@storybook/addon-knobs';
 import { RenderWithProps, Store } from '@jamesbliss/storybook-state';
 
 // Tests.
@@ -16,19 +18,34 @@ import README from './README.md';
 // Story logic.
 const stories = storiesOf('Forms | Radio', module);
 stories.addDecorator(withKnobs);
-stories.addDecorator(withTests({ results }));
-stories.addParameters({ jest: ['radio'] });
+stories.addDecorator(withTests({
+  results
+}));
+stories.addParameters({
+  jest: ['radio']
+});
 
 stories.add(
   'Basic',
   (() => {
     const options = [
-      { value: 'field_1', label: 'Field 1' },
-      { value: 'field_2', label: 'Field 2' },
-      { value: 'field_3', label: 'Field 3' }
+      {
+        value: 'field_1', label: 'Field 1'
+      },
+      {
+        value: 'field_2', label: 'Field 2'
+      },
+      {
+        value: 'field_3', label: 'Field 3'
+      },
+      {
+        value: 'other', label: 'Other', input: true
+      }
     ];
     // Store.
-    const store = new Store({ value: '' });
+    const store = new Store({
+      value: ''
+    });
     // Knobs.
     const label = text('Label', 'Radio group label');
     const helperText = text('Helper text', 'Helper text');
@@ -45,7 +62,12 @@ stories.add(
           label={ label }
           name='story'
           options={ options }
-          onChange={ value => store.set({ value }) }
+          onChange={ value => {
+            store.set({
+              value
+            });
+            console.log('Radio value:', value);
+          } }
           required={ required }
           size={ size }
           value={ store.value }
@@ -54,7 +76,9 @@ stories.add(
     );
   }),
   {
-    info: { propTablesExclude: [RenderWithProps] },
+    info: {
+      propTablesExclude: [RenderWithProps]
+    },
     notes: README
   }
 );

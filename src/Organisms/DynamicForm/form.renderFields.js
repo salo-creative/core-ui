@@ -389,6 +389,8 @@ const RenderFields = (props) => {
             options={ options }
             required={ required }
             value={ value }
+            // Custom components
+            Input={ CustomInput || Input }
           />
         );
       }
