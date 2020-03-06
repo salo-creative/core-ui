@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 // COMPONENTS & STYLES
-import Select from '../Select';
 import { DateSelectWrapper, SelectWrapper } from './datePicker.styles';
 
 const DateSelect = (props) => {
@@ -12,8 +11,14 @@ const DateSelect = (props) => {
     dateRangeMax,
     dateRangeMin,
     id,
-    onChange
+    inputs,
+    onChange,
+    showDay,
+    showMonth,
+    showYear
   } = props;
+
+  const { Select } = inputs;
 
   const maxDate = dateRangeMax ? moment(dateRangeMax) : null;
   const minDate = dateRangeMin ? moment(dateRangeMin) : null;
@@ -43,7 +48,9 @@ const DateSelect = (props) => {
     if (minDate) {
       min = minDate.year();
     }
-    return Array.from({ length: (max - min) + 1 }, (_, i) => max - i);
+    return Array.from({
+      length: (max - min) + 1
+    }, (_, i) => max - i);
   };
 
   const months = () => {
@@ -62,7 +69,9 @@ const DateSelect = (props) => {
       startMonth = minMonth + 1;
     }
     // Account  an array of values
-    return Array.from({ length: numMonths }, (_, i) => {
+    return Array.from({
+      length: numMonths
+    }, (_, i) => {
       const value = i + startMonth;
       return {
         value: value.toString().padStart(2, '0'),
@@ -87,7 +96,9 @@ const DateSelect = (props) => {
     if (maxDate && yyyy === maxDate.year().toString() && mm === (maxDate.month() + 1).toString()) {
       numDays = maxDate.date();
     }
-    return Array.from({ length: numDays }, (_, i) => {
+    return Array.from({
+      length: numDays
+    }, (_, i) => {
       const val = i + startDay;
       return val.toString().padStart(2, '0');
     });
@@ -156,60 +167,72 @@ const DateSelect = (props) => {
 
   return (
     <DateSelectWrapper>
-      <SelectWrapper>
-        <Select
-          margin='0'
-          name={ `dd_${ id }` }
-          onChange={ ({ value }) => handleDateChange({ value, field: 'dd' }) }
-          value={ dd }
-        >
-          { !dd && (<option value=''>DD</option>) }
-          { days().map(day => (
-            <option
-              key={ day }
-              value={ day }
-            >
-              { day }
-            </option>
-          )) }
-        </Select>
-      </SelectWrapper>
-      <SelectWrapper>
-        <Select
-          margin='0'
-          name={ `mm_${ id }` }
-          onChange={ ({ value }) => handleDateChange({ value, field: 'mm' }) }
-          value={ mm }
-        >
-          { !mm && (<option value=''>MM</option>) }
-          { months().map(month => (
-            <option
-              key={ month.value }
-              value={ month.value }
-            >
-              { month.label }
-            </option>
-          )) }
-        </Select>
-      </SelectWrapper>
-      <SelectWrapper>
-        <Select
-          margin='0'
-          name={ `yyyy_${ id }` }
-          onChange={ ({ value }) => handleDateChange({ value, field: 'yyyy' }) }
-          value={ yyyy }
-        >
-          { !yyyy && (<option value=''>YYYY</option>) }
-          { years().map(year => (
-            <option
-              key={ year }
-              value={ year }
-            >
-              { year }
-            </option>
-          )) }
-        </Select>
-      </SelectWrapper>
+      { showDay && (
+        <SelectWrapper>
+          <Select
+            margin='0'
+            name={ `dd_${ id }` }
+            onChange={ ({ value }) => handleDateChange({
+              value, field: 'dd'
+            }) }
+            value={ dd }
+          >
+            { !dd && (<option value=''>DD</option>) }
+            { days().map(day => (
+              <option
+                key={ day }
+                value={ day }
+              >
+                { day }
+              </option>
+            )) }
+          </Select>
+        </SelectWrapper>
+      ) }
+      { showMonth && (
+        <SelectWrapper>
+          <Select
+            margin='0'
+            name={ `mm_${ id }` }
+            onChange={ ({ value }) => handleDateChange({
+              value, field: 'mm'
+            }) }
+            value={ mm }
+          >
+            { !mm && (<option value=''>MM</option>) }
+            { months().map(month => (
+              <option
+                key={ month.value }
+                value={ month.value }
+              >
+                { month.label }
+              </option>
+            )) }
+          </Select>
+        </SelectWrapper>
+      ) }
+      { showYear && (
+        <SelectWrapper>
+          <Select
+            margin='0'
+            name={ `yyyy_${ id }` }
+            onChange={ ({ value }) => handleDateChange({
+              value, field: 'yyyy'
+            }) }
+            value={ yyyy }
+          >
+            { !yyyy && (<option value=''>YYYY</option>) }
+            { years().map(year => (
+              <option
+                key={ year }
+                value={ year }
+              >
+                { year }
+              </option>
+            )) }
+          </Select>
+        </SelectWrapper>
+      ) }
     </DateSelectWrapper>
   );
 };
@@ -225,7 +248,13 @@ DateSelect.propTypes = {
   dateRangeMax: PropTypes.string,
   dateRangeMin: PropTypes.string,
   id: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  inputs: PropTypes.shape({
+    Select: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+  }).isRequired,
+  onChange: PropTypes.func.isRequired,
+  showDay: PropTypes.bool.isRequired,
+  showMonth: PropTypes.bool.isRequired,
+  showYear: PropTypes.bool.isRequired
 };
 
 export default DateSelect;

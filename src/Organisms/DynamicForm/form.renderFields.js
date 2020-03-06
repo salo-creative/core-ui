@@ -251,6 +251,9 @@ const RenderFields = (props) => {
             errorMessage={ errorMessage }
             helperText={ helperText }
             ioFormat={ metaData.ioFormat }
+            inputs={ {
+              Select: CustomSelect
+            } }
             key={ name }
             label={ label }
             margin={ metaData.margin }
@@ -261,6 +264,9 @@ const RenderFields = (props) => {
             }) }
             placeholder={ placeholder }
             required={ required }
+            showDay={ metaData.showDay }
+            showMonth={ metaData.showMonth }
+            showYear={ metaData.showYear }
             size={ metaData.size }
             timePicker={ metaData.timePicker }
             value={ value }

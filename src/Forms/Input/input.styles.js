@@ -4,8 +4,8 @@ import { transparentize } from 'polished';
 export const InputWrapper = styled.div`
   width: 100%;
   flex-direction: column;
-  display: flex;
   margin: ${ ({ margin }) => margin };
+  display: ${ ({ isHidden }) => (isHidden ? 'none' : 'flex') };
 `;
 
 export const FieldWrapper = styled.div`
