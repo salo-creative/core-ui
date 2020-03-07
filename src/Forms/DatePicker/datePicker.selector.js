@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 // COMPONENTS & STYLES
+import SaloSelect from '../Select';
 import { DateSelectWrapper, SelectWrapper } from './datePicker.styles';
 
 const DateSelect = (props) => {
@@ -240,7 +241,10 @@ const DateSelect = (props) => {
 DateSelect.defaultProps = {
   date: null,
   dateRangeMax: null,
-  dateRangeMin: null
+  dateRangeMin: null,
+  inputs: {
+    Select: SaloSelect
+  }
 };
 
 DateSelect.propTypes = {
@@ -250,7 +254,7 @@ DateSelect.propTypes = {
   id: PropTypes.string.isRequired,
   inputs: PropTypes.shape({
     Select: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
-  }).isRequired,
+  }),
   onChange: PropTypes.func.isRequired,
   showDay: PropTypes.bool.isRequired,
   showMonth: PropTypes.bool.isRequired,

@@ -108,7 +108,7 @@ exports[`Renders against snapshot 1`] = `
       style="border-radius: inherit; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%;"
       width="0"
     />
-    Choose file
+    Chosen 0 file(s)
   </label>
   <input
     accept="*"
