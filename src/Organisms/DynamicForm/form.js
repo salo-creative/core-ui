@@ -45,7 +45,8 @@ const Form = (props) => {
     options,
     onSubmit: data.onSubmit,
     saving: data.loading,
-    initialData: data.initialData
+    initialData: data.initialData,
+    onCompleted: data.onCompleted
   });
 
   const formRef = React.useRef(null);
@@ -161,6 +162,7 @@ Form.defaultProps = {
     width: 'auto'
   },
   data: {
+    onCompleted: null,
     onSubmit: null,
     initialData: null,
     loading: null
@@ -200,6 +202,7 @@ Form.propTypes = {
   name: PropTypes.string.isRequired,
   data: PropTypes.shape({
     initialData: PropTypes.object, // Optionally pass in values to pre-populate fields
+    onCompleted: PropTypes.func,
     onSubmit: PropTypes.func,
     loading: PropTypes.bool
   }),

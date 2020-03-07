@@ -14,6 +14,7 @@ const useFormData = ({
   options,
   onSubmit,
   saving,
+  onCompleted,
   initialData,
   initialErrors = false
 }) => {
@@ -183,9 +184,12 @@ const useFormData = ({
     loading: isSubmitting,
     error: submitError
   }] = useMutation(SUBMIT_FORM, {
-    onCompleted: () => {
+    onCompleted: (response) => {
       if (options.resetFormPostSubmit) {
         reset();
+      }
+      if (typeof onCompleted === 'function') {
+        onCompleted(response);
       }
     }
   });
