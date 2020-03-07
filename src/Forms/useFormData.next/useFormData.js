@@ -143,6 +143,17 @@ const useFormData = ({
           size: value.value.size,
           type: value.value.type
         };
+      } else if (value.value instanceof FileList) {
+        Array.from(value.value).forEach((file, index) => {
+          files.push({
+            name: `${ key }[${ index }]`,
+            file
+          });
+          formattedData[key] = {
+            size: file.size,
+            type: file.type
+          };
+        });
       } else {
         formattedData[key] = value.value;
       }

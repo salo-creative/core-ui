@@ -20,6 +20,9 @@ export const evaluateValue = ({ value, type }) => {
         return '';
     }
   }
+  console.log('evaluateValue', {
+    value, type
+  });
   return value;
 };
 

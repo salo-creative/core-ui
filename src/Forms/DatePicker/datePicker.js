@@ -19,23 +19,19 @@ import SelectDate from './datePicker.selector';
 class DatePicker extends React.Component {
   constructor(props) {
     super(props);
-    const { value, ioFormat } = props;
+    const { value, ioFormat, onChange } = props;
     let date = null;
     // If we have an input date check it is valid and map to state
     // If the input is 'now' set to current datetime
     if (value) {
-      let inputDate;
-      if (value === 'now') {
-        inputDate = moment();
-      } else {
-        inputDate = moment(value, ioFormat);
-      }
+      const inputDate = moment(value, ioFormat);
       if (inputDate.isValid()) {
         date = inputDate;
+        onChange(inputDate.format(ioFormat));
       }
     }
     this.state = {
-      value, date
+      date
     };
   }
 
@@ -46,11 +42,11 @@ class DatePicker extends React.Component {
       const inputDate = moment(value, ioFormat);
       if (inputDate.isValid()) {
         return {
-          value, date: inputDate
+          date: inputDate
         };
       }
       return {
-        value, date: null
+        date: null
       };
     }
     return null;
@@ -112,6 +108,9 @@ class DatePicker extends React.Component {
           return '4.5rem';
       }
     };
+
+    // Round minutes to nearest 15
+    const round = (num, grainularity) => Math.round(num / grainularity) * grainularity;
 
     return (
       <DatePickerWrapper
@@ -198,7 +197,7 @@ class DatePicker extends React.Component {
                 name={ `${ name }_min` }
                 margins='0'
                 onChange={ ({ value: min }) => this.handleTimeChange('minutes', min) }
-                value={ moment(value, ioFormat).format('mm') }
+                value={ round(moment(value, ioFormat).format('mm'), 15) }
               >
                 { !value && <option value=''>Minute</option> }
                 <option value='00'>00</option>
