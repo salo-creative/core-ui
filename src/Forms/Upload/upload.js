@@ -59,13 +59,18 @@ const Upload = (props) => {
   } = props;
 
   const inputRef = React.useRef(null);
-  const [selectedFiles, setSelectedFiles] = React.useState(null);
+  const [selectedFiles, setSelectedFiles] = React.useState([]);
   const accepted = getAcceptedTypes(accept);
+
+  const reset = () => {
+    setSelectedFiles([]);
+  };
 
   const renderTrigger = () => {
     if (typeof children === 'function') {
       return children({
         ...props,
+        reset,
         inputRef,
         selectedFiles
       });

@@ -57,7 +57,11 @@ const Input = React.forwardRef((props, ref) => {
   };
 
   return (
-    <InputWrapper margin={ margin } className={ `salo-input ${ className }` }>
+    <InputWrapper
+      margin={ margin }
+      className={ `salo-input ${ className }` }
+      isHidden={ type === 'hidden' }
+    >
       <Label
         error={ error }
         label={ label }

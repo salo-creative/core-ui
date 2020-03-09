@@ -45,7 +45,8 @@ const Form = (props) => {
     options,
     onSubmit: data.onSubmit,
     saving: data.loading,
-    initialData: data.initialData
+    initialData: data.initialData,
+    onCompleted: data.onCompleted
   });
 
   const formRef = React.useRef(null);
@@ -139,6 +140,7 @@ const Form = (props) => {
             inputs={ inputs }
             isSubmitting={ submit.isSubmitting }
             position={ get(options, 'stepper.position', Form.defaultProps.options.stepper.position) }
+            select={ get(options, 'select') }
             showStepCount={ get(options, 'stepper.showStepCount', Form.defaultProps.options.stepper.showStepCount) }
             showTitles={ get(options, 'stepper.showTitles', Form.defaultProps.options.stepper.showTitles) }
             stepper={ get(options, 'stepper.type', Form.defaultProps.options.stepper.type) }
@@ -160,6 +162,7 @@ Form.defaultProps = {
     width: 'auto'
   },
   data: {
+    onCompleted: null,
     onSubmit: null,
     initialData: null,
     loading: null
@@ -199,6 +202,7 @@ Form.propTypes = {
   name: PropTypes.string.isRequired,
   data: PropTypes.shape({
     initialData: PropTypes.object, // Optionally pass in values to pre-populate fields
+    onCompleted: PropTypes.func,
     onSubmit: PropTypes.func,
     loading: PropTypes.bool
   }),

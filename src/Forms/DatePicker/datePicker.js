@@ -7,7 +7,7 @@ import { colours } from '../../helpers/colours';
 // COMPONENTS & STYLES
 import Column from '../../Atoms/Column';
 import Row from '../../Atoms/Row';
-import Select from '../Select';
+import SaloSelect from '../Select';
 import Label from '../components/Label';
 import ErrorText from '../components/ErrorText';
 import HelperText from '../components/HelperText';
@@ -19,17 +19,19 @@ import SelectDate from './datePicker.selector';
 class DatePicker extends React.Component {
   constructor(props) {
     super(props);
-    const { value, ioFormat } = props;
+    const { value, ioFormat, onChange } = props;
     let date = null;
     // If we have an input date check it is valid and map to state
+    // If the input is 'now' set to current datetime
     if (value) {
       const inputDate = moment(value, ioFormat);
       if (inputDate.isValid()) {
         date = inputDate;
+        onChange(inputDate.format(ioFormat));
       }
     }
     this.state = {
-      value, date
+      date
     };
   }
 
@@ -40,11 +42,11 @@ class DatePicker extends React.Component {
       const inputDate = moment(value, ioFormat);
       if (inputDate.isValid()) {
         return {
-          value, date: inputDate
+          date: inputDate
         };
       }
       return {
-        value, date: null
+        date: null
       };
     }
     return null;
@@ -60,14 +62,8 @@ class DatePicker extends React.Component {
   }
   
   handleTimeChange = (type, val) => {
-    const { displayFormat, value } = this.props;
-    let newDate = moment(value, displayFormat);
-    if (type === 'hour') {
-      newDate = newDate.hour(val);
-    } else {
-      newDate = newDate.minute(val);
-    }
-    
+    const { ioFormat, value } = this.props;
+    const newDate = moment(value, ioFormat).set(type, val);
     this.handleChange(newDate);
   }
 
@@ -84,15 +80,22 @@ class DatePicker extends React.Component {
       error,
       errorMessage,
       helperText,
+      ioFormat,
+      inputs,
       label,
       margin,
       name,
       placeholder,
       required,
       size,
+      showDay,
+      showMonth,
+      showYear,
       timePicker,
       value
     } = this.props;
+
+    const { Select } = inputs;
 
     const { date } = this.state;
 
@@ -105,6 +108,9 @@ class DatePicker extends React.Component {
           return '4.5rem';
       }
     };
+
+    // Round minutes to nearest 15
+    const round = (num, grainularity) => Math.round(num / grainularity) * grainularity;
 
     return (
       <DatePickerWrapper
@@ -129,6 +135,10 @@ class DatePicker extends React.Component {
             dateRangeMin={ dateRangeMin }
             id={ name }
             onChange={ this.handleChange }
+            showDay={ showDay }
+            showMonth={ showMonth }
+            showYear={ showYear }
+            inputs={ inputs }
           />
         ) }
         { !asSelect && (
@@ -143,7 +153,7 @@ class DatePicker extends React.Component {
           />
         ) }
         { timePicker && (
-          <Row className='salo-datepicker__time' padding='1rem 0'>
+          <Row className='salo-datepicker__time' padding='1rem 0 0'>
             <Column default={ 6 } padding='0 0.5rem 0 0' className='salo-datepicker__hour-wrapper'>
               <Select
                 className='salo-datepicker__select salo-datepicker__select--hour'
@@ -151,7 +161,7 @@ class DatePicker extends React.Component {
                 name={ `${ name }_hour` }
                 margins='0'
                 onChange={ ({ value: hour }) => this.handleTimeChange('hour', hour) }
-                value={ moment(value, displayFormat).format('HH') }
+                value={ moment(value, ioFormat).format('HH') }
               >
                 { !value && <option value=''>Hour</option> }
                 <option value='00'>00</option>
@@ -186,8 +196,8 @@ class DatePicker extends React.Component {
                 disabled={ !value }
                 name={ `${ name }_min` }
                 margins='0'
-                onChange={ ({ value: min }) => this.handleTimeChange('min', min) }
-                value={ moment(value, displayFormat).format('mm') }
+                onChange={ ({ value: min }) => this.handleTimeChange('minutes', min) }
+                value={ round(moment(value, ioFormat).format('mm'), 15) }
               >
                 { !value && <option value=''>Minute</option> }
                 <option value='00'>00</option>
@@ -227,12 +237,18 @@ DatePicker.defaultProps = {
   error: false,
   errorMessage: 'Field invalid',
   ioFormat: 'DD/MM/YYYY',
+  inputs: {
+    Select: SaloSelect
+  },
   label: '',
   helperText: '',
   margin: '0 0 2rem',
   onChange: () => null,
   placeholder: 'Please enter a date...',
   required: false,
+  showDay: true,
+  showMonth: true,
+  showYear: true,
   size: 'M',
   timePicker: false,
   value: ''
@@ -250,6 +266,9 @@ DatePicker.propTypes = {
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   ioFormat: PropTypes.string,
+  inputs: PropTypes.shape({
+    Select: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+  }),
   label: PropTypes.string,
   helperText: PropTypes.string,
   margin: PropTypes.string,
@@ -257,6 +276,9 @@ DatePicker.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
+  showDay: PropTypes.bool,
+  showMonth: PropTypes.bool,
+  showYear: PropTypes.bool,
   size: PropTypes.oneOf(['L', 'M']),
   timePicker: PropTypes.bool,
   value: PropTypes.string

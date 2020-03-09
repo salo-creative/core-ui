@@ -232,7 +232,16 @@ export const buildYup = ({ fields }) => {
             if (!value && !required) {
               return true;
             }
-            return value && acceptedTypes.includes(value.type);
+            if (value instanceof FileList) {
+              // Ensure all of the files are valid.
+              return !!Array.from(value).filter((file) => {
+                return acceptedTypes.includes(file.type);
+              }).length;
+            }
+            if (value) {
+              return acceptedTypes.includes(value.type);
+            }
+            return false;
           });
         }
         // check file size
@@ -242,7 +251,17 @@ export const buildYup = ({ fields }) => {
             if (!value && !required) {
               return true;
             }
-            return value && value.size <= parseInt(max, 10);
+            const MAX_FILE_SIZE = parseInt(max, 10);
+            if (value instanceof FileList) {
+              // Ensure all of the files are valid.
+              return !!Array.from(value).filter((file) => {
+                return file.size <= MAX_FILE_SIZE;
+              }).length;
+            }
+            if (value) {
+              return value && value.size <= MAX_FILE_SIZE;
+            }
+            return false;
           });
         }
         break;

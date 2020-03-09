@@ -14,6 +14,7 @@ const useFormData = ({
   options,
   onSubmit,
   saving,
+  onCompleted,
   initialData,
   initialErrors = false
 }) => {
@@ -143,6 +144,17 @@ const useFormData = ({
           size: value.value.size,
           type: value.value.type
         };
+      } else if (value.value instanceof FileList) {
+        Array.from(value.value).forEach((file, index) => {
+          files.push({
+            name: `${ key }[${ index }]`,
+            file
+          });
+          formattedData[key] = {
+            size: file.size,
+            type: file.type
+          };
+        });
       } else {
         formattedData[key] = value.value;
       }
@@ -172,9 +184,12 @@ const useFormData = ({
     loading: isSubmitting,
     error: submitError
   }] = useMutation(SUBMIT_FORM, {
-    onCompleted: () => {
+    onCompleted: (response) => {
       if (options.resetFormPostSubmit) {
         reset();
+      }
+      if (typeof onCompleted === 'function') {
+        onCompleted(response);
       }
     }
   });
