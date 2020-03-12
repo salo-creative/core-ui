@@ -20,6 +20,8 @@ class Drop extends React.Component {
   }
 }
 
-Drop.propTypes = { open: PropTypes.bool.isRequired };
+Drop.propTypes = {
+  open: PropTypes.bool.isRequired
+};
 
 export default Drop;
