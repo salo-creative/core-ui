@@ -68,22 +68,26 @@ exports[`Renders against snapshot 1`] = `
   fill: #6c757d;
 }
 
-<button
-  class="c0 noValue"
-  value=""
+<div
+  class="salo-selector "
 >
-  Please select…
-  <span
-    class="c1"
+  <button
+    class="c0 noValue"
+    value=""
   >
-    <svg
-      style="width: 24px; height: 24px;"
-      viewBox="0 0 24 24"
+    Please select…
+    <span
+      class="c1"
     >
-      <path
-        d="M7,10L12,15L17,10H7Z"
-      />
-    </svg>
-  </span>
-</button>
+      <svg
+        style="width: 24px; height: 24px;"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7,10L12,15L17,10H7Z"
+        />
+      </svg>
+    </span>
+  </button>
+</div>
 `;

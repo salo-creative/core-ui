@@ -4,6 +4,9 @@ import { find, get, isEmpty } from 'lodash';
 
 // COMPONENTS
 import { colours } from '../../helpers/colours';
+import FieldLabel from '../../Forms/components/Label';
+import ErrorText from '../../Forms/components/ErrorText';
+import HelperText from '../../Forms/components/HelperText';
 import { IconAfter, Label } from './selector.styles';
 import Drop from '../Drop';
 import Button from '../Button';
@@ -19,7 +22,9 @@ class Selector extends React.Component {
   
   handleChange = (e, value) => {
     const { onChange } = this.props;
-    this.setState({ dropOpen: false });
+    this.setState({
+      dropOpen: false
+    });
     if (typeof onChange === 'function') {
       onChange(value, e);
     }
@@ -29,13 +34,17 @@ class Selector extends React.Component {
   dropClose = (e) => {
     const { element } = this.state;
     if (e.target !== element) {
-      this.setState({ dropOpen: false });
+      this.setState({
+        dropOpen: false
+      });
     }
   };
   
   openDrop = (e) => {
     e.preventDefault();
-    this.setState({ element: e.target, dropOpen: true });
+    this.setState({
+      element: e.target, dropOpen: true
+    });
   }
   
   renderItems() {
@@ -50,6 +59,7 @@ class Selector extends React.Component {
         radius={ false }
         align='start'
         size={ size }
+        className='salo-selector__item'
       >
         { item[labelKey] }
       </Button>
@@ -64,6 +74,7 @@ class Selector extends React.Component {
       <Drop
         background={ dropDownBackground }
         width={ width + 2 || 0 }
+        className='selector-drop'
         disableOverflow={ false }
         element={ element }
         onClose={ (e) => this.dropClose(e) }
@@ -87,7 +98,12 @@ class Selector extends React.Component {
     if (iconAfter) {
       return (
         <IconAfter>
-          <svg style={ { width: '24px', height: '24px' } } viewBox='0 0 24 24'>
+          <svg
+            style={ {
+              width: '24px', height: '24px'
+            } }
+            viewBox='0 0 24 24'
+          >
             <path d='M7,10L12,15L17,10H7Z' />
           </svg>
         </IconAfter>
@@ -98,60 +114,114 @@ class Selector extends React.Component {
 
   renderValue() {
     const { value, valueKey, placeholder, labelKey, data } = this.props;
-    if (!value || !find(data, { [valueKey]: value }, null)) return placeholder;
-    return find(data, { [valueKey]: value }, null)[labelKey];
+    if (!value || !find(data, {
+      [valueKey]: value
+    }, null)) return placeholder;
+    return find(data, {
+      [valueKey]: value
+    }, null)[labelKey];
   }
 
   render() {
-    const { value, placeholder, background, size } = this.props;
+    const {
+      background,
+      className,
+      disabled,
+      error,
+      errorMessage,
+      helperText,
+      label,
+      name,
+      placeholder,
+      required,
+      size,
+      value
+    } = this.props;
 
-    const label = this.renderValue();
+    const valueLabel = this.renderValue();
     return (
-      <React.Fragment>
+      <div className={ `salo-selector ${ className }` }>
+        <FieldLabel
+          error={ error }
+          label={ label }
+          name={ name }
+          required={ required }
+          size={ size }
+          className='salo-selector__label'
+        />
         <Label
           value={ value }
           onClick={ (e) => this.openDrop(e) }
           background={ background }
-          className={ label === placeholder ? 'noValue' : '' }
+          className={ valueLabel === placeholder ? 'noValue' : '' }
           size={ size }
+          name={ name }
         >
-          { label }
+          { valueLabel }
           { this.renderIconAfter() }
         </Label>
         { this.renderDropDown() }
-      </React.Fragment>
+        <ErrorText
+          className='salo-checkbox__error'
+          disabled={ disabled }
+          error={ error }
+          errorMessage={ errorMessage }
+          size={ size }
+        />
+        <HelperText
+          className='salo-checkbox__helper'
+          disabled={ disabled }
+          error={ error }
+          helperText={ helperText }
+          size={ size }
+        />
+      </div>
     );
   }
 }
 
 Selector.defaultProps = {
-  value: '',
-  onChange: null,
-  iconAfter: true,
-  data: [],
-  valueKey: 'value',
-  labelKey: 'label',
-  placeholder: 'Please select…',
   background: 'transparent',
-  dropDownBackground: '#fff',
-  fixedPositionDrop: false,
+  className: '',
+  data: [],
+  disabled: false,
   dropBorder: true,
-  size: 'M'
+  dropDownBackground: '#fff',
+  error: false,
+  errorMessage: 'Field invalid',
+  fixedPositionDrop: false,
+  helperText: '',
+  iconAfter: true,
+  labelKey: 'label',
+  onChange: null,
+  placeholder: 'Please select…',
+  required: false,
+  size: 'M',
+  value: '',
+  valueKey: 'value'
 };
 
 Selector.propTypes = {
-  iconAfter: PropTypes.bool,
-  onChange: PropTypes.func,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  data: PropTypes.array,
-  valueKey: PropTypes.string,
-  labelKey: PropTypes.string,
-  placeholder: PropTypes.string,
   background: PropTypes.string,
-  dropDownBackground: PropTypes.string,
-  fixedPositionDrop: PropTypes.bool,
+  className: PropTypes.string,
+  data: PropTypes.array,
+  disabled: PropTypes.bool,
   dropBorder: PropTypes.bool,
-  size: PropTypes.oneOf(['L', 'M'])
+  dropDownBackground: PropTypes.string,
+  error: PropTypes.bool,
+  errorMessage: PropTypes.string,
+  fixedPositionDrop: PropTypes.bool,
+  helperText: PropTypes.string,
+  iconAfter: PropTypes.bool,
+  label: PropTypes.string.isRequired,
+  labelKey: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  required: PropTypes.bool,
+  size: PropTypes.oneOf(['L', 'M']),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  valueKey: PropTypes.string
 };
 
 export default Selector;

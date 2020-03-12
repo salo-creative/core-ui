@@ -5,7 +5,9 @@ import { get } from 'lodash';
 import onClickOutside from 'react-onclickoutside';
 
 // COMPONENTS
-import { DropBackdrop, DropElement, DropContent, Wrapper } from './drop.styles';
+import {
+  DropBackdrop, DropElement, DropContent, Wrapper
+} from './drop.styles';
 
 // HELPERS
 import { boxShadow } from '../../helpers/colours';
@@ -17,7 +19,8 @@ class Drop extends React.Component {
   }
 
   componentDidMount() {
-    this.dropRoot.className = 'drop';
+    const { className } = this.props;
+    this.dropRoot.className = `drop ${ className }`;
     document.body.appendChild(this.dropRoot);
     window.addEventListener('resize', this.handleClose);
     document.addEventListener('keyup', this.handleKeyPress);
@@ -83,7 +86,7 @@ class Drop extends React.Component {
       transparent,
       unit,
       width,
-      zIndex,
+      zIndex
     } = this.props;
 
     // element that was clicked on
@@ -94,10 +97,14 @@ class Drop extends React.Component {
     // window dimensions
     const { innerHeight, innerWidth } = window;
 
-    const leftPos = this.evaluateLeft({ left, clientWidth });
+    const leftPos = this.evaluateLeft({
+      left, clientWidth
+    });
 
     const calculatedStyle = {
-      top: this.evaluateTop({ top, clientHeight }),
+      top: this.evaluateTop({
+        top, clientHeight
+      }),
       left: `${ leftPos }px`,
       width: `${ width }${ unit }`,
       height: 'auto',
@@ -124,13 +131,14 @@ class Drop extends React.Component {
     // Use a portal to render the children into the element
     return ReactDOM.createPortal(
       [
-        <Wrapper key='drop' transition={ transition }>
+        <Wrapper key='drop' transition={ transition } className='salo-drop__wrapper'>
           <DropElement
             arrow={ arrow }
             background={ background }
             border={ border }
             borderRadius={ borderRadius }
             borderTop={ borderTop }
+            className='salo-drop__element'
             element={ element }
             ref={ (e) => {
               this.drop = e;
@@ -141,6 +149,7 @@ class Drop extends React.Component {
             { ...calculatedStyle }
           >
             <DropContent
+              className='salo-drop__content'
               disableOverflow={ disableOverflow }
               maxHeight={ calculatedStyle.maxHeight }
               showScrollbar={ showScrollbar }
@@ -149,6 +158,7 @@ class Drop extends React.Component {
             </DropContent>
           </DropElement>
           <DropBackdrop
+            className='salo-drop__backdrop'
             onClick={ e => this.handleClose(e) }
             transparent={ transparent ? 1 : 0 }
             zIndex={ zIndex }
@@ -166,6 +176,7 @@ Drop.defaultProps = {
   border: 'none',
   borderRadius: null,
   borderTop: false,
+  className: '',
   disableOverflow: false,
   fixed: false,
   offsetLeft: 0,
@@ -179,16 +190,19 @@ Drop.defaultProps = {
   transparent: true,
   unit: 'px',
   width: '200',
-  zIndex: 5,
+  zIndex: 5
 };
 
 Drop.propTypes = {
-  arrow: PropTypes.shape({ offsetLeft: PropTypes.string }),
+  arrow: PropTypes.shape({
+    offsetLeft: PropTypes.string
+  }),
   background: PropTypes.string,
   border: PropTypes.string,
   borderRadius: PropTypes.string,
   borderTop: PropTypes.bool,
   children: PropTypes.any.isRequired,
+  className: PropTypes.string,
   disableOverflow: PropTypes.bool,
   element: PropTypes.object.isRequired,
   fixed: PropTypes.bool,
@@ -205,9 +219,9 @@ Drop.propTypes = {
   unit: PropTypes.string,
   width: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.string,
+    PropTypes.string
   ]),
-  zIndex: PropTypes.number,
+  zIndex: PropTypes.number
 };
 
 export default onClickOutside(Drop);
