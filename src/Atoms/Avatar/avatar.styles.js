@@ -6,6 +6,7 @@ export const AvatarWrapper = styled.button.attrs(({ image, cursor }) => ({
     cursor
   }
 }))`
+  flex-shrink: 0;
   font-size: ${ ({ size }) => `${ size }px` };
   width: 1em;
   height: 1em;

@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v1.5.3", "commit": "Preventing avatar shrinking" },
 { "user": "Tim Stone", "version": "v1.5.2", "commit": "Added classNames to Drop and Selector" },
 { "user": "Tim Stone", "version": "v1.5.1", "commit": "DatePicker and DynamicForm upload improvements" },
 { "user": "Tim Stone", "version": "v1.5.0", "commit": "Added Signature component, added ability to pass options to Select from DynamicForm, add user input to Other fields on Radio, added time selector to DatePicker, added hidden field support to DynamicForm" },
