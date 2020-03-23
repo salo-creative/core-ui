@@ -2,6 +2,9 @@
 
 exports[`Renders against snapshot 1`] = `
 .c0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
   font-size: 100px;
   width: 1em;
   height: 1em;
