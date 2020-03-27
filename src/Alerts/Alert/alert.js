@@ -33,7 +33,6 @@ class Alert extends React.Component {
       setAlertClear(alert.id, alert.time);
 
       setTimeout(() => {
-        // additional check to make sure alert hasn't already been dismissed.
         this.setState({
           mounted: false
         });
