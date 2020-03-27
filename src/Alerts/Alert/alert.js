@@ -11,6 +11,7 @@ class Alert extends React.Component {
     const { alert } = props;
     const timeout = typeof alert.time === 'undefined' || alert.time;
     const dismissible = typeof alert.dismissible === 'undefined' || alert.dismissible;
+    this.timers = [];
     this.state = {
       dismissible,
       timer: timeout && dismissible,
@@ -23,16 +24,16 @@ class Alert extends React.Component {
     const { timer } = this.state;
 
     // Timeout as otherwise it doesn't transition.
-    setTimeout(() => {
+    this.addTimer(() => {
       this.setState({
         mounted: true
       });
     }, 10);
-    
+
     if (timer && typeof setAlertClear === 'function') {
       setAlertClear(alert.id, alert.time);
 
-      setTimeout(() => {
+      this.addTimer(() => {
         this.setState({
           mounted: false
         });
@@ -42,9 +43,15 @@ class Alert extends React.Component {
   }
 
   componentWillUnmount() {
-    this.setState({
-      mounted: false
-    });
+    // Clear all timers.
+    this.timers.forEach(clearTimeout);
+  }
+
+  addTimer(func, time) {
+    const timer = setTimeout(func, time);
+
+    this.timers = [...this.timers, timer];
+    console.log(this.timers);
   }
 
   renderClose() {
@@ -56,7 +63,7 @@ class Alert extends React.Component {
         mounted: false
       });
       // Wait for animation then clear.
-      setTimeout(() => {
+      this.addTimer(() => {
         clearAlert(alert.id);
       }, 300);
     };
