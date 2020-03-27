@@ -15,7 +15,9 @@ const AlertProvider = (props) => {
   const [alerts, dispatch] = React.useReducer(reducer, []);
 
   const clearAll = () => {
-    dispatch({ type: 'CLEAR_ALL' });
+    dispatch({
+      type: 'CLEAR_ALL'
+    });
   };
 
   const deleteAlert = (alertID) => {
@@ -38,7 +40,9 @@ const AlertProvider = (props) => {
   const timeoutAlert = (alertID, time) => {
     setTimeout(() => {
       // additional check to make sure alert hasn't already been dismissed.
-      if (find(alerts, { id: alertID })) {
+      if (find(alerts, {
+        id: alertID
+      })) {
         deleteAlert(alertID);
       }
     }, time * 1000);
@@ -59,6 +63,8 @@ const AlertProvider = (props) => {
   );
 };
 
-AlertProvider.propTypes = { children: PropTypes.any.isRequired };
+AlertProvider.propTypes = {
+  children: PropTypes.any.isRequired
+};
 
 export default AlertProvider;

@@ -12,6 +12,8 @@ export const AlertWrapper = styled.div`
   align-items: center;
   position: relative;
   border-bottom: 1px solid #fff;
+  opacity: ${ ({ isMounted }) => (isMounted ? 1 : 0) };
+  transition: opacity 0.3s ease-in-out;
   &.error {
     background: ${ ({ theme }) => theme.error };
   }
