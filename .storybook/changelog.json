@@ -1,4 +1,5 @@
 [
+{ "user": "Tim Stone", "version": "v1.5.5", "commit": "Added customisation and animation to alerts" },
 { "user": "Rich Comber", "version": "v1.5.4", "commit": "Fixing snapshots" },
 { "user": "Rich Comber", "version": "v1.5.3", "commit": "Preventing avatar shrinking" },
 { "user": "Tim Stone", "version": "v1.5.2", "commit": "Added classNames to Drop and Selector" },
