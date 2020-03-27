@@ -8,13 +8,15 @@ import { AlertsContainer } from './alertConsumer.styles';
 import Alert from '../Alert';
 
 const AlertConsumer = (props) => {
-  const { style, topOffset } = props;
+  const { className, style, topOffset } = props;
+
   return (
     <Consumer>
       { ({ alerts, deleteAlert, timeoutAlert }) => {
         if (isEmpty(alerts)) return null;
         return (
           <AlertsContainer
+            className={ className }
             style={ style }
             topOffset={ topOffset }
           >
@@ -35,11 +37,13 @@ const AlertConsumer = (props) => {
 };
 
 AlertConsumer.defaultProps = {
+  className: '',
   style: {},
   topOffset: 0
 };
 
 AlertConsumer.propTypes = {
+  className: PropTypes.string,
   style: PropTypes.object,
   topOffset: PropTypes.number
 };

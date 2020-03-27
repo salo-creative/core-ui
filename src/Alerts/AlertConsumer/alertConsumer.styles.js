@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 
 export const AlertsContainer = styled.div`
@@ -7,5 +6,5 @@ export const AlertsContainer = styled.div`
   left: 0;
   width: 100%;
   z-index: 101;
-  ${ ({ styleString }) => styleString }
+  ${ ({ styleString }) => styleString };
 `;

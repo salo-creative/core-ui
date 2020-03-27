@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Icon from '@salo/icons';
 
 // STYLES
 import { AlertWrapper, Close } from './alert.styles';
@@ -12,25 +13,64 @@ class Alert extends React.Component {
     const dismissible = typeof alert.dismissible === 'undefined' || alert.dismissible;
     this.state = {
       dismissible,
-      timer: timeout && dismissible
+      timer: timeout && dismissible,
+      mounted: false
     };
   }
 
   componentDidMount() {
     const { alert, setAlertClear } = this.props;
     const { timer } = this.state;
+
+    // Timeout as otherwise it doesn't transition.
+    setTimeout(() => {
+      this.setState({
+        mounted: true
+      });
+    }, 10);
+    
     if (timer && typeof setAlertClear === 'function') {
       setAlertClear(alert.id, alert.time);
+
+      setTimeout(() => {
+        // additional check to make sure alert hasn't already been dismissed.
+        this.setState({
+          mounted: false
+        });
+        // Hide just before it is cleared with 100ms grace.
+      }, (alert.time * 1000) - 400);
     }
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      mounted: false
+    });
   }
 
   renderClose() {
     const { alert, clearAlert } = this.props;
     const { dismissible } = this.state;
+
+    const handleClose = () => {
+      this.setState({
+        mounted: false
+      });
+      // Wait for animation then clear.
+      setTimeout(() => {
+        clearAlert(alert.id);
+      }, 300);
+    };
+
     if (dismissible) {
       return (
-        <Close onClick={ () => clearAlert(alert.id) } role='button' tabIndex='-1'>
-          <span>X</span>
+        <Close
+          className='salo-alert__close'
+          onClick={ handleClose }
+          role='button'
+          tabIndex='-1'
+        >
+          <Icon icon='close' fill='#fff' vAlign='middle' />
         </Close>
       );
     }
@@ -39,12 +79,17 @@ class Alert extends React.Component {
 
   render() {
     const { alert } = this.props;
+    const { mounted } = this.state;
     if (alert) {
       return (
         <AlertWrapper
-          className={ `${ alert.type }` }
+          className={ `salo-alert ${ alert.type }` }
+          isMounted={ mounted }
+          role='alert'
+          aria-live='assertive'
+          aria-atomic='true'
         >
-          { alert.message }
+          <span className='salo-alert__message'>{ alert.message }</span>
           { this.renderClose() }
         </AlertWrapper>
       );
