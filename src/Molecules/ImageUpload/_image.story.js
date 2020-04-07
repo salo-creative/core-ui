@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withInfo } from '@storybook/addon-info';
 import styled from 'styled-components';
 import { action } from '@storybook/addon-actions';
 
@@ -24,15 +23,16 @@ const CustomImageUpload = styled(ImageUpload)`
 
 // story //
 storiesOf('Molecules|ImageUpload', module)
-
-// decorators
-  .addDecorator(withInfo)
   .addParameters({
-    options: { showAddonPanel: true },
-    info: { header: false }
+    options: {
+      showAddonPanel: true
+    },
+    info: {
+      header: false
+    }
   })
 
-// stories
+  // stories
   .add('Basic', () => {
     return (
       <Wrapper>
@@ -51,7 +51,9 @@ storiesOf('Molecules|ImageUpload', module)
           loading={ false }
           onUpload={ action('onUpload') }
           showButton={ false }
-          strings={ { ADD_AN_IMAGE: 'Add image' } }
+          strings={ {
+            ADD_AN_IMAGE: 'Add image'
+          } }
         />
       </Wrapper>
     );
