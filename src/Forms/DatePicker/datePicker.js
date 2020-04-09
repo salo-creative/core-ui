@@ -281,7 +281,7 @@ DatePicker.propTypes = {
   showYear: PropTypes.bool,
   size: PropTypes.oneOf(['L', 'M']),
   timePicker: PropTypes.bool,
-  value: PropTypes.string
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
 
 export default DatePicker;
