@@ -62,6 +62,7 @@ stories.add(
             email: 'rich@test.co.uk',
             url: 'https://salocreative.co.uk',
             tel: '0234234',
+            day: new Date(),
             number: 8,
             select: 'option_1',
             checkbox: true,

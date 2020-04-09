@@ -252,7 +252,7 @@ const RenderFields = (props) => {
             helperText={ helperText }
             ioFormat={ metaData.ioFormat }
             inputs={ {
-              Select: CustomSelect
+              Select: CustomSelect || Select
             } }
             key={ name }
             label={ label }
