@@ -52,7 +52,7 @@ const Row = (props) => {
             flexBasis={ `${ 100 / columns.length }%` }
             minWidth={ minWidth }
           >
-            { showHeader && <h4>{ label }</h4> }
+            { isCard && showHeader && <h4>{ label }</h4> }
             { renderContent({
               render,
               dataKey
