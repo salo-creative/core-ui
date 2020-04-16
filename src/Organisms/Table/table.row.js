@@ -1,26 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 // COMPONENTS & STYLES
+import TableContext from './context/context';
 import { BodyRow, BodyCell, ActionCell } from './table.styles';
 
-// HELPERS
-import { columnsProps } from './table.propTypes';
-
 const Row = (props) => {
+  const { item } = props;
   const {
     action,
     actionWidth,
     actions,
     actionsWidth,
     columns,
-    data,
     rowHeight
-  } = props;
+  } = React.useContext(TableContext);
   
   const renderValue = (dataKey) => {
-    const value = get(data, `${ dataKey }`, '-');
+    console.log('dataKey', dataKey);
+    const value = get(item, `${ dataKey }`, '-');
+    console.log('item', item);
+    console.log('value', value);
     if (typeof value === 'boolean') {
       return value.toString();
     }
@@ -33,11 +33,14 @@ const Row = (props) => {
   const renderContent = ({ render, dataKey }) => {
     if (typeof render === 'function') {
       return render({
-        data
+        data: item
       });
     }
     return renderValue(dataKey);
   };
+
+  console.log(columns);
+  console.log(item);
 
   return (
     <BodyRow height={ rowHeight }>
@@ -60,7 +63,7 @@ const Row = (props) => {
           key='action'
           minWidth={ actionWidth }
         >
-          { action(data) }
+          { action(item) }
         </BodyCell>
       ) }
       { !!actions && (
@@ -68,27 +71,11 @@ const Row = (props) => {
           key='actions'
           width={ actionsWidth }
         >
-          { actions(data) }
+          { actions(item) }
         </ActionCell>
       ) }
     </BodyRow>
   );
-};
-
-Row.defaultProps = {
-  action: null,
-  actions: null,
-  columns: []
-};
-
-Row.propTypes = {
-  action: PropTypes.func,
-  actionWidth: PropTypes.string.isRequired,
-  actions: PropTypes.any,
-  actionsWidth: PropTypes.string.isRequired,
-  columns: columnsProps,
-  data: PropTypes.object.isRequired,
-  rowHeight: PropTypes.string.isRequired
 };
 
 export default Row;

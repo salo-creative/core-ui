@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 // COMPONENTS & STYLES
+import Loader from '../../Molecules/Loader';
+import TableProvider from './context/provider';
 import TableBody from './table.body';
 import TableHeader from './table.header';
 import TablePagination from './table.pagination';
 import { TableWrapper, LoaderWrapper } from './table.styles';
-import Loader from '../../Molecules/Loader';
 
 // HELPERS
 import { columnsProps, sortingProps } from './table.propTypes';
@@ -38,6 +39,8 @@ const Table = (props) => {
     width
   } = props;
 
+  const [cardThresholdWidth, setCardThresholdWidth] = React.useState(0);
+
   const sortMe = ({ dataKey }) => {
     const sortingKey = get(sorting, 'dataKey', null);
     
@@ -63,56 +66,73 @@ const Table = (props) => {
     }
   };
 
+  React.useEffect(() => {
+    // Set smallest width before switching to card layout.
+    const threshold = columns.reduce((accum, column) => {
+      if (column.minWidth) {
+        return accum + parseInt(column.minWidth, 10);
+      }
+      return accum;
+    }, 0);
+
+    setCardThresholdWidth(threshold);
+  }, [columns]);
+
   return (
-    <TableWrapper
-      width={ width }
-      className={ `salo-table ${ className } ${ borders ? '' : 'no-borders' }` }
+    <TableProvider value={ {
+      action,
+      actionWidth,
+      actions,
+      actionsWidth,
+      borders,
+      columns,
+      className,
+      data,
+      dataEmptyComponent,
+      dataEmptyText,
+      error,
+      errorMessage,
+      loading,
+      pager,
+      pagination,
+      pageChange,
+      retryAction,
+      rowHeight,
+      showHeader,
+      sorting,
+      onSort,
+      width,
+      sortMe,
+      cardThresholdWidth
+    } }
     >
-      { showHeader && (
-        <TableHeader
-          actionWidth={ actionWidth }
-          actionsWidth={ actionsWidth }
-          columns={ columns }
-          hasAction={ !!action }
-          hasActions={ !!actions }
-          sorting={ sorting }
-          onSort={ sortMe }
-        />
-      ) }
-      { /* Render body if we aren't loading */ }
-      { !loading && (
-        <TableBody
-          action={ action }
-          actionWidth={ actionWidth }
-          actions={ actions }
-          actionsWidth={ actionsWidth }
-          columns={ columns }
-          data={ data }
-          dataEmptyComponent={ dataEmptyComponent }
-          dataEmptyText={ dataEmptyText }
-          error={ error }
-          errorMessage={ errorMessage }
-          retryAction={ retryAction }
-          rowHeight={ rowHeight }
-        />
-      ) }
-      { /* Render loader if we are fetching data */ }
-      { loading && (
-        <LoaderWrapper>
-          <Loader
-            display={ true }
+      <TableWrapper
+        width={ width }
+        className={ `salo-table ${ className } ${ borders ? '' : 'no-borders' }` }
+      >
+        { showHeader && (
+          <TableHeader
+            hasAction={ !!action }
+            hasActions={ !!actions }
           />
-        </LoaderWrapper>
-      ) }
-      { !loading && !error && (
-        <TablePagination
-          loading={ loading }
-          pager={ pager }
-          pagination={ pagination }
-          pageChange={ pageChange }
-        />
-      ) }
-    </TableWrapper>
+        ) }
+        { /* Render body if we aren't loading */ }
+        { !loading && (
+          <TableBody />
+        ) }
+        { /* Render loader if we are fetching data */ }
+        { loading && (
+          <LoaderWrapper>
+            <Loader
+              display={ true }
+            />
+          </LoaderWrapper>
+        ) }
+        { !loading && !error && (
+          <TablePagination />
+        ) }
+      </TableWrapper>
+    </TableProvider>
   );
 };
 
