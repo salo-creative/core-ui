@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 // COMPONENTS & STYLES
@@ -17,10 +18,7 @@ const Row = (props) => {
   } = React.useContext(TableContext);
   
   const renderValue = (dataKey) => {
-    console.log('dataKey', dataKey);
     const value = get(item, `${ dataKey }`, '-');
-    console.log('item', item);
-    console.log('value', value);
     if (typeof value === 'boolean') {
       return value.toString();
     }
@@ -38,9 +36,6 @@ const Row = (props) => {
     }
     return renderValue(dataKey);
   };
-
-  console.log(columns);
-  console.log(item);
 
   return (
     <BodyRow height={ rowHeight }>
@@ -76,6 +71,10 @@ const Row = (props) => {
       ) }
     </BodyRow>
   );
+};
+
+Row.propTypes = {
+  item: PropTypes.object.isRequired
 };
 
 export default Row;
