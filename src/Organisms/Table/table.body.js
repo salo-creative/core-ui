@@ -10,18 +10,12 @@ import TableContext from './context/context';
 
 const Body = () => {
   const {
-    action,
-    actionWidth,
-    actions,
-    actionsWidth,
-    columns,
     data,
     dataEmptyComponent,
     dataEmptyText,
     error,
     errorMessage,
-    retryAction,
-    rowHeight
+    retryAction
   } = React.useContext(TableContext);
 
   // If an error let the user know and show a retry action

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Provider } from './context';
 
 // HELPERS
+import useWindowSize from '../../../helpers/hooks/resize';
 import { columnsProps, sortingProps } from '../table.propTypes';
 
 const TableProvider = (props) => {
@@ -15,52 +16,70 @@ const TableProvider = (props) => {
 
   const {
     action,
-    actionWidth,
     actions,
     actionsWidth,
+    actionWidth,
     borders,
-    columns,
+    cardThresholdWidth,
     className,
+    columns,
     data,
     dataEmptyComponent,
     dataEmptyText,
     error,
     errorMessage,
     loading,
+    onSort,
+    pageChange,
     pager,
     pagination,
-    pageChange,
     retryAction,
     rowHeight,
     showHeader,
     sorting,
-    onSort,
+    sortMe,
     width
   } = value;
+  
+  const [layout, setLayout] = React.useState('row');
+
+  const viewport = useWindowSize();
+
+  // Decide whether to show card or row.
+  React.useLayoutEffect(() => {
+    if (viewport.width <= cardThresholdWidth) {
+      setLayout('card');
+    } else {
+      setLayout('row');
+    }
+  }, [cardThresholdWidth, viewport.width]);
 
   return (
     <Provider value={ {
       action,
-      actionWidth,
       actions,
       actionsWidth,
+      actionWidth,
       borders,
-      columns,
+      cardThresholdWidth,
       className,
+      columns,
       data,
       dataEmptyComponent,
       dataEmptyText,
       error,
       errorMessage,
+      layout,
       loading,
+      onSort,
+      pageChange,
       pager,
       pagination,
-      pageChange,
       retryAction,
       rowHeight,
       showHeader,
       sorting,
-      onSort,
+      sortMe,
       width
     } }
     >
@@ -76,6 +95,7 @@ TableProvider.propTypes = {
     actions: PropTypes.func,
     actionsWidth: PropTypes.string,
     borders: PropTypes.bool,
+    cardThresholdWidth: PropTypes.number.isRequired, // internally set
     columns: columnsProps,
     className: PropTypes.string,
     data: PropTypes.arrayOf(PropTypes.object),
@@ -90,6 +110,7 @@ TableProvider.propTypes = {
     showHeader: PropTypes.bool,
     sorting: sortingProps,
     onSort: PropTypes.func,
+    sortMe: PropTypes.func.isRequired, // internally set
     width: PropTypes.string,
     pagination: PropTypes.shape({
       perPage: PropTypes.number,

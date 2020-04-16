@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const TableWrapper = styled.div`
   width: ${ ({ width }) => width };
@@ -16,9 +16,20 @@ export const BodyRow = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  height: ${ ({ height }) => height };
   flex-wrap: none;
   border-bottom: 1px solid ${ ({ theme }) => theme.grey };
+
+  ${ (props) => {
+    if (props.isCard) {
+      return css`
+        flex-direction: column;
+      `;
+    }
+    return css`
+      height: ${ props.height };
+    `;
+  } }
+
   .no-borders & {
     border-bottom: none;
   }
@@ -42,12 +53,13 @@ export const ActionCell = styled(BodyCell)`
 
 // HEADER
 export const HeaderRow = styled.div`
-  display: flex;
+  display: ${ ({ isCard }) => (isCard ? 'none' : 'flex') };
   width: 100%;
   height: 5rem;
   flex-wrap: none;
   border-bottom: 2px solid ${ ({ theme }) => theme.grey };
   position: relative;
+
   .no-borders & {
     border-bottom: none;
   }
