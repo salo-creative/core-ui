@@ -15,7 +15,8 @@ const Row = (props) => {
     actionsWidth,
     columns,
     layout,
-    rowHeight
+    rowHeight,
+    showHeader
   } = React.useContext(TableContext);
 
   const isCard = layout === 'card';
@@ -43,7 +44,7 @@ const Row = (props) => {
   return (
     <BodyRow height={ rowHeight } isCard={ isCard }>
       { columns.map(column => {
-        const { dataKey, minWidth, render } = column;
+        const { dataKey, minWidth, render, label } = column;
         return (
           <BodyCell
             key={ dataKey }
@@ -51,8 +52,10 @@ const Row = (props) => {
             flexBasis={ `${ 100 / columns.length }%` }
             minWidth={ minWidth }
           >
+            { showHeader && <h4>{ label }</h4> }
             { renderContent({
-              render, dataKey
+              render,
+              dataKey
             }) }
           </BodyCell>
         );
@@ -72,7 +75,7 @@ const Row = (props) => {
           isCard={ isCard }
           width={ actionsWidth }
         >
-          { actions(item) }
+          { actions(item, layout) }
         </ActionCell>
       ) }
     </BodyRow>

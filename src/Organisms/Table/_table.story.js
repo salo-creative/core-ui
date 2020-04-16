@@ -192,8 +192,8 @@ stories.add(
         'column_1': 'My first thing', 'column_2': 'My second thing', 'column_3': 'My third thing'
       }
     ]);
-    const inlineMenu = (row) => (
-      <FlyOut context='table'>
+    const inlineMenu = (row, layout) => (
+      <FlyOut context={ layout }>
         <FlyOutButton title='Title' onClick={ () => alert(row.column_1) } icon='sync' />
         <FlyOutLink title='Title' link={ `/${ row.column_1 }` } icon='dashboard' />
       </FlyOut>

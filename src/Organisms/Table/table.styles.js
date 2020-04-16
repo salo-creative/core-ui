@@ -37,7 +37,7 @@ export const BodyRow = styled.div`
 
 export const BodyCell = styled.div`
   padding: 1rem;
-  display: flex;
+  display: ${ ({ isCard }) => (isCard ? 'block' : 'flex') };
   align-items: center;
   font-size: 1.4rem;
   flex-basis: ${ ({ flexBasis }) => flexBasis };
