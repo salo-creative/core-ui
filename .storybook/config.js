@@ -73,4 +73,7 @@ addDecorator(story => {
 
 setAddon(infoAddon);
 
-configure(require.context('../src', true, /\.story\.js$/), module);
+configure([
+  require.context('../src', true, /\.story\.js$/),
+  require.context('./', true, /_story.js/)
+], module);

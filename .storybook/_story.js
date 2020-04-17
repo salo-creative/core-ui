@@ -192,3 +192,7 @@ Test.story = {
     options: { showPanel: false },
   },
 };
+
+export default {
+  title: 'Other'
+}
