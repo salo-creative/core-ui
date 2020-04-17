@@ -49,6 +49,7 @@ The columns prop expects an array and this tells the table what columns it shoul
 		label: 'Column label', // heading that apears in the table head
 		dataKey: 'column_key', // where the data for each row is located
 		minWidth: '200px', // used to ensure column never gets too small
+		width: '50px', // used to ensure column is always this size if it's important the content is a set width
 		sortable: false // bool value of whether column should be sortable
 	},
 	...
@@ -141,8 +142,8 @@ The table supports an action area where button etc can be added in the last colu
 <Table
   columns={ [ ... ] }
   data={ [ ... ] }
-  actions={ (data) => (
-    <FlyOut context='table'>
+  actions={ (data, context) => (
+    <FlyOut context={ context }>
       <FlyOutButton title='Title' onClick={ () => alert(row.column_1) } icon='sync' />
       <FlyOutLink title='Title' link={ `/${ row.column_1 }` } icon='dashboard' />
     </FlyOut>
@@ -152,7 +153,15 @@ The table supports an action area where button etc can be added in the last colu
 
 For simplicity the `FlyOut` menu molecule has been modified to include a number of specific styles to make it fit with the table perfectly and is the example used above. Because of this the table sizes the action column to 80px to accommodate this but this can be overridden using the `actionsWidth` property which accepts a string px value for the columns width.
 
-*n.b. it is strongly advised for consistency you always use the `FlyOut` molecule as it has been specifically built and  modified to work with the table*
+*n.b. it is strongly advised for consistency you always use the `FlyOut` molecule as it has been specifically built and modified to work with the table*
+
+## Responsive behaviour
+
+If the parent's width exceeds each column's minimum width (taking into consideration any action buttons on the row) then the table will look like a regular table. If it's lower than each column's minimum width then it'll stack each row to a card layout with the column title above it. We have found that this is a good compromise between scrolling and visibility of data.
+
+## Custom rows
+
+Each element has a number of CSS classes which can be targetted to create custom layouts (e.g. absolutely positioning rows, showing/hiding individual cells, etc).
 
 ## Sort (NOT IMPLEMENTED)
 
