@@ -1,6 +1,7 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean, text, select, object } from '@storybook/addon-knobs';
+import {
+  withKnobs, boolean, text, select, object
+} from '@storybook/addon-knobs';
 import { RenderWithProps, Store } from '@jamesbliss/storybook-state';
 
 // Tests.
@@ -15,130 +16,173 @@ import README from './README.md';
 import README_GROUP from './README_GROUP.md';
 
 // Story logic.
-const stories = storiesOf('Forms | CheckBox', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withTests({ results }));
-stories.addParameters({ jest: ['checkbox'] });
+export const Basic = () => {
+  // Store.
+  const store = new Store({
+    checked: false
+  });
+  // Knobs.
+  const label = text('Label', 'Checkbox label');
+  const helperText = text('Helper text', 'Helper text');
+  const error = boolean('Show error state', false);
+  const required = boolean('Required field', false);
+  const disabled = boolean('Show disabled state', false);
+  const size = select('size', ['L', 'M'], 'M');
+  return (
+    <RenderWithProps store={ store }>
+      <CheckBox
+        checked={ store.checked }
+        disabled={ disabled }
+        error={ error }
+        helperText={ helperText }
+        label={ label }
+        name='story'
+        onChange={ e => store.set({
+          checked: e.checked
+        }) }
+        required={ required }
+        size={ size }
+      />
+    </RenderWithProps>
+  );
+};
 
-stories.add(
-  'Basic',
-  (() => {
-    // Store.
-    const store = new Store({ checked: false });
-    // Knobs.
-    const label = text('Label', 'Checkbox label');
-    const helperText = text('Helper text', 'Helper text');
-    const error = boolean('Show error state', false);
-    const required = boolean('Required field', false);
-    const disabled = boolean('Show disabled state', false);
-    const size = select('size', ['L', 'M'], 'M');
-    return (
-      <RenderWithProps store={ store }>
-        <CheckBox
-          checked={ store.checked }
-          disabled={ disabled }
-          error={ error }
-          helperText={ helperText }
-          label={ label }
-          name='story'
-          onChange={ e => store.set({ checked: e.checked }) }
-          required={ required }
-          size={ size }
-        />
-      </RenderWithProps>
-    );
-  }),
-  {
-    info: { propTablesExclude: [RenderWithProps] },
-    notes: README
+Basic.story = {
+  decorators: [
+    withKnobs,
+    withTests({
+      results
+    })
+  ],
+  parameters: {
+    info: {
+      propTablesExclude: [RenderWithProps]
+    },
+    notes: README,
+    jest: ['checkbox']
   }
-);
+};
 
-stories.add(
-  'Group',
-  (() => {
-    // Store.
-    const store = new Store({
-      fields: [
-        { name: 'field_1', checked: false, label: 'Field 1' },
-        { name: 'field_2', checked: false, label: 'Field 2' },
-        { name: 'field_3', checked: false, label: 'Field 3' }
-      ]
-    });
-    // Knobs.
-    const label = text('Label', 'Checkbox group label');
-    const helperText = text('Helper text', 'Helper text');
-    const error = boolean('Show error state', false);
-    const required = boolean('Required field', false);
-    const disabled = boolean('Show disabled state', false);
-    const size = select('size', ['L', 'M'], 'M');
-    return (
-      <RenderWithProps store={ store }>
-        <CheckBoxGroup
-          disabled={ disabled }
-          error={ error }
-          fields={ store.fields }
-          helperText={ helperText }
-          label={ label }
-          name='story'
-          onChange={ fields => store.set({ fields }) }
-          required={ required }
-          size={ size }
-        />
-      </RenderWithProps>
-    );
-  }),
-  {
-    info: { propTablesExclude: [RenderWithProps] },
-    notes: README_GROUP
-  }
-);
-
-stories.add(
-  'Custom colours',
-  (() => {
-    // Store.
-    const store = new Store({ checked: false });
-    // Knobs.
-    const label = text('Label', 'Checkbox label');
-    const helperText = text('Helper text', 'Helper text');
-    const colours = object('Colours', {
-      'checked': {
-        'background': 'goldenrod',
-        'border': 'hotpink',
-        'check': 'red'
+export const Group = () => {
+  // Store.
+  const store = new Store({
+    fields: [
+      {
+        name: 'field_1', checked: false, label: 'Field 1'
       },
-      'unchecked': {
-        'background': 'white',
-        'border': 'rebeccapurple',
-        'check': 'blue'
+      {
+        name: 'field_2', checked: false, label: 'Field 2'
+      },
+      {
+        name: 'field_3', checked: false, label: 'Field 3'
       }
-    });
-    const shadow = text('shadow', '0 2px 10px 0 rgba(0,0,132,0.1)');
-    const error = boolean('Show error state', false);
-    const required = boolean('Required field', false);
-    const disabled = boolean('Show disabled state', false);
-    const size = select('size', ['L', 'M'], 'M');
-    return (
-      <RenderWithProps store={ store }>
-        <CheckBox
-          checked={ store.checked }
-          colours={ colours }
-          disabled={ disabled }
-          error={ error }
-          helperText={ helperText }
-          label={ label }
-          name='story'
-          onChange={ e => store.set({ checked: e.checked }) }
-          required={ required }
-          size={ size }
-          shadow={ shadow }
-        />
-      </RenderWithProps>
-    );
-  }),
-  {
-    info: { propTablesExclude: [RenderWithProps] },
-    notes: README
+    ]
+  });
+  // Knobs.
+  const label = text('Label', 'Checkbox group label');
+  const helperText = text('Helper text', 'Helper text');
+  const error = boolean('Show error state', false);
+  const required = boolean('Required field', false);
+  const disabled = boolean('Show disabled state', false);
+  const size = select('size', ['L', 'M'], 'M');
+  return (
+    <RenderWithProps store={ store }>
+      <CheckBoxGroup
+        disabled={ disabled }
+        error={ error }
+        fields={ store.fields }
+        helperText={ helperText }
+        label={ label }
+        name='story'
+        onChange={ fields => store.set({
+          fields
+        }) }
+        required={ required }
+        size={ size }
+      />
+    </RenderWithProps>
+  );
+};
+
+Group.story = {
+  decorators: [
+    withKnobs,
+    withTests({
+      results
+    })
+  ],
+  parameters: {
+    info: {
+      propTablesExclude: [RenderWithProps]
+    },
+    notes: README_GROUP,
+    jest: ['checkbox']
   }
-);
+};
+
+export const CustomColours = () => {
+  // Store.
+  const store = new Store({
+    checked: false
+  });
+  // Knobs.
+  const label = text('Label', 'Checkbox label');
+  const helperText = text('Helper text', 'Helper text');
+  const colours = object('Colours', {
+    checked: {
+      background: 'goldenrod',
+      border: 'hotpink',
+      check: 'red'
+    },
+    unchecked: {
+      background: 'white',
+      border: 'rebeccapurple',
+      check: 'blue'
+    }
+  });
+  const shadow = text('shadow', '0 2px 10px 0 rgba(0,0,132,0.1)');
+  const error = boolean('Show error state', false);
+  const required = boolean('Required field', false);
+  const disabled = boolean('Show disabled state', false);
+  const size = select('size', ['L', 'M'], 'M');
+  return (
+    <RenderWithProps store={ store }>
+      <CheckBox
+        checked={ store.checked }
+        colours={ colours }
+        disabled={ disabled }
+        error={ error }
+        helperText={ helperText }
+        label={ label }
+        name='story'
+        onChange={ e => store.set({
+          checked: e.checked
+        }) }
+        required={ required }
+        size={ size }
+        shadow={ shadow }
+      />
+    </RenderWithProps>
+  );
+};
+
+CustomColours.story = {
+  name: 'Custom colours',
+  decorators: [
+    withKnobs,
+    withTests({
+      results
+    })
+  ],
+  parameters: {
+    info: {
+      propTablesExclude: [RenderWithProps]
+    },
+    notes: README,
+    jest: ['checkbox']
+  }
+};
+
+export default {
+  title: 'Forms/CheckBox'
+};

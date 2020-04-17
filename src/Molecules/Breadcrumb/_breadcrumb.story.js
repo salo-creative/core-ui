@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 // load tests
 import { withTests } from '@storybook/addon-jest';
@@ -13,25 +12,35 @@ import { Breadcrumb } from '../../index';
 import README from './README.md';
 
 // Start of story logic
-const stories = storiesOf('Molecules | Breadcrumb', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withTests({ results }));
-stories.addParameters({ jest: ['breadcrumb'] });
+export const Basic = () => {
+  const margin = text('Margin', '0 0 2rem');
+  const trail = object('Trail', [
+    {
+      label: 'Home', link: 'https://www.google.co.uk'
+    },
+    {
+      label: 'Previous page', link: '/previous-page'
+    },
+    {
+      label: 'Current page'
+    }
+  ]);
+  return <Breadcrumb margin={ margin } trail={ trail } />;
+};
 
-stories.add(
-  'Basic',
-  (() => {
-    const margin = text('Margin', '0 0 2rem');
-    const trail = object('Trail', [
-      { label: 'Home', link: 'https://www.google.co.uk' },
-      { label: 'Previous page', link: '/previous-page' },
-      { label: 'Current page' }
-    ]);
-    return (
-      <Breadcrumb
-        margin={ margin }
-        trail={ trail }
-      />
-    );
-  }), { notes: README }
-);
+Basic.story = {
+  decorators: [
+    withKnobs,
+    withTests({
+      results
+    })
+  ],
+  parameters: {
+    jest: ['breadcrumb'],
+    notes: README
+  }
+};
+
+export default {
+  title: 'Molecules/Breadcrumb'
+};
