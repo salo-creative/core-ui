@@ -6,6 +6,7 @@ import Cookies from 'universal-cookie';
 import { ApolloProvider } from 'react-apollo';
 import { AuthProvider, getTokensClient } from '@salo/auth';
 import ApolloClient from '../src/Apollo/client';
+import { addParameters } from '@storybook/react';
 
 import {
   GlobalStyles,
@@ -23,6 +24,12 @@ const client = ApolloClient({
 });
 
 const cookies = new Cookies();
+
+addParameters({
+  options: {
+    showRoots: true
+  },
+});
 
 addDecorator(withInfo({
   inline: true,

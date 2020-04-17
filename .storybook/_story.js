@@ -194,5 +194,5 @@ Test.story = {
 };
 
 export default {
-  title: 'Other'
+  title: 'Meta'
 }
