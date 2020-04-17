@@ -4,9 +4,11 @@ import { get } from 'lodash';
 
 // COMPONENTS & STYLES
 import TableContext from './context/context';
-import { BodyRow, BodyCell, ActionCell } from './table.styles';
+import {
+  BodyRow, BodyCell, BodyCellHeading, BodyCellValue, ActionCell
+} from './table.styles';
 
-const Row = (props) => {
+const Row = props => {
   const { item } = props;
   const {
     action,
@@ -24,12 +26,12 @@ const Row = (props) => {
   const renderValue = (dataKey) => {
     const value = get(item, `${ dataKey }`, '-');
     if (typeof value === 'boolean') {
-      return value.toString();
+      return <BodyCellValue> { value.toString() } </BodyCellValue>;
     }
     if (typeof value === 'object') {
-      return JSON.stringify(value);
+      return <BodyCellValue>{ JSON.stringify(value) }</BodyCellValue>;
     }
-    return value;
+    return <BodyCellValue>{ value }</BodyCellValue>;
   };
 
   const renderContent = ({ render, dataKey }) => {
@@ -48,11 +50,15 @@ const Row = (props) => {
         return (
           <BodyCell
             key={ dataKey }
-            isCard={ isCard }
+            className={ `salo-table__body-cell salo-table__body-cell--${ dataKey } ${ isCard && 'salo-table__body-cell--card' } ` }
             flexBasis={ `${ 100 / columns.length }%` }
+            isCard={ isCard }
             minWidth={ minWidth }
           >
-            { isCard && showHeader && <h4>{ label }</h4> }
+            { /* In cards, show column heading above value */ }
+            { isCard && showHeader && (
+              <BodyCellHeading>{ label }</BodyCellHeading>
+            ) }
             { renderContent({
               render,
               dataKey
@@ -63,6 +69,7 @@ const Row = (props) => {
       { !!action && (
         <BodyCell
           key='action'
+          className='salo-table__body-cell'
           isCard={ isCard }
           minWidth={ actionWidth }
         >

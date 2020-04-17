@@ -213,8 +213,12 @@ stories.add(
         margin={ margin }
         showHeader={ showHeader }
         width={ width }
-        actions={ showActions && inlineMenu }
-        action={ showSingleAction && action }
+        { ...(showActions && {
+          actions: inlineMenu
+        }) }
+        { ...(showSingleAction && {
+          action
+        }) }
       />
     );
   }), {

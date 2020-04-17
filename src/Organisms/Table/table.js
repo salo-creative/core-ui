@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
 
 // COMPONENTS & STYLES
 import Loader from '../../Molecules/Loader';
@@ -39,45 +38,6 @@ const Table = (props) => {
     width
   } = props;
 
-  const [cardThresholdWidth, setCardThresholdWidth] = React.useState(0);
-
-  const sortMe = ({ dataKey }) => {
-    const sortingKey = get(sorting, 'dataKey', null);
-    
-    // There is no current sorting
-    if (sortingKey === null) {
-      onSort({
-        dataKey,
-        direction: 'asc'
-      });
-    } else if (sortingKey !== dataKey) {
-      // Sorting column is being changed
-      onSort({
-        dataKey,
-        direction: 'asc'
-      });
-    } else {
-      // Changing the direction of the sorting column
-      const direction = get(sorting, 'direction') === 'asc' ? 'desc' : 'asc';
-      onSort({
-        dataKey,
-        direction
-      });
-    }
-  };
-
-  React.useEffect(() => {
-    // Set smallest width before switching to card layout.
-    const threshold = columns.reduce((accum, column) => {
-      if (column.minWidth) {
-        return accum + parseInt(column.minWidth, 10);
-      }
-      return accum;
-    }, 0);
-
-    setCardThresholdWidth(threshold);
-  }, [columns]);
-
   return (
     <TableProvider value={ {
       action,
@@ -101,9 +61,7 @@ const Table = (props) => {
       showHeader,
       sorting,
       onSort,
-      width,
-      sortMe,
-      cardThresholdWidth
+      width
     } }
     >
       <TableWrapper
@@ -138,9 +96,9 @@ const Table = (props) => {
 
 Table.defaultProps = {
   action: null,
-  actionWidth: '12rem',
+  actionWidth: '120px',
   actions: null,
-  actionsWidth: '8rem',
+  actionsWidth: '80px',
   borders: true,
   columns: [],
   className: '',
@@ -152,7 +110,7 @@ Table.defaultProps = {
   loading: false,
   pager: true,
   retryAction: null,
-  rowHeight: '6rem',
+  rowHeight: '60px',
   showHeader: true,
   sorting: {},
   onSort: () => null,
