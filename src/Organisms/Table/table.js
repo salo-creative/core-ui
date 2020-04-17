@@ -38,6 +38,8 @@ const Table = (props) => {
     width
   } = props;
 
+  const tableEl = React.useRef(null);
+
   return (
     <TableProvider value={ {
       action,
@@ -45,28 +47,30 @@ const Table = (props) => {
       actions,
       actionsWidth,
       borders,
-      columns,
       className,
+      columns,
       data,
       dataEmptyComponent,
       dataEmptyText,
       error,
       errorMessage,
       loading,
+      onSort,
+      pageChange,
       pager,
       pagination,
-      pageChange,
       retryAction,
       rowHeight,
       showHeader,
       sorting,
-      onSort,
+      tableEl,
       width
     } }
     >
       <TableWrapper
-        width={ width }
         className={ `salo-table ${ className } ${ borders ? '' : 'no-borders' }` }
+        width={ width }
+        ref={ tableEl }
       >
         { showHeader && (
           <TableHeader

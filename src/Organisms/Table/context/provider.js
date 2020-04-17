@@ -36,15 +36,15 @@ const TableProvider = (props) => {
     rowHeight,
     showHeader,
     sorting,
+    tableEl,
     width
   } = value;
   
+  // * States
   const [layout, setLayout] = React.useState('table');
-
-  const viewport = useWindowSize();
-
   const [cardThresholdWidth, setCardThresholdWidth] = React.useState(0);
 
+  // * Definitions
   const sortMe = ({ dataKey }) => {
     const sortingKey = sorting?.[dataKey] || null;
     
@@ -70,9 +70,13 @@ const TableProvider = (props) => {
     }
   };
 
-  React.useEffect(() => {
-    // * Set smallest width before switching to card layout.
+  // * Custom hooks
+  // Used to trigger width recalc on resize
+  const viewport = useWindowSize();
 
+  // * Side-effects
+  // Set smallest width before switching to card layout.
+  React.useEffect(() => {
     // Loop through columns and find minWidths
     let threshold = columns.reduce((accum, column) => {
       if (column.minWidth) {
@@ -96,15 +100,14 @@ const TableProvider = (props) => {
     setCardThresholdWidth(threshold);
   }, [action, actionWidth, actions, actionsWidth, columns]);
 
-
-  // Decide whether to show card or row.
-  React.useLayoutEffect(() => {
-    if (viewport.width <= cardThresholdWidth) {
+  // Decide whether to show card or table layout.
+  React.useEffect(() => {
+    if (tableEl.current?.parentElement.clientWidth <= cardThresholdWidth) {
       setLayout('card');
-    } else {
+    } else if (layout === 'card') {
       setLayout('table');
     }
-  }, [cardThresholdWidth, viewport.width]);
+  }, [cardThresholdWidth, layout, tableEl, viewport]);
 
   return (
     <Provider value={ {
@@ -161,6 +164,7 @@ TableProvider.propTypes = {
     showHeader: PropTypes.bool,
     sorting: sortingProps,
     onSort: PropTypes.func,
+    tableEl: PropTypes.object.isRequired,
     width: PropTypes.string,
     pagination: PropTypes.shape({
       perPage: PropTypes.number,
