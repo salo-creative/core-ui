@@ -44,7 +44,7 @@ export const Changelog = () => {
     <React.Fragment>
       <StyledH1>UI changelog</StyledH1>
       <Wrapper>
-        <Container padding="25px">
+        <Container padding='25px'>
           <Row>
             <Column>
               {changes.map(change => {
@@ -77,7 +77,7 @@ export const Approach = () => (
   <React.Fragment>
     <StyledH1>Ui approach</StyledH1>
     <Wrapper>
-      <Container padding="25px">
+      <Container padding='25px'>
         <Row>
           <Column>
             <Ul>
@@ -140,7 +140,7 @@ export const Test = () => (
   <React.Fragment>
     <StyledH1>Ui Testing</StyledH1>
     <Wrapper>
-      <Container padding="25px">
+      <Container padding='25px'>
         <Row>
           <Column>
             <H2>Atoms:</H2>
