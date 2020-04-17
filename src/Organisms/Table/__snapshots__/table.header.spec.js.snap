@@ -6,10 +6,7 @@ exports[`Renders against snapshot 1`] = `
 }
 
 .c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   width: 100%;
   height: 5rem;
   -webkit-flex-wrap: none;
@@ -50,10 +47,10 @@ exports[`Renders against snapshot 1`] = `
   width="100%"
 >
   <div
-    class="c1 salo-table__header"
+    class="c1 salo-table__header salo-table__header-row"
   />
   <div
-    class="c2"
+    class="c2 salo-table__no-data"
   >
     There are no results to display
   </div>
