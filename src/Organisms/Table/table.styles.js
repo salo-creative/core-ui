@@ -14,9 +14,10 @@ export const BodyWrapper = styled.div.attrs({
 `;
 
 // ROW
-export const BodyRow = styled.div.attrs({
-  className: 'salo-table__body-row'
-})`
+export const BodyRow = styled.div
+  .attrs(({ isCard }) => ({
+    className: `salo-table__body-row ${ isCard ? 'salo-table__body-row--card' : '' }`
+  }))`
   position: relative;
   display: flex;
   width: 100%;

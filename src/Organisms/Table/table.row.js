@@ -24,7 +24,7 @@ const Row = props => {
   const isCard = layout === 'card';
   
   const renderValue = (dataKey) => {
-    const value = get(item, `${ dataKey }`, '-');
+    const value = get(item, `${ dataKey }`, '—');
     if (typeof value === 'boolean') {
       return <BodyCellValue> { value.toString() } </BodyCellValue>;
     }
@@ -46,12 +46,12 @@ const Row = props => {
   return (
     <BodyRow height={ rowHeight } isCard={ isCard }>
       { columns.map(column => {
-        const { dataKey, minWidth, render, label } = column;
+        const { dataKey, minWidth, width, render, label } = column;
         return (
           <BodyCell
             key={ dataKey }
-            className={ `salo-table__body-cell salo-table__body-cell--${ dataKey } ${ isCard && 'salo-table__body-cell--card' } ` }
-            flexBasis={ `${ 100 / columns.length }%` }
+            className={ `salo-table__body-cell salo-table__body-cell--${ dataKey } ${ isCard ? 'salo-table__body-cell--card' : '' } ` }
+            flexBasis={ width || `${ 100 / columns.length }%` }
             isCard={ isCard }
             minWidth={ minWidth }
           >
