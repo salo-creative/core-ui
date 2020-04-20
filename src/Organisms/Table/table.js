@@ -39,6 +39,9 @@ const Table = (props) => {
     width
   } = props;
 
+  // Determine the initialCardThreshold to show the correct
+  // skeleton loader. This is needed as otherwise we need to wait
+  // for an async state update which can cause a render flash.
   const initialCardThreshold = determineThreshold({
     action,
     actionWidth,
