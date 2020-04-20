@@ -3,54 +3,65 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 // COMPONENTS & STYLES
-import { BodyRow, BodyCell, ActionCell } from './table.styles';
+import TableContext from './context/context';
+import {
+  BodyRow, BodyCell, BodyCellHeading, BodyCellValue, ActionCell
+} from './table.styles';
 
-// HELPERS
-import { columnsProps } from './table.propTypes';
-
-const Row = (props) => {
+const Row = props => {
+  const { item } = props;
   const {
     action,
     actionWidth,
     actions,
     actionsWidth,
     columns,
-    data,
-    rowHeight
-  } = props;
+    layout,
+    rowHeight,
+    showHeader
+  } = React.useContext(TableContext);
+
+  const isCard = layout === 'card';
   
   const renderValue = (dataKey) => {
-    const value = get(data, `${ dataKey }`, '-');
+    const value = get(item, `${ dataKey }`, '—');
     if (typeof value === 'boolean') {
-      return value.toString();
+      return <BodyCellValue> { value.toString() } </BodyCellValue>;
     }
     if (typeof value === 'object') {
-      return JSON.stringify(value);
+      return <BodyCellValue>{ JSON.stringify(value) }</BodyCellValue>;
     }
-    return value;
+    return <BodyCellValue>{ value }</BodyCellValue>;
   };
 
   const renderContent = ({ render, dataKey }) => {
     if (typeof render === 'function') {
       return render({
-        data
+        data: item
       });
     }
     return renderValue(dataKey);
   };
 
   return (
-    <BodyRow height={ rowHeight }>
+    <BodyRow height={ rowHeight } isCard={ isCard }>
       { columns.map(column => {
-        const { dataKey, minWidth, render } = column;
+        const { dataKey, minWidth, width, render, label } = column;
         return (
           <BodyCell
             key={ dataKey }
-            flexBasis={ `${ 100 / columns.length }%` }
+            className={ `salo-table__body-cell salo-table__body-cell--${ dataKey } ${ isCard ? 'salo-table__body-cell--card' : '' } ` }
+            flexBasis={ width || `${ 100 / columns.length }%` }
+            isCard={ isCard }
             minWidth={ minWidth }
           >
+            { /* In cards, show column heading above value */ }
+            { isCard && showHeader && (
+              <BodyCellHeading>{ label }</BodyCellHeading>
+            ) }
             { renderContent({
-              render, dataKey
+              render,
+              dataKey
             }) }
           </BodyCell>
         );
@@ -58,37 +69,28 @@ const Row = (props) => {
       { !!action && (
         <BodyCell
           key='action'
+          className='salo-table__body-cell'
+          isCard={ isCard }
           minWidth={ actionWidth }
         >
-          { action(data) }
+          { action(item) }
         </BodyCell>
       ) }
       { !!actions && (
         <ActionCell
           key='actions'
+          isCard={ isCard }
           width={ actionsWidth }
         >
-          { actions(data) }
+          { actions(item, layout) }
         </ActionCell>
       ) }
     </BodyRow>
   );
 };
 
-Row.defaultProps = {
-  action: null,
-  actions: null,
-  columns: []
-};
-
 Row.propTypes = {
-  action: PropTypes.func,
-  actionWidth: PropTypes.string.isRequired,
-  actions: PropTypes.any,
-  actionsWidth: PropTypes.string.isRequired,
-  columns: columnsProps,
-  data: PropTypes.object.isRequired,
-  rowHeight: PropTypes.string.isRequired
+  item: PropTypes.object.isRequired
 };
 
 export default Row;

@@ -1,25 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { ThemeContext } from 'styled-components';
+import Icon from '@salo/icons';
 
 // COMPONENTS & STYLES
-import Icon from '@salo/icons';
 import { HeaderRow, HeaderCell, HeaderSorting } from './table.styles';
 
 // HELPERS
-import { columnsProps, sortingProps } from './table.propTypes';
+import TableContext from './context/context';
 
-const Header = (props) => {
+const Header = () => {
   const {
+    action,
+    actions,
     actionWidth,
     actionsWidth,
     columns,
-    hasAction,
-    hasActions,
+    layout,
     sorting,
     onSort
-  } = props;
+  } = React.useContext(TableContext);
+  const theme = React.useContext(ThemeContext);
 
   // Determines the sorting icon to be rendered
   const sortingIcon = (dataKey) => {
@@ -32,10 +33,13 @@ const Header = (props) => {
     return get(sorting, 'direction') === 'asc' ? 'chevron_up' : 'chevron_down';
   };
 
-  const theme = React.useContext(ThemeContext);
+  const isCard = layout === 'card';
 
   return (
-    <HeaderRow className='salo-table__header'>
+    <HeaderRow
+      className='salo-table__header'
+      isCard={ isCard }
+    >
       { columns.map(column => {
         const { label, minWidth, dataKey, sortable } = column;
         const icon = sortingIcon(dataKey);
@@ -62,14 +66,14 @@ const Header = (props) => {
           </HeaderCell>
         );
       }) }
-      { hasAction && (
+      { !!action && (
         <HeaderCell
           key='action'
           flexBasis={ actionWidth }
           minWidth={ actionWidth }
         />
       ) }
-      { hasActions && (
+      { !!actions && (
         <HeaderCell
           key='actions'
           flexBasis={ actionsWidth }
@@ -78,22 +82,6 @@ const Header = (props) => {
       ) }
     </HeaderRow>
   );
-};
-
-Header.defaultProps = {
-  columns: [],
-  sorting: {},
-  onSort: () => null
-};
-
-Header.propTypes = {
-  actionWidth: PropTypes.string.isRequired,
-  actionsWidth: PropTypes.string.isRequired,
-  columns: columnsProps,
-  sorting: sortingProps,
-  onSort: PropTypes.func,
-  hasAction: PropTypes.bool.isRequired,
-  hasActions: PropTypes.bool.isRequired
 };
 
 export default Header;

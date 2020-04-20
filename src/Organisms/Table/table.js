@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
 
 // COMPONENTS & STYLES
+import Loader from '../../Molecules/Loader';
+import TableProvider from './context/provider';
 import TableBody from './table.body';
 import TableHeader from './table.header';
 import TablePagination from './table.pagination';
 import { TableWrapper, LoaderWrapper } from './table.styles';
-import Loader from '../../Molecules/Loader';
 
 // HELPERS
+import { determineThreshold } from './table.helpers';
 import { columnsProps, sortingProps } from './table.propTypes';
 
 const Table = (props) => {
@@ -38,89 +39,88 @@ const Table = (props) => {
     width
   } = props;
 
-  const sortMe = ({ dataKey }) => {
-    const sortingKey = get(sorting, 'dataKey', null);
-    
-    // There is no current sorting
-    if (sortingKey === null) {
-      onSort({
-        dataKey,
-        direction: 'asc'
-      });
-    } else if (sortingKey !== dataKey) {
-      // Sorting column is being changed
-      onSort({
-        dataKey,
-        direction: 'asc'
-      });
-    } else {
-      // Changing the direction of the sorting column
-      const direction = get(sorting, 'direction') === 'asc' ? 'desc' : 'asc';
-      onSort({
-        dataKey,
-        direction
-      });
-    }
-  };
+  // Determine the initialCardThreshold to show the correct
+  // skeleton loader. This is needed as otherwise we need to wait
+  // for an async state update which can cause a render flash.
+  const initialCardThreshold = determineThreshold({
+    action,
+    actionWidth,
+    actions,
+    actionsWidth,
+    columns
+  });
 
   return (
-    <TableWrapper
-      width={ width }
-      className={ `salo-table ${ className } ${ borders ? '' : 'no-borders' }` }
+    <TableProvider
+      initialCardThreshold={ initialCardThreshold }
+      value={ {
+        action,
+        actionWidth,
+        actions,
+        actionsWidth,
+        borders,
+        className,
+        columns,
+        data,
+        dataEmptyComponent,
+        dataEmptyText,
+        error,
+        errorMessage,
+        loading,
+        onSort,
+        pageChange,
+        pager,
+        pagination,
+        retryAction,
+        rowHeight,
+        showHeader,
+        sorting,
+        width
+      } }
     >
-      { showHeader && (
-        <TableHeader
-          actionWidth={ actionWidth }
-          actionsWidth={ actionsWidth }
-          columns={ columns }
-          hasAction={ !!action }
-          hasActions={ !!actions }
-          sorting={ sorting }
-          onSort={ sortMe }
-        />
-      ) }
-      { /* Render body if we aren't loading */ }
-      { !loading && (
-        <TableBody
-          action={ action }
-          actionWidth={ actionWidth }
-          actions={ actions }
-          actionsWidth={ actionsWidth }
-          columns={ columns }
-          data={ data }
-          dataEmptyComponent={ dataEmptyComponent }
-          dataEmptyText={ dataEmptyText }
-          error={ error }
-          errorMessage={ errorMessage }
-          retryAction={ retryAction }
-          rowHeight={ rowHeight }
-        />
-      ) }
-      { /* Render loader if we are fetching data */ }
-      { loading && (
-        <LoaderWrapper>
-          <Loader
-            display={ true }
-          />
-        </LoaderWrapper>
-      ) }
-      { !loading && !error && (
-        <TablePagination
-          loading={ loading }
-          pager={ pager }
-          pagination={ pagination }
-          pageChange={ pageChange }
-        />
-      ) }
-    </TableWrapper>
+      { ({ cardThresholdWidth, mounted, tableEl }) => {
+        return (
+          <TableWrapper
+            ref={ tableEl }
+            className={ `salo-table ${ className } ${ borders ? '' : 'no-borders' }` }
+            mounted={ mounted }
+            width={ width }
+            cardThresholdWidth={ cardThresholdWidth }
+          >
+            { showHeader && (
+              <TableHeader
+                hasAction={ !!action }
+                hasActions={ !!actions }
+              />
+            ) }
+            { /* Render body if we aren't loading */ }
+            { !loading && (
+              <TableBody />
+            ) }
+            { /* Render loader if we are fetching data */ }
+            { mounted && loading && (
+              <LoaderWrapper>
+                <Loader
+                  display={ true }
+                />
+              </LoaderWrapper>
+            ) }
+            { !loading && !error && (
+              <TablePagination />
+            ) }
+          </TableWrapper>
+        );
+      } }
+      
+    </TableProvider>
   );
 };
 
 Table.defaultProps = {
   action: null,
-  actionWidth: '12rem',
+  actionWidth: '120px',
   actions: null,
-  actionsWidth: '8rem',
+  actionsWidth: '80px',
   borders: true,
   columns: [],
   className: '',
@@ -132,7 +132,7 @@ Table.defaultProps = {
   loading: false,
   pager: true,
   retryAction: null,
-  rowHeight: '6rem',
+  rowHeight: '60px',
   showHeader: true,
   sorting: {},
   onSort: () => null,

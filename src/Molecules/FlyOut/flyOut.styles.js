@@ -114,11 +114,7 @@ export const Wrapper = styled.div`
     position: absolute;
     z-index: 5;
     right: 1rem;
-    bottom: auto;
-  }
-  .card.is-active & {
-      bottom: 1rem;
-    }
+    bottom: 1rem;
   }
   .card__actions-top & {
     top: 1rem;

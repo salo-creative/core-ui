@@ -1,32 +1,50 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const TableWrapper = styled.div`
+import { Skeleton } from './table.skeleton.styles';
+
+export const TableWrapper = styled(Skeleton)`
   width: ${ ({ width }) => width };
 `;
 
 // BODY
-export const BodyWrapper = styled.div`
+export const BodyWrapper = styled.div.attrs({
+  className: 'salo-table__body-wrapper'
+})`
   width: 100%;
   display: flex;
   flex-direction: column;
 `;
 
 // ROW
-export const BodyRow = styled.div`
+export const BodyRow = styled.div
+  .attrs(({ isCard }) => ({
+    className: `salo-table__body-row ${ isCard ? 'salo-table__body-row--card' : '' }`
+  }))`
   position: relative;
   display: flex;
   width: 100%;
-  height: ${ ({ height }) => height };
   flex-wrap: none;
   border-bottom: 1px solid ${ ({ theme }) => theme.grey };
+  
   .no-borders & {
     border-bottom: none;
   }
+
+  ${ ({ isCard, height }) => {
+    if (isCard) {
+      return css`
+        flex-direction: column;
+      `;
+    }
+    return css`
+      height: ${ height };
+    `;
+  } }
 `;
 
 export const BodyCell = styled.div`
   padding: 1rem;
-  display: flex;
+  display: ${ ({ isCard }) => (isCard ? 'block' : 'flex') };
   align-items: center;
   font-size: 1.4rem;
   flex-basis: ${ ({ flexBasis }) => flexBasis };
@@ -34,26 +52,43 @@ export const BodyCell = styled.div`
   min-width: ${ ({ minWidth }) => minWidth };
 `;
 
-export const ActionCell = styled(BodyCell)`
+export const ActionCell = styled(BodyCell).attrs({
+  className: 'salo-table__action-cell'
+})`
   padding: 0 1rem 0 3rem;
   min-width: ${ ({ width }) => width };
   flex-basis: ${ ({ width }) => width };
 `;
 
+export const BodyCellHeading = styled.h4.attrs({
+  className: 'salo-table__body-heading'
+})`
+  margin-top: 0;
+`;
+
+export const BodyCellValue = styled.span.attrs({
+  className: 'salo-table__body-value'
+})``;
+
 // HEADER
-export const HeaderRow = styled.div`
-  display: flex;
+export const HeaderRow = styled.div.attrs({
+  className: 'salo-table__header-row'
+})`
+  display: ${ ({ isCard }) => (isCard ? 'none' : 'flex') };
   width: 100%;
   height: 5rem;
   flex-wrap: none;
   border-bottom: 2px solid ${ ({ theme }) => theme.grey };
   position: relative;
+
   .no-borders & {
     border-bottom: none;
   }
 `;
 
-export const HeaderCell = styled.div`
+export const HeaderCell = styled.div.attrs({
+  className: 'salo-table__header-cell'
+})`
   padding: 1rem;
   display: flex;
   align-items: center;
@@ -64,17 +99,23 @@ export const HeaderCell = styled.div`
   min-width: ${ ({ minWidth }) => minWidth };
 `;
 
-export const HeaderSorting = styled.div`
+export const HeaderSorting = styled.div.attrs({
+  className: 'salo-table__header-sorting'
+})`
   margin-left: 1rem;
 `;
 
 // LOADER
-export const LoaderWrapper = styled.div`
+export const LoaderWrapper = styled.div.attrs({
+  className: 'salo-table__loader-wrapper'
+})`
   padding: 3rem 0;
 `;
 
 // NO DATA
-export const NoData = styled.div`
+export const NoData = styled.div.attrs({
+  className: 'salo-table__no-data'
+})`
   display: flex;
   width: 100%;
   height: 5rem;
@@ -87,7 +128,9 @@ export const NoData = styled.div`
 `;
 
 // ERROR MESSAGE
-export const ErrorMessage = styled.div`
+export const ErrorMessage = styled.div.attrs({
+  className: 'salo-table__error'
+})`
   display: flex;
   flex-direction: column;
   max-width: 550px;
@@ -103,7 +146,9 @@ export const ErrorMessage = styled.div`
 `;
 
 // PAGINATION
-export const LoadMoreWrapper = styled.div`
+export const LoadMoreWrapper = styled.div.attrs({
+  className: 'salo-table__loadmore-wrapper'
+})`
   display: flex;
   width: 100%;
   justify-content: center;

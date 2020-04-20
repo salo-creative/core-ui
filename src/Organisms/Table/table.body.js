@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 
 // COMPONENTS & STYLES
@@ -7,25 +6,17 @@ import Row from './table.row';
 import { BodyWrapper, NoData, ErrorMessage } from './table.styles';
 import P from '../../Typography/P';
 import Button from '../../Molecules/Button';
+import TableContext from './context/context';
 
-// HELPERS
-import { columnsProps } from './table.propTypes';
-
-const Body = (props) => {
+const Body = () => {
   const {
-    action,
-    actionWidth,
-    actions,
-    actionsWidth,
-    columns,
     data,
     dataEmptyComponent,
     dataEmptyText,
     error,
     errorMessage,
-    retryAction,
-    rowHeight
-  } = props;
+    retryAction
+  } = React.useContext(TableContext);
 
   // If an error let the user know and show a retry action
   if (error) {
@@ -58,42 +49,12 @@ const Body = (props) => {
         return (
           <Row
             key={ key }
-            action={ action }
-            actionWidth={ actionWidth }
-            actions={ actions }
-            actionsWidth={ actionsWidth }
-            columns={ columns }
-            data={ item }
-            rowHeight={ rowHeight }
+            item={ item }
           />
         );
       }) }
     </BodyWrapper>
   );
-};
-
-Body.defaultProps = {
-  actions: null,
-  action: null,
-  columns: [],
-  data: [],
-  dataEmptyComponent: null,
-  retryAction: null
-};
-
-Body.propTypes = {
-  action: PropTypes.any,
-  actionWidth: PropTypes.string.isRequired,
-  actions: PropTypes.any,
-  actionsWidth: PropTypes.string.isRequired,
-  columns: columnsProps,
-  data: PropTypes.arrayOf(PropTypes.object),
-  dataEmptyComponent: PropTypes.any,
-  dataEmptyText: PropTypes.string.isRequired,
-  error: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string.isRequired,
-  retryAction: PropTypes.func,
-  rowHeight: PropTypes.string.isRequired
 };
 
 export default Body;

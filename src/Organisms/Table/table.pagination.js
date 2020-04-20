@@ -5,15 +5,16 @@ import { isEmpty } from 'lodash';
 // COMPONENTS & STYLES
 import Pagination from '../../Molecules/Pagination';
 import Button from '../../Molecules/Button';
+import TableContext from './context/context';
 import { LoadMoreWrapper } from './table.styles';
 
-const TablePagination = (props) => {
+const TablePagination = () => {
   const {
     loading,
     pager,
     pagination,
     pageChange
-  } = props;
+  } = React.useContext(TableContext);
 
   // Bailout if we have no pagination data or functions
   if (isEmpty(pagination) || !pageChange) return null;

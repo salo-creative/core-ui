@@ -8,7 +8,8 @@ export const columnProps = PropTypes.shape({
   label: PropTypes.string.isRequired,
   minWidth: PropTypes.string.isRequired,
   render: PropTypes.func,
-  sortable: PropTypes.bool
+  sortable: PropTypes.bool,
+  width: PropTypes.string
 });
 
 export const columnsProps = PropTypes.arrayOf(columnProps);
