@@ -38,7 +38,17 @@ const Table = (props) => {
     width
   } = props;
 
+  const [mounted, setMounted] = React.useState(false);
   const tableEl = React.useRef(null);
+
+  // Change when component is mounted to hide skeleton.
+  React.useEffect(() => {
+    // Timeout covers up a brief flash between component mounting
+    // and state updating to select a layout.
+    setTimeout(() => {
+      setMounted(true);
+    }, 100);
+  }, []);
 
   return (
     <TableProvider value={ {
@@ -55,6 +65,7 @@ const Table = (props) => {
       error,
       errorMessage,
       loading,
+      mounted,
       onSort,
       pageChange,
       pager,
@@ -71,6 +82,7 @@ const Table = (props) => {
         className={ `salo-table ${ className } ${ borders ? '' : 'no-borders' }` }
         width={ width }
         ref={ tableEl }
+        mounted={ mounted }
       >
         { showHeader && (
           <TableHeader

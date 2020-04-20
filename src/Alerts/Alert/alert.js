@@ -51,7 +51,6 @@ class Alert extends React.Component {
     const timer = setTimeout(func, time);
 
     this.timers = [...this.timers, timer];
-    console.log(this.timers);
   }
 
   renderClose() {

@@ -28,6 +28,7 @@ const TableProvider = (props) => {
     error,
     errorMessage,
     loading,
+    mounted,
     onSort,
     pageChange,
     pager,
@@ -108,7 +109,7 @@ const TableProvider = (props) => {
       setLayout('table');
     }
   }, [cardThresholdWidth, layout, tableEl, viewport]);
-
+  
   return (
     <Provider value={ {
       action,
@@ -126,6 +127,7 @@ const TableProvider = (props) => {
       errorMessage,
       layout,
       loading,
+      mounted,
       onSort,
       pageChange,
       pager,
@@ -158,6 +160,7 @@ TableProvider.propTypes = {
     error: PropTypes.bool,
     errorMessage: PropTypes.string,
     loading: PropTypes.bool,
+    mounted: PropTypes.bool.isRequired,
     pager: PropTypes.bool,
     retryAction: PropTypes.func,
     rowHeight: PropTypes.string,

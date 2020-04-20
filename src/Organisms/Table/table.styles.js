@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 
-export const TableWrapper = styled.div`
+import { Skeleton } from './table.skeleton.styles';
+
+export const TableWrapper = styled(Skeleton)`
   width: ${ ({ width }) => width };
 `;
 
@@ -23,21 +25,21 @@ export const BodyRow = styled.div
   width: 100%;
   flex-wrap: none;
   border-bottom: 1px solid ${ ({ theme }) => theme.grey };
+  
+  .no-borders & {
+    border-bottom: none;
+  }
 
-  ${ (props) => {
-    if (props.isCard) {
+  ${ ({ isCard, height }) => {
+    if (isCard) {
       return css`
         flex-direction: column;
       `;
     }
     return css`
-      height: ${ props.height };
+      height: ${ height };
     `;
   } }
-
-  .no-borders & {
-    border-bottom: none;
-  }
 `;
 
 export const BodyCell = styled.div`
