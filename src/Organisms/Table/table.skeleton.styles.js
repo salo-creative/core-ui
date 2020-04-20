@@ -93,7 +93,7 @@ export const Skeleton = styled.div`
     if (!mounted) {
       return css`
         background-image: 
-         /* blur */
+         /* animation */
           linear-gradient(
             90deg,
             rgba(255, 255, 255, 0) 0,
