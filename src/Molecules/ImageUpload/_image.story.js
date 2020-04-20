@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import styled from 'styled-components';
 import { action } from '@storybook/addon-actions';
 
@@ -21,40 +20,30 @@ const CustomImageUpload = styled(ImageUpload)`
   }
 `;
 
-// story //
-storiesOf('Molecules|ImageUpload', module)
-  .addParameters({
-    options: {
-      showAddonPanel: true
-    },
-    info: {
-      header: false
-    }
-  })
 
-  // stories
-  .add('Basic', () => {
-    return (
-      <Wrapper>
-        <ImageUpload
-          loading={ false }
-          onUpload={ action('onUpload') }
-        />
-      </Wrapper>
-    );
-  })
+export const Basic = () => {
+  return (
+    <Wrapper>
+      <ImageUpload loading={ false } onUpload={ action('onUpload') } />
+    </Wrapper>
+  );
+};
 
-  .add('Custom', () => {
-    return (
-      <Wrapper>
-        <CustomImageUpload
-          loading={ false }
-          onUpload={ action('onUpload') }
-          showButton={ false }
-          strings={ {
-            ADD_AN_IMAGE: 'Add image'
-          } }
-        />
-      </Wrapper>
-    );
-  });
+export const Custom = () => {
+  return (
+    <Wrapper>
+      <CustomImageUpload
+        loading={ false }
+        onUpload={ action('onUpload') }
+        showButton={ false }
+        strings={ {
+          ADD_AN_IMAGE: 'Add image'
+        } }
+      />
+    </Wrapper>
+  );
+};
+
+export default {
+  title: 'Molecules/ImageUpload'
+};

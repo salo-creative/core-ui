@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 // load tests
 import { withTests } from '@storybook/addon-jest';
@@ -12,18 +11,27 @@ import { FlyOut, FlyOutLink, FlyOutButton } from '../../index';
 import README from './README.md';
 
 // Start of story logic
-const stories = storiesOf('Molecules | FlyOut', module);
-stories.addDecorator(withTests({ results }));
-stories.addParameters({ jest: ['flyout'] });
+export const Basic = () => {
+  return (
+    <FlyOut context='float'>
+      <FlyOutButton title='Title' onClick={ () => alert('Button Clicked') } icon='sync' />
+      <FlyOutLink title='Title' link='#' icon='dashboard' />
+    </FlyOut>
+  );
+};
 
-stories.add(
-  'Basic',
-  (() => {
-    return (
-      <FlyOut context='float'>
-        <FlyOutButton title='Title' onClick={ () => alert('Button Clicked') } icon='sync' />
-        <FlyOutLink title='Title' link='#' icon='dashboard' />
-      </FlyOut>
-    );
-  }), { notes: README }
-);
+Basic.story = {
+  decorators: [
+    withTests({
+      results
+    })
+  ],
+  parameters: {
+    jest: ['flyout'],
+    notes: README
+  }
+};
+
+export default {
+  title: 'Molecules/FlyOut'
+};

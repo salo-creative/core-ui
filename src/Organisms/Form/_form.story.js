@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 // load tests
 import { withTests } from '@storybook/addon-jest';
@@ -15,58 +14,58 @@ import { Form } from '../../index';
 import README from './README.md';
 
 // Start of story logic
-const stories = storiesOf('Organisms | Form', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withTests({
-  results
-}));
+export const Basic = () => {
+  const name = text('name', 'test');
+  const renderSteps = boolean('Use stepper', true);
+  const showTitles = boolean('Use titles', true);
+  const stepper = select(
+    'Stepper',
+    {
+      Full: 'full',
+      Condensed: 'condensed'
+    },
+    'condensed'
+  );
 
-stories.add(
-  'Basic',
-  (() => {
-    const name = text('name', 'test');
-    const renderSteps = boolean('Use stepper', true);
-    const showTitles = boolean('Use titles', true);
-    const stepper = select('Stepper', {
-      'Full': 'full',
-      'Condensed': 'condensed'
-    }, 'condensed');
-    
-    return (
-      <Form
-        name={ name }
-        renderSteps={ renderSteps }
-        showTitles={ showTitles }
-        stepper={ stepper }
-        strings={ {} }
-      />
-    );
-  }), {
+  return (
+    <Form
+      name={ name }
+      renderSteps={ renderSteps }
+      showTitles={ showTitles }
+      stepper={ stepper }
+      strings={ {} }
+    />
+  );
+};
+
+Basic.story = {
+  decorators: [
+    withKnobs,
+    withTests({
+      results
+    })
+  ],
+  parameters: {
     info: {
       propTablesExclude: []
     },
     notes: README
   }
-);
+};
 
 // Custom components
-const CustomInput = ({
-  error,
-  errorMessage,
-  label,
-  onBlur,
-  onChange,
-  ...props
-}) => (
+const CustomInput = ({ error, errorMessage, label, onBlur, onChange, ...props }) => (
   <React.Fragment>
     <label>{ label }</label>
     <input
       { ...props }
-      onBlur={ (e) => onBlur({
-        e, value: e.target.value
+      onBlur={ e => onBlur({
+        e,
+        value: e.target.value
       }) }
-      onChange={ (e) => onChange({
-        e, value: e.target.value
+      onChange={ e => onChange({
+        e,
+        value: e.target.value
       }) }
       onKeyUp={ _ => _ }
     />
@@ -74,32 +73,41 @@ const CustomInput = ({
   </React.Fragment>
 );
 
-const CustomButton = ({
-  children,
-  ...props
-}) => {
+const CustomButton = ({ children, ...props }) => {
   return <button { ...props }>{ children }</button>;
 };
 
-stories.add(
-  'Custom components',
-  (() => {
-    const name = text('name', 'test');
-    const renderSteps = boolean('Use stepper', true);
+export const CustomComponents = () => {
+  const name = text('name', 'test');
+  const renderSteps = boolean('Use stepper', true);
 
-    return (
-      <Form
-        name={ name }
-        renderSteps={ renderSteps }
-        Input={ CustomInput }
-        Button={ CustomButton }
-        Upload={ CustomInput }
-      />
-    );
-  }), {
+  return (
+    <Form
+      name={ name }
+      renderSteps={ renderSteps }
+      Input={ CustomInput }
+      Button={ CustomButton }
+      Upload={ CustomInput }
+    />
+  );
+};
+
+CustomComponents.story = {
+  name: 'Custom components',
+  decorators: [
+    withKnobs,
+    withTests({
+      results
+    })
+  ],
+  parameters: {
     info: {
       propTablesExclude: []
     },
     notes: README
   }
-);
+};
+
+export default {
+  title: 'Organisms/Form'
+};
