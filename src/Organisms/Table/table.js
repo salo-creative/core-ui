@@ -10,6 +10,7 @@ import TablePagination from './table.pagination';
 import { TableWrapper, LoaderWrapper } from './table.styles';
 
 // HELPERS
+import { determineThreshold } from './table.helpers';
 import { columnsProps, sortingProps } from './table.propTypes';
 
 const Table = (props) => {
@@ -38,74 +39,76 @@ const Table = (props) => {
     width
   } = props;
 
-  const [mounted, setMounted] = React.useState(false);
-  const tableEl = React.useRef(null);
-
-  // Change when component is mounted to hide skeleton.
-  React.useEffect(() => {
-    // Timeout covers up a brief flash between component mounting
-    // and state updating to select a layout.
-    setTimeout(() => {
-      setMounted(true);
-    }, 100);
-  }, []);
+  const initialCardThreshold = determineThreshold({
+    action,
+    actionWidth,
+    actions,
+    actionsWidth,
+    columns
+  });
 
   return (
-    <TableProvider value={ {
-      action,
-      actionWidth,
-      actions,
-      actionsWidth,
-      borders,
-      className,
-      columns,
-      data,
-      dataEmptyComponent,
-      dataEmptyText,
-      error,
-      errorMessage,
-      loading,
-      mounted,
-      onSort,
-      pageChange,
-      pager,
-      pagination,
-      retryAction,
-      rowHeight,
-      showHeader,
-      sorting,
-      tableEl,
-      width
-    } }
+    <TableProvider
+      initialCardThreshold={ initialCardThreshold }
+      value={ {
+        action,
+        actionWidth,
+        actions,
+        actionsWidth,
+        borders,
+        className,
+        columns,
+        data,
+        dataEmptyComponent,
+        dataEmptyText,
+        error,
+        errorMessage,
+        loading,
+        onSort,
+        pageChange,
+        pager,
+        pagination,
+        retryAction,
+        rowHeight,
+        showHeader,
+        sorting,
+        width
+      } }
     >
-      <TableWrapper
-        className={ `salo-table ${ className } ${ borders ? '' : 'no-borders' }` }
-        width={ width }
-        ref={ tableEl }
-        mounted={ mounted }
-      >
-        { showHeader && (
-          <TableHeader
-            hasAction={ !!action }
-            hasActions={ !!actions }
-          />
-        ) }
-        { /* Render body if we aren't loading */ }
-        { !loading && (
-          <TableBody />
-        ) }
-        { /* Render loader if we are fetching data */ }
-        { loading && (
-          <LoaderWrapper>
-            <Loader
-              display={ true }
-            />
-          </LoaderWrapper>
-        ) }
-        { !loading && !error && (
-          <TablePagination />
-        ) }
-      </TableWrapper>
+      { ({ cardThresholdWidth, mounted, tableEl }) => {
+        return (
+          <TableWrapper
+            ref={ tableEl }
+            className={ `salo-table ${ className } ${ borders ? '' : 'no-borders' }` }
+            mounted={ mounted }
+            width={ width }
+            cardThresholdWidth={ cardThresholdWidth }
+          >
+            { showHeader && (
+              <TableHeader
+                hasAction={ !!action }
+                hasActions={ !!actions }
+              />
+            ) }
+            { /* Render body if we aren't loading */ }
+            { !loading && (
+              <TableBody />
+            ) }
+            { /* Render loader if we are fetching data */ }
+            { mounted && loading && (
+              <LoaderWrapper>
+                <Loader
+                  display={ true }
+                />
+              </LoaderWrapper>
+            ) }
+            { !loading && !error && (
+              <TablePagination />
+            ) }
+          </TableWrapper>
+        );
+      } }
+      
     </TableProvider>
   );
 };

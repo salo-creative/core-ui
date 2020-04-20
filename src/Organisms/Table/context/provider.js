@@ -6,12 +6,14 @@ import { Provider } from './context';
 
 // HELPERS
 import useWindowSize from '../../../helpers/hooks/resize';
+import { determineThreshold } from '../table.helpers';
 import { columnsProps, sortingProps } from '../table.propTypes';
 
 const TableProvider = (props) => {
   const {
     value,
-    children
+    children,
+    initialCardThreshold
   } = props;
 
   const {
@@ -28,7 +30,6 @@ const TableProvider = (props) => {
     error,
     errorMessage,
     loading,
-    mounted,
     onSort,
     pageChange,
     pager,
@@ -37,13 +38,16 @@ const TableProvider = (props) => {
     rowHeight,
     showHeader,
     sorting,
-    tableEl,
     width
   } = value;
   
   // * States
   const [layout, setLayout] = React.useState('table');
-  const [cardThresholdWidth, setCardThresholdWidth] = React.useState(0);
+  const [mounted, setMounted] = React.useState(false);
+  const [cardThresholdWidth, setCardThresholdWidth] = React.useState(initialCardThreshold);
+
+  // * Refs
+  const tableEl = React.useRef(null);
 
   // * Definitions
   const sortMe = ({ dataKey }) => {
@@ -76,27 +80,15 @@ const TableProvider = (props) => {
   const viewport = useWindowSize();
 
   // * Side-effects
-  // Set smallest width before switching to card layout.
+  // Find smallest width table is possible before switching to card layout.
   React.useEffect(() => {
-    // Loop through columns and find minWidths
-    let threshold = columns.reduce((accum, column) => {
-      if (column.minWidth) {
-        return accum + parseInt(column.minWidth, 10);
-      }
-      return accum;
-    }, 0);
-
-    const GUTTER = 20;
-
-    // If an action button is set then account for this.
-    if (action) {
-      threshold += (parseInt(actionWidth, 10) + GUTTER * 2);
-    }
-    
-    // If actions is set then account for them.
-    if (actions) {
-      threshold += (parseInt(actionsWidth, 10) + GUTTER * 2);
-    }
+    const threshold = determineThreshold({
+      action,
+      actionWidth,
+      actions,
+      actionsWidth,
+      columns
+    });
 
     setCardThresholdWidth(threshold);
   }, [action, actionWidth, actions, actionsWidth, columns]);
@@ -109,35 +101,62 @@ const TableProvider = (props) => {
       setLayout('table');
     }
   }, [cardThresholdWidth, layout, tableEl, viewport]);
+
+  // Change when component is mounted to hide skeleton.
+  React.useEffect(() => {
+    // Timeout covers up a brief flash between component mounting
+    // and state updating to select a layout.
+    setTimeout(() => {
+      setMounted(true);
+    }, 100);
+  }, []);
   
+  const values = {
+    action,
+    actions,
+    actionsWidth,
+    actionWidth,
+    borders,
+    cardThresholdWidth,
+    className,
+    columns,
+    data,
+    dataEmptyComponent,
+    dataEmptyText,
+    error,
+    errorMessage,
+    layout,
+    loading,
+    mounted,
+    onSort,
+    pageChange,
+    pager,
+    pagination,
+    retryAction,
+    rowHeight,
+    showHeader,
+    sorting,
+    sortMe,
+    tableEl,
+    width
+  };
+  
+  if (typeof children === 'function') {
+    return (
+      <Provider value={ {
+        ...values
+      } }
+      >
+        { children({
+          ...values
+        }) }
+      </Provider>
+    );
+  }
+
   return (
     <Provider value={ {
-      action,
-      actions,
-      actionsWidth,
-      actionWidth,
-      borders,
-      cardThresholdWidth,
-      className,
-      columns,
-      data,
-      dataEmptyComponent,
-      dataEmptyText,
-      error,
-      errorMessage,
-      layout,
-      loading,
-      mounted,
-      onSort,
-      pageChange,
-      pager,
-      pagination,
-      retryAction,
-      rowHeight,
-      showHeader,
-      sorting,
-      sortMe,
-      width
+      ...values
     } }
     >
       { children }
@@ -160,14 +179,12 @@ TableProvider.propTypes = {
     error: PropTypes.bool,
     errorMessage: PropTypes.string,
     loading: PropTypes.bool,
-    mounted: PropTypes.bool.isRequired,
     pager: PropTypes.bool,
     retryAction: PropTypes.func,
     rowHeight: PropTypes.string,
     showHeader: PropTypes.bool,
     sorting: sortingProps,
     onSort: PropTypes.func,
-    tableEl: PropTypes.object.isRequired,
     width: PropTypes.string,
     pagination: PropTypes.shape({
       perPage: PropTypes.number,
@@ -177,7 +194,8 @@ TableProvider.propTypes = {
     }),
     pageChange: PropTypes.func
   }).isRequired,
-  children: PropTypes.any.isRequired
+  children: PropTypes.any.isRequired,
+  initialCardThreshold: PropTypes.number.isRequired
 };
 
 export default TableProvider;

@@ -1,7 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import { getBreakpoint } from '../../helpers/breakpoints';
-
 const TALL_COLUMN_SKELETON = 'linear-gradient(#E1E1E1 25px, transparent 0)';
 const COLUMN_SKELETON = 'linear-gradient(#E1E1E1 15px, transparent 0)';
 const TALL_COLUMN_HEIGHT = '25px';
@@ -12,33 +10,33 @@ const COLUMN_3_WIDTH = '100px';
 const COLUMN_4_WIDTH = '140px';
 
 // Table layout
-const ROW_1_COLUMN_1_POSITION = '20px 0px';
-const ROW_1_COLUMN_2_POSITION = '240px 5px';
-const ROW_1_COLUMN_3_POSITION = '640px 5px';
-const ROW_1_COLUMN_4_POSITION = '800px 5px';
-const ROW_2_COLUMN_1_POSITION = '20px 55px';
-const ROW_2_COLUMN_2_POSITION = '240px 60px';
-const ROW_2_COLUMN_3_POSITION = '640px 60px';
-const ROW_2_COLUMN_4_POSITION = '800px 60px';
-const ROW_3_COLUMN_1_POSITION = '20px 110px';
-const ROW_3_COLUMN_2_POSITION = '240px 115px';
-const ROW_3_COLUMN_3_POSITION = '640px 115px';
-const ROW_3_COLUMN_4_POSITION = '800px 115px';
+const ROW_1_COLUMN_1_POSITION = '0px 0px';
+const ROW_1_COLUMN_2_POSITION = '220px 5px';
+const ROW_1_COLUMN_3_POSITION = '620px 5px';
+const ROW_1_COLUMN_4_POSITION = '780px 5px';
+const ROW_2_COLUMN_1_POSITION = '0px 55px';
+const ROW_2_COLUMN_2_POSITION = '220px 60px';
+const ROW_2_COLUMN_3_POSITION = '620px 60px';
+const ROW_2_COLUMN_4_POSITION = '780px 60px';
+const ROW_3_COLUMN_1_POSITION = '0px 110px';
+const ROW_3_COLUMN_2_POSITION = '220px 115px';
+const ROW_3_COLUMN_3_POSITION = '620px 115px';
+const ROW_3_COLUMN_4_POSITION = '780px 115px';
 
 // Card layout
 // y = previous offset + previous height + gap
-const CARD_ROW_1_COLUMN_1_POSITION = '20px 0px';
-const CARD_ROW_1_COLUMN_2_POSITION = '20px 45px';
-const CARD_ROW_1_COLUMN_3_POSITION = '20px 80px';
-const CARD_ROW_1_COLUMN_4_POSITION = '20px 115px';
-const CARD_ROW_2_COLUMN_1_POSITION = '20px 190px';
-const CARD_ROW_2_COLUMN_2_POSITION = '20px 235px';
-const CARD_ROW_2_COLUMN_3_POSITION = '20px 270px';
-const CARD_ROW_2_COLUMN_4_POSITION = '20px 305px';
-const CARD_ROW_3_COLUMN_1_POSITION = '20px 390px';
-const CARD_ROW_3_COLUMN_2_POSITION = '20px 435px';
-const CARD_ROW_3_COLUMN_3_POSITION = '20px 470px';
-const CARD_ROW_3_COLUMN_4_POSITION = '20px 505px';
+const CARD_ROW_1_COLUMN_1_POSITION = '0px 0px';
+const CARD_ROW_1_COLUMN_2_POSITION = '0px 45px';
+const CARD_ROW_1_COLUMN_3_POSITION = '0px 80px';
+const CARD_ROW_1_COLUMN_4_POSITION = '0px 115px';
+const CARD_ROW_2_COLUMN_1_POSITION = '0px 190px';
+const CARD_ROW_2_COLUMN_2_POSITION = '0px 235px';
+const CARD_ROW_2_COLUMN_3_POSITION = '0px 270px';
+const CARD_ROW_2_COLUMN_4_POSITION = '0px 305px';
+const CARD_ROW_3_COLUMN_1_POSITION = '0px 390px';
+const CARD_ROW_3_COLUMN_2_POSITION = '0px 435px';
+const CARD_ROW_3_COLUMN_3_POSITION = '0px 470px';
+const CARD_ROW_3_COLUMN_4_POSITION = '0px 505px';
 
 const loading = keyframes`
   to {
@@ -89,7 +87,7 @@ const loadingCard = keyframes`
 `;
 
 export const Skeleton = styled.div`
-  ${ ({ mounted }) => {
+  ${ ({ mounted, cardThresholdWidth }) => {
     if (!mounted) {
       return css`
         background-image: 
@@ -172,9 +170,7 @@ export const Skeleton = styled.div`
         background-repeat: no-repeat;
         animation: ${ loading } 2.5s infinite;
 
-        ${ getBreakpoint({
-    max: 'large'
-  }) } {
+        @media only screen and (max-width: ${ cardThresholdWidth }px) {
           animation: ${ loadingCard } 2.5s infinite;
           background-position:
             -150% 0,    /* animation */
