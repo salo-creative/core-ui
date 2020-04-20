@@ -44,22 +44,22 @@ const loading = keyframes`
   to {
     background-position:
       150% 0, /* animation */ 
-      /* row 1 */
+              /* row 1 */
       ${ ROW_1_COLUMN_1_POSITION },
       ${ ROW_1_COLUMN_2_POSITION },
       ${ ROW_1_COLUMN_3_POSITION },
       ${ ROW_1_COLUMN_4_POSITION },
-      /* row 2 */
+              /* row 2 */
       ${ ROW_2_COLUMN_1_POSITION },
       ${ ROW_2_COLUMN_2_POSITION },
       ${ ROW_2_COLUMN_3_POSITION },
       ${ ROW_2_COLUMN_4_POSITION },
-      /* row 3 */
+              /* row 3 */
       ${ ROW_3_COLUMN_1_POSITION },
       ${ ROW_3_COLUMN_2_POSITION },
       ${ ROW_3_COLUMN_3_POSITION },
       ${ ROW_3_COLUMN_4_POSITION },
-      0 0    /* background */
+      0 0     /* background */
     ;
   }
 `;
@@ -68,22 +68,22 @@ const loadingCard = keyframes`
   to {
     background-position:
       150% 0, /* animation */ 
-      /* row 1 */
+              /* row 1 */
       ${ CARD_ROW_1_COLUMN_1_POSITION },
       ${ CARD_ROW_1_COLUMN_2_POSITION },
       ${ CARD_ROW_1_COLUMN_3_POSITION },
       ${ CARD_ROW_1_COLUMN_4_POSITION },
-      /* row 2 */
+              /* row 2 */
       ${ CARD_ROW_2_COLUMN_1_POSITION },
       ${ CARD_ROW_2_COLUMN_2_POSITION },
       ${ CARD_ROW_2_COLUMN_3_POSITION },
       ${ CARD_ROW_2_COLUMN_4_POSITION },
-      /* row 3 */
+              /* row 3 */
       ${ CARD_ROW_3_COLUMN_1_POSITION },
       ${ CARD_ROW_3_COLUMN_2_POSITION },
       ${ CARD_ROW_3_COLUMN_3_POSITION },
       ${ CARD_ROW_3_COLUMN_4_POSITION },
-      0 0    /* background */
+      0 0     /* background */
     ;
   }
 `;
@@ -132,42 +132,42 @@ export const Skeleton = styled.div`
           linear-gradient(white 100%, transparent 0);
 
         background-size:
-          200px 100%,  /* animation */
-          /* row 1 */
+          200px 100%,   /* animation */
+                        /* row 1 */
           ${ COLUMN_1_WIDTH } ${ TALL_COLUMN_HEIGHT },
           ${ COLUMN_2_WIDTH } ${ COLUMN_HEIGHT },
           ${ COLUMN_3_WIDTH } ${ COLUMN_HEIGHT },
           ${ COLUMN_4_WIDTH } ${ COLUMN_HEIGHT },
-          /* row 2 */
+                        /* row 2 */
           ${ COLUMN_1_WIDTH } ${ TALL_COLUMN_HEIGHT },
           ${ COLUMN_2_WIDTH } ${ COLUMN_HEIGHT },
           ${ COLUMN_3_WIDTH } ${ COLUMN_HEIGHT },
           ${ COLUMN_4_WIDTH } ${ COLUMN_HEIGHT },
-          /* row 3 */
+                        /* row 3 */
           ${ COLUMN_1_WIDTH } ${ TALL_COLUMN_HEIGHT },
           ${ COLUMN_2_WIDTH } ${ COLUMN_HEIGHT },
           ${ COLUMN_3_WIDTH } ${ COLUMN_HEIGHT },
           ${ COLUMN_4_WIDTH } ${ COLUMN_HEIGHT },
-          100% 100%;   /* background */
+          100% 100%;    /* background */
 
         background-position:
-          -150% 0,     /* animation */
-          /* row 1 */
+          -150% 0,      /* animation */
+                        /* row 1 */
           ${ ROW_1_COLUMN_1_POSITION },
           ${ ROW_1_COLUMN_2_POSITION },
           ${ ROW_1_COLUMN_3_POSITION },
           ${ ROW_1_COLUMN_4_POSITION },
-          /* row 2 */
+                        /* row 2 */
           ${ ROW_2_COLUMN_1_POSITION },
           ${ ROW_2_COLUMN_2_POSITION },
           ${ ROW_2_COLUMN_3_POSITION },
           ${ ROW_2_COLUMN_4_POSITION },
-          /* row 3 */
+                        /* row 3 */
           ${ ROW_3_COLUMN_1_POSITION },
           ${ ROW_3_COLUMN_2_POSITION },
           ${ ROW_3_COLUMN_3_POSITION },
           ${ ROW_3_COLUMN_4_POSITION },
-          0 0;         /* background */
+          0 0;          /* background */
 
         background-repeat: no-repeat;
         animation: ${ loading } 2.5s infinite;
@@ -177,23 +177,23 @@ export const Skeleton = styled.div`
   }) } {
           animation: ${ loadingCard } 2.5s infinite;
           background-position:
-            -150% 0,     /* animation */
-            /* row 1 */
+            -150% 0,    /* animation */
+                        /* row 1 */
             ${ CARD_ROW_1_COLUMN_1_POSITION },
             ${ CARD_ROW_1_COLUMN_2_POSITION },
             ${ CARD_ROW_1_COLUMN_3_POSITION },
             ${ CARD_ROW_1_COLUMN_4_POSITION },
-            /* row 2 */
+                        /* row 2 */
             ${ CARD_ROW_2_COLUMN_1_POSITION },
             ${ CARD_ROW_2_COLUMN_2_POSITION },
             ${ CARD_ROW_2_COLUMN_3_POSITION },
             ${ CARD_ROW_2_COLUMN_4_POSITION },
-            /* row 3 */
+                        /* row 3 */
             ${ CARD_ROW_3_COLUMN_1_POSITION },
             ${ CARD_ROW_3_COLUMN_2_POSITION },
             ${ CARD_ROW_3_COLUMN_3_POSITION },
             ${ CARD_ROW_3_COLUMN_4_POSITION },
-            0 0;         /* background */
+            0 0;        /* background */
         }
 
         /* Overrides */
