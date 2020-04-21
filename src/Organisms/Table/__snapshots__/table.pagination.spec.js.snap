@@ -2,12 +2,12 @@
 
 exports[`Renders against snapshot 1`] = `
 .c0 {
-  background-image: linear-gradient( 90deg,rgba(255,255,255,0) 0,rgba(255,255,255,.8) 50%,rgba(255,255,255,0) 100% ),linear-gradient(#E1E1E1 25px,transparent 0),linear-gradient(#E1E1E1 15px,transparent 0),linear-gradient(#E1E1E1 15px,transparent 0),linear-gradient(#E1E1E1 15px,transparent 0),linear-gradient(#E1E1E1 25px,transparent 0),linear-gradient(#E1E1E1 15px,transparent 0),linear-gradient(#E1E1E1 15px,transparent 0),linear-gradient(#E1E1E1 15px,transparent 0),linear-gradient(#E1E1E1 25px,transparent 0),linear-gradient(#E1E1E1 15px,transparent 0),linear-gradient(#E1E1E1 15px,transparent 0),linear-gradient(#E1E1E1 15px,transparent 0),linear-gradient(white 100%,transparent 0);
+  background-image: linear-gradient( 90deg,rgba(255,255,255,0) 0,rgba(255,255,255,.8) 50%,rgba(255,255,255,0) 100% ),linear-gradient(rgb(225,225,225) 25px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 25px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 25px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(255,255,255) 100%,transparent 0);
   background-size: 200px 100%,120px 25px,250px 15px,100px 15px,140px 15px,120px 25px,250px 15px,100px 15px,140px 15px,120px 25px,250px 15px,100px 15px,140px 15px,100% 100%;
   background-position: -150% 0,0px 0px,220px 5px,620px 5px,780px 5px,0px 55px,220px 60px,620px 60px,780px 60px,0px 110px,220px 115px,620px 115px,780px 115px,0 0;
   background-repeat: no-repeat;
-  -webkit-animation: iRoVfX 2.5s infinite;
-  animation: iRoVfX 2.5s infinite;
+  -webkit-animation: joXbPK 2.5s infinite;
+  animation: joXbPK 2.5s infinite;
   width: 100%;
 }
 
@@ -55,14 +55,14 @@ exports[`Renders against snapshot 1`] = `
 
 @media only screen and (max-width:0px) {
   .c0 {
-    -webkit-animation: iZOQfl 2.5s infinite;
-    animation: iZOQfl 2.5s infinite;
-    background-position: -150% 0,0px 0px,0px 45px,0px 80px,0px 115px,0px 190px,0px 235px,0px 270px,0px 305px,0px 390px,0px 435px,0px 470px,0px 505px,0 0;
+    -webkit-animation: fHNosZ 2.5s infinite;
+    animation: fHNosZ 2.5s infinite;
+    background-position: -150% 0,0px 10px,0px 55px,0px 90px,0px 125px,0px 200px,0px 245px,0px 280px,0px 315px,0px 400px,0px 445px,0px 480px,0px 515px,0 0;
   }
 }
 
 <div
-  class="c0 salo-table  "
+  class="c0 salo-table   salo-table--is-mounting"
   width="100%"
 >
   <div

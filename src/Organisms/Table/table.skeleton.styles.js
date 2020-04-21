@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 
-const TALL_COLUMN_SKELETON = 'linear-gradient(#E1E1E1 25px, transparent 0)';
-const COLUMN_SKELETON = 'linear-gradient(#E1E1E1 15px, transparent 0)';
+import { generateRows } from './table.helpers';
+
 const TALL_COLUMN_HEIGHT = '25px';
 const COLUMN_HEIGHT = '15px';
 const COLUMN_1_WIDTH = '120px';
@@ -9,94 +9,48 @@ const COLUMN_2_WIDTH = '250px';
 const COLUMN_3_WIDTH = '100px';
 const COLUMN_4_WIDTH = '140px';
 
-// Table layout
-const ROW_1_COLUMN_1_POSITION = '0px 0px';
-const ROW_1_COLUMN_2_POSITION = '220px 5px';
-const ROW_1_COLUMN_3_POSITION = '620px 5px';
-const ROW_1_COLUMN_4_POSITION = '780px 5px';
-const ROW_2_COLUMN_1_POSITION = '0px 55px';
-const ROW_2_COLUMN_2_POSITION = '220px 60px';
-const ROW_2_COLUMN_3_POSITION = '620px 60px';
-const ROW_2_COLUMN_4_POSITION = '780px 60px';
-const ROW_3_COLUMN_1_POSITION = '0px 110px';
-const ROW_3_COLUMN_2_POSITION = '220px 115px';
-const ROW_3_COLUMN_3_POSITION = '620px 115px';
-const ROW_3_COLUMN_4_POSITION = '780px 115px';
 
-// Card layout
-// y = previous offset + previous height + gap
-const CARD_ROW_1_COLUMN_1_POSITION = '0px 0px';
-const CARD_ROW_1_COLUMN_2_POSITION = '0px 45px';
-const CARD_ROW_1_COLUMN_3_POSITION = '0px 80px';
-const CARD_ROW_1_COLUMN_4_POSITION = '0px 115px';
-const CARD_ROW_2_COLUMN_1_POSITION = '0px 190px';
-const CARD_ROW_2_COLUMN_2_POSITION = '0px 235px';
-const CARD_ROW_2_COLUMN_3_POSITION = '0px 270px';
-const CARD_ROW_2_COLUMN_4_POSITION = '0px 305px';
-const CARD_ROW_3_COLUMN_1_POSITION = '0px 390px';
-const CARD_ROW_3_COLUMN_2_POSITION = '0px 435px';
-const CARD_ROW_3_COLUMN_3_POSITION = '0px 470px';
-const CARD_ROW_3_COLUMN_4_POSITION = '0px 505px';
-
-const loading = keyframes`
-  to {
-    background-position:
-      150% 0, /* animation */ 
-              /* row 1 */
-      ${ ROW_1_COLUMN_1_POSITION },
-      ${ ROW_1_COLUMN_2_POSITION },
-      ${ ROW_1_COLUMN_3_POSITION },
-      ${ ROW_1_COLUMN_4_POSITION },
-              /* row 2 */
-      ${ ROW_2_COLUMN_1_POSITION },
-      ${ ROW_2_COLUMN_2_POSITION },
-      ${ ROW_2_COLUMN_3_POSITION },
-      ${ ROW_2_COLUMN_4_POSITION },
-              /* row 3 */
-      ${ ROW_3_COLUMN_1_POSITION },
-      ${ ROW_3_COLUMN_2_POSITION },
-      ${ ROW_3_COLUMN_3_POSITION },
-      ${ ROW_3_COLUMN_4_POSITION },
-      0 0     /* background */
-    ;
-  }
-`;
-
-const loadingCard = keyframes`
-  to {
-    background-position:
-      150% 0, /* animation */ 
-              /* row 1 */
-      ${ CARD_ROW_1_COLUMN_1_POSITION },
-      ${ CARD_ROW_1_COLUMN_2_POSITION },
-      ${ CARD_ROW_1_COLUMN_3_POSITION },
-      ${ CARD_ROW_1_COLUMN_4_POSITION },
-              /* row 2 */
-      ${ CARD_ROW_2_COLUMN_1_POSITION },
-      ${ CARD_ROW_2_COLUMN_2_POSITION },
-      ${ CARD_ROW_2_COLUMN_3_POSITION },
-      ${ CARD_ROW_2_COLUMN_4_POSITION },
-              /* row 3 */
-      ${ CARD_ROW_3_COLUMN_1_POSITION },
-      ${ CARD_ROW_3_COLUMN_2_POSITION },
-      ${ CARD_ROW_3_COLUMN_3_POSITION },
-      ${ CARD_ROW_3_COLUMN_4_POSITION },
-      0 0     /* background */
-    ;
-  }
-`;
-
-export const Skeleton = styled.div`
-  ${ ({ mounted, cardThresholdWidth }) => {
+export const Skeleton = styled.div.attrs({
+  className: 'salo-table--is-mounting'
+})`
+  ${ ({ mounted, cardThresholdWidth, skeleton }) => {
     if (!mounted) {
+      const backgroundRGB = skeleton?.background || [255, 255, 255];
+      const foregroundRGB = skeleton?.foreground || [225, 225, 225];
+
+      const rows = generateRows(skeleton?.offset || 0);
+
+      const TALL_COLUMN_SKELETON = `linear-gradient(rgb(${ foregroundRGB.join() }) 25px, transparent 0)`;
+      const COLUMN_SKELETON = `linear-gradient(rgb(${ foregroundRGB.join() }) 15px, transparent 0)`;
+
+      const loading = keyframes`
+        to {
+          background-position:
+            150% 0, /* animation */ 
+            ${ rows.table.map((row) => row.map(col => `${ col.x }px ${ col.y }px,`)) }
+            0 0     /* background */
+          ;
+        }
+      `;
+      
+      const loadingCard = keyframes`
+        to {
+          background-position:
+            150% 0, /* animation */ 
+            ${ rows.card.map((row) => row.map(col => `${ col.x }px ${ col.y }px,`)) }
+            0 0     /* background */
+          ;
+        }
+      `;
+
       return css`
         background-image: 
          /* animation */
           linear-gradient(
             90deg,
-            rgba(255, 255, 255, 0) 0,
-            rgba(255, 255, 255, .8) 50%,
-            rgba(255, 255, 255, 0) 100%
+            rgba(${ backgroundRGB.join() }, 0) 0,
+            rgba(${ backgroundRGB.join() }, .8) 50%,
+            rgba(${ backgroundRGB.join() }, 0) 100%
           ),
           /* row 1 */
           /* layer 12: column 1 */
@@ -127,7 +81,7 @@ export const Skeleton = styled.div`
           ${ COLUMN_SKELETON },
           /* layer 0: card bg */
           /* white rectangle that covers whole element */
-          linear-gradient(white 100%, transparent 0);
+          linear-gradient(rgb(${ backgroundRGB.join() }) 100%, transparent 0);
 
         background-size:
           200px 100%,   /* animation */
@@ -150,21 +104,7 @@ export const Skeleton = styled.div`
 
         background-position:
           -150% 0,      /* animation */
-                        /* row 1 */
-          ${ ROW_1_COLUMN_1_POSITION },
-          ${ ROW_1_COLUMN_2_POSITION },
-          ${ ROW_1_COLUMN_3_POSITION },
-          ${ ROW_1_COLUMN_4_POSITION },
-                        /* row 2 */
-          ${ ROW_2_COLUMN_1_POSITION },
-          ${ ROW_2_COLUMN_2_POSITION },
-          ${ ROW_2_COLUMN_3_POSITION },
-          ${ ROW_2_COLUMN_4_POSITION },
-                        /* row 3 */
-          ${ ROW_3_COLUMN_1_POSITION },
-          ${ ROW_3_COLUMN_2_POSITION },
-          ${ ROW_3_COLUMN_3_POSITION },
-          ${ ROW_3_COLUMN_4_POSITION },
+          ${ rows.table.map((row) => row.map(col => `${ col.x }px ${ col.y }px,`)) }
           0 0;          /* background */
 
         background-repeat: no-repeat;
@@ -174,21 +114,7 @@ export const Skeleton = styled.div`
           animation: ${ loadingCard } 2.5s infinite;
           background-position:
             -150% 0,    /* animation */
-                        /* row 1 */
-            ${ CARD_ROW_1_COLUMN_1_POSITION },
-            ${ CARD_ROW_1_COLUMN_2_POSITION },
-            ${ CARD_ROW_1_COLUMN_3_POSITION },
-            ${ CARD_ROW_1_COLUMN_4_POSITION },
-                        /* row 2 */
-            ${ CARD_ROW_2_COLUMN_1_POSITION },
-            ${ CARD_ROW_2_COLUMN_2_POSITION },
-            ${ CARD_ROW_2_COLUMN_3_POSITION },
-            ${ CARD_ROW_2_COLUMN_4_POSITION },
-                        /* row 3 */
-            ${ CARD_ROW_3_COLUMN_1_POSITION },
-            ${ CARD_ROW_3_COLUMN_2_POSITION },
-            ${ CARD_ROW_3_COLUMN_3_POSITION },
-            ${ CARD_ROW_3_COLUMN_4_POSITION },
+            ${ rows.card.map((row) => row.map(col => `${ col.x }px ${ col.y }px,`)) }
             0 0;        /* background */
         }
 

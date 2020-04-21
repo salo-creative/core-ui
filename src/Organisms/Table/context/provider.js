@@ -106,10 +106,15 @@ const TableProvider = (props) => {
   React.useEffect(() => {
     // Timeout covers up a brief flash between component mounting
     // and state updating to select a layout.
-    setTimeout(() => {
-      setMounted(true);
+    const tick = setTimeout(() => {
+      if (!loading) {
+        setMounted(true);
+      }
     }, 100);
-  }, []);
+    return () => {
+      clearTimeout(tick);
+    };
+  }, [loading]);
   
   const values = {
     action,
