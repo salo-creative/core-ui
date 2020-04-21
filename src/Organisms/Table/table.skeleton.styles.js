@@ -1,7 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
 
-const TALL_COLUMN_SKELETON = 'linear-gradient(#E1E1E1 25px, transparent 0)';
-const COLUMN_SKELETON = 'linear-gradient(#E1E1E1 15px, transparent 0)';
 const TALL_COLUMN_HEIGHT = '25px';
 const COLUMN_HEIGHT = '15px';
 const COLUMN_1_WIDTH = '120px';
@@ -10,33 +8,33 @@ const COLUMN_3_WIDTH = '100px';
 const COLUMN_4_WIDTH = '140px';
 
 // Table layout - no offset
-const ROW_1_COLUMN_1_POSITION = '0px 20px';
-const ROW_1_COLUMN_2_POSITION = '220px 25px';
-const ROW_1_COLUMN_3_POSITION = '620px 25px';
-const ROW_1_COLUMN_4_POSITION = '780px 25px';
-const ROW_2_COLUMN_1_POSITION = '0px 75px';
-const ROW_2_COLUMN_2_POSITION = '220px 80px';
-const ROW_2_COLUMN_3_POSITION = '620px 80px';
-const ROW_2_COLUMN_4_POSITION = '780px 80px';
-const ROW_3_COLUMN_1_POSITION = '0px 130px';
-const ROW_3_COLUMN_2_POSITION = '220px 135px';
-const ROW_3_COLUMN_3_POSITION = '620px 135px';
-const ROW_3_COLUMN_4_POSITION = '780px 135px';
+const ROW_1_COLUMN_1_POSITION = '20px 20px';
+const ROW_1_COLUMN_2_POSITION = '240px 25px';
+const ROW_1_COLUMN_3_POSITION = '640px 25px';
+const ROW_1_COLUMN_4_POSITION = '800px 25px';
+const ROW_2_COLUMN_1_POSITION = '20px 75px';
+const ROW_2_COLUMN_2_POSITION = '240px 80px';
+const ROW_2_COLUMN_3_POSITION = '640px 80px';
+const ROW_2_COLUMN_4_POSITION = '800px 80px';
+const ROW_3_COLUMN_1_POSITION = '20px 130px';
+const ROW_3_COLUMN_2_POSITION = '240px 135px';
+const ROW_3_COLUMN_3_POSITION = '640px 135px';
+const ROW_3_COLUMN_4_POSITION = '800px 135px';
 
 // Card layout - no offset
 // y = previous offset + previous height + gap
-const CARD_ROW_1_COLUMN_1_POSITION = '0px 10px';
-const CARD_ROW_1_COLUMN_2_POSITION = '0px 55px';
-const CARD_ROW_1_COLUMN_3_POSITION = '0px 90px';
-const CARD_ROW_1_COLUMN_4_POSITION = '0px 125px';
-const CARD_ROW_2_COLUMN_1_POSITION = '0px 200px';
-const CARD_ROW_2_COLUMN_2_POSITION = '0px 245px';
-const CARD_ROW_2_COLUMN_3_POSITION = '0px 280px';
-const CARD_ROW_2_COLUMN_4_POSITION = '0px 315px';
-const CARD_ROW_3_COLUMN_1_POSITION = '0px 400px';
-const CARD_ROW_3_COLUMN_2_POSITION = '0px 445px';
-const CARD_ROW_3_COLUMN_3_POSITION = '0px 480px';
-const CARD_ROW_3_COLUMN_4_POSITION = '0px 515px';
+const CARD_ROW_1_COLUMN_1_POSITION = '10px 10px';
+const CARD_ROW_1_COLUMN_2_POSITION = '10px 55px';
+const CARD_ROW_1_COLUMN_3_POSITION = '10px 90px';
+const CARD_ROW_1_COLUMN_4_POSITION = '10px 125px';
+const CARD_ROW_2_COLUMN_1_POSITION = '10px 200px';
+const CARD_ROW_2_COLUMN_2_POSITION = '10px 245px';
+const CARD_ROW_2_COLUMN_3_POSITION = '10px 280px';
+const CARD_ROW_2_COLUMN_4_POSITION = '10px 315px';
+const CARD_ROW_3_COLUMN_1_POSITION = '10px 400px';
+const CARD_ROW_3_COLUMN_2_POSITION = '10px 445px';
+const CARD_ROW_3_COLUMN_3_POSITION = '10px 480px';
+const CARD_ROW_3_COLUMN_4_POSITION = '10px 515px';
 
 const loading = keyframes`
   to {
@@ -89,16 +87,22 @@ const loadingCard = keyframes`
 export const Skeleton = styled.div.attrs({
   className: 'salo-table--is-mounting'
 })`
-  ${ ({ mounted, cardThresholdWidth }) => {
+  ${ ({ mounted, cardThresholdWidth, skeleton }) => {
     if (!mounted) {
+      const backgroundRGB = skeleton?.background || [255, 255, 255];
+      const foregroundRGB = skeleton?.foreground || [225, 225, 225];
+
+      const TALL_COLUMN_SKELETON = `linear-gradient(rgb(${ foregroundRGB.join() }) 25px, transparent 0)`;
+      const COLUMN_SKELETON = `linear-gradient(rgb(${ foregroundRGB.join() }) 15px, transparent 0)`;
+
       return css`
         background-image: 
          /* animation */
           linear-gradient(
             90deg,
-            rgba(255, 255, 255, 0) 0,
-            rgba(255, 255, 255, .8) 50%,
-            rgba(255, 255, 255, 0) 100%
+            rgba(${ backgroundRGB.join() }, 0) 0,
+            rgba(${ backgroundRGB.join() }, .8) 50%,
+            rgba(${ backgroundRGB.join() }, 0) 100%
           ),
           /* row 1 */
           /* layer 12: column 1 */
@@ -129,7 +133,7 @@ export const Skeleton = styled.div.attrs({
           ${ COLUMN_SKELETON },
           /* layer 0: card bg */
           /* white rectangle that covers whole element */
-          linear-gradient(white 100%, transparent 0);
+          linear-gradient(rgb(${ backgroundRGB.join() }) 100%, transparent 0);
 
         background-size:
           200px 100%,   /* animation */

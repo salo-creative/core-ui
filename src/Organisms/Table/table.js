@@ -34,6 +34,7 @@ const Table = (props) => {
     retryAction,
     rowHeight,
     showHeader,
+    skeleton,
     sorting,
     onSort,
     width
@@ -86,6 +87,7 @@ const Table = (props) => {
             mounted={ mounted }
             width={ width }
             cardThresholdWidth={ cardThresholdWidth }
+            skeleton={ skeleton }
           >
             { showHeader && (
               <TableHeader
@@ -118,57 +120,62 @@ const Table = (props) => {
 
 Table.defaultProps = {
   action: null,
-  actionWidth: '120px',
   actions: null,
   actionsWidth: '80px',
+  actionWidth: '120px',
   borders: true,
-  columns: [],
   className: '',
+  columns: [],
   data: [],
   dataEmptyComponent: null,
   dataEmptyText: 'There are no results to display',
   error: false,
   errorMessage: 'Something went wrong getting your data!',
   loading: false,
+  onSort: () => null,
+  pageChange: null,
   pager: true,
+  pagination: null,
   retryAction: null,
   rowHeight: '60px',
   showHeader: true,
+  skeleton: null,
   sorting: {},
-  onSort: () => null,
-  width: '100%',
-  pagination: null,
-  pageChange: null
+  width: '100%'
 };
 
 Table.propTypes = {
   action: PropTypes.func,
-  actionWidth: PropTypes.string,
   actions: PropTypes.func,
   actionsWidth: PropTypes.string,
+  actionWidth: PropTypes.string,
   borders: PropTypes.bool,
-  columns: columnsProps,
   className: PropTypes.string,
+  columns: columnsProps,
   data: PropTypes.arrayOf(PropTypes.object),
   dataEmptyComponent: PropTypes.any,
   dataEmptyText: PropTypes.string,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   loading: PropTypes.bool,
+  onSort: PropTypes.func,
+  pageChange: PropTypes.func,
   pager: PropTypes.bool,
   retryAction: PropTypes.func,
   rowHeight: PropTypes.string,
   showHeader: PropTypes.bool,
+  skeleton: PropTypes.shape(({
+    background: PropTypes.arrayOf(PropTypes.number),
+    foreground: PropTypes.arrayOf(PropTypes.number)
+  })),
   sorting: sortingProps,
-  onSort: PropTypes.func,
   width: PropTypes.string,
   pagination: PropTypes.shape({
     perPage: PropTypes.number,
     page: PropTypes.number,
     pages: PropTypes.number,
     total: PropTypes.number
-  }),
-  pageChange: PropTypes.func
+  })
 };
 
 export default Table;
