@@ -43,13 +43,20 @@ export const BodyRow = styled.div
 `;
 
 export const BodyCell = styled.div`
-  padding: 1rem;
+  padding: ${ ({ borders, isCard }) => (!borders && isCard ? '1rem 0' : '1rem') };
   display: ${ ({ isCard }) => (isCard ? 'block' : 'flex') };
   align-items: center;
   font-size: 1.4rem;
   flex-basis: ${ ({ flexBasis }) => flexBasis };
   flex-grow: 1;
   min-width: ${ ({ minWidth }) => minWidth };
+
+  &:first-child {
+    padding-left: ${ ({ borders, isCard }) => (borders && !isCard ? '1rem' : '0') };
+  }
+  &:last-child {
+    padding-right: ${ ({ borders, isCard }) => (borders && !isCard ? '1rem' : '0') };
+  }
 `;
 
 export const ActionCell = styled(BodyCell).attrs({
@@ -58,6 +65,10 @@ export const ActionCell = styled(BodyCell).attrs({
   padding: 0 1rem 0 3rem;
   min-width: ${ ({ width }) => width };
   flex-basis: ${ ({ width }) => width };
+
+  &:last-child {
+    padding-right: ${ ({ borders, isCard }) => (borders && !isCard ? '1rem' : '0') };
+  }
 `;
 
 export const BodyCellHeading = styled.h4.attrs({
@@ -97,6 +108,13 @@ export const HeaderCell = styled.div.attrs({
   flex-basis: ${ ({ flexBasis }) => flexBasis };
   flex-grow: 1;
   min-width: ${ ({ minWidth }) => minWidth };
+
+  &:first-child {
+    padding-left: ${ ({ borders, isCard }) => (borders && !isCard ? '1rem' : '0') };
+  }
+  &:last-child {
+    padding-right: ${ ({ borders, isCard }) => (borders && !isCard ? '1rem' : '0') };
+  }
 `;
 
 export const HeaderSorting = styled.div.attrs({

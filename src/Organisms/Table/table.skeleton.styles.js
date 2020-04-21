@@ -9,34 +9,34 @@ const COLUMN_2_WIDTH = '250px';
 const COLUMN_3_WIDTH = '100px';
 const COLUMN_4_WIDTH = '140px';
 
-// Table layout
-const ROW_1_COLUMN_1_POSITION = '0px 0px';
-const ROW_1_COLUMN_2_POSITION = '220px 5px';
-const ROW_1_COLUMN_3_POSITION = '620px 5px';
-const ROW_1_COLUMN_4_POSITION = '780px 5px';
-const ROW_2_COLUMN_1_POSITION = '0px 55px';
-const ROW_2_COLUMN_2_POSITION = '220px 60px';
-const ROW_2_COLUMN_3_POSITION = '620px 60px';
-const ROW_2_COLUMN_4_POSITION = '780px 60px';
-const ROW_3_COLUMN_1_POSITION = '0px 110px';
-const ROW_3_COLUMN_2_POSITION = '220px 115px';
-const ROW_3_COLUMN_3_POSITION = '620px 115px';
-const ROW_3_COLUMN_4_POSITION = '780px 115px';
+// Table layout - no offset
+const ROW_1_COLUMN_1_POSITION = '0px 20px';
+const ROW_1_COLUMN_2_POSITION = '220px 25px';
+const ROW_1_COLUMN_3_POSITION = '620px 25px';
+const ROW_1_COLUMN_4_POSITION = '780px 25px';
+const ROW_2_COLUMN_1_POSITION = '0px 75px';
+const ROW_2_COLUMN_2_POSITION = '220px 80px';
+const ROW_2_COLUMN_3_POSITION = '620px 80px';
+const ROW_2_COLUMN_4_POSITION = '780px 80px';
+const ROW_3_COLUMN_1_POSITION = '0px 130px';
+const ROW_3_COLUMN_2_POSITION = '220px 135px';
+const ROW_3_COLUMN_3_POSITION = '620px 135px';
+const ROW_3_COLUMN_4_POSITION = '780px 135px';
 
-// Card layout
+// Card layout - no offset
 // y = previous offset + previous height + gap
-const CARD_ROW_1_COLUMN_1_POSITION = '0px 0px';
-const CARD_ROW_1_COLUMN_2_POSITION = '0px 45px';
-const CARD_ROW_1_COLUMN_3_POSITION = '0px 80px';
-const CARD_ROW_1_COLUMN_4_POSITION = '0px 115px';
-const CARD_ROW_2_COLUMN_1_POSITION = '0px 190px';
-const CARD_ROW_2_COLUMN_2_POSITION = '0px 235px';
-const CARD_ROW_2_COLUMN_3_POSITION = '0px 270px';
-const CARD_ROW_2_COLUMN_4_POSITION = '0px 305px';
-const CARD_ROW_3_COLUMN_1_POSITION = '0px 390px';
-const CARD_ROW_3_COLUMN_2_POSITION = '0px 435px';
-const CARD_ROW_3_COLUMN_3_POSITION = '0px 470px';
-const CARD_ROW_3_COLUMN_4_POSITION = '0px 505px';
+const CARD_ROW_1_COLUMN_1_POSITION = '0px 10px';
+const CARD_ROW_1_COLUMN_2_POSITION = '0px 55px';
+const CARD_ROW_1_COLUMN_3_POSITION = '0px 90px';
+const CARD_ROW_1_COLUMN_4_POSITION = '0px 125px';
+const CARD_ROW_2_COLUMN_1_POSITION = '0px 200px';
+const CARD_ROW_2_COLUMN_2_POSITION = '0px 245px';
+const CARD_ROW_2_COLUMN_3_POSITION = '0px 280px';
+const CARD_ROW_2_COLUMN_4_POSITION = '0px 315px';
+const CARD_ROW_3_COLUMN_1_POSITION = '0px 400px';
+const CARD_ROW_3_COLUMN_2_POSITION = '0px 445px';
+const CARD_ROW_3_COLUMN_3_POSITION = '0px 480px';
+const CARD_ROW_3_COLUMN_4_POSITION = '0px 515px';
 
 const loading = keyframes`
   to {
@@ -86,7 +86,9 @@ const loadingCard = keyframes`
   }
 `;
 
-export const Skeleton = styled.div`
+export const Skeleton = styled.div.attrs({
+  className: 'salo-table--is-mounting'
+})`
   ${ ({ mounted, cardThresholdWidth }) => {
     if (!mounted) {
       return css`
