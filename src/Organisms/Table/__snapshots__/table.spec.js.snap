@@ -2,7 +2,18 @@
 
 exports[`Renders against snapshot 1`] = `
 .c0 {
+  background-image: linear-gradient( 90deg,rgba(255,255,255,0) 0,rgba(255,255,255,.8) 50%,rgba(255,255,255,0) 100% ),linear-gradient(rgb(225,225,225) 25px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 25px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 25px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(225,225,225) 15px,transparent 0),linear-gradient(rgb(255,255,255) 100%,transparent 0);
+  background-size: 200px 100%,120px 25px,250px 15px,100px 15px,140px 15px,120px 25px,250px 15px,100px 15px,140px 15px,120px 25px,250px 15px,100px 15px,140px 15px,100% 100%;
+  background-position: -150% 0,0px 0px,220px 5px,620px 5px,780px 5px,0px 55px,220px 60px,620px 60px,780px 60px,0px 110px,220px 115px,620px 115px,780px 115px,0 0;
+  background-repeat: no-repeat;
+  -webkit-animation: joXbPK 2.5s infinite;
+  animation: joXbPK 2.5s infinite;
   width: 100%;
+}
+
+.c0 .salo-table__header-row,
+.c0 .salo-table__body-wrapper {
+  visibility: hidden;
 }
 
 .c1 {
@@ -42,8 +53,16 @@ exports[`Renders against snapshot 1`] = `
   color: #f15b60;
 }
 
+@media only screen and (max-width:0px) {
+  .c0 {
+    -webkit-animation: fHNosZ 2.5s infinite;
+    animation: fHNosZ 2.5s infinite;
+    background-position: -150% 0,0px 10px,0px 55px,0px 90px,0px 125px,0px 200px,0px 245px,0px 280px,0px 315px,0px 400px,0px 445px,0px 480px,0px 515px,0 0;
+  }
+}
+
 <div
-  class="c0 salo-table  "
+  class="c0 salo-table   salo-table--is-mounting"
   width="100%"
 >
   <div
