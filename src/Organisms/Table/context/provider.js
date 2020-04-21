@@ -107,12 +107,14 @@ const TableProvider = (props) => {
     // Timeout covers up a brief flash between component mounting
     // and state updating to select a layout.
     const tick = setTimeout(() => {
-      setMounted(true);
+      if (!loading) {
+        setMounted(true);
+      }
     }, 100);
     return () => {
       clearTimeout(tick);
     };
-  }, []);
+  }, [loading]);
   
   const values = {
     action,

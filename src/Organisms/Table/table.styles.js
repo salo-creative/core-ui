@@ -123,13 +123,6 @@ export const HeaderSorting = styled.div.attrs({
   margin-left: 1rem;
 `;
 
-// LOADER
-export const LoaderWrapper = styled.div.attrs({
-  className: 'salo-table__loader-wrapper'
-})`
-  padding: 3rem 0;
-`;
-
 // NO DATA
 export const NoData = styled.div.attrs({
   className: 'salo-table__no-data'

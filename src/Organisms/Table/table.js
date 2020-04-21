@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // COMPONENTS & STYLES
-import Loader from '../../Molecules/Loader';
 import TableProvider from './context/provider';
 import TableBody from './table.body';
 import TableHeader from './table.header';
 import TablePagination from './table.pagination';
-import { TableWrapper, LoaderWrapper } from './table.styles';
+import { TableWrapper } from './table.styles';
 
 // HELPERS
 import { determineThreshold } from './table.helpers';
@@ -95,19 +94,8 @@ const Table = (props) => {
                 hasActions={ !!actions }
               />
             ) }
-            { /* Render body if we aren't loading */ }
-            { !loading && (
-              <TableBody />
-            ) }
-            { /* Render loader if we are fetching data */ }
-            { mounted && loading && (
-              <LoaderWrapper>
-                <Loader
-                  display={ true }
-                />
-              </LoaderWrapper>
-            ) }
-            { !loading && !error && (
+            <TableBody />
+            { mounted && !error && (
               <TablePagination />
             ) }
           </TableWrapper>
