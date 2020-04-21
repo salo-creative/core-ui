@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 // load tests
 import { withTests } from '@storybook/addon-jest';
@@ -13,24 +12,32 @@ import { Container } from '../../index';
 import README from './README.md';
 
 // Start of story logic
-const stories = storiesOf('Atoms | Grid/Container', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withTests({ results }));
-stories.addParameters({ jest: ['container'] });
+export const Basic = () => {
+  const width = text('Width', '1280px');
+  const padding = text('Padding', '0 0 0 0');
+  return (
+    <Container
+      width={ width }
+      padding={ padding }
+      style={ {
+        background: '#eaeaea'
+      } }
+    >
+      A lovely Container
+    </Container>
+  );
+};
 
-stories.add(
-  'Basic',
-  (() => {
-    const width = text('Width', '1280px');
-    const padding = text('Padding', '0 0 0 0');
-    return (
-      <Container
-        width={ width }
-        padding={ padding }
-        style={ { background: '#eaeaea' } }
-      >
-        A lovely Container
-      </Container>
-    );
-  }), { notes: README }
-);
+Basic.story = {
+  decorators: [withKnobs, withTests({
+    results
+  })],
+  parameters: {
+    notes: README,
+    jest: ['container']
+  }
+};
+
+export default {
+  title: 'Atoms/Grid/Container'
+};

@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v2.0.0", "commit": "Adding responsive table and upgrading dependencies" },
 { "user": "Tim Stone", "version": "v1.5.5", "commit": "Added customisation and animation to alerts" },
 { "user": "Rich Comber", "version": "v1.5.4", "commit": "Fixing snapshots" },
 { "user": "Rich Comber", "version": "v1.5.3", "commit": "Preventing avatar shrinking" },

@@ -1,9 +1,10 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 // load tests
 import { withTests } from '@storybook/addon-jest';
-import { withKnobs, text, select, color } from '@storybook/addon-knobs';
+import {
+  withKnobs, text, select, color
+} from '@storybook/addon-knobs';
 import results from '../../../.storybook/jest-test-results.json';
 
 // FEATURED COMPONENT
@@ -13,31 +14,39 @@ import { H1 } from '../../index';
 import README from './README.md';
 
 // Start of story logic
-const stories = storiesOf('Atoms | Typography/H1', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withTests({ results }));
-stories.addParameters({ jest: ['h1'] });
+export const Basic = () => {
+  const align = select(
+    'Align',
+    {
+      Left: 'left',
+      Right: 'right',
+      Center: 'center'
+    },
+    'center'
+  );
+  const fontSize = text('Font size', '');
+  const colour = color('Colour', '#262729');
+  const margin = text('Margin', '30px 0 10px');
+  return (
+    <H1 color={ colour } fontSize={ fontSize } align={ align } margin={ margin }>
+      H1 Headline <br /> With a second line
+    </H1>
+  );
+};
 
-stories.add(
-  'Basic',
-  (() => {
-    const align = select('Align', {
-      'Left': 'left',
-      'Right': 'right',
-      'Center': 'center'
-    }, 'center');
-    const fontSize = text('Font size', '');
-    const colour = color('Colour', '#262729');
-    const margin = text('Margin', '30px 0 10px');
-    return (
-      <H1
-        color={ colour }
-        fontSize={ fontSize }
-        align={ align }
-        margin={ margin }
-      >
-        H1 Headline <br /> With a second line
-      </H1>
-    );
-  }), { notes: README }
-);
+Basic.story = {
+  decorators: [
+    withKnobs,
+    withTests({
+      results
+    })
+  ],
+  parameters: {
+    jest: ['h1'],
+    notes: README
+  }
+};
+
+export default {
+  title: 'Atoms/Typography/H1'
+};

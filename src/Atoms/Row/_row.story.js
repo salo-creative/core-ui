@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 // load tests
 import { withTests } from '@storybook/addon-jest';
@@ -13,43 +12,63 @@ import { Row } from '../../index';
 import README from './README.md';
 
 // Start of story logic
-const stories = storiesOf('Atoms | Grid/Row', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withTests({ results }));
-stories.addParameters({ jest: ['row'] });
-
-stories.add(
-  'Basic',
-  (() => {
-    const alignItems = select('Align items', {
+export const Basic = () => {
+  const alignItems = select(
+    'Align items',
+    {
       'Flex start': 'flex-start',
       'Flex end': 'flex-end',
-      'Center': 'center',
-      'Stretch': 'stretch',
-      'Unset': 'unset'
-    }, 'flex-start');
-    const justifyContent = select('Justify content', {
+      Center: 'center',
+      Stretch: 'stretch',
+      Unset: 'unset'
+    },
+    'flex-start'
+  );
+  const justifyContent = select(
+    'Justify content',
+    {
       'Space between': 'space-between',
-      'Center': 'center',
+      Center: 'center',
       'Flex start': 'flex-start',
       'Flex end': 'flex-end'
-    }, 'flex-start');
-    const flexWrap = select('Flex wrap', {
-      'Wrap': 'wrap',
+    },
+    'flex-start'
+  );
+  const flexWrap = select(
+    'Flex wrap',
+    {
+      Wrap: 'wrap',
       'No wrap': 'no-wrap',
       'Wrap reverse': 'wrap-reverse'
-    }, 'flex-start');
-    const padding = text('Padding', '0 0 0 0');
-    return (
-      <Row
-        alignItems={ alignItems }
-        justifyContent={ justifyContent }
-        flexWrap={ flexWrap }
-        padding={ padding }
-        style={ { background: '#eaeaea' } }
-      >
-        A lovely Row
-      </Row>
-    );
-  }), { notes: README }
-);
+    },
+    'flex-start'
+  );
+  const padding = text('Padding', '0 0 0 0');
+  return (
+    <Row
+      alignItems={ alignItems }
+      justifyContent={ justifyContent }
+      flexWrap={ flexWrap }
+      padding={ padding }
+      style={ {
+        background: '#eaeaea'
+      } }
+    >
+      A lovely Row
+    </Row>
+  );
+};
+
+Basic.story = {
+  decorators: [withKnobs, withTests({
+    results
+  })],
+  parameters: {
+    notes: README,
+    jest: ['row']
+  }
+};
+
+export default {
+  title: 'Atoms/Grid/Row'
+};

@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { withKnobs, text } from '@storybook/addon-knobs';
 
 // load tests
@@ -13,28 +12,30 @@ import { ReadOnly } from '../../index';
 import README from './README.md';
 
 // Start of story logic
-const stories = storiesOf('Forms | ReadOnly', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withTests({ results }));
-stories.addParameters({ jest: ['readonly'] });
+export const Basic = () => {
+  // KNOBS
+  const label = text('label', 'Field label');
+  const name = text('name', 'field_name');
+  const value = text('value', 'The field value goes in here.');
+  return <ReadOnly label={ label } name={ name } value={ value } />;
+};
 
-stories.add(
-  'Basic',
-  (() => {
-    // KNOBS
-    const label = text('label', 'Field label');
-    const name = text('name', 'field_name');
-    const value = text('value', 'The field value goes in here.');
-    return (
-      <ReadOnly
-        label={ label }
-        name={ name }
-        value={ value }
-      />
-    );
-  }),
-  {
-    info: { propTablesExclude: [] },
+Basic.story = {
+  decorators: [
+    withKnobs,
+    withTests({
+      results
+    })
+  ],
+  parameters: {
+    jest: ['readonly'],
+    info: {
+      propTablesExclude: []
+    },
     notes: README
   }
-);
+};
+
+export default {
+  title: 'Forms/ReadOnly'
+};
