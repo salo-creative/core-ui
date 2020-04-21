@@ -166,7 +166,8 @@ Table.propTypes = {
   showHeader: PropTypes.bool,
   skeleton: PropTypes.shape(({
     background: PropTypes.arrayOf(PropTypes.number),
-    foreground: PropTypes.arrayOf(PropTypes.number)
+    foreground: PropTypes.arrayOf(PropTypes.number),
+    offset: PropTypes.number
   })),
   sorting: sortingProps,
   width: PropTypes.string,

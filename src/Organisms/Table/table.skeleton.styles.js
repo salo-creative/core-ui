@@ -1,5 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 
+import { generateRows } from './table.helpers';
+
 const TALL_COLUMN_HEIGHT = '25px';
 const COLUMN_HEIGHT = '15px';
 const COLUMN_1_WIDTH = '120px';
@@ -7,82 +9,6 @@ const COLUMN_2_WIDTH = '250px';
 const COLUMN_3_WIDTH = '100px';
 const COLUMN_4_WIDTH = '140px';
 
-// Table layout - no offset
-const ROW_1_COLUMN_1_POSITION = '20px 20px';
-const ROW_1_COLUMN_2_POSITION = '240px 25px';
-const ROW_1_COLUMN_3_POSITION = '640px 25px';
-const ROW_1_COLUMN_4_POSITION = '800px 25px';
-const ROW_2_COLUMN_1_POSITION = '20px 75px';
-const ROW_2_COLUMN_2_POSITION = '240px 80px';
-const ROW_2_COLUMN_3_POSITION = '640px 80px';
-const ROW_2_COLUMN_4_POSITION = '800px 80px';
-const ROW_3_COLUMN_1_POSITION = '20px 130px';
-const ROW_3_COLUMN_2_POSITION = '240px 135px';
-const ROW_3_COLUMN_3_POSITION = '640px 135px';
-const ROW_3_COLUMN_4_POSITION = '800px 135px';
-
-// Card layout - no offset
-// y = previous offset + previous height + gap
-const CARD_ROW_1_COLUMN_1_POSITION = '10px 10px';
-const CARD_ROW_1_COLUMN_2_POSITION = '10px 55px';
-const CARD_ROW_1_COLUMN_3_POSITION = '10px 90px';
-const CARD_ROW_1_COLUMN_4_POSITION = '10px 125px';
-const CARD_ROW_2_COLUMN_1_POSITION = '10px 200px';
-const CARD_ROW_2_COLUMN_2_POSITION = '10px 245px';
-const CARD_ROW_2_COLUMN_3_POSITION = '10px 280px';
-const CARD_ROW_2_COLUMN_4_POSITION = '10px 315px';
-const CARD_ROW_3_COLUMN_1_POSITION = '10px 400px';
-const CARD_ROW_3_COLUMN_2_POSITION = '10px 445px';
-const CARD_ROW_3_COLUMN_3_POSITION = '10px 480px';
-const CARD_ROW_3_COLUMN_4_POSITION = '10px 515px';
-
-const loading = keyframes`
-  to {
-    background-position:
-      150% 0, /* animation */ 
-              /* row 1 */
-      ${ ROW_1_COLUMN_1_POSITION },
-      ${ ROW_1_COLUMN_2_POSITION },
-      ${ ROW_1_COLUMN_3_POSITION },
-      ${ ROW_1_COLUMN_4_POSITION },
-              /* row 2 */
-      ${ ROW_2_COLUMN_1_POSITION },
-      ${ ROW_2_COLUMN_2_POSITION },
-      ${ ROW_2_COLUMN_3_POSITION },
-      ${ ROW_2_COLUMN_4_POSITION },
-              /* row 3 */
-      ${ ROW_3_COLUMN_1_POSITION },
-      ${ ROW_3_COLUMN_2_POSITION },
-      ${ ROW_3_COLUMN_3_POSITION },
-      ${ ROW_3_COLUMN_4_POSITION },
-      0 0     /* background */
-    ;
-  }
-`;
-
-const loadingCard = keyframes`
-  to {
-    background-position:
-      150% 0, /* animation */ 
-              /* row 1 */
-      ${ CARD_ROW_1_COLUMN_1_POSITION },
-      ${ CARD_ROW_1_COLUMN_2_POSITION },
-      ${ CARD_ROW_1_COLUMN_3_POSITION },
-      ${ CARD_ROW_1_COLUMN_4_POSITION },
-              /* row 2 */
-      ${ CARD_ROW_2_COLUMN_1_POSITION },
-      ${ CARD_ROW_2_COLUMN_2_POSITION },
-      ${ CARD_ROW_2_COLUMN_3_POSITION },
-      ${ CARD_ROW_2_COLUMN_4_POSITION },
-              /* row 3 */
-      ${ CARD_ROW_3_COLUMN_1_POSITION },
-      ${ CARD_ROW_3_COLUMN_2_POSITION },
-      ${ CARD_ROW_3_COLUMN_3_POSITION },
-      ${ CARD_ROW_3_COLUMN_4_POSITION },
-      0 0     /* background */
-    ;
-  }
-`;
 
 export const Skeleton = styled.div.attrs({
   className: 'salo-table--is-mounting'
@@ -92,8 +18,30 @@ export const Skeleton = styled.div.attrs({
       const backgroundRGB = skeleton?.background || [255, 255, 255];
       const foregroundRGB = skeleton?.foreground || [225, 225, 225];
 
+      const rows = generateRows(skeleton?.offset || 0);
+
       const TALL_COLUMN_SKELETON = `linear-gradient(rgb(${ foregroundRGB.join() }) 25px, transparent 0)`;
       const COLUMN_SKELETON = `linear-gradient(rgb(${ foregroundRGB.join() }) 15px, transparent 0)`;
+
+      const loading = keyframes`
+        to {
+          background-position:
+            150% 0, /* animation */ 
+            ${ rows.table.map((row) => row.map(col => `${ col.x }px ${ col.y }px,`)) }
+            0 0     /* background */
+          ;
+        }
+      `;
+      
+      const loadingCard = keyframes`
+        to {
+          background-position:
+            150% 0, /* animation */ 
+            ${ rows.card.map((row) => row.map(col => `${ col.x }px ${ col.y }px,`)) }
+            0 0     /* background */
+          ;
+        }
+      `;
 
       return css`
         background-image: 
@@ -156,21 +104,7 @@ export const Skeleton = styled.div.attrs({
 
         background-position:
           -150% 0,      /* animation */
-                        /* row 1 */
-          ${ ROW_1_COLUMN_1_POSITION },
-          ${ ROW_1_COLUMN_2_POSITION },
-          ${ ROW_1_COLUMN_3_POSITION },
-          ${ ROW_1_COLUMN_4_POSITION },
-                        /* row 2 */
-          ${ ROW_2_COLUMN_1_POSITION },
-          ${ ROW_2_COLUMN_2_POSITION },
-          ${ ROW_2_COLUMN_3_POSITION },
-          ${ ROW_2_COLUMN_4_POSITION },
-                        /* row 3 */
-          ${ ROW_3_COLUMN_1_POSITION },
-          ${ ROW_3_COLUMN_2_POSITION },
-          ${ ROW_3_COLUMN_3_POSITION },
-          ${ ROW_3_COLUMN_4_POSITION },
+          ${ rows.table.map((row) => row.map(col => `${ col.x }px ${ col.y }px,`)) }
           0 0;          /* background */
 
         background-repeat: no-repeat;
@@ -180,21 +114,7 @@ export const Skeleton = styled.div.attrs({
           animation: ${ loadingCard } 2.5s infinite;
           background-position:
             -150% 0,    /* animation */
-                        /* row 1 */
-            ${ CARD_ROW_1_COLUMN_1_POSITION },
-            ${ CARD_ROW_1_COLUMN_2_POSITION },
-            ${ CARD_ROW_1_COLUMN_3_POSITION },
-            ${ CARD_ROW_1_COLUMN_4_POSITION },
-                        /* row 2 */
-            ${ CARD_ROW_2_COLUMN_1_POSITION },
-            ${ CARD_ROW_2_COLUMN_2_POSITION },
-            ${ CARD_ROW_2_COLUMN_3_POSITION },
-            ${ CARD_ROW_2_COLUMN_4_POSITION },
-                        /* row 3 */
-            ${ CARD_ROW_3_COLUMN_1_POSITION },
-            ${ CARD_ROW_3_COLUMN_2_POSITION },
-            ${ CARD_ROW_3_COLUMN_3_POSITION },
-            ${ CARD_ROW_3_COLUMN_4_POSITION },
+            ${ rows.card.map((row) => row.map(col => `${ col.x }px ${ col.y }px,`)) }
             0 0;        /* background */
         }
 
