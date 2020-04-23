@@ -3,7 +3,7 @@ import { configure, addDecorator, setAddon } from '@storybook/react';
 import infoAddon, { withInfo } from '@storybook/addon-info';
 import { BrowserRouter } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from '@apollo/react-hooks';
 import { AuthProvider, getTokensClient } from '@salo/auth';
 import ApolloClient from '../src/Apollo/client';
 import { addParameters } from '@storybook/react';
