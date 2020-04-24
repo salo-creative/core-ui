@@ -1,6 +1,6 @@
 {
   "name": "@salo/core-ui",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Core Salo React UI library",
   "main": "./index.js",
   "sideEffects": false,

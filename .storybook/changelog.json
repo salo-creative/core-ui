@@ -1,4 +1,5 @@
 [
+{ "user": "Tim Stone", "version": "v2.1.0", "commit": "Updated to use corejs 3, no longer need to include immutable" },
 { "user": "Tim Stone", "version": "v2.0.2", "commit": "Loosen peer dependencies" },
 { "user": "Tim Stone", "version": "v2.0.1", "commit": "Improved table skeleton loader" },
 { "user": "Rich Comber", "version": "v2.0.0", "commit": "Adding responsive table and upgrading dependencies" },
