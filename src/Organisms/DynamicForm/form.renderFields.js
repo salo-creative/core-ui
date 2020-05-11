@@ -454,20 +454,20 @@ const RenderFields = (props) => {
                   );
                 }
 
+                if (item.type === 'html') {
+                  const FormRenderHTML = CustomRenderHTML || RenderHTML;
+                  return (
+                    <FormRenderHTML content={ item.text } />
+                  );
+                }
+
                 return <FormCopy key={ item.text.slice(0, 10) }>{ item.text }</FormCopy>;
               })
             }
           </div>
         );
       }
-      case 'html': {
-        // Evaluate the component to use
-        const FormRenderHTML = CustomRenderHTML || RenderHTML;
-        
-        return (
-          <FormRenderHTML content={ metaData.text } />
-        );
-      }
+
       case 'signature': {
         // Evaluate the component to use
         const FormSignature = CustomSignature || Signature;
