@@ -12,3 +12,4 @@ import './Signature/_signature.story';
 import './TextArea/_textArea.story';
 import './TypeAhead/_typeAhead.story';
 import './Upload/_upload.story';
+import './RenderHTML/_renderHTML.story';
