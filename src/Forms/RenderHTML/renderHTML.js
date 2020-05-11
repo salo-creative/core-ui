@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import DomPurify from 'dompurify';
 
 const RenderHTML = ({ content, ...rest }) => {
-  console.log('REST', rest);
   return (
     <div
       // eslint-disable-next-line react/no-danger
