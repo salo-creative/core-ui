@@ -22,7 +22,7 @@ Basic.story = {
     })
   ],
   parameters: {
-    jest: ['readonly'],
+    jest: ['renderhtml'],
     info: {
       propTablesExclude: []
     },

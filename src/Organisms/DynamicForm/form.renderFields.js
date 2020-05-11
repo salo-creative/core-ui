@@ -18,6 +18,7 @@ import TextArea from '../../Forms/TextArea';
 import TypeAhead from '../../Forms/TypeAhead';
 import Upload from '../../Forms/Upload';
 import P from '../../Typography/P';
+import RenderHTML from '../../Forms/RenderHTML';
 
 // HELPERS & CONSTANTS
 import { evaluateValue, findDateValidations } from '../../Forms/useFormData/useFormData.helpers';
@@ -65,7 +66,8 @@ const RenderFields = (props) => {
     Signature: CustomSignature,
     TextArea: CustomTextArea,
     TypeAhead: CustomTypeAhead,
-    Upload: CustomUpload
+    Upload: CustomUpload,
+    RenderHTML: CustomRenderHTML
   } = inputs;
 
   const groups = {};
@@ -456,6 +458,14 @@ const RenderFields = (props) => {
               })
             }
           </div>
+        );
+      }
+      case 'html': {
+        // Evaluate the component to use
+        const FormRenderHTML = CustomRenderHTML || RenderHTML;
+        
+        return (
+          <FormRenderHTML content={ metaData.text } />
         );
       }
       case 'signature': {
