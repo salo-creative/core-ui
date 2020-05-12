@@ -460,7 +460,7 @@ const RenderFields = (props) => {
                 if (item.type === 'html') {
                   const FormRenderHTML = CustomRenderHTML || RenderHTML;
                   return (
-                    <FormRenderHTML content={ item.text } />
+                    <FormRenderHTML content={ item.text } key={ item.text.slice(0, 10) } />
                   );
                 }
 
