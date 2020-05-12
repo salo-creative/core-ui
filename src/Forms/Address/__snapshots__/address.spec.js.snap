@@ -56,7 +56,7 @@ exports[`Renders against snapshot 1`] = `
     class="c0 salo-input "
   >
     <label
-      class="c1"
+      class="c1 salo-input__label"
       for="line1_undefined"
     >
       Address line 1
@@ -82,7 +82,7 @@ exports[`Renders against snapshot 1`] = `
     class="c0 salo-input "
   >
     <label
-      class="c1"
+      class="c1 salo-input__label"
       for="line2_undefined"
     >
       Address line 2
@@ -108,7 +108,7 @@ exports[`Renders against snapshot 1`] = `
     class="c0 salo-input "
   >
     <label
-      class="c1"
+      class="c1 salo-input__label"
       for="city_undefined"
     >
       City
@@ -134,7 +134,7 @@ exports[`Renders against snapshot 1`] = `
     class="c0 salo-input "
   >
     <label
-      class="c1"
+      class="c1 salo-input__label"
       for="county_undefined"
     >
       County
@@ -160,7 +160,7 @@ exports[`Renders against snapshot 1`] = `
     class="c0 salo-input "
   >
     <label
-      class="c1"
+      class="c1 salo-input__label"
       for="postcode_undefined"
     >
       Postcode
@@ -186,7 +186,7 @@ exports[`Renders against snapshot 1`] = `
     class="c0 salo-input "
   >
     <label
-      class="c1"
+      class="c1 salo-input__label"
       for="country_undefined"
     >
       Country

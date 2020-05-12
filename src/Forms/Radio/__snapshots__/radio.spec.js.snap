@@ -33,7 +33,7 @@ exports[`Renders against snapshot 1`] = `
   class="c0  salo-radio"
 >
   <label
-    class="c1"
+    class="c1 salo-radio__label"
   >
     Label Text
   </label>
