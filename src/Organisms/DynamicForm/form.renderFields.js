@@ -59,7 +59,6 @@ const RenderFields = (props) => {
     Copy: CustomCopy,
     DatePicker: CustomDatePicker,
     Input: CustomInput,
-    Link,
     Password: CustomPassword,
     Radio: CustomRadio,
     Select: CustomSelect,
@@ -447,9 +446,13 @@ const RenderFields = (props) => {
                 if (item.type === 'link') {
                   return (
                     <FormCopy key={ item.text.slice(0, 10) }>
-                      <Link to={ item.link } target='_blank'>
+                      <a
+                        href={ item.link }
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >
                         { item.text }
-                      </Link>
+                      </a>
                     </FormCopy>
                   );
                 }
