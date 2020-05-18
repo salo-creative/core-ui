@@ -12,27 +12,32 @@ const StyledLabel = styled.label`
 `;
 
 const Label = (props) => {
-  const { error, label, name, size, required } = props;
+  const { error, label, name, size, required, className } = props;
   if (!label) return null;
   return (
     <StyledLabel
       error={ error }
       htmlFor={ name }
       size={ size }
+      className={ className }
     >
       { label }{ required && <sup data-testid='required'>*</sup> }
     </StyledLabel>
   );
 };
 
-Label.defaultProps = { label: '' };
+Label.defaultProps = {
+  label: '',
+  className: ''
+};
 
 Label.propTypes = {
   error: PropTypes.bool.isRequired,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   required: PropTypes.bool.isRequired,
-  size: PropTypes.string.isRequired
+  size: PropTypes.string.isRequired,
+  className: PropTypes.string
 };
 
 export default Label;
