@@ -32,3 +32,16 @@ const panes = [
 
 <Tab panes={ panes } />
 ```
+
+Or with complex titles:
+
+```javascript
+const panes = [
+  { 
+    title: 'Tab 1',
+    children: <h1>Tab 1</h1>,
+    render: (
+      <p>This tab has JSX content</p>
+    ),
+  }
+];
