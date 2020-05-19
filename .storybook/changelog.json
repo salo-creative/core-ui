@@ -1,4 +1,5 @@
 [
+{ "user": "Tim Stone", "version": "v2.3.0", "commit": "Allow components as Tab titles" },
 { "user": "Tim Stone", "version": "v2.2.1", "commit": "Forward className to Label component" },
 { "user": "Tim Stone", "version": "v2.2.0", "commit": "Added html subtype to DynamicForm" },
 { "user": "Tim Stone", "version": "v2.1.1", "commit": "Loosen auth peerDep" },
