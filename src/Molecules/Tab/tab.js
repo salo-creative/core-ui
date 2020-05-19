@@ -60,7 +60,7 @@ const Tab = (props) => {
               tabIndex={ index === focus ? 0 : -1 }
               type='button'
             >
-              { pane.title }
+              { pane.children || pane.title }
             </TabButton>
           );
         }) }
@@ -84,15 +84,18 @@ const Tab = (props) => {
   );
 };
 
-Tab.defaultProps = { className: '' };
+Tab.defaultProps = {
+  className: ''
+};
 
 Tab.propTypes = {
   className: PropTypes.string,
   panes: PropTypes.arrayOf(
     PropTypes.shape({
+      children: PropTypes.any,
       title: PropTypes.string,
       render: PropTypes.func.isRequired
-    }),
+    })
   ).isRequired
 };
 
