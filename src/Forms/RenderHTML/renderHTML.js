@@ -9,7 +9,7 @@ const RenderHTML = ({ content, ...rest }) => {
     <div
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={ {
-        __html: sanitize(content)
+        __html: content
       } }
       { ...rest }
     />
