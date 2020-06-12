@@ -1,5 +1,6 @@
 import moment from 'moment';
 import DomPurify from 'dompurify';
+import { JSDOM } from 'jsdom';
 import {
   forEach,
   isEmpty
@@ -15,8 +16,9 @@ import {
   string
 } from 'yup';
 
-// HELPERS & CONSTANTS
+// HELPERS & CONSTANT
 import { mimeTypes } from '../../Forms/Upload';
+import { isBrowser } from '../environments';
 
 /**
  * GET MIME TYPES
@@ -101,10 +103,16 @@ const escapeHTML = str => str.replace(/(&amp;)|(&gt;)|(&lt;)/g,
     }[match] || match;
   });
 export const sanitize = (value) => {
+  // Use JSDOM if we are server side
+  let Purify = DomPurify;
+  if (!isBrowser) {
+    const JSDOMWindow = new JSDOM('').window;
+    Purify = DomPurify(JSDOMWindow);
+  }
   // DOMPurify does a cracking job at purifying for the DOM but in this case for display
   // purposes we can de-escape '&' and chevrons as DOMPurify does the heavylifting for us
   // of escaping bad content.
-  return escapeHTML(DomPurify.sanitize(value, {
+  return escapeHTML(Purify.sanitize(value, {
     USE_PROFILES: {
       html: true
     }
