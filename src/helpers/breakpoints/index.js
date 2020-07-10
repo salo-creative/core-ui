@@ -18,7 +18,7 @@ export const breakpoints = {
  * A function that retrieves a breakpoint statement for styled components
  */
 export const getBreakpoint = ({ min, max }) => {
-  const minBp = min && breakpoints[min] ? `and (min-width: ${ breakpoints[min] }px)` : '';
+  const minBp = min && breakpoints[min] ? `and (min-width: ${ breakpoints[min] + 1 }px)` : '';
   const maxBp = max && breakpoints[max] ? `and (max-width: ${ breakpoints[max] }px)` : '';
   return `@media only screen ${ minBp } ${ maxBp }`;
 };

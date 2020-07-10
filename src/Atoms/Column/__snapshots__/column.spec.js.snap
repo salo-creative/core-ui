@@ -36,7 +36,7 @@ exports[`Render Column and styles with core props 1`] = `
   max-width: 83.33333333333334%;
 }
 
-@media only screen and (min-width:480px) {
+@media only screen and (min-width:481px) {
   .c0 {
     width: 50%;
     -webkit-flex-basis: 50%;
@@ -46,7 +46,7 @@ exports[`Render Column and styles with core props 1`] = `
   }
 }
 
-@media only screen and (min-width:620px) {
+@media only screen and (min-width:621px) {
   .c0 {
     width: 58.333333333333336%;
     -webkit-flex-basis: 58.333333333333336%;
@@ -56,7 +56,7 @@ exports[`Render Column and styles with core props 1`] = `
   }
 }
 
-@media only screen and (min-width:780px) {
+@media only screen and (min-width:781px) {
   .c0 {
     width: 66.66666666666666%;
     -webkit-flex-basis: 66.66666666666666%;
@@ -66,7 +66,7 @@ exports[`Render Column and styles with core props 1`] = `
   }
 }
 
-@media only screen and (min-width:860px) {
+@media only screen and (min-width:861px) {
   .c0 {
     width: 75%;
     -webkit-flex-basis: 75%;
@@ -76,7 +76,7 @@ exports[`Render Column and styles with core props 1`] = `
   }
 }
 
-@media only screen and (min-width:1000px) {
+@media only screen and (min-width:1001px) {
   .c0 {
     width: 83.33333333333334%;
     -webkit-flex-basis: 83.33333333333334%;
