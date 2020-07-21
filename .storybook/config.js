@@ -19,7 +19,7 @@ import './storybook.scss';
 import 'react-dates/lib/css/_datepicker.css';
 
 const client = ApolloClient({
-  uri: 'http://localhost:7000/graphql',
+  uri: 'http://localhost:4000/graphql',
   tokens: { clientKey: 'Bx2ojE2xLNcsQsHTUaNf+da35LiWBdac1oU/TovZ9auYiRdhvQfWrHhI0SfaCiKaht2JJ/dFhkyuD+o//LH+qQ==' }
 });
 

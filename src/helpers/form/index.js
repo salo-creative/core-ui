@@ -127,7 +127,7 @@ export const buildYup = ({ fields }) => {
       regex
     } = validation;
 
-    const metadata = JSON.parse(meta);
+    const metadata = meta ? JSON.parse(meta) : {};
 
     // Rule to build on
     let vRule = mixed();

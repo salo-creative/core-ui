@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v2.4.1", "commit": "Making dynamic form meta parse more defensive" },
 { "user": "Rich Comber", "version": "v2.4.0", "commit": "Fixing breakpoint helper offset issue" },
 { "user": "Rich Comber", "version": "v2.3.2", "commit": "Removing sanitise from render html" },
 { "user": "Rich Comber", "version": "v2.3.1", "commit": "Fixing server side usage of DOMPurify by adding JSDOM" },
