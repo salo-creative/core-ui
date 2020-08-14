@@ -36,8 +36,11 @@ export const getRequestStatus = ({ networkStatus, error, skip = false }) => {
 };
 
 export const parseApolloError = ({ error, propName = 'APOLLO_ERROR' }) => {
+  // Get default error message so we can handle errors we have not explicitly thrown on the server
+  const errMessage = get(error, 'graphQLErrors[0].message');
+  let message = errMessage !== 'SC_ERROR' ? errMessage : 'Something went wrong!';
+  
   let code = 400;
-  let message = 'Something went wrong!';
   const errors = [];
   const extra = {};
   let name = propName; // For custom sentry logging

@@ -1,12 +1,13 @@
 {
   "name": "@salo/core-ui",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "Core Salo React UI library",
   "main": "./index.js",
   "sideEffects": false,
   "scripts": {
     "start": "start-storybook -p 6001 -s ./public",
     "bundle": "rm -rf dist/ && babel --copy-files src --out-dir dist",
+    "local": "yarn bundle && rsync -r dist/ ~/Repositories/salo/compliance-rocks/node_modules/@salo/core-ui",
     "demo": "npm run test:output -u && npm start",
     "test": "jest",
     "test:watch": "jest --watch",
