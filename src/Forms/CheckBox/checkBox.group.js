@@ -52,6 +52,7 @@ class CheckBoxGroup extends React.Component {
             label={ label }
             name={ name }
             required={ required }
+            size={ size }
           />
         ) }
         <GroupWrapper className='salo-checkboxGroup__wrapper'>
