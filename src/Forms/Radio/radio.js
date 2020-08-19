@@ -36,6 +36,11 @@ const Radio = props => {
       inputEl.current.focus();
     }
   });
+  
+  // Allow value to be updated from outside the component
+  React.useEffect(() => {
+    setChecked(value);
+  }, [value]);
 
   return (
     <Group
