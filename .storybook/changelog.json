@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v2.4.7", "commit": "Re-run failed" },
 { "user": "Rich Comber", "version": "v2.4.6", "commit": "Making dynamic form pass back form id" },
 { "user": "Rich Comber", "version": "v2.4.5", "commit": "Fixing radio input" },
 { "user": "Rich Comber", "version": "v2.4.4", "commit": "Fixing prop warning" },
