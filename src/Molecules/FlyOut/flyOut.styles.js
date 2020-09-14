@@ -197,6 +197,7 @@ export const ItemButton = styled.button`
   margin: 0;
   padding: 1rem;
   color: inherit;
+  cursor: pointer;
   &:focus,
   &:active {
     outline: none;
