@@ -76,6 +76,7 @@ exports[`Renders against snapshot 1`] = `
   margin: 0;
   padding: 1rem;
   color: inherit;
+  cursor: pointer;
 }
 
 .c1:focus,
