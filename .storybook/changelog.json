@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v2.4.13", "commit": "Re-run release" },
 { "user": "Rich Comber", "version": "v2.4.12", "commit": "Fixing z-index animation issue for drop" },
 { "user": "Rich Comber", "version": "v2.4.11", "commit": "Fixing avatar font color" },
 { "user": "Rich Comber", "version": "v2.4.10", "commit": "Fixing color blend on avatar component" },
