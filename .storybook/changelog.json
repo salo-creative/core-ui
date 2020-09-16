@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v2.4.11", "commit": "Fixing avatar font color" },
 { "user": "Rich Comber", "version": "v2.4.10", "commit": "Fixing color blend on avatar component" },
 { "user": "Rich Comber", "version": "v2.4.9", "commit": "Fixing snapshot tests" },
 { "user": "Rich Comber", "version": "v2.4.8", "commit": "Style fix for flyout menu item cursor state" },
