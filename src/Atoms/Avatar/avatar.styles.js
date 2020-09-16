@@ -31,9 +31,9 @@ export const AvatarWrapper = styled.button.attrs(({ image, cursor }) => ({
 
 export const TextWrapper = styled.p`
   font-size: 0.4em;
-  ${ ({ theme, fontColour }) => {
-    if (fontColour) {
-      return `color: ${ fontColour };`;
+  ${ ({ theme, colour }) => {
+    if (colour) {
+      return `color: ${ colour };`;
     }
     return `
       color: ${ theme.font };
