@@ -11,6 +11,7 @@ const Avatar = React.memo(props => {
   const {
     className,
     colour,
+    fontColour,
     firstName,
     image,
     lastName,
@@ -39,7 +40,7 @@ const Avatar = React.memo(props => {
       as={ hasAction ? 'button' : 'div' }
     >
       <TextWrapper
-        colour={ colour }
+        colour={ fontColour }
       >
         { !image ? `${ firstName.charAt(0) }${ lastName ? lastName.charAt(0) : '' }` : '' }
       </TextWrapper>
@@ -53,6 +54,7 @@ Avatar.defaultProps = {
   firstName: 'Undefined',
   lastName: '',
   colour: colours.blue,
+  fontColour: null,
   onClick: null,
   size: 100
 };
@@ -65,6 +67,7 @@ Avatar.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
   colour: PropTypes.string,
+  fontColour: PropTypes.string,
   onClick: PropTypes.func,
   size: PropTypes.number
 };

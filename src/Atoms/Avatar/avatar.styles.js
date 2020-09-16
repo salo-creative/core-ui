@@ -31,11 +31,18 @@ export const AvatarWrapper = styled.button.attrs(({ image, cursor }) => ({
 
 export const TextWrapper = styled.p`
   font-size: 0.4em;
-  color: ${ ({ theme }) => theme.font };
+  ${ ({ theme, fontColour }) => {
+    if (fontColour) {
+      return `color: ${ fontColour };`;
+    }
+    return `
+      color: ${ theme.font };
+      mix-blend-mode: difference;
+    `;
+  } };
   text-transform: uppercase;
   text-align: center;
   font-weight: bold;
   user-select: none;
   margin: 0;
-  mix-blend-mode: difference;
 `;
