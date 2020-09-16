@@ -15,6 +15,10 @@ const visibleState = ['entered', 'entering'];
 export const Wrapper = styled.div`
   transition: opacity 200ms ease-in-out;
   opacity: ${ ({ transition }) => (visibleState.includes(transition) ? 1 : 0) };
+  &.isFixed {
+    position: relative;
+    z-index: ${ ({ zIndex }) => zIndex };
+  }
 `;
 
 export const DropElement = styled.div`

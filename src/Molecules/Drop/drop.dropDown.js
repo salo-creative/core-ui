@@ -131,7 +131,12 @@ class Drop extends React.Component {
     // Use a portal to render the children into the element
     return ReactDOM.createPortal(
       [
-        <Wrapper key='drop' transition={ transition } className='salo-drop__wrapper'>
+        <Wrapper
+          key='drop'
+          transition={ transition }
+          className={ `salo-drop__wrapper ${ fixed ? 'isFixed' : '' }` }
+          zIndex={ zIndex }
+        >
           <DropElement
             arrow={ arrow }
             background={ background }
