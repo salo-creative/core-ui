@@ -55,7 +55,9 @@ exports[`Renders against snapshot 1`] = `
   class="c0"
 >
   <svg
+    aria-hidden="true"
     class="c1"
+    focusable="false"
     size="24"
     viewBox="0 0 24 24"
   >

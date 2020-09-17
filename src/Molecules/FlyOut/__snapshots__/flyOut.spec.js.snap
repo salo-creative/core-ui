@@ -411,7 +411,9 @@ exports[`Renders against snapshot 1`] = `
             class="c6 salo-flyout__icon-wrapper"
           >
             <svg
+              aria-hidden="true"
               class="c7"
+              focusable="false"
               size="18"
               viewBox="0 0 24 24"
             >
@@ -433,7 +435,9 @@ exports[`Renders against snapshot 1`] = `
         width="0"
       />
       <svg
+        aria-hidden="true"
         class="c9"
+        focusable="false"
         size="24"
         viewBox="0 0 24 24"
       >

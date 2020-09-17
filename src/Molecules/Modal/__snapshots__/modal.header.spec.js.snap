@@ -76,7 +76,9 @@ exports[`Renders against snapshot 1`] = `
     class="c2 salo-modal__close"
   >
     <svg
+      aria-hidden="true"
       class="c3"
+      focusable="false"
       size="14"
       viewBox="0 0 24 24"
     >

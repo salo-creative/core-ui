@@ -23,7 +23,9 @@ exports[`Renders against snapshot 1`] = `
     value="Add"
   >
     <svg
+      aria-hidden="true"
       class="c0"
+      focusable="false"
       size="16"
       viewBox="0 0 24 24"
     >
@@ -39,7 +41,9 @@ exports[`Renders against snapshot 1`] = `
     value="Close"
   >
     <svg
+      aria-hidden="true"
       class="c0"
+      focusable="false"
       size="16"
       viewBox="0 0 24 24"
     >
