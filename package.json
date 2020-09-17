@@ -151,7 +151,7 @@
     "immutable": "3.x.x",
     "isomorphic-fetch": "~2.2.1",
     "lodash": "~4.17.15",
-    "moment": "~2.24.0",
+    "moment": "~2.28.0",
     "polished": "~3.4.2",
     "punycode": "~2.1.1",
     "react-dates": "~21.8.0",
