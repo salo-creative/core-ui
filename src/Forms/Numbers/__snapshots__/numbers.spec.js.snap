@@ -418,7 +418,9 @@ exports[`Renders against snapshot 1`] = `
     class="c1"
   >
     <svg
+      aria-hidden="true"
       class="c2"
+      focusable="false"
       size="14"
       viewBox="0 0 24 24"
     >
@@ -551,7 +553,9 @@ exports[`Renders against snapshot 1`] = `
             width="0"
           />
           <svg
+            aria-hidden="true"
             class="c18"
+            focusable="false"
             size="24"
             viewBox="0 0 24 24"
           >

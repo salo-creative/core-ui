@@ -168,7 +168,9 @@ exports[`Renders against snapshot 1`] = `
       class="c3 salo-flyout__icon-wrapper"
     >
       <svg
+        aria-hidden="true"
         class="c4"
+        focusable="false"
         size="24"
         viewBox="0 0 24 24"
       >

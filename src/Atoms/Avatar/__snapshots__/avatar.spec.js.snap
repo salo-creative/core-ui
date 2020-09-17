@@ -26,6 +26,8 @@ exports[`Renders against snapshot 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  padding: 0;
+  margin: 0;
 }
 
 .c0:after {

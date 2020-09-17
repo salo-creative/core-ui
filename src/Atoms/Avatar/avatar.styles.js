@@ -19,6 +19,8 @@ export const AvatarWrapper = styled.button.attrs(({ image, cursor }) => ({
   align-items: center;
   justify-content: center;
   display: flex;
+  padding: 0;
+  margin: 0;
   &:after {
     content: '';
     position: absolute;
