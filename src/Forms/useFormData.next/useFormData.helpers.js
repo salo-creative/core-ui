@@ -9,7 +9,7 @@ import { buildYup } from '../../helpers/form';
  */
 export const evaluateValue = ({ value, type }) => {
   // If not defined grab the default
-  if (!value) {
+  if (!value && value !== false) { // Allow false values to be used
     switch (type) {
       case 'address':
         return {};
