@@ -86,7 +86,7 @@ export const parseApolloError = ({ error, propName = 'APOLLO_ERROR' }) => {
     code,
     errors,
     extra,
-    message,
+    message: message || error.message,
     name
   };
 };
