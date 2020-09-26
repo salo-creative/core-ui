@@ -74,7 +74,7 @@
     "@salo/auth": "~0.0.2",
     "@salo/icons": "~1.5.1",
     "@sambego/storybook-state": "~1.3.6",
-    "@storybook/addon-actions": "~5.3.18",
+    "@storybook/addon-actions": "~6.0.22",
     "@storybook/addon-info": "~5.3.18",
     "@storybook/addon-jest": "~5.3.18",
     "@storybook/addon-knobs": "~5.3.18",
