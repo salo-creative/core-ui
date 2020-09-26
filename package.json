@@ -68,7 +68,7 @@
     "@babel/plugin-syntax-dynamic-import": "~7.8.3",
     "@babel/plugin-transform-runtime": "~7.9.0",
     "@babel/preset-env": "~7.9.5",
-    "@babel/preset-react": "~7.9.4",
+    "@babel/preset-react": "~7.10.4",
     "@babel/runtime-corejs3": "~7.9.2",
     "@jamesbliss/storybook-state": "~0.0.1",
     "@salo/auth": "~0.0.2",
