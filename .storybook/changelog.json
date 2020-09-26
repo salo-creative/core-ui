@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v2.4.18", "commit": "Re-run release" },
 { "user": "", "version": "v2.4.17", "commit": "Adding pdf only document type to uploader" },
 { "user": "Rich Comber", "version": "v2.4.16", "commit": "Adding fallback handling for network error" },
 { "user": "Rich Comber", "version": "v2.4.15", "commit": "Fixing issue in useForm data where validation doesnt allow false values" },
