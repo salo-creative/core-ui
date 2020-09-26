@@ -24,6 +24,8 @@ function getAcceptedTypes(accept) {
     return accept.reduce((accum, type) => {
       if (type === 'documents') {
         return accum += `,${ mimeTypes.documents.join() }`;
+      } if (type === 'pdf') {
+        return accum += `,${ mimeTypes.pdf.join() }`;
       } if (type === 'images') {
         return accum += `,${ mimeTypes.images.join() }`;
       } if (type === 'data') {
