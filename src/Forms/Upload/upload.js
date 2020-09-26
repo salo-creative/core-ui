@@ -14,6 +14,7 @@ import Button from '../../Molecules/Button';
 
 export const mimeTypes = {
   documents: ['application/pdf', '.doc', '.docx', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+  pdf: ['application/pdf'],
   images: ['image/png', 'image/jpeg', 'image/jpg'],
   data: ['text/csv']
 };
