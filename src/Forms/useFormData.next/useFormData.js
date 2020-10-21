@@ -2,7 +2,7 @@ import React from 'react';
 import {
   get, isEmpty, find, findIndex, hasIn
 } from 'lodash';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/client';
 
 // HELPERS & CONSTANTS
 import { GET_FORM, SUBMIT_FORM } from './useFormData.queries';

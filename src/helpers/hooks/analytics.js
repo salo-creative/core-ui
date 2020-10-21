@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { useEffect, useRef } from 'react';
 import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 const ADD_ANALYTICS_EVENT = gql`
   mutation analytics_add($body: AnalyticsEventInput!) {
