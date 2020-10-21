@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v3.0.2", "commit": "Removing useless tests" },
 { "user": "Rich Comber", "version": "v3.0.1", "commit": "Fixing ci" },
 { "user": "Rich Comber", "version": "v3.0.0", "commit": "Upgrading apollo client" },
 { "user": "Rich Comber", "version": "v2.4.19", "commit": "Fixing new pdf upload accept" },
