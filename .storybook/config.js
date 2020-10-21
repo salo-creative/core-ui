@@ -2,9 +2,7 @@ import React from 'react';
 import { configure, addDecorator, setAddon } from '@storybook/react';
 import infoAddon, { withInfo } from '@storybook/addon-info';
 import { BrowserRouter } from 'react-router-dom';
-import Cookies from 'universal-cookie';
-import { ApolloProvider } from '@apollo/react-hooks';
-import { AuthProvider, getTokensClient } from '@salo/auth';
+import { ApolloProvider } from '@apollo/client';
 import ApolloClient from '../src/Apollo/client';
 import { addParameters } from '@storybook/react';
 
@@ -22,8 +20,6 @@ const client = ApolloClient({
   uri: 'http://localhost:4000/graphql',
   tokens: { clientKey: 'Bx2ojE2xLNcsQsHTUaNf+da35LiWBdac1oU/TovZ9auYiRdhvQfWrHhI0SfaCiKaht2JJ/dFhkyuD+o//LH+qQ==' }
 });
-
-const cookies = new Cookies();
 
 addParameters({
   options: {
@@ -57,10 +53,8 @@ addDecorator(withInfo({
 }))
 
 addDecorator(story => {
-  const tokens = getTokensClient(cookies);
   return (
     <ApolloProvider client={ client }>
-      <AuthProvider tokens={ tokens }>
           <BrowserRouter>
             <Theme>
               <AlertProvider>
@@ -73,7 +67,6 @@ addDecorator(story => {
               </AlertProvider>
             </Theme>
           </BrowserRouter>
-      </AuthProvider>
     </ApolloProvider>
   );
 } );
