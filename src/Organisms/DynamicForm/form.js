@@ -22,7 +22,8 @@ const Form = (props) => {
     styles,
     data,
     options,
-    inputs
+    inputs,
+    renderFunctions
   } = props;
 
   const {
@@ -113,6 +114,7 @@ const Form = (props) => {
             <RenderFields
               { ...fieldProps }
               inputs={ inputs }
+              renderFunctions={ renderFunctions }
               select={ get(options, 'select') }
               typeaheads={ get(options, 'typeaheads') }
             />
@@ -138,6 +140,7 @@ const Form = (props) => {
             } }
             activeStep={ activeStep }
             inputs={ inputs }
+            renderFunctions={ renderFunctions }
             isSubmitting={ submit.isSubmitting }
             position={ get(options, 'stepper.position', Form.defaultProps.options.stepper.position) }
             select={ get(options, 'select') }
@@ -194,7 +197,8 @@ Form.defaultProps = {
     TextArea: null,
     TypeAhead: null,
     Upload: null
-  }
+  },
+  renderFunctions: {}
 };
 
 Form.propTypes = {
@@ -239,7 +243,8 @@ Form.propTypes = {
     TextArea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     TypeAhead: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     Upload: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
-  })
+  }),
+  renderFunctions: PropTypes.object
 };
 
 export default Form;

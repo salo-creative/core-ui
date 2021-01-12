@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  get, isEmpty, forEach, map, isArray
+  get,
+  isEmpty,
+  forEach,
+  map,
+  isArray,
+  omit
 } from 'lodash';
 import styled from 'styled-components';
 
@@ -48,7 +53,8 @@ const RenderFields = (props) => {
     showErrors,
     typeaheads,
     values,
-    inputs
+    inputs,
+    renderFunctions
   } = props;
   
   // Custom components
@@ -98,6 +104,23 @@ const RenderFields = (props) => {
       groups[metaData.group] = groups[metaData.group] ? [...groups[metaData.group], index] : [index];
     }
 
+    // Start by checking for a custom render function
+    // if one supplied call the function and return
+    const renderFunction = renderFunctions?.[field.name];
+    if (typeof renderFunction === 'function') {
+      return renderFunction({
+        ...field,
+        ...omit(props, ['fields']),
+        hasError,
+        helperText,
+        error,
+        errorMessage,
+        metaData,
+        value
+      });
+    }
+
+    // Otherwise switch on type
     switch (type) {
       case 'file': {
         // Evaluate the component to use
@@ -539,7 +562,9 @@ RenderFields.defaultProps = {
   disabled: false,
   select: {},
   typeaheads: null,
-  values: {}
+  values: {},
+  inputs: {},
+  renderFunctions: {}
 };
 
 RenderFields.propTypes = {
@@ -549,7 +574,9 @@ RenderFields.propTypes = {
   handleChange: PropTypes.func.isRequired,
   select: PropTypes.object,
   typeaheads: PropTypes.object,
-  values: PropTypes.object
+  values: PropTypes.object,
+  inputs: PropTypes.object,
+  renderFunctions: PropTypes.object
 };
 
 export default RenderFields;

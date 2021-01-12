@@ -1,4 +1,5 @@
 [
+{ "user": "Rich Comber", "version": "v3.1.0", "commit": "Adding ability to pass custom render functions to dynamic form" },
 { "user": "Rich Comber", "version": "v3.0.5", "commit": "Removing all form tests" },
 { "user": "Rich Comber", "version": "v3.0.4", "commit": "Removing more form tests" },
 { "user": "Rich Comber", "version": "v3.0.3", "commit": "Removing broken tests ahead of upgrades" },
