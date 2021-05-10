@@ -107,7 +107,7 @@
     "identity-obj-proxy": "~3.0.0",
     "jest": "~25.1.0",
     "jest-styled-components": "~6.3.4",
-    "node-sass": "~4.13.0",
+    "node-sass": "~6.0.0",
     "npm-cli-login": "~0.1.1",
     "prop-types": "~15.7.2",
     "raw-loader": "~4.0.0",
